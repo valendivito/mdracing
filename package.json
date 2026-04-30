@@ -1,0 +1,14 @@
+{
+  "name": "mdracing",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "devDependencies": {
+    "vercel": "^44.0.0"
+  }
+}
