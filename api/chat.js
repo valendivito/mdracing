@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const response = await client.messages.create({
-      model: 'claude-haiku-4-5',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 1024,
       system: SYSTEM_PROMPT,
       messages,
