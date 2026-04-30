@@ -1,10 +1,9 @@
-import Anthropic from '@anthropic-ai/sdk';
-import { SYSTEM_PROMPT } from '../bot/knowledge.js';
+const Anthropic = require('@anthropic-ai/sdk');
+const { SYSTEM_PROMPT } = require('../bot/knowledge.js');
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-export default async function handler(req, res) {
-  // CORS
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ message: response.content[0].text });
   } catch (err) {
-    console.error('Error Claude API:', err);
+    console.error('Error Claude API:', err.message);
     return res.status(500).json({ error: 'Error al procesar tu consulta. Intentá de nuevo.' });
   }
-}
+};
