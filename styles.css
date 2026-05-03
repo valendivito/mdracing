@@ -4123,4 +4123,59 @@ section { position: relative; }
   .logo-img { height: 36px !important; }
 }
 
+/* ── Product Gallery Slider ── */
+.pg-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.pg-slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pg-hidden { display: none !important; }
+.pg-arr {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+  padding: 0;
+}
+.pg-arr:hover { background: rgba(209,0,0,.7); }
+.pg-prev { left: 6px; }
+.pg-next { right: 6px; }
+.pg-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+.pg-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  transition: background .2s;
+}
+.pg-dot-active { background: #d10000; }
+
 
