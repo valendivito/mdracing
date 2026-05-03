@@ -66,6 +66,19 @@ const icons = {
   quote: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" opacity=".8"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>`,
 };
 
+// ── Color name map ──
+const COLOR_NAMES = {
+  '#1a1a1a': 'Negro',
+  '#0a0a0a': 'Negro',
+  '#888888': 'Gris',
+  '#5a5a5a': 'Gris Oscuro',
+  '#1a2a5a': 'Azul',
+  '#8B0000': 'Bordo',
+  '#c46080': 'Rosa',
+  '#e8e6e0': 'Beige',
+  '#2d8a4e': 'Verde',
+};
+
 // ── Car SVG (used throughout) ──
 const carSvg = `<svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-car-svg">
   <g opacity="0.9">
@@ -152,12 +165,28 @@ const categories = [
 // ── Products data ──
 const products = [
   // ─── FUNDAS PARA ASIENTOS ───────────────────────────────────────────────
-  { id: 'funda-para-asientos-vw-tera-cuero-automotor-acolchado-qj9az', name: 'Funda VW Tera Cuero Automotor Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Cuero automotor acolchado 3mm para VW Tera. Diseñada específicamente para este modelo, ajuste perfecto y máxima durabilidad.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-4fd92aa337037f508817637371680250-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-gris-eb2fec05ca4bfbc4dd17637386495801-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/6bcf4a36-27a3-4bca-bc0f-9be1274cb0dd-1ab3f7771bee20ef5217637373652048-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/c1d3400f-b126-4eb1-bf57-4f6e2dbf6b5f-a8a6c9f53655a82d3b17637372261628-1024-1024.webp'] },
-  { id: 'funda-para-asientos-vw-polo-track-eco-cuero-wpgw2', name: 'Funda VW Polo Track Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', salePrice: '89.999', colors: ['#1a1a1a','#888888','#e8e6e0','#1a2a5a','#8B0000','#c46080'], svg: seatSvg, desc: 'Ecocuero para VW Polo Track. Juego completo con apoyacabezas, fácil limpieza y ajuste perfecto.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-58ee7e0f98592549a017634703261790-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-polo-track-ecocuero-photoroom-74722d0d3727199a4d17634692658814-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-gris-ecocuero-photoroom-aef9e35904e01a6e7217634702096934-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-roja-ecocuero-photoroom-15eb0295d25197ea2417634702094470-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-rosa-ecocuero-photoroom-725c92e78d51f2824b17634702090585-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-blanca-ecocuero-photoroom-4e624359eb40a95c0517634702091593-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-azul-ecocuero-photoroom-e76353911986bc91b217634702095670-1024-1024.webp'] },
+  { id: 'funda-para-asientos-vw-tera-cuero-automotor-acolchado-qj9az', name: 'Funda VW Tera Cuero Automotor Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Cuero automotor acolchado 3mm para VW Tera. Diseñada específicamente para este modelo, ajuste perfecto y máxima durabilidad.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-4fd92aa337037f508817637371680250-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/6bcf4a36-27a3-4bca-bc0f-9be1274cb0dd-1ab3f7771bee20ef5217637373652048-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-gris-eb2fec05ca4bfbc4dd17637386495801-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/c1d3400f-b126-4eb1-bf57-4f6e2dbf6b5f-a8a6c9f53655a82d3b17637372261628-1024-1024.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-4fd92aa337037f508817637371680250-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/6bcf4a36-27a3-4bca-bc0f-9be1274cb0dd-1ab3f7771bee20ef5217637373652048-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/c1d3400f-b126-4eb1-bf57-4f6e2dbf6b5f-a8a6c9f53655a82d3b17637372261628-1024-1024.webp'] },
+    { hex: '#888888', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-gris-eb2fec05ca4bfbc4dd17637386495801-1024-1024.webp'] },
+  ] },
+  { id: 'funda-para-asientos-vw-polo-track-eco-cuero-wpgw2', name: 'Funda VW Polo Track Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', salePrice: '89.999', colors: ['#1a1a1a','#888888','#e8e6e0','#1a2a5a','#8B0000','#c46080'], svg: seatSvg, desc: 'Ecocuero para VW Polo Track. Juego completo con apoyacabezas, fácil limpieza y ajuste perfecto.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-58ee7e0f98592549a017634703261790-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-polo-track-ecocuero-photoroom-74722d0d3727199a4d17634692658814-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-gris-ecocuero-photoroom-aef9e35904e01a6e7217634702096934-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-roja-ecocuero-photoroom-15eb0295d25197ea2417634702094470-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-rosa-ecocuero-photoroom-725c92e78d51f2824b17634702090585-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-blanca-ecocuero-photoroom-4e624359eb40a95c0517634702091593-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-azul-ecocuero-photoroom-e76353911986bc91b217634702095670-1024-1024.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-58ee7e0f98592549a017634703261790-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-polo-track-ecocuero-photoroom-74722d0d3727199a4d17634692658814-1024-1024.webp'] },
+    { hex: '#888888', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-gris-ecocuero-photoroom-aef9e35904e01a6e7217634702096934-1024-1024.webp'] },
+    { hex: '#e8e6e0', name: 'Beige', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-blanca-ecocuero-photoroom-4e624359eb40a95c0517634702091593-1024-1024.webp'] },
+    { hex: '#1a2a5a', name: 'Azul', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-azul-ecocuero-photoroom-e76353911986bc91b217634702095670-1024-1024.webp'] },
+    { hex: '#8B0000', name: 'Bordo', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-roja-ecocuero-photoroom-15eb0295d25197ea2417634702094470-1024-1024.webp'] },
+    { hex: '#c46080', name: 'Rosa', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-rosa-ecocuero-photoroom-725c92e78d51f2824b17634702090585-1024-1024.webp'] },
+  ] },
   { id: 'funda-para-asientos-vw-polo-track-eco-cuero-acolchada-3mm-weji3', name: 'Funda VW Polo Track Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '170.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para VW Polo Track. Mayor comodidad y protección, diseño específico.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-a07a3b1ca09f843bd817634710616802-1024-1024.webp'] },
   { id: 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz', name: 'Funda VW Polo Track + Cubre Volante Plano', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', salePrice: '130.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Combo funda ecocuero para VW Polo Track más cubre volante base plana. Protección completa interior.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F977374-mla94521392568%5F102025-f-c55966e4c793f7306717634661988934-1024-1024.webp'] },
   { id: 'funda-vw-polo-2018-cuero-automotor', name: 'Funda VW Polo 2018 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Cuero automotor de alta calidad para VW Polo 2018. Ajuste perfecto, resistencia y elegancia garantizados.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-polo-2018-photoroom-cc7df3d4c86bc430f217592434772918-1024-1024.webp'] },
-  { id: 'funda-para-asientos-gol-trend-ecocuero5', name: 'Funda VW Gol Trend Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '90.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para VW Gol Trend. Juego completo con apoyacabezas, fácil de limpiar y montar.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F711213-mla92372485178%5F092025-b-b02514e10f7b873fdb17588067661933-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F881414-mla92778037055%5F092025-b-fad3d147bbb367df6117588068499493-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-azul-50d40e832e4b12495317588068792721-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F771846-mla92369371196%5F092025-b-ef23a005478496524917588069082436-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-blanca-2c739a3495c6c41e9317588068828051-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-gris-729caacd16ac51899217588068858439-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-roja-9aad1959605a3fc35217588068895096-1024-1024.webp'] },
+  { id: 'funda-para-asientos-gol-trend-ecocuero5', name: 'Funda VW Gol Trend Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '90.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para VW Gol Trend. Juego completo con apoyacabezas, fácil de limpiar y montar.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F711213-mla92372485178%5F092025-b-b02514e10f7b873fdb17588067661933-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-gris-729caacd16ac51899217588068858439-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-azul-50d40e832e4b12495317588068792721-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-blanca-2c739a3495c6c41e9317588068828051-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-roja-9aad1959605a3fc35217588068895096-1024-1024.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F711213-mla92372485178%5F092025-b-b02514e10f7b873fdb17588067661933-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F881414-mla92778037055%5F092025-b-fad3d147bbb367df6117588068499493-1024-1024.webp'] },
+    { hex: '#5a5a5a', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-gris-729caacd16ac51899217588068858439-1024-1024.webp'] },
+    { hex: '#1a2a5a', name: 'Azul', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-azul-50d40e832e4b12495317588068792721-1024-1024.webp'] },
+    { hex: '#e8e6e0', name: 'Beige', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-blanca-2c739a3495c6c41e9317588068828051-1024-1024.webp'] },
+    { hex: '#8B0000', name: 'Bordo', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-roja-9aad1959605a3fc35217588068895096-1024-1024.webp'] },
+  ] },
   { id: 'funda-para-asientos-renault-ecocuero-o-tela-up', name: 'Funda VW Up / Renault Ecocuero o Tela', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Funda para VW Up en ecocuero o tela a elección. Consultar color y material al comprar.' },
   { id: 'funda-renault-sandero-tela-jakard-premium', name: 'Funda Renault Sandero Tela Jakard Premium', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', colors: ['#1a1a1a','#888888','#8B0000','#1a2a5a'], svg: seatSvg, desc: 'Tela Jakard premium para Renault Sandero. Resistente, estética y de fácil colocación.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-jakard-sandero-negra-53e3e43eaf253ff92517588918978120-1024-1024.webp'] },
   { id: 'funda-para-asientos-renault-kwid-ecocuero2', name: 'Funda Renault Kwid Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '90.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero línea nueva para Renault Kwid. Juego completo con apoyacabezas.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-con-funda-asiento-ecocuero-negra-e9b9a5274a0a359ad417588075645682-1024-1024.webp'] },
@@ -170,7 +199,10 @@ const products = [
   { id: 'funda-para-asientos-ford-ecosport-l-nueva-ecocuero5', name: 'Funda Ford EcoSport Línea Nueva Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para Ford EcoSport línea nueva. Diseño adaptado al interior moderno del vehículo.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecosport-l-nueva-negra-c10d7cc742b5324ad017588087044235-1024-1024.webp'] },
   { id: 'funda-ford-ranger-ecocuero-acolchada', name: 'Funda Ford Ranger Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para Ford Ranger. Con o sin apoyabrazos trasero, ajuste específico.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-premium-acolchada-ranger-photoroom-6f4cb55060907bcecb17592351800320-1024-1024.webp'] },
   { id: 'funda-ford-ranger-cuero-automotor', name: 'Funda Ford Ranger Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Cuero automotor de alta calidad para Ford Ranger. Máxima resistencia y elegancia para trabajo y ciudad.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp'] },
-  { id: 'funda-toyota-hilux-ecocuero-acolchada-og58b', name: 'Funda Toyota Hilux Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para Toyota Hilux. Respaldo trasero entero o dividido a elección.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-negr-photoroom-1f9020ded5765ca41817617647926138-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-gris-photoroom-6471f24288e5aa531b17618458172111-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-dividido-ef4e4e0a0478e5021117618459457680-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-entero-1-1ce2a50238e8b9ae9517618459457592-1024-1024.webp'] },
+  { id: 'funda-toyota-hilux-ecocuero-acolchada-og58b', name: 'Funda Toyota Hilux Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para Toyota Hilux. Respaldo trasero entero o dividido a elección.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-negr-photoroom-1f9020ded5765ca41817617647926138-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-gris-photoroom-6471f24288e5aa531b17618458172111-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-dividido-ef4e4e0a0478e5021117618459457680-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-entero-1-1ce2a50238e8b9ae9517618459457592-1024-1024.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-negr-photoroom-1f9020ded5765ca41817617647926138-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-dividido-ef4e4e0a0478e5021117618459457680-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/respaldo-trasero-entero-1-1ce2a50238e8b9ae9517618459457592-1024-1024.webp'] },
+    { hex: '#888888', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/hilux-ecocuero-acolch-gris-photoroom-6471f24288e5aa531b17618458172111-1024-1024.webp'] },
+  ] },
   { id: 'funda-toyota-hilux-cuerina-automotor-acolchada', name: 'Funda Toyota Hilux Cuero Automotor Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Cuerina automotor acolchada 3mm para Toyota Hilux. Máxima durabilidad y confort para uso intensivo.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/fundas-cuerina-automotor-hilux-negro-photoroom-2a50446a4faa18038d17612326941672-1024-1024.webp'] },
   { id: 'funda-peugeot-308-ecocuero-acolchado-gk1p2', name: 'Funda Peugeot 308 Ecocuero Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para Peugeot 308. Ajuste perfecto y cómodo, instalación rápida.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecocuero-acolchado-peugeot-308-photoroom-00e878d5f6fb3a38a217595035256699-1024-1024.webp'] },
   { id: 'funda-fiat-palio-siena', name: 'Funda Fiat Palio/Siena Tela Jakard Premium', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '120.000', colors: ['#1a1a1a','#888888','#8B0000','#1a2a5a'], svg: seatSvg, desc: 'Tela Jakard Premium para Fiat Palio y Siena. Disponible para ambos modelos y varios colores.' },
@@ -834,7 +866,7 @@ function renderProductCard(p) {
 
   let mediaContent;
   if (p.images && p.images.length > 0) {
-    const uid = p.id.replace(/[^a-z0-9]/g, '').slice(0, 16);
+    const uid = p.id.replace(/[^a-z0-9]/g, '');
     const slides = p.images.map((img, i) =>
       `<img src="${img}" alt="${p.name}" class="pg-slide${i === 0 ? '' : ' pg-hidden'}" loading="${i === 0 ? 'eager' : 'lazy'}" />`
     ).join('');
@@ -966,16 +998,28 @@ function renderCategoryPage(catId) {
               `).join('')}
             </div>
           </div>
-          <div class="filter-block">
-            <div class="filter-title">Tipo de Material</div>
-            <div class="filter-options">
-              ${['Ecocuero','Tela Premium Jakard','Ecocuero Acolchado','Cuero Automotor','Tela Silver','Tela Silver Antigranizo','Tela Premium Afelpada'].map(m => `
-                <label class="filter-opt">
-                  <input type="checkbox" onchange="applyFilters()"> <span>${m}</span>
-                </label>
-              `).join('')}
-            </div>
-          </div>
+          ${(() => {
+            const matsByCat = {
+              'cat-fundas-asientos': ['Ecocuero','Tela Premium Jakard','Ecocuero Acolchado 3mm','Cuero Automotor'],
+              'cat-cubre-autos': ['Tela Silver (Fiselina)','Tela Premium Afelpada','Antigranizo 3 Capas'],
+              'cat-cubre-capots': [],
+              'cat-cubre-trompas': [],
+              'cat-cubre-motos': ['Tela Silver','Tela Premium Afelpada'],
+              'cat-accesorios': [],
+            };
+            const mats = matsByCat[catId] || [];
+            if (!mats.length) return '';
+            return `<div class="filter-block" data-filter-type="material">
+              <div class="filter-title">Tipo de Material</div>
+              <div class="filter-options">
+                ${mats.map(m => `
+                  <label class="filter-opt">
+                    <input type="checkbox" onchange="applyFilters()"> <span>${m}</span>
+                  </label>
+                `).join('')}
+              </div>
+            </div>`;
+          })()}
           <div class="filter-block">
             <div class="filter-title">Modelo de Vehículo</div>
             <div class="selector-field" style="margin-top:0">
@@ -1021,11 +1065,10 @@ function renderProductPage(productId) {
   const versionHtml = (() => {
     if (p.catId === 'cat-fundas-asientos') {
       return `<div class="option-group">
-        <span class="option-label">Versión</span>
+        <span class="option-label">Respaldo trasero</span>
         <div class="variant-btns">
-          <button class="variant-btn active">Estándar</button>
-          <button class="variant-btn">Con respaldo</button>
-          <button class="variant-btn">A medida</button>
+          <button class="variant-btn active" onclick="this.closest('.variant-btns').querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Dividido</button>
+          <button class="variant-btn" onclick="this.closest('.variant-btns').querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Entero</button>
         </div>
       </div>`;
     }
@@ -1127,18 +1170,27 @@ function renderProductPage(productId) {
   const instSteps = installStepsMap[p.catId] || installStepsMap['cat-accesorios'];
 
   // Gallery dinámica
-  const galleryImages = p.images && p.images.length > 0 ? p.images : null;
+  const pid = p.id.replace(/[^a-z0-9]/g, '').slice(0, 20);
+  const hasColorVariants = p.colorVariants && p.colorVariants.length > 0;
+  const galleryImages = hasColorVariants
+    ? p.colorVariants[0].images
+    : (p.images && p.images.length > 0 ? p.images : null);
+
   const galleryHtml = galleryImages
-    ? `<div class="product-gallery">
-        <div class="product-main-img" id="pp-main-${p.id.slice(0,12)}">
-          <img src="${galleryImages[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px" id="pp-main-img-${p.id.slice(0,12)}" />
+    ? `<div class="product-gallery" id="pp-gallery-${pid}">
+        <div class="product-main-img">
+          <img src="${galleryImages[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-${pid}" />
         </div>
-        <div class="product-thumbs">
-          ${galleryImages.map((img, i) => `
-            <div class="product-thumb ${i===0?'active':''}" onclick="ppThumb(this,'${img}','pp-main-img-${p.id.slice(0,12)}')">
-              <img src="${img}" alt="${p.name} ${i+1}" style="width:100%;height:100%;object-fit:cover" loading="lazy" />
-            </div>
-          `).join('')}
+        <div class="product-thumbs" id="pp-thumbs-${pid}">
+          ${hasColorVariants
+            ? p.colorVariants.map((cv, ci) => cv.images.map((img, ii) => `
+              <div class="product-thumb pp-color-thumb ${ci===0&&ii===0?'active':''}" data-color-idx="${ci}" style="${ci!==0?'display:none':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
+                <img src="${img}" alt="${p.name} ${cv.name}" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+              </div>`).join('')).join('')
+            : galleryImages.map((img, i) => `
+              <div class="product-thumb ${i===0?'active':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
+                <img src="${img}" alt="${p.name} ${i+1}" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+              </div>`).join('')}
         </div>
       </div>`
     : `<div class="product-gallery">
@@ -1195,12 +1247,15 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-options">
-            ${p.colors.length > 1 ? `
+            ${(p.colorVariants ? p.colorVariants.length > 1 : p.colors.length > 1) ? `
               <div class="option-group">
                 <span class="option-label">Color</span>
                 <div class="color-swatches">
-                  ${p.colors.map((c, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${c}" title="Color ${i+1}"></div>`).join('')}
+                  ${p.colorVariants
+                    ? p.colorVariants.map((cv, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${cv.hex}" title="${cv.name}" onclick="selectProductColor(this,'${pid}',${i})"></div>`).join('')
+                    : p.colors.map((c, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${c}" title="${COLOR_NAMES[c]||'Color '+(i+1)}"></div>`).join('')}
                 </div>
+                <div class="color-selected-name" id="csn-${pid}">${p.colorVariants ? p.colorVariants[0].name : (COLOR_NAMES[p.colors[0]]||'')}</div>
               </div>
             ` : ''}
             ${versionHtml}
@@ -2252,15 +2307,18 @@ function applyFilters() {
   }
 
   // Filtro por material
-  const checkedMats = Array.from(sidebar.querySelectorAll('.filter-block:nth-child(2) input:checked'))
-    .map(cb => cb.nextElementSibling.textContent.trim().toLowerCase());
+  const matBlock = sidebar.querySelector('.filter-block[data-filter-type="material"]');
+  const checkedMats = matBlock
+    ? Array.from(matBlock.querySelectorAll('input:checked')).map(cb => cb.nextElementSibling.textContent.trim().toLowerCase())
+    : [];
 
   if (checkedMats.length) {
     const matTerms = {
-      'ecocuero acolchado': ['acolchad'],
+      'ecocuero acolchado 3mm': ['ecocuero acolchad'],
       'tela premium jakard': ['jakard'],
       'cuero automotor': ['cuero automotor'],
-      'tela silver antigranizo': ['antigranizo'],
+      'antigranizo 3 capas': ['antigranizo'],
+      'tela silver (fiselina)': ['fiselina', 'silver'],
       'tela silver': ['silver'],
       'tela premium afelpada': ['afelpada'],
       'ecocuero': ['ecocuero'],
@@ -2455,4 +2513,29 @@ function ppThumb(thumb, src, mainId) {
   thumb.classList.add('active');
   const main = document.getElementById(mainId);
   if (main) main.src = src;
+}
+
+function selectProductColor(swatchEl, pid, colorIdx) {
+  // Update active swatch
+  swatchEl.closest('.color-swatches').querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+  swatchEl.classList.add('active');
+  // Update selected name
+  const nameEl = document.getElementById('csn-' + pid);
+  if (nameEl) nameEl.textContent = swatchEl.title;
+  // Show/hide color thumbs
+  const gallery = document.getElementById('pp-gallery-' + pid);
+  if (!gallery) return;
+  const thumbs = gallery.querySelectorAll('.pp-color-thumb');
+  thumbs.forEach(t => {
+    const match = parseInt(t.dataset.colorIdx) === colorIdx;
+    t.style.display = match ? '' : 'none';
+    t.classList.remove('active');
+  });
+  // Activate first thumb of selected color and update main image
+  const first = Array.from(thumbs).find(t => parseInt(t.dataset.colorIdx) === colorIdx);
+  if (first) {
+    first.classList.add('active');
+    const mainImg = document.getElementById('pp-main-img-' + pid);
+    if (mainImg) mainImg.src = first.querySelector('img').src;
+  }
 }
