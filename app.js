@@ -370,7 +370,7 @@ const products = [
   { id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux', name: 'Funda Antigranizo 3 Capas Toyota Hilux', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '140.000', salePrice: '135.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Antigranizo 3 capas para Toyota Hilux. Polyfoam 6mm, elástico perimetral, incluye bolsa de regalo.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/toyota-hilux-fondo-blanco-photoroom-bdd1fc918f88d65c7717624307664816-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_2x_674313-mla98247217315_112025-f-25092cd7fff16ceae617733412895434-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_2x_890100-mla98246262917_112025-f-01aff221894e1a69a717733413157262-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_2x_817066-mla98247216701_112025-f-ec4783e1a2ad02b29917733413217062-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_618584-mla92357730948_092025-b-aa6764329c76e4a2a117592389555096-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_761660-mla92766139459_092025-b-73016349644d3649c717592389596296-1024-1024.webp'] },
   { id: 'funda-cubre-camioneta-antigranizo-alaskan-nissan-frontier', name: 'Funda Antigranizo 3 Capas Renault Alaskan / Nissan Frontier', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '140.000', salePrice: '135.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Antigranizo 3 capas para Renault Alaskan / Nissan Frontier. Triple capa impermeable con Polyfoam.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k4th668tfj6sh3j04ycz3tyr%5F1757532158%5Fimg%5F0-215593930ef43d2e6b17592390671148-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k4tgvfwpe0et136kad0az0rb%5F1757531816%5Fimg%5F0-d3e79786b4ed8c1c2c17592390716603-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F674313-mla98247217315%5F112025-f-8ae9cfdefb5619bd6d17733416124760-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F890100-mla98246262917%5F112025-f-58ee1f86b8f1be395817733416159124-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F817066-mla98247216701%5F112025-f-574b3362d1ec730da317733416174273-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F618584-mla92357730948%5F092025-b-bf1125e2581c49aa7117592391996704-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F761660-mla92766139459%5F092025-b-fe1568d76d16e8008e17592392040439-1024-1024.webp'] },
   { id: 'funda-cubre-auto-premium-afelpado-impermeable4', name: 'Funda Cubre Auto Premium Afelpado', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: 'Premium', price: '180.000', colors: ['#1a1a1a','#888888'], svg: coverSvg, desc: 'Funda premium con interior afelpado e impermeable. Tela Kipling alta calidad. Talles S/M/L y XL ($210.000).', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F915538-mla81837544625%5F012025-b-be66e08032be767f5a17612384213935-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/74dc3f55-c51f-41c5-8511-4da11bb451b9-cdf7a380548317762117612383751398-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F949309-mla81567224900%5F012025-b-4635e88190e547ec2917612384073326-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/2efeae4f-ce1a-40ee-93a1-70e396f5d233-94d874bbf5203e84af17612383808168-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F697048-mla81567244720%5F012025-b-203cba0cc2ced5a05817612384152917-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F603661-mla81837875457%5F012025-b-03257e641a2b2f959b17612384180280-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/3bf84c57-3e28-4d9b-8dd9-8a7a11e4643d-77a82758cef9e344d217612383878488-1024-1024.webp'] },
-  { id: 'funda-cubre-auto-antigranizo-3-capas-impermeable', name: 'Funda Antigranizo 3 Capas Universal', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '110.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda antigranizo universal 3 capas. Talle S (hasta 4m): $110k / M-L (hasta 4,70m): $120k / XL (5,20m): $130k.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp'] },
+  { id: 'funda-cubre-auto-antigranizo-3-capas-impermeable', name: 'Funda Cubre Auto Antigranizo 3 Capas Impermeable', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '135.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda cubre auto antigranizo universal 3 capas. Tela Silver exterior impermeable + Polyfoam 6mm + interior afelpado. Elástico perimetral. Talle S/M/L: $135.000 · XL: $150.000.', sizeVariants: [{label:'S',price:'135.000'},{label:'M',price:'135.000'},{label:'L',price:'135.000'},{label:'XL',price:'150.000'}], images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp'] },
   { id: 'funda-cubre-auto-vw-tera-2025-tela-silver', name: 'Funda Cubre Auto VW Tera 2025', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: 'Nuevo', price: '99.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda cubre auto tela Silver para VW Tera 2025. Impermeable, protección UV, interior suave. Elástico perimetral. Talle L/XL según versión.', images: ['https://http2.mlstatic.com/D_NQ_NP_964759-MLA98384413641_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_842740-MLA98377408815_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_988515-MLA97909255146_112025-O.webp'] },
   { id: 'funda-cubre-auto-antigranizo-vw-taos-3-capas', name: 'Funda Antigranizo 3 Capas VW Taos', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '150.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda antigranizo 3 capas para VW Taos. Tela Silver exterior impermeable + Polyfoam 6mm + interior afelpado. Protege contra granizo intenso.', images: ['https://http2.mlstatic.com/D_NQ_NP_951543-MLA103221813496_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_628889-MLA103221751142_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_991318-MLA103740574715_012026-O.webp'] },
   { id: 'funda-cubre-auto-tela-silver-vw-taos', name: 'Funda Cubre Auto VW Taos Tela Silver', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '125.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda cubre auto tela Silver impermeable para VW Taos. Liviana, resistente a lluvia, sol y polvo. Elástico perimetral.', images: ['https://http2.mlstatic.com/D_NQ_NP_900382-MLA106786551934_022026-O.webp','https://http2.mlstatic.com/D_NQ_NP_945819-MLA107456889993_022026-O.webp','https://http2.mlstatic.com/D_NQ_NP_791338-MLA106785547494_022026-O.webp'] },
@@ -378,7 +378,7 @@ const products = [
   { id: 'funda-cubre-auto-antigranizo-toyota-sw4-3-capas', name: 'Funda Antigranizo 3 Capas Toyota SW4', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: null, price: '165.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda antigranizo 3 capas para Toyota SW4. Tela Silver exterior + Polyfoam 6mm alta densidad + interior afelpado. Talle XL.', images: ['https://http2.mlstatic.com/D_NQ_NP_847498-MLA101675603735_122025-O.webp','https://http2.mlstatic.com/D_NQ_NP_888944-MLA97102440184_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_891009-MLA97561305371_112025-O.webp'] },
 
   // ─── CUBRE MOTOS ─────────────────────────────────────────────────────────
-  { id: 'funda-cubre-moto-silver-impermeable', name: 'Funda Silver Cubre Moto Universal', cat: 'Cubre Motos', catId: 'cat-cubre-motos', badge: null, price: '26.000', colors: ['#1a1a1a'], svg: motoSvg, desc: 'Funda Silver para motos. Impermeable, protección UV, resistente al polvo y lluvia. No raya, bolso incluido.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_611065-mla94923201172_102025-b-e5b80a1484fb037bb117611346308065-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_605998-mla95357172459_102025-b-995a50ebcf49f9e5ca17611346405395-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_622395-mla95358375093_102025-b-996fe2a97ff9f9e86817611346440451-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_613313-mla95358179509_102025-b-ad69b33dffc1a5d5cc17611346490788-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_641495-mla95085858489_102025-b-03f6973619d389c5c817611346539549-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_782345-mla94654556870_102025-b-d6f52dd2bc746f7d6717611346578310-1024-1024.webp'] },
+  { id: 'funda-cubre-moto-silver-impermeable', name: 'Funda Silver Cubre Moto', cat: 'Cubre Motos', catId: 'cat-cubre-motos', badge: null, price: '26.000', colors: ['#1a1a1a'], svg: motoSvg, desc: 'Funda Silver para motos. Impermeable, protección UV, resistente al polvo y lluvia. No raya, bolso incluido. Talle S/M/L · XL · XXL.', sizeVariants: [{label:'S/M/L',price:'26.000',salePrice:'23.999'},{label:'XL',price:'30.000',salePrice:'26.000'},{label:'XXL',price:'34.000',salePrice:'30.000'}], images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_611065-mla94923201172_102025-b-e5b80a1484fb037bb117611346308065-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_605998-mla95357172459_102025-b-995a50ebcf49f9e5ca17611346405395-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_622395-mla95358375093_102025-b-996fe2a97ff9f9e86817611346440451-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_613313-mla95358179509_102025-b-ad69b33dffc1a5d5cc17611346490788-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_641495-mla95085858489_102025-b-03f6973619d389c5c817611346539549-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_782345-mla94654556870_102025-b-d6f52dd2bc746f7d6717611346578310-1024-1024.webp'] },
 
   // ─── ACCESORIOS ──────────────────────────────────────────────────────────
   { id: 'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g', name: 'Cubre Volante Base Plana VW/Ford/Renault', cat: 'Accesorios', catId: 'cat-accesorios', badge: null, price: '14.000', colors: ['#1a1a1a'], svg: accesorioSvg, desc: 'Cubre volante base plana 38". Compatible con volantes planos y redondos de 38". VW, Peugeot, Citroën, Ford, Renault.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_865350-mla52282987564_112022-o-746e629d142ab7009217587257657426-1024-1024.webp'] },
@@ -643,7 +643,12 @@ function renderHome() {
           <a href="#" data-page="categorias" class="btn-ghost">Ver todo el catálogo ${icons.arrowRight}</a>
         </div>
         <div class="products-grid">
-          ${products.slice(0,4).map(p => renderProductCard(p)).join('')}
+          ${[
+            'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz',
+            'funda-cubre-camioneta-antigranizo-vw-amarok',
+            'cubre-capot-renault-twingo',
+            'funda-cubre-moto-silver-impermeable',
+          ].map(id => products.find(p => p.id === id)).filter(Boolean).map(p => renderProductCard(p)).join('')}
         </div>
         <div style="text-align:center">
           <a href="#" data-page="categorias" class="btn-outline">Ver Todos los Productos</a>
@@ -899,17 +904,24 @@ function renderHome() {
     <!-- FINAL CTA -->
     <section class="final-cta">
       <div class="final-cta-inner">
-        <span class="section-label" style="display:block;text-align:center">¿Listo para proteger tu vehículo?</span>
-        <h2 class="section-title">Hablá con nosotros.<br><span>Te ayudamos a elegir.</span></h2>
+        <div style="display:inline-block;background:var(--red2);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px">🔥 Precio de Fábrica Directo</div>
+        <span class="section-label" style="display:block;text-align:center;margin-bottom:8px">Sin intermediarios · Fabricado en Argentina</span>
+        <h2 class="section-title">Armamos el combo<br><span>justo para tu auto.</span></h2>
         <div class="divider-line" style="margin:20px auto"></div>
-        <p class="section-sub" style="margin:0 auto 40px">No importa la marca ni el modelo. En MDRACING tenemos la solución. Consultá sin compromiso y recibí asesoramiento personalizado.</p>
+        <p class="section-sub" style="margin:0 auto 28px">Ya viste lo que tenemos. Ahora escribinos: contanos tu marca y modelo, y te respondemos en minutos con el precio más bajo directo de fábrica — sin vueltas, sin cobros extras.</p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:36px">
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Fundas a medida o universales</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Envío a todo el país</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Garantía 30 días</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Instalación en nuestro local</span>
+        </div>
         <div class="final-cta-actions">
-          <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING para mi vehículo')}" target="_blank" class="btn-whatsapp" style="font-size:17px;padding:16px 36px">${icons.waIcon} Consultar por WhatsApp</a>
+          <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden dar precio de fábrica?')}" target="_blank" class="btn-whatsapp" style="font-size:17px;padding:16px 36px">${icons.waIcon} Pedir precio por WhatsApp</a>
           <a href="#" data-page="categorias" class="btn-outline" style="font-size:17px;padding:15px 36px">Ver Catálogo Completo</a>
         </div>
         <p class="final-cta-note">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          Respondemos en menos de 1 hora en horario comercial
+          Respondemos en minutos · Lun–Vie 8 a 18hs · Sáb 9 a 13hs
         </p>
       </div>
     </section>
@@ -917,7 +929,12 @@ function renderHome() {
 }
 
 function renderProductCard(p) {
-  const displayPrice = p.salePrice || p.price;
+  let displayPrice = p.salePrice || p.price;
+  if (p.sizeVariants && p.sizeVariants.length > 0) {
+    const prices = p.sizeVariants.map(sv => parseInt((sv.salePrice || sv.price).replace(/\./g, ''), 10));
+    const minPrice = Math.min(...prices);
+    displayPrice = minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
   const waLink = WA_MSG(`Hola! Quiero consultar por: ${p.name} (desde $${displayPrice})`);
 
   let mediaContent;
@@ -940,21 +957,30 @@ function renderProductCard(p) {
     mediaContent = `<div class="product-img-visual">${p.svg}</div>`;
   }
 
+  const hasSaleInSizes = p.sizeVariants && p.sizeVariants.some(sv => sv.salePrice);
   const badgeHtml = p.badge
     ? `<span class="product-badge">${p.badge}</span>`
-    : (p.salePrice ? `<span class="product-badge product-badge-oferta">Oferta</span>` : '');
+    : ((p.salePrice || hasSaleInSizes) ? `<span class="product-badge product-badge-oferta">Oferta</span>` : '');
   const colorsHtml = p.colors && p.colors.length
     ? `<div class="product-colors">${p.colors.map(c => `<span class="product-color-dot" style="background:${c}"></span>`).join('')}</div>`
     : '';
-  const priceHtml = p.salePrice
-    ? `<div class="product-price-block">
+  let priceHtml;
+  if (p.sizeVariants && p.sizeVariants.length > 0) {
+    priceHtml = `<div class="product-price-block">
+        <span class="product-price-from">Desde</span>
+        <div class="product-price product-price-sale">$${displayPrice}</div>
+       </div>`;
+  } else if (p.salePrice) {
+    priceHtml = `<div class="product-price-block">
         <span class="product-price-original">$${p.price}</span>
         <div class="product-price product-price-sale">$${p.salePrice}</div>
-       </div>`
-    : `<div class="product-price-block">
+       </div>`;
+  } else {
+    priceHtml = `<div class="product-price-block">
         <span class="product-price-from">Desde</span>
         <div class="product-price">$${p.price}</div>
        </div>`;
+  }
   return `
     <article class="product-card">
       <div class="product-card-media" onclick="navigate('product-${p.id}')">
@@ -1262,6 +1288,29 @@ function renderProductPage(productId) {
         </div>
       </div>`;
 
+  // ── Size variant selector ──
+  const sizeHtml = (() => {
+    if (!p.sizeVariants || p.sizeVariants.length === 0) return '';
+    return `<div class="option-group">
+      <span class="option-label">Talle</span>
+      <div class="variant-btns">
+        ${p.sizeVariants.map((sv, i) => `<button class="variant-btn ${i===0?'active':''}" onclick="selectSizeVariant(this,'${pid}','${sv.price}','${sv.salePrice||''}')">${sv.label}</button>`).join('')}
+      </div>
+    </div>`;
+  })();
+
+  // ── Initial price display ──
+  const initPriceHtml = (() => {
+    if (p.sizeVariants && p.sizeVariants.length > 0) {
+      const sv = p.sizeVariants[0];
+      if (sv.salePrice) return `<span class="price-old">$${sv.price}</span> <span class="currency">$</span>${sv.salePrice}`;
+      return `<span class="currency">$</span>${sv.price}`;
+    }
+    if (p.salePrice) return `<span class="price-old">$${p.price}</span> <span class="currency">$</span>${p.salePrice}`;
+    return `<span class="currency">$</span>${p.price}`;
+  })();
+  const priceFromLabel = p.sizeVariants && p.sizeVariants.length > 0 ? 'Precio · elegí tu talle' : 'Precio';
+
   return `
     <div class="page-wrapper">
       <div class="page-hero">
@@ -1297,12 +1346,13 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-price-section">
-            <div class="price-from">Precio</div>
-            <div class="price-main"><span class="currency">$</span>${p.price}</div>
+            <div class="price-from">${priceFromLabel}</div>
+            <div class="price-main" id="pp-price-main-${pid}">${initPriceHtml}</div>
             <div style="font-size:13px;color:var(--metal)">IVA incluido · Envío a calcular según destino</div>
           </div>
 
           <div class="product-options">
+            ${sizeHtml}
             ${(() => {
               if (p.colorVariants && p.colorVariants.length > 0 && p.colorVariants[0].isMaterial) {
                 const firstSub = p.colorVariants[0].subColors || [];
@@ -2465,11 +2515,13 @@ const CART_MAX_QTY = 10;
 
 function cartUpdateBadge() {
   const badge = document.getElementById('cart-badge');
+  const btn = document.getElementById('cart-btn');
   if (!badge) return;
   const items = cartGet();
   const n = items.reduce((sum, i) => sum + (i.qty || 1), 0);
   badge.textContent = n;
-  badge.hidden = n === 0;
+  badge.hidden = false; // always show count when button is visible
+  if (btn) btn.style.display = n === 0 ? 'none' : 'flex';
 }
 function addToCart(productId) {
   const p = products.find(pr => pr.id === productId);
@@ -2815,6 +2867,18 @@ function selectMaterialVariant(btnEl, pid, matIdx) {
   if (prod && subColEl && prod.colorVariants && prod.colorVariants[matIdx]) {
     const sub = prod.colorVariants[matIdx].subColors || [];
     subColEl.innerHTML = sub.map(sc => `<span class="subcolor-chip">${sc}</span>`).join('');
+  }
+}
+
+function selectSizeVariant(btn, pid, priceStr, salePriceStr) {
+  btn.closest('.variant-btns').querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById('pp-price-main-' + pid);
+  if (!el) return;
+  if (salePriceStr) {
+    el.innerHTML = '<span class="price-old">$' + priceStr + '</span> <span class="currency">$</span>' + salePriceStr;
+  } else {
+    el.innerHTML = '<span class="currency">$</span>' + priceStr;
   }
 }
 

@@ -1904,6 +1904,14 @@ section { position: relative; }
   margin: 4px 0 16px;
 }
 .price-main .currency { font-size: 28px; vertical-align: top; margin-top: 6px; display: inline-block; }
+.price-old {
+  font-size: 22px;
+  color: var(--metal);
+  text-decoration: line-through;
+  font-weight: 400;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 
 .product-options { margin-bottom: 24px; }
 .option-group { margin-bottom: 20px; }
