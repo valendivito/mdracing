@@ -2434,11 +2434,13 @@ function cartSave(items) {
   localStorage.setItem(CART_KEY, JSON.stringify(items));
   cartUpdateBadge();
 }
+const CART_MAX_QTY = 10;
+
 function cartUpdateBadge() {
   const badge = document.getElementById('cart-badge');
   if (!badge) return;
   const items = cartGet();
-  const n = items.length;
+  const n = items.reduce((sum, i) => sum + (i.qty || 1), 0);
   badge.textContent = n;
   badge.hidden = n === 0;
 }
@@ -2446,19 +2448,25 @@ function addToCart(productId) {
   const p = products.find(pr => pr.id === productId);
   if (!p) return;
   const items = cartGet();
-  if (items.some(i => i.id === productId)) {
-    // Ya está → abrir carrito
-    openCart();
-    return;
+  const existing = items.find(i => i.id === productId);
+  if (existing) {
+    if ((existing.qty || 1) >= CART_MAX_QTY) {
+      // Ya en el máximo → abrir carrito y avisar
+      openCart();
+      return;
+    }
+    existing.qty = (existing.qty || 1) + 1;
+  } else {
+    items.push({
+      id: p.id,
+      name: p.name,
+      cat: p.cat,
+      price: p.price,
+      salePrice: p.salePrice || null,
+      img: (p.images && p.images[0]) || p.img || null,
+      qty: 1,
+    });
   }
-  items.push({
-    id: p.id,
-    name: p.name,
-    cat: p.cat,
-    price: p.price,
-    salePrice: p.salePrice || null,
-    img: (p.images && p.images[0]) || p.img || null,
-  });
   cartSave(items);
   // Feedback visual en el botón clickeado
   const btn = document.querySelector(`[data-cart-btn="${productId}"]`);
@@ -2470,6 +2478,17 @@ function addToCart(productId) {
       btn.innerHTML = icons.plus;
     }, 1400);
   }
+  cartRender();
+}
+function cartChangeQty(productId, delta) {
+  const items = cartGet();
+  const it = items.find(i => i.id === productId);
+  if (!it) return;
+  const newQty = (it.qty || 1) + delta;
+  if (newQty <= 0) { cartSave(items.filter(i => i.id !== productId)); cartRender(); return; }
+  if (newQty > CART_MAX_QTY) return;
+  it.qty = newQty;
+  cartSave(items);
   cartRender();
 }
 function removeFromCart(productId) {
@@ -2524,9 +2543,12 @@ function cartRender() {
 
   body.innerHTML = items.map(i => {
     const price = i.salePrice || i.price;
+    const qty = i.qty || 1;
     const imgHtml = i.img
       ? `<img src="${i.img}" alt="${i.name}" loading="lazy" />`
       : `<div style="color:var(--metal);display:flex;align-items:center;justify-content:center;width:100%;height:100%">${icons.tag}</div>`;
+    const minusDisabled = qty <= 1 ? 'disabled' : '';
+    const plusDisabled = qty >= CART_MAX_QTY ? 'disabled' : '';
     return `
       <div class="cart-item">
         <div class="cart-item-img">${imgHtml}</div>
@@ -2534,18 +2556,30 @@ function cartRender() {
           <div class="cart-item-cat">${i.cat}</div>
           <div class="cart-item-name">${i.name}</div>
           <div class="cart-item-price"><span class="cart-item-price-from">Desde</span>$${price}</div>
+          <div class="cart-qty">
+            <button class="cart-qty-btn" onclick="cartChangeQty('${i.id}',-1)" ${minusDisabled} aria-label="Restar">−</button>
+            <span class="cart-qty-num">${qty}</span>
+            <button class="cart-qty-btn" onclick="cartChangeQty('${i.id}',1)" ${plusDisabled} aria-label="Sumar">+</button>
+            ${qty >= CART_MAX_QTY ? '<span class="cart-qty-max">máx 10</span>' : ''}
+          </div>
         </div>
         <button class="cart-item-remove" onclick="removeFromCart('${i.id}')" aria-label="Quitar">${icons.trash}</button>
       </div>
     `;
   }).join('');
 
-  // Mensaje WhatsApp con todos los productos
-  const productList = items.map(i => `${i.name} (desde $${i.salePrice || i.price})`).join(', ');
+  // Mensaje WhatsApp con todos los productos (incluye cantidad si > 1)
+  const productList = items.map(i => {
+    const qty = i.qty || 1;
+    const price = i.salePrice || i.price;
+    const qtyTxt = qty > 1 ? `${qty}x ` : '';
+    return `${qtyTxt}${i.name} (desde $${price})`;
+  }).join(', ');
   const waMsg = `Hola! Quiero consultar por: ${productList}.`;
+  const totalUnits = items.reduce((s, i) => s + (i.qty || 1), 0);
   footer.innerHTML = `
     <div class="cart-summary">
-      <span>${items.length} producto${items.length === 1 ? '' : 's'} en el carrito</span>
+      <span>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en el carrito</span>
       <strong>Consulta sin cargo</strong>
     </div>
     <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout">
