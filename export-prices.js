@@ -44,20 +44,28 @@ while (i < src.length) {
         return m ? m[1] : '';
       };
       const badge = block.match(/badge:\s*'([^']*)'/) ? block.match(/badge:\s*'([^']*)'/)[1] : '';
+      // Convert "99.000" string → number 99000
+      const toNum = (s) => s ? parseInt(s.replace(/\./g, ''), 10) : '';
       const p = {
         ID:              get('id'),
         Nombre:          get('name'),
         'Categoría':     get('cat'),
         CatID:           get('catId'),
         Badge:           badge,
-        'Precio Normal': get('price'),
-        'Precio Promoción': get('salePrice'),
+        'Precio Normal': toNum(get('price')),
+        'Precio Promoción': toNum(get('salePrice')),
       };
       if (p.ID && p.Nombre) products.push(p);
       objStart = -1;
     }
   }
   i++;
+}
+
+// Helper to convert number back to '99.000' format used in app.js
+function toAppPrice(n) {
+  if (!n && n !== 0) return '';
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 console.log('Total productos:', products.length);
@@ -82,6 +90,19 @@ ws['!cols'] = [
   { wch: 17 },  // Precio Normal
   { wch: 19 },  // Precio Promoción
 ];
+
+// Apply $ number format to price columns (F = col 5, G = col 6), skip header row
+const priceFormat = '"$"#,##0';
+const wsRange = XLSX.utils.decode_range(ws['!ref']);
+for (let R = 1; R <= wsRange.e.r; R++) {
+  for (const C of [5, 6]) { // Precio Normal, Precio Promoción
+    const addr = XLSX.utils.encode_cell({ r: R, c: C });
+    if (ws[addr] && ws[addr].v !== '') {
+      ws[addr].t = 'n';
+      ws[addr].z = priceFormat;
+    }
+  }
+}
 
 // Freeze top row
 ws['!freeze'] = { xSplit: 0, ySplit: 1 };
