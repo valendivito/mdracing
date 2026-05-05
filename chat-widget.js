@@ -20,10 +20,14 @@
     btn.setAttribute('aria-label', 'Abrir chat con Madi IA');
     btn.innerHTML = `
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-        <circle cx="9" cy="10" r=".8" fill="currentColor" stroke="none"/>
-        <circle cx="12" cy="10" r=".8" fill="currentColor" stroke="none"/>
-        <circle cx="15" cy="10" r=".8" fill="currentColor" stroke="none"/>
+        <rect x="4" y="8" width="16" height="12" rx="3"/>
+        <path d="M12 4v4"/>
+        <circle cx="12" cy="3" r="1.2" fill="currentColor" stroke="none"/>
+        <circle cx="9" cy="14" r="1.3" fill="currentColor" stroke="none"/>
+        <circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/>
+        <path d="M9 17.5h6"/>
+        <line x1="2" y1="13" x2="4" y2="13"/>
+        <line x1="20" y1="13" x2="22" y2="13"/>
       </svg>`;
     btn.addEventListener('click', toggleChat);
 
@@ -35,9 +39,15 @@
     win.innerHTML = `
       <div id="md-chat-header">
         <div id="md-chat-header-avatar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="16" height="12" rx="3"/>
+            <path d="M12 4v4"/>
+            <circle cx="12" cy="3" r="1.2" fill="white" stroke="none"/>
+            <circle cx="9" cy="14" r="1.3" fill="white" stroke="none"/>
+            <circle cx="15" cy="14" r="1.3" fill="white" stroke="none"/>
+            <path d="M9 17.5h6"/>
+            <line x1="2" y1="13" x2="4" y2="13"/>
+            <line x1="20" y1="13" x2="22" y2="13"/>
           </svg>
         </div>
         <div id="md-chat-header-info">
@@ -196,6 +206,12 @@
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(/\n/g, '<br>');
   }
+
+  // ── API global para abrir el chat desde otros botones ──
+  window.openMadiChat = function () {
+    if (!document.getElementById('md-chat-window')) buildWidget();
+    openChat();
+  };
 
   // ── Init ─────────────────────────────────────
   if (document.readyState === 'loading') {

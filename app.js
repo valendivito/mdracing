@@ -64,6 +64,10 @@ const icons = {
   mercadolibre: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.25l-3-3 1.06-1.06L11 14.13l4.94-4.94L17 10.25l-6 6z"/></svg>`,
   pin: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
   quote: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" opacity=".8"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>`,
+  bot: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="14" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/><path d="M9 17.5h6"/><line x1="2" y1="13" x2="4" y2="13"/><line x1="20" y1="13" x2="22" y2="13"/></svg>`,
+  cart: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M3 3h2.5l2.7 13a2 2 0 002 1.6h8.6a2 2 0 002-1.5l1.6-8.1H6"/></svg>`,
+  trash: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a2 2 0 012-2h2a2 2 0 012 2v2"/></svg>`,
+  plus: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
 };
 
 // ── Color name map ──
@@ -434,7 +438,7 @@ const faqs = [
   { q: '¿Cómo sé si el producto es compatible con mi vehículo?', a: 'Escribinos por WhatsApp con marca, modelo y año de tu vehículo. Un asesor humano te confirma compatibilidad antes de que compres y te recomienda el producto correcto según tu uso. También ofrecemos productos universales ajustables.' },
   { q: '¿Los envíos llegan a todo el país?', a: 'Sí. Enviamos a toda Argentina por Correo Argentino, Andreani y OCA. El costo se calcula según destino y peso — te lo presupuestamos antes de confirmar la compra. Despachamos en 24–48hs hábiles.' },
   { q: '¿Cuánto tarda en llegar mi pedido?', a: 'GBA: 2–3 días hábiles. Interior del país: 4–7 días hábiles según zona. Te pasamos el número de seguimiento apenas despachamos.' },
-  { q: '¿Puedo pagar en cuotas?', a: 'Sí. Aceptamos tarjetas de crédito con hasta 6 cuotas sin interés según el banco, transferencia bancaria (con descuento especial), MercadoPago y efectivo en el local.' },
+  { q: '¿Puedo pagar en cuotas?', a: 'Sí. Aceptamos tarjetas de crédito con hasta 6 cuotas sin interés según el banco (online o en local), transferencia bancaria (10% de descuento), Mercado Pago para envíos a domicilio y efectivo en el local.' },
   { q: '¿Puedo ir a ver los productos en persona?', a: 'Sí. Tenemos un local de confianza en Munro (Av. Bartolomé Mitre 3495, Provincia de Buenos Aires) donde podés ver los productos y coordinar la instalación de fundas o accesorios. Coordiná la visita por WhatsApp.' },
   { q: '¿Ofrecen instalación?', a: 'Sí. En nuestro local de confianza en Munro (Av. Bartolomé Mitre 3495) realizamos la instalación de fundas para asientos y accesorios. Coordinamos el turno por WhatsApp.' },
   { q: '¿Qué garantía tienen los productos?', a: 'Garantía de 30 días contra fallas de fabricación. Si detectás un defecto dentro del período, lo cambiamos sin costo. Para cambios por talle, el producto debe estar sin uso y en su embalaje original.' },
@@ -599,16 +603,19 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- NO ENCONTRAS TU MODELO — WA CTA -->
+    <!-- NO ENCONTRAS TU MODELO — WA + MADI CTA -->
     <section class="nomodel-section">
       <div class="nomodel-inner">
-        <div class="nomodel-icon">${icons.phone}</div>
+        <div class="nomodel-icon">${icons.bot}</div>
         <div class="nomodel-text">
           <h3>¿No encontrás el producto para tu vehículo?</h3>
-          <p>Podemos tener exactamente lo que buscás aunque no esté publicado en el catálogo. Escribinos con la marca, modelo y año de tu vehículo — te asesoramos sin compromiso.</p>
+          <p>Podemos tener exactamente lo que buscás aunque no esté publicado en el catálogo. Escribinos por WhatsApp con la marca, modelo y año de tu vehículo, o consultá compatibilidad e información sobre MDRACING con nuestro bot <strong>Madi</strong> — te asesoramos sin compromiso.</p>
           <p class="nomodel-stock">✔ Stock disponible para envío inmediato</p>
         </div>
-        <a href="${WA_MSG('Hola! No encontré el producto para mi vehículo en el catálogo. ¿Pueden ayudarme?')}" target="_blank" class="btn-primary btn-primary-wa nomodel-btn">${icons.waIcon} Consultanos por WhatsApp</a>
+        <div class="nomodel-actions">
+          <a href="${WA_MSG('Hola! No encontré el producto para mi vehículo en el catálogo. ¿Pueden ayudarme?')}" target="_blank" class="btn-primary btn-primary-wa nomodel-btn">${icons.waIcon} Consultanos por WhatsApp</a>
+          <button type="button" onclick="openMadiChat()" class="nomodel-btn-madi">${icons.bot} O consultá con nuestro bot Madi</button>
+        </div>
       </div>
     </section>
 
@@ -951,6 +958,7 @@ function renderProductCard(p) {
         <div class="product-card-actions">
           <a href="${waLink}" target="_blank" class="product-btn-wa">${icons.waIcon} Consultar</a>
           <button class="product-btn-detail" onclick="navigate('product-${p.id}')">Ver más</button>
+          <button class="product-btn-cart" data-cart-btn="${p.id}" onclick="event.stopPropagation();addToCart('${p.id}')" aria-label="Sumar al carrito" title="Sumar al carrito">${icons.plus}</button>
         </div>
       </div>
     </article>
@@ -1024,7 +1032,7 @@ function renderCategoryPage(catId) {
         <!-- Sidebar Filters -->
         <aside class="filters-sidebar" id="filters-sidebar">
           <button class="filters-sidebar-close" onclick="toggleMobileFilters()">✕ Cerrar filtros</button>
-          <div class="filter-block">
+          <div class="filter-block" data-filter-type="brand">
             <div class="filter-title">Filtrar por Marca</div>
             <div class="filter-options">
               ${['Fiat','Peugeot','Toyota','Volkswagen','BMW','Ford','Chevrolet','Renault','Audi','Nissan','Honda','Citroën','Mitsubishi'].map(b => `
@@ -1056,12 +1064,12 @@ function renderCategoryPage(catId) {
               </div>
             </div>`;
           })()}
-          <div class="filter-block">
+          <div class="filter-block" data-filter-type="model">
             <div class="filter-title">Modelo de Vehículo</div>
             <div class="selector-field" style="margin-top:0">
-              <select style="background:var(--dark3);border:1px solid var(--white15);border-radius:6px;color:var(--white);font-family:var(--font-body);font-size:14px;padding:10px 14px;width:100%">
-                <option>Todos los modelos</option>
-                ${Object.values(vehicleData).flat().sort().map(m => `<option>${m}</option>`).join('')}
+              <select onchange="applyFilters()" style="background:var(--dark3);border:1px solid var(--white15);border-radius:6px;color:var(--white);font-family:var(--font-body);font-size:14px;padding:10px 14px;width:100%">
+                <option value="">Todos los modelos</option>
+                ${Object.values(vehicleData).flat().sort().map(m => `<option value="${m.toLowerCase()}">${m}</option>`).join('')}
               </select>
             </div>
           </div>
@@ -1298,6 +1306,7 @@ function renderProductPage(productId) {
 
           <div class="product-ctas">
             <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
+            <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2)">${icons.cart} Sumar al carrito</button>
             <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
           </div>
 
@@ -1507,7 +1516,7 @@ function renderAboutPage() {
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
               </div>
               <div class="about-manufacture-label">Clientes corporativos</div>
-              <p style="color:var(--metal2);font-size:14px;line-height:1.7;margin:0">Proveemos productos a empresas grandes del sector automotriz argentino como <strong style="color:var(--white)">Norauto</strong> y <strong style="color:var(--white)">DM Distribuidora de Autopartes</strong>. Eso habla de la confianza que genera nuestra calidad.</p>
+              <p style="color:var(--metal2);font-size:14px;line-height:1.7;margin:0">Proveemos productos a empresas grandes del sector automotriz argentino como <strong style="color:var(--white)">Norauto</strong>, <strong style="color:var(--white)">DM Distribuidora de Autopartes</strong> y <strong style="color:var(--white)">SUNRA Argentina</strong> (fábrica líder en tecnología eléctrica). Eso habla de la confianza que genera nuestra calidad.</p>
             </div>
           </div>
         </div>
@@ -1551,11 +1560,12 @@ function renderAboutPage() {
 function renderHowToBuyPage() {
   const steps = [
     { n: '01', title: 'Elegí el producto que querés', text: 'Explorá el catálogo por categoría. Si tenés dudas sobre qué modelo o talla es la correcta para tu vehículo, no te preocupes: te asesoramos sin ningún compromiso.' },
-    { n: '02', title: 'Consultá por WhatsApp', text: 'Hacé clic en "Comprar por WhatsApp" o "Consultar compatibilidad con mi vehículo". Un asesor real te va a responder, sin bots, sin formularios, sin vueltas.' },
-    { n: '03', title: 'Sacate todas las dudas', text: 'Consultá todo lo que necesites: medidas, materiales, compatibilidad con tu auto, colores disponibles. Respondemos con detalle para que no te quede ninguna duda antes de comprar.' },
-    { n: '04', title: 'Definí cómo recibís el pedido', text: 'Coordiná con tu asesor si preferís recibir el pedido por envío a domicilio (todo el país) o retirarlo personalmente en nuestro local de Munro o en nuestra fábrica de Villa Ballester.' },
-    { n: '05', title: 'Elegí cómo pagás', text: 'Podés abonar por transferencia bancaria o en efectivo. Si retirás en nuestro local de Munro (Av. Bartolomé Mitre 3495), también podés pagar con tarjeta de débito o crédito.' },
-    { n: '06', title: '¡Listo! Confirmamos y despachamos', text: 'Si abonás por transferencia, envianos el comprobante por WhatsApp. Si retirás en persona, coordinamos el día y horario. Preparamos tu pedido y te avisamos cuando está listo.' },
+    { n: '02', title: 'Sumalo al carrito (o consultá uno por uno)', text: 'Podés armar un carrito con todos los productos que te interesen y consultarlos juntos por WhatsApp en un solo mensaje. Si preferís, también podés consultar producto por producto desde su ficha.' },
+    { n: '03', title: 'Consultá por WhatsApp', text: 'Hacé clic en "Consultar todos por WhatsApp" desde el carrito, o "Comprar por WhatsApp" desde la ficha del producto. Te responde un asesor real, sin bots ni formularios.' },
+    { n: '04', title: 'Sacate todas las dudas', text: 'Consultá todo lo que necesites: medidas, materiales, compatibilidad con tu auto, colores disponibles. Respondemos con detalle para que no te quede ninguna duda antes de comprar.' },
+    { n: '05', title: 'Definí cómo recibís el pedido', text: 'Coordiná con tu asesor si preferís recibir el pedido por envío a domicilio (todo el país) o retirarlo personalmente en nuestro local de Munro o en nuestra fábrica de Villa Ballester.' },
+    { n: '06', title: 'Elegí cómo pagás', text: 'Podés abonar por transferencia bancaria, efectivo, tarjeta de débito o crédito (online o en local) y Mercado Pago para envíos a domicilio. ¡Pagando con efectivo o transferencia te hacemos un 10% de descuento!' },
+    { n: '07', title: '¡Listo! Confirmamos y despachamos', text: 'Si abonás por transferencia o Mercado Pago, envianos el comprobante por WhatsApp. Si retirás en persona, coordinamos el día y horario. Preparamos tu pedido y te avisamos cuando está listo.' },
   ];
 
   return `
@@ -1598,19 +1608,20 @@ function renderHowToBuyPage() {
             <div class="payment-card">
               <div class="payment-icon">💳</div>
               <div class="payment-name">Tarjeta (débito/crédito)</div>
-              <div class="payment-desc">Solo en local de Munro</div>
+              <div class="payment-desc">Online o en local de Munro</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">📱</div>
               <div class="payment-name">Mercado Pago</div>
-              <div class="payment-desc">Rápido y seguro</div>
+              <div class="payment-desc">Disponible para envíos a domicilio</div>
             </div>
           </div>
           <div class="info-block" style="margin-top:24px">
             <div class="info-block-title">${icons.check} Importante sobre los medios de pago</div>
             <ul>
-              <li>El pago con <strong>tarjeta de débito o crédito</strong> está disponible únicamente retirando en nuestro local: <strong>Av. Bartolomé Mitre 3495, Munro.</strong></li>
-              <li>Para envíos a domicilio, los medios de pago son <strong>transferencia bancaria o efectivo</strong> contra entrega (según el correo).</li>
+              <li>Aceptamos <strong>tarjeta de débito o crédito</strong> tanto <strong>online</strong> como retirando en nuestro local de <strong>Av. Bartolomé Mitre 3495, Munro.</strong></li>
+              <li>Para envíos a domicilio podés abonar con <strong>transferencia bancaria, Mercado Pago o tarjeta online</strong>.</li>
+              <li>Pagando con <strong>efectivo o transferencia</strong> tenés un <strong>10% de descuento</strong> en todos los productos.</li>
               <li>Una vez confirmado el pago, preparamos tu pedido en 24-48hs hábiles.</li>
             </ul>
           </div>
@@ -2323,12 +2334,15 @@ function applyFilters() {
   let filtered = catId ? products.filter(p => p.catId === catId) : [...products];
 
   // Filtro por marca
-  const checkedBrands = Array.from(sidebar.querySelectorAll('.filter-block:first-child input:checked'))
-    .map(cb => cb.nextElementSibling.textContent.trim().toLowerCase());
+  const brandBlock = sidebar.querySelector('.filter-block[data-filter-type="brand"]');
+  const checkedBrands = brandBlock
+    ? Array.from(brandBlock.querySelectorAll('input:checked'))
+        .map(cb => cb.nextElementSibling.textContent.trim().toLowerCase())
+    : [];
 
   if (checkedBrands.length) {
     const brandTerms = {
-      'volkswagen': ['vw '],
+      'volkswagen': ['vw ', 'volkswagen'],
       'citroën': ['citroën', 'citroen'],
       'chevrolet': ['chevrolet', 's10', 'montana'],
     };
@@ -2339,6 +2353,13 @@ function applyFilters() {
         return terms.some(t => name.includes(t));
       });
     });
+  }
+
+  // Filtro por modelo
+  const modelBlock = sidebar.querySelector('.filter-block[data-filter-type="model"]');
+  const selectedModel = modelBlock ? (modelBlock.querySelector('select')?.value || '').trim().toLowerCase() : '';
+  if (selectedModel) {
+    filtered = filtered.filter(p => p.name.toLowerCase().includes(selectedModel));
   }
 
   // Filtro por material
@@ -2382,6 +2403,7 @@ function applyFilters() {
 
 function clearFilters() {
   document.querySelectorAll('#filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#filters-sidebar select').forEach(sel => sel.selectedIndex = 0);
   applyFilters();
 }
 
@@ -2396,6 +2418,142 @@ function sortProducts(order) {
   else if (order === 'desc') sorted.sort((a, b) => parsePrice(b) - parsePrice(a));
   grid.innerHTML = sorted.map(p => renderProductCard(p)).join('');
   bindLinks();
+}
+
+// ═══════════════════════════════════════════════════════════
+// CARRITO DE CONSULTA — persistido en localStorage,
+// checkout via WhatsApp (no compra directa).
+// ═══════════════════════════════════════════════════════════
+const CART_KEY = 'mdracing_cart_v1';
+
+function cartGet() {
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch { return []; }
+}
+function cartSave(items) {
+  localStorage.setItem(CART_KEY, JSON.stringify(items));
+  cartUpdateBadge();
+}
+function cartUpdateBadge() {
+  const badge = document.getElementById('cart-badge');
+  if (!badge) return;
+  const items = cartGet();
+  const n = items.length;
+  badge.textContent = n;
+  badge.hidden = n === 0;
+}
+function addToCart(productId) {
+  const p = products.find(pr => pr.id === productId);
+  if (!p) return;
+  const items = cartGet();
+  if (items.some(i => i.id === productId)) {
+    // Ya está → abrir carrito
+    openCart();
+    return;
+  }
+  items.push({
+    id: p.id,
+    name: p.name,
+    cat: p.cat,
+    price: p.price,
+    salePrice: p.salePrice || null,
+    img: (p.images && p.images[0]) || p.img || null,
+  });
+  cartSave(items);
+  // Feedback visual en el botón clickeado
+  const btn = document.querySelector(`[data-cart-btn="${productId}"]`);
+  if (btn) {
+    btn.classList.add('added');
+    btn.innerHTML = icons.check;
+    setTimeout(() => {
+      btn.classList.remove('added');
+      btn.innerHTML = icons.plus;
+    }, 1400);
+  }
+  cartRender();
+}
+function removeFromCart(productId) {
+  cartSave(cartGet().filter(i => i.id !== productId));
+  cartRender();
+}
+function clearCart() {
+  if (!confirm('¿Vaciar el carrito?')) return;
+  cartSave([]);
+  cartRender();
+}
+function openCart() {
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  if (!drawer || !overlay) return;
+  drawer.hidden = false;
+  overlay.hidden = false;
+  // Forzar reflow para que la transición funcione
+  void drawer.offsetWidth;
+  drawer.classList.add('open');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  cartRender();
+}
+function closeCart() {
+  const drawer = document.getElementById('cart-drawer');
+  const overlay = document.getElementById('cart-overlay');
+  if (!drawer || !overlay) return;
+  drawer.classList.remove('open');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { drawer.hidden = true; overlay.hidden = true; }, 300);
+}
+function cartRender() {
+  const body = document.getElementById('cart-body');
+  const footer = document.getElementById('cart-footer');
+  if (!body || !footer) return;
+  const items = cartGet();
+
+  if (items.length === 0) {
+    body.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">${icons.cart}</div>
+        <h4>Tu carrito está vacío</h4>
+        <p>Sumá productos y consultá por todos juntos en un solo mensaje de WhatsApp.</p>
+        <button class="cart-empty-cta" onclick="closeCart();navigate('categorias')">Ver catálogo</button>
+      </div>
+    `;
+    footer.innerHTML = '';
+    return;
+  }
+
+  body.innerHTML = items.map(i => {
+    const price = i.salePrice || i.price;
+    const imgHtml = i.img
+      ? `<img src="${i.img}" alt="${i.name}" loading="lazy" />`
+      : `<div style="color:var(--metal);display:flex;align-items:center;justify-content:center;width:100%;height:100%">${icons.tag}</div>`;
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img">${imgHtml}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-cat">${i.cat}</div>
+          <div class="cart-item-name">${i.name}</div>
+          <div class="cart-item-price"><span class="cart-item-price-from">Desde</span>$${price}</div>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart('${i.id}')" aria-label="Quitar">${icons.trash}</button>
+      </div>
+    `;
+  }).join('');
+
+  // Mensaje WhatsApp con todos los productos
+  const productList = items.map(i => `${i.name} (desde $${i.salePrice || i.price})`).join(', ');
+  const waMsg = `Hola! Quiero consultar por: ${productList}.`;
+  footer.innerHTML = `
+    <div class="cart-summary">
+      <span>${items.length} producto${items.length === 1 ? '' : 's'} en el carrito</span>
+      <strong>Consulta sin cargo</strong>
+    </div>
+    <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout">
+      ${icons.waIcon} Consultar todos por WhatsApp
+    </a>
+    <p class="cart-note">No es una compra directa. Te derivamos a WhatsApp para coordinar precio final, envío y forma de pago.</p>
+    <button class="btn-cart-clear" onclick="clearCart()">Vaciar carrito</button>
+  `;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2422,6 +2580,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   buildMobileNav();
   renderPage('home');
+  cartUpdateBadge();
+
+  // ESC cierra el carrito
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const drawer = document.getElementById('cart-drawer');
+      if (drawer && drawer.classList.contains('open')) closeCart();
+    }
+  });
 
   // Floating WA button — show after 4.5s
   const waFloat = document.getElementById('wa-float');
