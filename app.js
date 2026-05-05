@@ -182,13 +182,14 @@ const products = [
     { hex: '#c46080', name: 'Rosa', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-rosa-ecocuero-photoroom-725c92e78d51f2824b17634702090585-1024-1024.webp'] },
   ] },
   { id: 'funda-para-asientos-vw-polo-track-eco-cuero-acolchada-3mm-weji3', name: 'Funda VW Polo Track Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '170.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para VW Polo Track. Mayor comodidad y protección, diseño específico.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-a07a3b1ca09f843bd817634710616802-1024-1024.webp'] },
+  { id: 'funda-para-asientos-vw-t-cross-2025-cuero-automotor', name: 'Funda VW T-Cross 2025 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Funda de cuero automotor para VW T-Cross 2025. Diseño específico para el modelo, costura reforzada y acabado premium.', images: ['/images/fundas/tcross-cuero-portada.jpg','/images/fundas/tcross-cuero-foto2.jpg','/images/fundas/tcross-cuero-foto3.jpg'] },
   { id: 'funda-para-asientos-vw-polo-track-cuero-automotor-acolchado', name: 'Funda VW Polo Track Cuero Automotor Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Cuero automotor acolchado 3mm para VW Polo Track. Diseño específico para el modelo, máxima calidad y durabilidad. Juego completo con apoyacabezas.', images: ['https://http2.mlstatic.com/D_NQ_NP_680092-MLA96388870828_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_723555-MLA96388655786_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_782550-MLA96838594883_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_746763-MLA96836813581_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_819121-MLA103753271871_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_893231-MLA96863882125_102025-O.webp'], colorVariants: [
     { hex: '#1a1a1a', name: 'Negro', images: ['https://http2.mlstatic.com/D_NQ_NP_680092-MLA96388870828_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_723555-MLA96388655786_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_782550-MLA96838594883_102025-O.webp'] },
     { hex: '#888888', name: 'Gris', images: ['https://http2.mlstatic.com/D_NQ_NP_746763-MLA96836813581_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_819121-MLA103753271871_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_893231-MLA96863882125_102025-O.webp'] },
   ] },
-  { id: 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz', name: 'Funda VW Polo Track + Cubre Volante Plano', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', salePrice: '130.000', colors: ['#1a1a1a','#c8a87a'], svg: seatSvg, desc: 'Combo funda para VW Polo Track más cubre volante base plana. Disponible en Ecocuero negro o Tela Jakard premium varios colores. Protección completa interior.', images: ['https://http2.mlstatic.com/D_NQ_NP_718561-MLA97823460169_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_601983-MLA97822975093_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_696989-MLA97360094462_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_868389-MLA97823719725_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_744210-MLA104899943710_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_957179-MLA104021853718_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_668603-MLA97361635172_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_869853-MLA105691026463_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_735084-MLA97361634338_112025-O.webp'], colorVariants: [
-    { hex: '#1a1a1a', name: 'Negro — Ecocuero', images: ['https://http2.mlstatic.com/D_NQ_NP_718561-MLA97823460169_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_601983-MLA97822975093_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_696989-MLA97360094462_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_868389-MLA97823719725_112025-O.webp'] },
-    { hex: '#c8a87a', name: 'Varios Colores — Jakard Premium', images: ['https://http2.mlstatic.com/D_NQ_NP_744210-MLA104899943710_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_957179-MLA104021853718_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_668603-MLA97361635172_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_869853-MLA105691026463_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_735084-MLA97361634338_112025-O.webp'] },
+  { id: 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz', name: 'Funda VW Polo Track + Cubre Volante Plano', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', salePrice: '130.000', colors: ['#1a1a1a','#c8a87a'], svg: seatSvg, desc: 'Combo funda para VW Polo Track más cubre volante base plana. Disponible en Ecocuero (6 colores) o Tela Jakard Premium (5 diseños). Protección completa interior.', images: ['/images/fundas/eco-portada.webp','/images/fundas/jakard-portada.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Ecocuero - Todos los colores', isMaterial: true, images: ['/images/fundas/eco-portada.webp','/images/fundas/eco-foto2.webp','/images/fundas/eco-foto3.webp','/images/fundas/eco-foto4.webp','/images/fundas/eco-foto5.webp'], subColors: ['Negro','Gris','Rojo','Azul','Blanco','Rosa'] },
+    { hex: '#c8a87a', name: 'Tela Premium Jakard - Todos los colores', isMaterial: true, images: ['/images/fundas/jakard-portada.webp','/images/fundas/jakard-foto2.webp','/images/fundas/jakard-foto3.webp','/images/fundas/jakard-foto4.webp','/images/fundas/jakard-foto5.webp','/images/fundas/jakard-foto6.webp','/images/fundas/jakard-foto7.webp','/images/fundas/jakard-foto8.webp','/images/fundas/jakard-foto9.webp'], subColors: ['Negro Liso','Diseño Negro con Puntos','Diseño Cuadrados Grises','Diseño Detalles Azules','Diseño Detalles Rojos'] },
   ] },
   { id: 'funda-vw-polo-2018-cuero-automotor', name: 'Funda VW Polo 2018 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Cuero automotor de alta calidad para VW Polo 2018. Ajuste perfecto, resistencia y elegancia garantizados.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-polo-2018-photoroom-cc7df3d4c86bc430f217592434772918-1024-1024.webp'] },
   { id: 'funda-para-asientos-gol-trend-ecocuero5', name: 'Funda VW Gol Trend Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '90.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para VW Gol Trend. Juego completo con apoyacabezas, fácil de limpiar y montar.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F711213-mla92372485178%5F092025-b-b02514e10f7b873fdb17588067661933-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-gris-729caacd16ac51899217588068858439-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-azul-50d40e832e4b12495317588068792721-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-blanca-2c739a3495c6c41e9317588068828051-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-roja-9aad1959605a3fc35217588068895096-1024-1024.webp'], colorVariants: [
@@ -1302,17 +1303,30 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-options">
-            ${(p.colorVariants ? p.colorVariants.length > 1 : p.colors.length > 1) ? `
-              <div class="option-group">
-                <span class="option-label">Color</span>
-                <div class="color-swatches">
-                  ${p.colorVariants
-                    ? p.colorVariants.map((cv, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${cv.hex}" title="${cv.name}" onclick="selectProductColor(this,'${pid}',${i})"></div>`).join('')
-                    : p.colors.map((c, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${c}" title="${COLOR_NAMES[c]||'Color '+(i+1)}"></div>`).join('')}
-                </div>
-                <div class="color-selected-name" id="csn-${pid}">${p.colorVariants ? p.colorVariants[0].name : (COLOR_NAMES[p.colors[0]]||'')}</div>
-              </div>
-            ` : ''}
+            ${(() => {
+              if (p.colorVariants && p.colorVariants.length > 0 && p.colorVariants[0].isMaterial) {
+                const firstSub = p.colorVariants[0].subColors || [];
+                return `<div class="option-group">
+                  <span class="option-label">Material</span>
+                  <div class="variant-btns">
+                    ${p.colorVariants.map((cv,i) => `<button class="variant-btn ${i===0?'active':''}" onclick="selectMaterialVariant(this,'${pid}',${i})">${cv.name}</button>`).join('')}
+                  </div>
+                  ${firstSub.length ? `<div style="margin-top:14px"><span class="option-label" style="display:block;margin-bottom:8px">Colores disponibles</span><div class="subcolor-chips" id="subcol-${pid}">${firstSub.map(sc=>`<span class="subcolor-chip">${sc}</span>`).join('')}</div></div>` : ''}
+                </div>`;
+              }
+              if (p.colorVariants ? p.colorVariants.length > 1 : p.colors.length > 1) {
+                return `<div class="option-group">
+                  <span class="option-label">Color</span>
+                  <div class="color-swatches">
+                    ${p.colorVariants
+                      ? p.colorVariants.map((cv, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${cv.hex}" title="${cv.name}" onclick="selectProductColor(this,'${pid}',${i})"></div>`).join('')
+                      : p.colors.map((c, i) => `<div class="color-swatch ${i===0?'active':''}" style="background:${c}" title="${COLOR_NAMES[c]||'Color '+(i+1)}"></div>`).join('')}
+                  </div>
+                  <div class="color-selected-name" id="csn-${pid}">${p.colorVariants ? p.colorVariants[0].name : (COLOR_NAMES[p.colors[0]]||'')}</div>
+                </div>`;
+              }
+              return '';
+            })()}
             ${versionHtml}
           </div>
 
@@ -1884,7 +1898,7 @@ let currentPage = 'home';
 
 function navigate(page) {
   currentPage = page;
-  history.replaceState(null, '', '#' + page);
+  history.pushState({ page }, '', '#' + page);
   renderPage(page);
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeMobileNav();
@@ -2627,9 +2641,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   buildMobileNav();
   const startPage = location.hash.slice(1) || 'home';
+  history.replaceState({ page: startPage }, '', '#' + startPage);
   renderPage(startPage);
   updateActiveNav(startPage);
   cartUpdateBadge();
+
+  window.addEventListener('popstate', (e) => {
+    const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
+    currentPage = page;
+    renderPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateActiveNav(page);
+  });
 
   // ESC cierra el carrito
   document.addEventListener('keydown', e => {
@@ -2764,6 +2787,35 @@ function ppThumb(thumb, src, mainId) {
   thumb.classList.add('active');
   const main = document.getElementById(mainId);
   if (main) main.src = src;
+}
+
+function selectMaterialVariant(btnEl, pid, matIdx) {
+  // Toggle active button
+  btnEl.closest('.variant-btns').querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  // Switch gallery images
+  const gallery = document.getElementById('pp-gallery-' + pid);
+  if (gallery) {
+    const thumbs = gallery.querySelectorAll('.pp-color-thumb');
+    thumbs.forEach(t => {
+      const match = parseInt(t.dataset.colorIdx) === matIdx;
+      t.style.display = match ? '' : 'none';
+      t.classList.remove('active');
+    });
+    const first = Array.from(thumbs).find(t => parseInt(t.dataset.colorIdx) === matIdx);
+    if (first) {
+      first.classList.add('active');
+      const mainImg = document.getElementById('pp-main-img-' + pid);
+      if (mainImg) mainImg.src = first.querySelector('img').src;
+    }
+  }
+  // Update sub-colors
+  const prod = products.find(p => p.id === pid);
+  const subColEl = document.getElementById('subcol-' + pid);
+  if (prod && subColEl && prod.colorVariants && prod.colorVariants[matIdx]) {
+    const sub = prod.colorVariants[matIdx].subColors || [];
+    subColEl.innerHTML = sub.map(sc => `<span class="subcolor-chip">${sc}</span>`).join('');
+  }
 }
 
 function selectProductColor(swatchEl, pid, colorIdx) {

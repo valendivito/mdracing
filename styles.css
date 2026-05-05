@@ -1954,6 +1954,17 @@ section { position: relative; }
   background: var(--red-glow);
 }
 
+.subcolor-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.subcolor-chip {
+  background: var(--dark3);
+  border: 1px solid var(--white15);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--metal2);
+  font-family: var(--font-small);
+}
+
 .product-ctas { display: flex; flex-direction: column; gap: 10px; }
 .btn-primary-full {
   width: 100%;
