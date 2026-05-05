@@ -1872,6 +1872,7 @@ let currentPage = 'home';
 
 function navigate(page) {
   currentPage = page;
+  history.replaceState(null, '', '#' + page);
   renderPage(page);
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeMobileNav();
@@ -2613,7 +2614,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHeader();
   buildMobileNav();
-  renderPage('home');
+  const startPage = location.hash.slice(1) || 'home';
+  renderPage(startPage);
+  updateActiveNav(startPage);
   cartUpdateBadge();
 
   // ESC cierra el carrito
