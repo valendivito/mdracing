@@ -4245,6 +4245,47 @@ section { position: relative; }
 .pg-dot-active { background: #d10000; }
 
 
+/* ── Floating cart button ── */
+#float-cart-btn {
+  position: fixed;
+  bottom: 154px;
+  right: 28px;
+  z-index: 890;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #d10000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(209,0,0,.55);
+  transition: transform .2s, box-shadow .2s;
+}
+#float-cart-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(209,0,0,.75); }
+#float-cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #fff;
+  color: #d10000;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  font-family: var(--font-small);
+  border: 1.5px solid #d10000;
+}
+@media (max-width: 600px) {
+  #float-cart-btn { bottom: 130px; right: 16px; }
+}
+
 /* ═══════════════════════════════════════════════════════════
    CART — Drawer + header button
    ═══════════════════════════════════════════════════════════ */
@@ -4501,8 +4542,8 @@ section { position: relative; }
 }
 .cart-summary {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-direction: column;
+  gap: 8px;
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--metal2);
@@ -4512,6 +4553,28 @@ section { position: relative; }
   font-weight: 800;
   font-size: 18px;
   color: var(--white);
+  letter-spacing: .5px;
+}
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--metal2);
+}
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0 2px;
+  border-top: 1px solid var(--white08);
+}
+.cart-total-row > span:first-child { font-size: 13px; color: var(--metal2); }
+.cart-total-price {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--red2);
   letter-spacing: .5px;
 }
 .cart-note {

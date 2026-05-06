@@ -646,7 +646,7 @@ function renderHome() {
           ${[
             'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz',
             'funda-cubre-camioneta-antigranizo-vw-amarok',
-            'cubre-capot-renault-twingo',
+            'cubre-capot-volkswagen-polo-virtus-2018-5p',
             'funda-cubre-moto-silver-impermeable',
           ].map(id => products.find(p => p.id === id)).filter(Boolean).map(p => renderProductCard(p)).join('')}
         </div>
@@ -1038,7 +1038,12 @@ function renderTestimonial(t) {
 function renderCategoryPage(catId) {
   const cat = categories.find(c => c.id === catId) || categories[0];
   const catProducts = products.filter(p => p.catId === catId);
-  const allProducts = catProducts.length > 0 ? catProducts : products;
+  let allProducts = catProducts.length > 0 ? catProducts : products;
+  // Cubre capots: productos con fotos propias primero, genéricas abajo
+  if (catId === 'cat-cubre-capots') {
+    const isGeneric = p => p.images && p.images.some(img => img.includes('generica'));
+    allProducts = [...allProducts.filter(p => !isGeneric(p)), ...allProducts.filter(p => isGeneric(p))];
+  }
 
   const names = {
     'cat-fundas-asientos': { title: 'Fundas para Asientos', sub: 'Fabricadas a medida o universales. Ecocuero, tela premium, cuero automotor y más. Para todos los vehículos.' },
@@ -1103,6 +1108,16 @@ function renderCategoryPage(catId) {
               </div>
             </div>`;
           })()}
+          <div class="filter-block" data-filter-type="badge">
+            <div class="filter-title">Tipo de producto</div>
+            <div class="filter-options">
+              ${['Más Vendido','Premium','OFERTA','LIQUIDACIÓN','Exclusivo','Mecánico','A medida'].map(b => `
+                <label class="filter-opt">
+                  <input type="checkbox" onchange="applyFilters()" data-badge-val="${b.toLowerCase()}"> <span>${b}</span>
+                </label>
+              `).join('')}
+            </div>
+          </div>
           <div class="filter-block" data-filter-type="model">
             <div class="filter-title">Modelo de Vehículo</div>
             <div class="selector-field" style="margin-top:0">
@@ -2465,6 +2480,18 @@ function applyFilters() {
     });
   }
 
+  // Filtro por badge
+  const badgeBlock = sidebar.querySelector('.filter-block[data-filter-type="badge"]');
+  const checkedBadges = badgeBlock
+    ? Array.from(badgeBlock.querySelectorAll('input:checked')).map(cb => cb.dataset.badgeVal)
+    : [];
+  if (checkedBadges.length) {
+    filtered = filtered.filter(p => {
+      const b = (p.badge || '').toLowerCase();
+      return checkedBadges.some(bv => b.includes(bv));
+    });
+  }
+
   if (countEl) countEl.textContent = filtered.length;
 
   if (filtered.length === 0) {
@@ -2515,13 +2542,15 @@ const CART_MAX_QTY = 10;
 
 function cartUpdateBadge() {
   const badge = document.getElementById('cart-badge');
-  const btn = document.getElementById('cart-btn');
+  const floatBtn = document.getElementById('float-cart-btn');
+  const floatCount = document.getElementById('float-cart-count');
   if (!badge) return;
   const items = cartGet();
   const n = items.reduce((sum, i) => sum + (i.qty || 1), 0);
   badge.textContent = n;
-  badge.hidden = false; // always show count when button is visible
-  if (btn) btn.style.display = n === 0 ? 'none' : 'flex';
+  badge.hidden = n === 0;
+  if (floatBtn) floatBtn.style.display = n === 0 ? 'none' : 'flex';
+  if (floatCount) floatCount.textContent = n;
 }
 function addToCart(productId) {
   const p = products.find(pr => pr.id === productId);
@@ -2656,10 +2685,21 @@ function cartRender() {
   }).join(', ');
   const waMsg = `Hola! Quiero consultar por: ${productList}.`;
   const totalUnits = items.reduce((s, i) => s + (i.qty || 1), 0);
+  const totalPrice = items.reduce((sum, i) => {
+    const p = parseInt((i.salePrice || i.price || '0').replace(/\./g, ''), 10);
+    return sum + p * (i.qty || 1);
+  }, 0);
+  const totalStr = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   footer.innerHTML = `
     <div class="cart-summary">
-      <span>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en el carrito</span>
-      <strong>Consulta sin cargo</strong>
+      <div class="cart-summary-row">
+        <span>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en el carrito</span>
+        <strong>Consulta sin cargo</strong>
+      </div>
+      <div class="cart-total-row">
+        <span>Total estimado</span>
+        <span class="cart-total-price">$${totalStr}</span>
+      </div>
     </div>
     <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout">
       ${icons.waIcon} Consultar todos por WhatsApp
