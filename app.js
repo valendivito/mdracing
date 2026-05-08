@@ -528,6 +528,14 @@ function renderHome() {
           </div>
         </div>
         <div class="hero-visual animate-in animate-delay-2">
+          <div class="hero-search-bar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="hero-search-input" placeholder="Buscá tu funda, cubre auto, accesorio..." autocomplete="off"
+              onkeydown="if(event.key==='Enter'){openSearch();setTimeout(()=>{var i=document.getElementById('search-input');if(i){i.value=this.value;runSearch(this.value);}},80);}"
+              onfocus="this.closest('.hero-search-bar').classList.add('focused')"
+              onblur="this.closest('.hero-search-bar').classList.remove('focused')" />
+            <button onclick="openSearch()" class="hero-search-submit">Buscar</button>
+          </div>
           <div class="hero-car-wrap">
             <img src="images/fabrica.png" alt="Fábrica MDRACING — Villa Ballester" class="hero-factory-img" />
           </div>
@@ -690,42 +698,36 @@ function renderHome() {
     <!-- COMPRÁ EN 3 PASOS -->
     <section class="steps-section">
       <div class="steps-inner">
-        <div class="steps-label">
-          <span class="section-label" style="margin:0">Simple y rápido</span>
-          <h2 class="steps-heading">Comprá en <span>3 pasos</span></h2>
+        <div class="steps-header">
+          <span class="section-label">Simple y rápido</span>
+          <h2 class="section-title">Comprá en <span>3 pasos</span></h2>
         </div>
-        <div class="steps-row">
-          <div class="step-item">
+        <div class="steps-cards">
+          <div class="step-card">
             <div class="step-num">01</div>
-            <div class="step-icon-sm">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <div class="step-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
-            <div class="step-body">
-              <div class="step-title-sm">Elegí tu producto</div>
-              <div class="step-desc-sm">Navegá el catálogo y encontrá la funda o accesorio para tu vehículo.</div>
-            </div>
+            <div class="step-title">Elegí tu producto</div>
+            <div class="step-desc">Explorá el catálogo y encontrá lo que necesitás.</div>
           </div>
-          <div class="step-arrow">→</div>
-          <div class="step-item">
+          <div class="step-sep">→</div>
+          <div class="step-card">
             <div class="step-num">02</div>
-            <div class="step-icon-sm" style="color:var(--red)">${icons.waIcon}</div>
-            <div class="step-body">
-              <div class="step-title-sm">Escribinos por WhatsApp</div>
-              <div class="step-desc-sm">Contanos marca y modelo. Te respondemos en minutos con precio y disponibilidad.</div>
-            </div>
+            <div class="step-icon">${icons.waIcon}</div>
+            <div class="step-title">Escribinos por WhatsApp</div>
+            <div class="step-desc">Confirmamos talle, precio y disponibilidad al instante.</div>
           </div>
-          <div class="step-arrow">→</div>
-          <div class="step-item">
+          <div class="step-sep">→</div>
+          <div class="step-card">
             <div class="step-num">03</div>
-            <div class="step-icon-sm">${icons.truck}</div>
-            <div class="step-body">
-              <div class="step-title-sm">Recibilo en tu puerta</div>
-              <div class="step-desc-sm">Envío por Andreani, OCA o Correo. <strong>24 a 72 hs hábiles</strong> a todo el país.</div>
-            </div>
+            <div class="step-icon">${icons.truck}</div>
+            <div class="step-title">Recibilo en tu puerta</div>
+            <div class="step-desc">Enviamos en 24 a 72 hs a todo el país. O retirás en local.</div>
           </div>
-          <div class="step-cta-col">
-            <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa" style="padding:12px 20px;font-size:14px;white-space:nowrap">${icons.waIcon} Empezar</a>
-          </div>
+        </div>
+        <div class="steps-cta">
+          <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Empezar ahora</a>
         </div>
       </div>
     </section>
@@ -739,7 +741,7 @@ function renderHome() {
           <p style="font-size:14px;color:var(--metal);margin:0">Seleccioná tu marca y escribí el modelo para ver todos los productos compatibles.</p>
         </div>
         <div class="brand-selector-right">
-          <div class="brand-chips" id="brand-chips">
+          <div class="brand-chips" id="brand-chips" style="justify-content:center">
             ${['VW','Ford','Chevrolet','Renault','Peugeot','Citroën','Fiat','Toyota','Honda','Nissan','Mitsubishi','Suzuki'].map(b =>
               `<button class="brand-chip" onclick="selectBrand('${b}')">${b}</button>`
             ).join('')}
@@ -1023,16 +1025,20 @@ function renderHome() {
         </div>
         <div class="final-cta-gallery">
           ${(() => {
-            const ctaImgs = [
-              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp',
-              'https://http2.mlstatic.com/D_NQ_NP_988998-MLA107638054681_022026-O.webp',
-              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F855912-mla48515086482%5F122021-o-4bb52a56ef7b61c83c17577449854095-640-640.webp',
-              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp',
-            ];
-            return ctaImgs.map((img, i) => `<div class="cta-gallery-img"><img src="${img}" alt="Producto MDRACING ${i+1}" loading="lazy" /></div>`).join('');
+            // Pull first real image from 4 different products — guaranteed to exist
+            const galleryProducts = [
+              products.find(p => p.id === 'funda-cubre-auto-antigranizo-3-capas-impermeable'),
+              products.find(p => p.id === 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz'),
+              products.find(p => p.id === 'funda-cubre-auto-antigranizo-polo-track-3-capas'),
+              products.find(p => p.id === 'funda-cubre-moto-silver-impermeable'),
+            ].filter(Boolean);
+            return galleryProducts.map((p, i) => {
+              const img = (p.images && p.images[0]) || (p.colorVariants && p.colorVariants[0] && p.colorVariants[0].images[0]) || '';
+              return img ? `<div class="cta-gallery-img"><img src="${img}" alt="${p.name}" loading="lazy" /></div>` : '';
+            }).join('');
           })()}
           <div class="cta-gallery-badge">
-            <div class="cta-gallery-kpi"><span>${COMPANY.yearsActive}+</span><small>años de experiencia</small></div>
+            <div class="cta-gallery-kpi"><span>${COMPANY.yearsActive}+</span><small>años</small></div>
             <div class="cta-gallery-kpi"><span>+5.000</span><small>clientes</small></div>
           </div>
         </div>
@@ -2109,22 +2115,31 @@ function renderCategoriesPage() {
           <p class="page-hero-sub">Fabricantes directos. Más de 20 años de experiencia en accesorios automotrices premium.</p>
         </div>
       </div>
-      <div style="max-width:var(--max);margin:0 auto;padding:60px 24px">
-        <div class="cat-grid">
-          ${categories.map(c => `
-            <div class="cat-card" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+      <div style="max-width:var(--max);margin:0 auto;padding:48px 24px">
+        ${(() => {
+          const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
+          const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
+          const secondary = categories.filter(c => !featuredIds.includes(c.id));
+          const renderCard = (c, isSmall) => `
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>
               <div class="cat-card-content">
                 <span class="cat-card-tag">${c.tag}</span>
                 <h3 class="cat-card-title">${c.title.replace('\n','<br>')}</h3>
-                <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:12px;line-height:1.4">${c.desc}</p>
                 <div class="cat-card-arrow">Ver productos ${icons.arrowRight}</div>
               </div>
+            </div>`;
+          return `
+            <div class="cat-grid cat-grid-featured">
+              ${featured.map(c => renderCard(c, false)).join('')}
             </div>
-          `).join('')}
-        </div>
+            <div class="cat-grid cat-grid-secondary">
+              ${secondary.map(c => renderCard(c, true)).join('')}
+            </div>
+          `;
+        })()}
       </div>
     </div>
   `;
