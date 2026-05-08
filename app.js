@@ -690,37 +690,42 @@ function renderHome() {
     <!-- COMPRÁ EN 3 PASOS -->
     <section class="steps-section">
       <div class="steps-inner">
-        <div class="section-header centered">
-          <span class="section-label">Simple y rápido</span>
-          <h2 class="section-title">Comprá en <span>3 pasos</span></h2>
-          <div class="divider-line"></div>
+        <div class="steps-label">
+          <span class="section-label" style="margin:0">Simple y rápido</span>
+          <h2 class="steps-heading">Comprá en <span>3 pasos</span></h2>
         </div>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <div class="step-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="steps-row">
+          <div class="step-item">
+            <div class="step-num">01</div>
+            <div class="step-icon-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
-            <div class="step-title">Elegí tu producto</div>
-            <div class="step-desc">Explorá el catálogo y encontrá la funda o accesorio ideal para tu vehículo. Filtrá por categoría o buscá tu modelo.</div>
+            <div class="step-body">
+              <div class="step-title-sm">Elegí tu producto</div>
+              <div class="step-desc-sm">Navegá el catálogo y encontrá la funda o accesorio para tu vehículo.</div>
+            </div>
           </div>
-          <div class="step-connector"></div>
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <div class="step-icon">${icons.waIcon}</div>
-            <div class="step-title">Escribinos por WhatsApp</div>
-            <div class="step-desc">Contanos tu marca y modelo. Te confirmamos disponibilidad, medidas y precio. Respondemos en minutos, de lunes a sábado.</div>
+          <div class="step-arrow">→</div>
+          <div class="step-item">
+            <div class="step-num">02</div>
+            <div class="step-icon-sm" style="color:var(--red)">${icons.waIcon}</div>
+            <div class="step-body">
+              <div class="step-title-sm">Escribinos por WhatsApp</div>
+              <div class="step-desc-sm">Contanos marca y modelo. Te respondemos en minutos con precio y disponibilidad.</div>
+            </div>
           </div>
-          <div class="step-connector"></div>
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <div class="step-icon">${icons.truck}</div>
-            <div class="step-title">Recibilo en tu puerta</div>
-            <div class="step-desc">Enviamos por Correo Argentino, Andreani u OCA a todo el país. Entrega estimada en <strong>24 a 72 horas hábiles</strong>.</div>
+          <div class="step-arrow">→</div>
+          <div class="step-item">
+            <div class="step-num">03</div>
+            <div class="step-icon-sm">${icons.truck}</div>
+            <div class="step-body">
+              <div class="step-title-sm">Recibilo en tu puerta</div>
+              <div class="step-desc-sm">Envío por Andreani, OCA o Correo. <strong>24 a 72 hs hábiles</strong> a todo el país.</div>
+            </div>
           </div>
-        </div>
-        <div style="text-align:center;margin-top:36px">
-          <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa" style="display:inline-flex;gap:10px;align-items:center">${icons.waIcon} Empezar ahora</a>
+          <div class="step-cta-col">
+            <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa" style="padding:12px 20px;font-size:14px;white-space:nowrap">${icons.waIcon} Empezar</a>
+          </div>
         </div>
       </div>
     </section>
@@ -728,13 +733,12 @@ function renderHome() {
     <!-- BUSCADOR POR MARCA Y MODELO -->
     <section class="brand-selector-section">
       <div class="brand-selector-inner">
-        <div class="section-header centered">
-          <span class="section-label">Compatibilidad</span>
-          <h2 class="section-title">¿Para qué <span>vehículo</span>?</h2>
-          <div class="divider-line"></div>
-          <p class="section-sub">Seleccioná tu marca y escribí tu modelo para encontrar los productos compatibles.</p>
+        <div class="brand-selector-left">
+          <span class="section-label" style="margin:0">Compatibilidad</span>
+          <h2 class="steps-heading" style="margin-bottom:6px">¿Para qué <span>vehículo buscás?</span></h2>
+          <p style="font-size:14px;color:var(--metal);margin:0">Seleccioná tu marca y escribí el modelo para ver todos los productos compatibles.</p>
         </div>
-        <div class="brand-selector-box">
+        <div class="brand-selector-right">
           <div class="brand-chips" id="brand-chips">
             ${['VW','Ford','Chevrolet','Renault','Peugeot','Citroën','Fiat','Toyota','Honda','Nissan','Mitsubishi','Suzuki'].map(b =>
               `<button class="brand-chip" onclick="selectBrand('${b}')">${b}</button>`
@@ -995,26 +999,43 @@ function renderHome() {
 
     <!-- FINAL CTA -->
     <section class="final-cta">
-      <div class="final-cta-inner">
-        <div style="display:inline-block;background:var(--red2);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px">⚡ Respondemos en minutos</div>
-        <span class="section-label" style="display:block;text-align:center;margin-bottom:8px">Sin intermediarios · Fabricado en Argentina</span>
-        <h2 class="section-title">Armamos el combo<br><span>justo para tu auto.</span></h2>
-        <div class="divider-line" style="margin:20px auto"></div>
-        <p class="section-sub" style="margin:0 auto 28px">Ya viste lo que tenemos. Ahora escribinos: contanos tu marca y modelo, y te respondemos en minutos con tu presupuesto a medida — sin vueltas, sin cobros extras.</p>
-        <div class="final-cta-chips">
-          <span class="cta-chip">✔ Fundas a medida o universales</span>
-          <span class="cta-chip">✔ Envío en 24 a 72 horas hábiles</span>
-          <span class="cta-chip">✔ Garantía 30 días</span>
-          <span class="cta-chip">✔ Instalación en nuestro local</span>
+      <div class="final-cta-inner final-cta-2col">
+        <div class="final-cta-text">
+          <div class="final-cta-badge">⚡ Respondemos en minutos</div>
+          <span class="section-label" style="display:block;margin-bottom:10px;text-align:left">Sin intermediarios · Fabricado en Argentina</span>
+          <h2 class="section-title" style="text-align:left">Armamos el combo<br><span>justo para tu auto.</span></h2>
+          <div class="divider-line" style="margin:18px 0"></div>
+          <p class="section-sub" style="text-align:left;margin:0 0 22px">Escribinos con tu marca y modelo. Te respondemos en minutos con tu presupuesto a medida, sin vueltas.</p>
+          <div class="final-cta-chips" style="justify-content:flex-start">
+            <span class="cta-chip">✔ A medida o universal</span>
+            <span class="cta-chip">✔ Envío 24–72 hs</span>
+            <span class="cta-chip">✔ Garantía 30 días</span>
+            <span class="cta-chip">✔ Instalación en local</span>
+          </div>
+          <div class="final-cta-actions" style="justify-content:flex-start;margin-top:24px">
+            <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden pasar presupuesto?')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:14px 28px">${icons.waIcon} Pedir presupuesto</a>
+            <a href="#" data-page="categorias" class="btn-outline" style="font-size:16px;padding:13px 24px">Ver Catálogo</a>
+          </div>
+          <p class="final-cta-note" style="text-align:left;margin-top:16px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            Lun–Vie 8 a 18hs · Sáb 9 a 13hs
+          </p>
         </div>
-        <div class="final-cta-actions">
-          <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden pasar presupuesto?')}" target="_blank" class="btn-whatsapp" style="font-size:17px;padding:16px 36px">${icons.waIcon} Pedir presupuesto por WhatsApp</a>
-          <a href="#" data-page="categorias" class="btn-outline" style="font-size:17px;padding:15px 36px">Ver Catálogo Completo</a>
+        <div class="final-cta-gallery">
+          ${(() => {
+            const ctaImgs = [
+              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp',
+              'https://http2.mlstatic.com/D_NQ_NP_988998-MLA107638054681_022026-O.webp',
+              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F855912-mla48515086482%5F122021-o-4bb52a56ef7b61c83c17577449854095-640-640.webp',
+              'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp',
+            ];
+            return ctaImgs.map((img, i) => `<div class="cta-gallery-img"><img src="${img}" alt="Producto MDRACING ${i+1}" loading="lazy" /></div>`).join('');
+          })()}
+          <div class="cta-gallery-badge">
+            <div class="cta-gallery-kpi"><span>${COMPANY.yearsActive}+</span><small>años de experiencia</small></div>
+            <div class="cta-gallery-kpi"><span>+5.000</span><small>clientes</small></div>
+          </div>
         </div>
-        <p class="final-cta-note">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          Respondemos en minutos · Lun–Vie 8 a 18hs · Sáb 9 a 13hs
-        </p>
       </div>
     </section>
   `;
