@@ -1535,10 +1535,7 @@ section { position: relative; }
 /* ═══════════════════════════════════════════ FINAL CTA ═══ */
 .final-cta {
   padding: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(209,0,0,.07) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,0,0,.03) 0%, transparent 60%),
-    linear-gradient(135deg, #f6f6f8 0%, #ededf0 50%, #f0f0f3 100%);
+  background: linear-gradient(135deg, #f6f6f8 0%, #ededf0 50%, #f0f0f3 100%);
   position: relative;
   overflow: hidden;
 }
