@@ -3742,10 +3742,9 @@ section { position: relative; }
 }
 .final-cta::before {
   background-image:
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(209,0,0,.06) 0%, transparent 70%),
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  mask-image: none;
+    linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 70%);
 }
 .page-hero::before {
   background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(209,0,0,.15) 0%, transparent 60%);
