@@ -156,6 +156,19 @@ const trompaSvg = `<svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.o
   <path d="M80 30 L80 130" stroke="#333" stroke-width="1" stroke-dasharray="4,3"/>
 </svg>`;
 
+// ── Alfombra Termoformada SVG ──
+const alfombraSvg = `<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <path d="M30 40 C30 30, 40 25, 60 25 L140 25 C160 25, 170 30, 170 40 L172 150 C172 160, 162 165, 145 165 L55 165 C38 165, 28 160, 28 150 Z" fill="#1a1a1a" stroke="#d10000" stroke-width="1.5"/>
+  <path d="M50 50 L150 50 L155 145 L45 145 Z" fill="#252525" stroke="#333" stroke-width="1"/>
+  <path d="M55 60 L145 60" stroke="#3a3a3a" stroke-width="1"/>
+  <path d="M55 75 L145 75" stroke="#3a3a3a" stroke-width="1"/>
+  <path d="M55 90 L145 90" stroke="#3a3a3a" stroke-width="1"/>
+  <path d="M55 105 L145 105" stroke="#3a3a3a" stroke-width="1"/>
+  <path d="M55 120 L145 120" stroke="#3a3a3a" stroke-width="1"/>
+  <circle cx="100" cy="38" r="6" fill="#d10000" opacity="0.6"/>
+  <text x="100" y="135" text-anchor="middle" fill="#d10000" font-family="Arial" font-size="11" font-weight="bold" opacity="0.5">3D</text>
+</svg>`;
+
 // ── Categories data ──
 const categories = [
   { id: 'cat-cubre-autos', tag: 'Más Vendido', title: 'Cubre\nAutos', cat: 'cubre-autos', svg: coverSvg, desc: 'Antigranizo, lluvia, sol y polvo. Para todos los modelos.', page: 'cat-cubre-autos' },
@@ -163,6 +176,7 @@ const categories = [
   { id: 'cat-cubre-capots', tag: 'Premium', title: 'Cubre\nCapots', cat: 'cubre-capots', svg: capotSvg, desc: 'Protección afelpada contra granizo y rayones.', page: 'cat-cubre-capots' },
   { id: 'cat-cubre-trompas', tag: 'Performance', title: 'Cubre\nTrompas', cat: 'cubre-trompas', svg: trompaSvg, desc: 'Protección para el frente completo de tu vehículo.', page: 'cat-cubre-trompas' },
   { id: 'cat-cubre-motos', tag: 'Motos', title: 'Cubre\nMotos', cat: 'cubre-motos', svg: motoSvg, desc: 'Cobertura completa para motos y scooters.', page: 'cat-cubre-motos' },
+  { id: 'cat-alfombras-termoformadas', tag: 'Nuevo', title: 'Alfombras\nTermoformadas', cat: 'alfombras-termoformadas', svg: alfombraSvg, desc: 'Alfombras 3D termoformadas con bordes elevados. Protección total del piso.', page: 'cat-alfombras-termoformadas' },
   { id: 'cat-accesorios', tag: 'Complementos', title: 'Accesorios', cat: 'accesorios', svg: accesorioSvg, desc: 'Todo lo que necesitás para proteger y personalizar.', page: 'cat-accesorios' },
 ];
 
@@ -182,14 +196,14 @@ const products = [
     { hex: '#c46080', name: 'Rosa', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-rosa-ecocuero-photoroom-725c92e78d51f2824b17634702090585-1024-1024.webp'] },
   ] },
   { id: 'funda-para-asientos-vw-polo-track-eco-cuero-acolchada-3mm-weji3', name: 'Funda VW Polo Track Ecocuero Acolchada 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '170.000', salePrice: '150.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Ecocuero acolchado 3mm para VW Polo Track. Mayor comodidad y protección, diseño específico.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/polo-con-funda-negra-ecocuero-photoroom-a07a3b1ca09f843bd817634710616802-1024-1024.webp'] },
-  { id: 'funda-para-asientos-vw-t-cross-2025-cuero-automotor', name: 'Funda VW T-Cross 2025 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', salePrice: '189.999', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Funda de cuero automotor para VW T-Cross 2025. Diseño específico para el modelo, costura reforzada y acabado premium.', images: ['/images/fundas/tcross-cuero-portada.jpg','/images/fundas/tcross-cuero-foto2.jpg','/images/fundas/tcross-cuero-foto3.jpg'] },
+  { id: 'funda-para-asientos-vw-t-cross-2025-cuero-automotor', name: 'Funda VW T-Cross 2025 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', salePrice: '189.999', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Funda de cuero automotor para VW T-Cross 2025. Diseño específico para el modelo, costura reforzada y acabado premium.', images: ['images/fundas/tcross-cuero-portada.jpg','images/fundas/tcross-cuero-foto2.jpg','images/fundas/tcross-cuero-foto3.jpg'] },
   { id: 'funda-para-asientos-vw-polo-track-cuero-automotor-acolchado', name: 'Funda VW Polo Track Cuero Automotor Acolchado 3mm', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', salePrice: '189.999', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Cuero automotor acolchado 3mm para VW Polo Track. Diseño específico para el modelo, máxima calidad y durabilidad. Juego completo con apoyacabezas.', images: ['https://http2.mlstatic.com/D_NQ_NP_680092-MLA96388870828_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_723555-MLA96388655786_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_782550-MLA96838594883_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_746763-MLA96836813581_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_819121-MLA103753271871_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_893231-MLA96863882125_102025-O.webp'], colorVariants: [
     { hex: '#1a1a1a', name: 'Negro', images: ['https://http2.mlstatic.com/D_NQ_NP_680092-MLA96388870828_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_723555-MLA96388655786_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_782550-MLA96838594883_102025-O.webp'] },
     { hex: '#888888', name: 'Gris', images: ['https://http2.mlstatic.com/D_NQ_NP_746763-MLA96836813581_102025-O.webp','https://http2.mlstatic.com/D_NQ_NP_819121-MLA103753271871_012026-O.webp','https://http2.mlstatic.com/D_NQ_NP_893231-MLA96863882125_102025-O.webp'] },
   ] },
-  { id: 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz', name: 'Funda VW Polo Track + Cubre Volante Plano', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', salePrice: '138.999', colors: ['#1a1a1a','#c8a87a'], svg: seatSvg, desc: 'Combo funda para VW Polo Track más cubre volante base plana. Disponible en Ecocuero (6 colores) o Tela Jakard Premium (5 diseños). Protección completa interior.', images: ['/images/fundas/eco-portada.webp','/images/fundas/jakard-portada.webp'], colorVariants: [
-    { hex: '#1a1a1a', name: 'Ecocuero - Todos los colores', isMaterial: true, images: ['/images/fundas/eco-portada.webp','/images/fundas/eco-foto2.webp','/images/fundas/eco-foto3.webp','/images/fundas/eco-foto4.webp','/images/fundas/eco-foto5.webp'], subColors: ['Negro','Gris','Rojo','Azul','Blanco','Rosa'] },
-    { hex: '#c8a87a', name: 'Tela Premium Jakard - Todos los colores', isMaterial: true, images: ['/images/fundas/jakard-portada.webp','/images/fundas/jakard-foto2.webp','/images/fundas/jakard-foto3.webp','/images/fundas/jakard-foto4.webp','/images/fundas/jakard-foto5.webp','/images/fundas/jakard-foto6.webp','/images/fundas/jakard-foto7.webp','/images/fundas/jakard-foto8.webp','/images/fundas/jakard-foto9.webp'], subColors: ['Negro Liso','Diseño Negro con Puntos','Diseño Cuadrados Grises','Diseño Detalles Azules','Diseño Detalles Rojos'] },
+  { id: 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz', name: 'Funda VW Polo Track + Cubre Volante Plano', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '150.000', salePrice: '138.999', colors: ['#1a1a1a','#c8a87a'], svg: seatSvg, desc: 'Combo funda para VW Polo Track más cubre volante base plana. Disponible en Ecocuero (6 colores) o Tela Jakard Premium (5 diseños). Protección completa interior.', images: ['images/fundas/eco-portada.webp','images/fundas/jakard-portada.webp'], colorVariants: [
+    { hex: '#1a1a1a', name: 'Ecocuero - Todos los colores', isMaterial: true, images: ['images/fundas/eco-portada.webp','images/fundas/eco-foto2.webp','images/fundas/eco-foto3.webp','images/fundas/eco-foto4.webp','images/fundas/eco-foto5.webp'], subColors: ['Negro','Gris','Rojo','Azul','Blanco','Rosa'] },
+    { hex: '#c8a87a', name: 'Tela Premium Jakard - Todos los colores', isMaterial: true, images: ['images/fundas/jakard-portada.webp','images/fundas/jakard-foto2.webp','images/fundas/jakard-foto3.webp','images/fundas/jakard-foto4.webp','images/fundas/jakard-foto5.webp','images/fundas/jakard-foto6.webp','images/fundas/jakard-foto7.webp','images/fundas/jakard-foto8.webp','images/fundas/jakard-foto9.webp'], subColors: ['Negro Liso','Diseño Negro con Puntos','Diseño Cuadrados Grises','Diseño Detalles Azules','Diseño Detalles Rojos'] },
   ] },
   { id: 'funda-vw-polo-2018-cuero-automotor', name: 'Funda VW Polo 2018 Cuero Automotor', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: 'Premium', price: '210.000', colors: ['#1a1a1a'], svg: seatSvg, desc: 'Cuero automotor de alta calidad para VW Polo 2018. Ajuste perfecto, resistencia y elegancia garantizados.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-polo-2018-photoroom-cc7df3d4c86bc430f217592434772918-1024-1024.webp'] },
   { id: 'funda-para-asientos-gol-trend-ecocuero5', name: 'Funda VW Gol Trend Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para VW Gol Trend. Juego completo con apoyacabezas, fácil de limpiar y montar.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F711213-mla92372485178%5F092025-b-b02514e10f7b873fdb17588067661933-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-gris-729caacd16ac51899217588068858439-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-azul-50d40e832e4b12495317588068792721-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-blanca-2c739a3495c6c41e9317588068828051-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-gol-trend-ecocuero-roja-9aad1959605a3fc35217588068895096-1024-1024.webp'], colorVariants: [
@@ -378,7 +392,10 @@ const products = [
   { id: 'funda-cubre-auto-antigranizo-toyota-sw4-3-capas', name: 'Funda Antigranizo 3 Capas Toyota SW4', cat: 'Cubre Autos', catId: 'cat-cubre-autos', badge: 'Exclusivo', price: '165.000', salePrice: '150.000', colors: ['#1a1a1a'], svg: coverSvg, desc: 'Funda antigranizo 3 capas para Toyota SW4. Tela Silver exterior + Polyfoam 6mm alta densidad + interior afelpado. Talle XL.', images: ['https://http2.mlstatic.com/D_NQ_NP_847498-MLA101675603735_122025-O.webp','https://http2.mlstatic.com/D_NQ_NP_888944-MLA97102440184_112025-O.webp','https://http2.mlstatic.com/D_NQ_NP_891009-MLA97561305371_112025-O.webp'] },
 
   // ─── CUBRE MOTOS ─────────────────────────────────────────────────────────
-  { id: 'funda-cubre-moto-silver-impermeable', name: 'Funda Silver Cubre Moto Universal', cat: 'Cubre Motos', catId: 'cat-cubre-motos', badge: null, price: '26.000', colors: ['#1a1a1a'], svg: motoSvg, desc: 'Funda Silver para motos. Impermeable, protección UV, resistente al polvo y lluvia. No raya, bolso incluido. Talle S/M/L · XL · XXL.', sizeVariants: [{label:'S/M/L',price:'26.000',salePrice:'23.999'},{label:'XL',price:'30.000',salePrice:'26.000'},{label:'XXL',price:'34.000',salePrice:'30.000'}], images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_611065-mla94923201172_102025-b-e5b80a1484fb037bb117611346308065-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_605998-mla95357172459_102025-b-995a50ebcf49f9e5ca17611346405395-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_622395-mla95358375093_102025-b-996fe2a97ff9f9e86817611346440451-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_613313-mla95358179509_102025-b-ad69b33dffc1a5d5cc17611346490788-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_641495-mla95085858489_102025-b-03f6973619d389c5c817611346539549-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_782345-mla94654556870_102025-b-d6f52dd2bc746f7d6717611346578310-1024-1024.webp'] },
+  { id: 'funda-cubre-moto-silver-impermeable', name: 'Funda Silver Cubre Moto', cat: 'Cubre Motos', catId: 'cat-cubre-motos', badge: null, price: '26.000', colors: ['#1a1a1a'], svg: motoSvg, desc: 'Funda Silver para motos y scooters. Impermeable, protección UV, resistente al polvo y lluvia. Interior plateado suave que no raya. Bolso incluido. Disponible en 5 talles según largo de la moto: Talle S 1,95m · Talle M 2,05m · Talle L 2,15m · Talle XL 2,25m · Talle XXL 2,35m.', sizeVariants: [{label:'S/M/L',price:'26.000',salePrice:'23.999'},{label:'XL',price:'30.000',salePrice:'26.000'},{label:'XXL',price:'34.000',salePrice:'30.000'}], images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_611065-mla94923201172_102025-b-e5b80a1484fb037bb117611346308065-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_605998-mla95357172459_102025-b-995a50ebcf49f9e5ca17611346405395-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_622395-mla95358375093_102025-b-996fe2a97ff9f9e86817611346440451-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_613313-mla95358179509_102025-b-ad69b33dffc1a5d5cc17611346490788-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_641495-mla95085858489_102025-b-03f6973619d389c5c817611346539549-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_782345-mla94654556870_102025-b-d6f52dd2bc746f7d6717611346578310-1024-1024.webp'] },
+
+  // ─── ALFOMBRAS TERMOFORMADAS ─────────────────────────────────────────────
+  { id: 'alfombra-termoformada-3d', name: 'Alfombra Termoformada 3D', cat: 'Alfombras Termoformadas', catId: 'cat-alfombras-termoformadas', badge: 'Nuevo', price: '160.000', colors: ['#1a1a1a'], svg: alfombraSvg, desc: 'Alfombra termoformada 3D con bordes elevados. Protección total del piso del vehículo contra agua, barro y derrames. Ajuste preciso al modelo, fácil de limpiar. Consultar disponibilidad por modelo de vehículo.' },
 
   // ─── ACCESORIOS ──────────────────────────────────────────────────────────
   { id: 'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g', name: 'Cubre Volante Base Plana VW/Ford/Renault', cat: 'Accesorios', catId: 'cat-accesorios', badge: 'Más Vendido', price: '15.000', salePrice: '14.000', colors: ['#1a1a1a'], svg: accesorioSvg, desc: 'Cubre volante base plana 38". Compatible con volantes planos y redondos de 38". VW, Peugeot, Citroën, Ford, Renault.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_865350-mla52282987564_112022-o-746e629d142ab7009217587257657426-1024-1024.webp'] },
@@ -448,15 +465,19 @@ const testimonials = [
 
 // ── FAQ data ──
 const faqs = [
-  { q: '¿Cómo sé si el producto es compatible con mi vehículo?', a: 'Escribinos por WhatsApp con marca, modelo y año de tu vehículo. Un asesor humano te confirma compatibilidad antes de que compres y te recomienda el producto correcto según tu uso. También ofrecemos productos universales ajustables.' },
-  { q: '¿Los envíos llegan a todo el país?', a: 'Sí. Enviamos a toda Argentina por Correo Argentino, Andreani y OCA. El costo se calcula según destino y peso — te lo presupuestamos antes de confirmar la compra. Despachamos en 24–48hs hábiles.' },
-  { q: '¿Cuánto tarda en llegar mi pedido?', a: 'GBA: 2–3 días hábiles. Interior del país: 4–7 días hábiles según zona. Te pasamos el número de seguimiento apenas despachamos.' },
-  { q: '¿Puedo pagar en cuotas?', a: 'Sí. Aceptamos tarjetas de crédito con hasta 6 cuotas sin interés según el banco (online o en local), transferencia bancaria (10% de descuento), Mercado Pago para envíos a domicilio y efectivo en el local.' },
-  { q: '¿Puedo ir a ver los productos en persona?', a: 'Sí. Tenemos un local de confianza en Munro (Av. Bartolomé Mitre 3495, Provincia de Buenos Aires) donde podés ver los productos y coordinar la instalación de fundas o accesorios. Coordiná la visita por WhatsApp.' },
-  { q: '¿Ofrecen instalación?', a: 'Sí. En nuestro local de confianza en Munro (Av. Bartolomé Mitre 3495) realizamos la instalación de fundas para asientos y accesorios. Coordinamos el turno por WhatsApp.' },
-  { q: '¿Qué garantía tienen los productos?', a: 'Garantía de 30 días contra fallas de fabricación. Si detectás un defecto dentro del período, lo cambiamos sin costo. Para cambios por talle, el producto debe estar sin uso y en su embalaje original.' },
-  { q: '¿Son fabricantes o revendedores?', a: `Somos fabricantes directos de la mayoría de nuestros productos (fundas para asientos, cubre autos, cubre capots, cubre trompas, cubre motos y más). Algunos accesorios puntuales los revendemos. Operamos desde el año ${COMPANY.foundedYear} con producción propia en Villa Ballester.` },
-  { q: '¿Cómo es la atención por WhatsApp?', a: 'Te responde una persona real que conoce los productos. Sin bots, sin respuestas automáticas. Te asesoramos con detalles técnicos, recomendaciones según tu vehículo, disponibilidad y envío. Esa atención cercana es lo que nos define hace más de 20 años.' },
+  { q: '¿Le va a mi auto?', a: 'Para confirmar compatibilidad podés escribirnos por WhatsApp con tu marca, modelo y año, o consultar con <strong>Madi</strong>, nuestra asistente virtual del sitio (botón flotante en la parte inferior). Madi te responde al momento en base a nuestro catálogo. Si tu modelo no figura, lo armamos a pedido.' },
+  { q: '¿Tienen stock disponible o es a pedido?', a: 'Los <strong>accesorios</strong> suelen estar en stock para envío inmediato. La mayoría de <strong>fundas, cubre autos, cubre capots y cubre trompas</strong> son <strong>a pedido</strong> — los fabricamos especialmente para tu vehículo. Consultanos por WhatsApp el plazo exacto del modelo que te interesa.' },
+  { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El costo se calcula según destino y peso, y te lo presupuestamos antes de confirmar la compra. Te pasamos el tracking apenas despachamos.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Tarjetas de crédito (hasta 6 cuotas sin interés según banco), transferencia bancaria (con <strong>10% de descuento</strong>), MercadoPago para envíos a domicilio y efectivo en el local. <strong>Sí hacemos factura A</strong> — pedila al momento de la compra junto con tus datos fiscales.' },
+  { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> — techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
+  { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares — más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
+  { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo — si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
+  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, ofrecemos <strong>instalación en nuestro local de Munro</strong> (Av. Bartolomé Mitre 3495). Coordinás el turno por WhatsApp.' },
+  { q: '¿Qué materiales manejan para fundas, cubre autos y los demás productos?', a: '<strong>Fundas:</strong> ecocuero, ecocuero acolchado 3mm, cuero automotor y tela Jakard premium.<br><strong>Cubre autos y motos:</strong> Tela Silver impermeable y Tela Premium afelpada.<br><strong>Antigranizo:</strong> 3 capas (Silver exterior + Polyfoam 6mm + interior Silver suave).<br><strong>Cubre capots y trompas:</strong> cuerina afelpada por dentro, impermeable por fuera.<br><strong>Alfombras termoformadas:</strong> material 3D con bordes elevados.' },
+  { q: '¿Puedo pasar a retirar?', a: 'Sí, podés retirar en cualquiera de nuestros dos puntos: <strong>local de Munro</strong> (Av. Bartolomé Mitre 3495) o nuestra <strong>fábrica de Villa Ballester</strong>. En los dos lados podés ver y probar los productos. Coordiná previamente por WhatsApp para asegurarnos que esté listo.' },
+  { q: '¿Hacen factura A?', a: 'Sí, hacemos factura A. Al momento de la compra pasanos tus datos fiscales (CUIT y razón social) y te la emitimos.' },
+  { q: '¿Qué otros productos puedo combinar con mis fundas o cubre autos?', a: '<strong>Combos populares para el interior:</strong> funda + cubre volante + cubre cinturones + alfombras termoformadas.<br><strong>Para protección externa:</strong> cubre auto + cubre capot + antigranizo + cubre trompa.<br>Si pensás un combo, escribinos por WhatsApp y te armamos un precio especial.' },
+  { q: '¿Qué diferencia a MDRACING de otras marcas?', a: 'Tres cosas concretas: <strong>(1)</strong> somos fabricantes directos desde el año 2000 — no revendemos, controlamos cada etapa de producción.<br><strong>(2)</strong> Cada material lo seleccionamos después de probarlo durante años en condiciones reales (calor, humedad, uso intensivo) — si no aguanta, no lo usamos.<br><strong>(3)</strong> Te atiende una persona real que conoce los productos, no un call center con respuestas armadas. Después de 25 años en el rubro, tenemos uno de los catálogos más amplios del país, todo bajo un mismo techo.' },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -599,9 +620,12 @@ function renderHome() {
           <div class="divider-line"></div>
           <p class="section-sub">Fabricamos todos nuestros productos con materiales de primera calidad seleccionados en base a las necesidades de nuestros clientes.</p>
         </div>
-        <div class="cat-grid">
-          ${categories.map((c, i) => `
-            <div class="cat-card" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+        ${(() => {
+          const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
+          const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
+          const secondary = categories.filter(c => !featuredIds.includes(c.id));
+          const renderCard = (c, isSmall) => `
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>
@@ -610,9 +634,16 @@ function renderHome() {
                 <h3 class="cat-card-title">${c.title.replace('\n','<br>')}</h3>
                 <div class="cat-card-arrow">Ver productos ${icons.arrowRight}</div>
               </div>
+            </div>`;
+          return `
+            <div class="cat-grid cat-grid-featured">
+              ${featured.map(c => renderCard(c, false)).join('')}
             </div>
-          `).join('')}
-        </div>
+            <div class="cat-grid cat-grid-secondary">
+              ${secondary.map(c => renderCard(c, true)).join('')}
+            </div>
+          `;
+        })()}
       </div>
     </section>
 
@@ -652,6 +683,67 @@ function renderHome() {
         </div>
         <div style="text-align:center">
           <a href="#" data-page="categorias" class="btn-outline">Ver Todos los Productos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPRÁ EN 3 PASOS -->
+    <section class="steps-section">
+      <div class="steps-inner">
+        <div class="section-header centered">
+          <span class="section-label">Simple y rápido</span>
+          <h2 class="section-title">Comprá en <span>3 pasos</span></h2>
+          <div class="divider-line"></div>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="step-title">Elegí tu producto</div>
+            <div class="step-desc">Explorá el catálogo y encontrá la funda o accesorio ideal para tu vehículo. Filtrá por categoría o buscá tu modelo.</div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon">${icons.waIcon}</div>
+            <div class="step-title">Escribinos por WhatsApp</div>
+            <div class="step-desc">Contanos tu marca y modelo. Te confirmamos disponibilidad, medidas y precio. Respondemos en minutos, de lunes a sábado.</div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon">${icons.truck}</div>
+            <div class="step-title">Recibilo en tu puerta</div>
+            <div class="step-desc">Enviamos por Correo Argentino, Andreani u OCA a todo el país. Entrega estimada en <strong>24 a 72 horas hábiles</strong>.</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:36px">
+          <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa" style="display:inline-flex;gap:10px;align-items:center">${icons.waIcon} Empezar ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSCADOR POR MARCA Y MODELO -->
+    <section class="brand-selector-section">
+      <div class="brand-selector-inner">
+        <div class="section-header centered">
+          <span class="section-label">Compatibilidad</span>
+          <h2 class="section-title">¿Para qué <span>vehículo</span>?</h2>
+          <div class="divider-line"></div>
+          <p class="section-sub">Seleccioná tu marca y escribí tu modelo para encontrar los productos compatibles.</p>
+        </div>
+        <div class="brand-selector-box">
+          <div class="brand-chips" id="brand-chips">
+            ${['VW','Ford','Chevrolet','Renault','Peugeot','Citroën','Fiat','Toyota','Honda','Nissan','Mitsubishi','Suzuki'].map(b =>
+              `<button class="brand-chip" onclick="selectBrand('${b}')">${b}</button>`
+            ).join('')}
+          </div>
+          <div class="brand-search-row">
+            <input type="text" id="brand-model-input" class="brand-model-input" placeholder="Ej: Polo 2022, Ranger, Sandero..." autocomplete="off" onkeydown="if(event.key==='Enter')buscarMarcaModelo()" />
+            <button class="brand-search-btn" onclick="buscarMarcaModelo()">${icons.arrowRight} Buscar</button>
+          </div>
         </div>
       </div>
     </section>
@@ -904,19 +996,19 @@ function renderHome() {
     <!-- FINAL CTA -->
     <section class="final-cta">
       <div class="final-cta-inner">
-        <div style="display:inline-block;background:var(--red2);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px">🔥 Precio de Fábrica Directo</div>
+        <div style="display:inline-block;background:var(--red2);color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px">⚡ Respondemos en minutos</div>
         <span class="section-label" style="display:block;text-align:center;margin-bottom:8px">Sin intermediarios · Fabricado en Argentina</span>
         <h2 class="section-title">Armamos el combo<br><span>justo para tu auto.</span></h2>
         <div class="divider-line" style="margin:20px auto"></div>
-        <p class="section-sub" style="margin:0 auto 28px">Ya viste lo que tenemos. Ahora escribinos: contanos tu marca y modelo, y te respondemos en minutos con el precio más bajo directo de fábrica — sin vueltas, sin cobros extras.</p>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:36px">
-          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Fundas a medida o universales</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Envío a todo el país</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Garantía 30 días</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--metal2);background:var(--dark3);border:1px solid var(--white08);border-radius:20px;padding:7px 16px">✔ Instalación en nuestro local</span>
+        <p class="section-sub" style="margin:0 auto 28px">Ya viste lo que tenemos. Ahora escribinos: contanos tu marca y modelo, y te respondemos en minutos con tu presupuesto a medida — sin vueltas, sin cobros extras.</p>
+        <div class="final-cta-chips">
+          <span class="cta-chip">✔ Fundas a medida o universales</span>
+          <span class="cta-chip">✔ Envío en 24 a 72 horas hábiles</span>
+          <span class="cta-chip">✔ Garantía 30 días</span>
+          <span class="cta-chip">✔ Instalación en nuestro local</span>
         </div>
         <div class="final-cta-actions">
-          <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden dar precio de fábrica?')}" target="_blank" class="btn-whatsapp" style="font-size:17px;padding:16px 36px">${icons.waIcon} Pedir precio por WhatsApp</a>
+          <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden pasar presupuesto?')}" target="_blank" class="btn-whatsapp" style="font-size:17px;padding:16px 36px">${icons.waIcon} Pedir presupuesto por WhatsApp</a>
           <a href="#" data-page="categorias" class="btn-outline" style="font-size:17px;padding:15px 36px">Ver Catálogo Completo</a>
         </div>
         <p class="final-cta-note">
@@ -958,17 +1050,22 @@ function renderProductCard(p) {
   }
 
   const hasSaleInSizes = p.sizeVariants && p.sizeVariants.some(sv => sv.salePrice);
+  const isLiquidacion = p.badge && p.badge.toLowerCase().includes('liquidaci');
   const badgeHtml = p.badge
     ? `<span class="product-badge">${p.badge}</span>`
     : ((p.salePrice || hasSaleInSizes) ? `<span class="product-badge product-badge-oferta">Oferta</span>` : '');
+  const ultimasHtml = isLiquidacion
+    ? `<div class="product-last-units"><span class="last-units-dot"></span>Últimas unidades</div>`
+    : '';
   const colorsHtml = p.colors && p.colors.length
     ? `<div class="product-colors">${p.colors.map(c => `<span class="product-color-dot" style="background:${c}"></span>`).join('')}</div>`
     : '';
   let priceHtml;
   if (p.sizeVariants && p.sizeVariants.length > 0) {
+    const hasSale = p.sizeVariants.some(sv => sv.salePrice);
     priceHtml = `<div class="product-price-block">
-        <span class="product-price-from">Desde</span>
-        <div class="product-price product-price-sale">$${displayPrice}</div>
+        ${hasSale ? `<span class="product-price-label">Desde</span>` : ''}
+        <div class="product-price${hasSale ? ' product-price-sale' : ''}">$${displayPrice}</div>
        </div>`;
   } else if (p.salePrice) {
     priceHtml = `<div class="product-price-block">
@@ -977,7 +1074,6 @@ function renderProductCard(p) {
        </div>`;
   } else {
     priceHtml = `<div class="product-price-block">
-        <span class="product-price-from">Desde</span>
         <div class="product-price">$${p.price}</div>
        </div>`;
   }
@@ -993,6 +1089,7 @@ function renderProductCard(p) {
         <h3 class="product-name" onclick="navigate('product-${p.id}')">${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
         ${colorsHtml}
+        ${ultimasHtml}
         <div class="product-price-row">${priceHtml}</div>
         <div class="product-card-actions">
           <a href="${waLink}" target="_blank" class="product-btn-wa">${icons.waIcon} Consultar</a>
@@ -1051,6 +1148,7 @@ function renderCategoryPage(catId) {
     'cat-cubre-capots': { title: 'Cubre Capots', sub: 'Material de alta densidad. Protege contra impactos, granizo y rayones en el capot.' },
     'cat-cubre-trompas': { title: 'Cubre Trompas', sub: 'Tela Silver reforzada para proteger el frente completo de tu vehículo.' },
     'cat-cubre-motos': { title: 'Cubre Motos', sub: 'Cobertura 360° para motos y scooters. Impermeable, resistente al sol y polvo.' },
+    'cat-alfombras-termoformadas': { title: 'Alfombras Termoformadas', sub: 'Alfombras 3D termoformadas con bordes elevados. Protección total del piso del vehículo, fácil de limpiar.' },
     'cat-accesorios': { title: 'Accesorios Automotrices', sub: 'Todo lo que necesitás para proteger y personalizar tu vehículo.' },
   };
   const info = names[catId] || names['cat-fundas-asientos'];
@@ -1093,6 +1191,7 @@ function renderCategoryPage(catId) {
               'cat-cubre-capots': [],
               'cat-cubre-trompas': [],
               'cat-cubre-motos': ['Tela Silver','Tela Premium Afelpada'],
+              'cat-alfombras-termoformadas': [],
               'cat-accesorios': [],
             };
             const mats = matsByCat[catId] || [];
@@ -1182,11 +1281,11 @@ function renderProductPage(productId) {
       'Materiales 100% libres de formaldehído — seguros para uso diario',
     ],
     'cat-cubre-autos': [
-      'Tela Silver exterior impermeable — refleja el sol y protege contra granizo',
-      'Capa intermedia de Polyfoam 6mm — amortigua impactos y granizo',
-      'Interior de felpa suave — no raya la pintura del vehículo',
+      'Tela Silver exterior impermeable — refleja el sol y protege contra polvo y lluvia',
+      'Interior plateado suave que no raya la pintura del vehículo',
+      'En modelos antigranizo: capa de espuma Polyfoam 6mm en toda la parte superior (techo, capot y baúl) — amortigua impactos y granizo',
       'Costuras reforzadas con hilo de nylon — duraderas bajo lluvia y sol',
-      'Elástico perimetral y ojales de ventilación incluidos',
+      'Sistema de sujeción con cordón o tiras que pasan por debajo del auto — ajuste firme sin que se vuele',
     ],
     'cat-cubre-capots': [
       'Cuerina impermeable exterior — protege contra granizo, impactos y rayones',
@@ -1203,11 +1302,18 @@ function renderProductPage(productId) {
       'Resistente a lluvia, granizo, polvo e insectos',
     ],
     'cat-cubre-motos': [
-      'Tela Silver exterior impermeable — refleja rayos UV y protege contra lluvia',
-      'Interior afelpado suave — sin rayones en pintura ni plásticos de la moto',
+      'Tela Silver exterior impermeable — refleja rayos UV y protege contra lluvia y polvo',
+      'Interior plateado suave que no raya pintura ni plásticos de la moto',
       'Costuras selladas con hilo de nylon — alta resistencia a la intemperie',
       'Incluye bolso de guardado — fácil de llevar y guardar',
-      'Talla universal — se adapta a la mayoría de motos y scooters',
+      'Disponible en 5 talles según el largo de la moto: S 1,95m · M 2,05m · L 2,15m · XL 2,25m · XXL 2,35m',
+    ],
+    'cat-alfombras-termoformadas': [
+      'Material termoformado de alta densidad — resistente al agua, barro y derrames',
+      'Bordes elevados (3D) que contienen líquidos y suciedad — evitan que pase al piso original',
+      'Antideslizante en su base — no se mueve durante el uso',
+      'Ajuste preciso al modelo del vehículo — cubre toda la zona de pisada',
+      'Fácil de retirar y limpiar con agua o paño húmedo',
     ],
     'cat-accesorios': [
       'Materiales seleccionados según el tipo de accesorio',
@@ -1221,17 +1327,17 @@ function renderProductPage(productId) {
   const installStepsMap = {
     'cat-fundas-asientos': [
       'Limpiá bien el asiento antes de instalar',
-      'Posicioná la funda comenzando por el respaldo',
-      'Pasá los ganchos o elásticos por debajo del asiento',
-      'Ajustá uniformemente por todos los lados',
-      'Verificá que no queden arrugas ni tensiones excesivas',
+      'Posicioná la funda comenzando por el respaldo y luego el asiento',
+      'Pasá los ganchos o elásticos por debajo del asiento y butacas',
+      'Ajustá uniformemente por todos los lados, sin tensiones excesivas',
+      'Tiempo de colocación: aproximadamente 1 hora. Si preferís, te la instalamos en nuestro local de Munro',
     ],
     'cat-cubre-autos': [
       'Asegurate de que el auto esté frío antes de cubrir',
       'Extendé el cubre auto empezando desde el techo hacia los costados',
-      'Bajá bien la tela sobre el capot, el baúl y los laterales',
-      'Pasá el elástico inferior alrededor de toda la carrocería',
-      'Verificá que las aberturas (ruedas, antena) queden bien posicionadas',
+      'Bajá bien la tela sobre el capot y el baúl',
+      'Pasá el cordón o las tiras por debajo del auto y atalas por los costados',
+      'Verificá que esté firme — el cordón/tiras evitan que se vuele con viento',
     ],
     'cat-cubre-capots': [
       'Limpiá bien el capot antes de instalar',
@@ -1249,10 +1355,17 @@ function renderProductPage(productId) {
     ],
     'cat-cubre-motos': [
       'Estacioná la moto en un lugar seguro y plano',
-      'Desplegá el cubre moto y ubicalo desde la parte trasera hacia el frente',
-      'Bajá la tela por ambos costados de la moto',
-      'Asegurate de que ambas ruedas queden bien cubiertas',
-      'Atá las cintas de sujeción si las tiene para mayor seguridad',
+      'Elegí el talle correcto según el largo de la moto (S 1,95m / M 2,05m / L 2,15m / XL 2,25m / XXL 2,35m)',
+      'Desplegá la funda y colocala desde la parte trasera hacia el frente',
+      'Bajá la tela por ambos costados, cubriendo bien las ruedas',
+      'Atá las cintas de sujeción para que no se vuele con el viento',
+    ],
+    'cat-alfombras-termoformadas': [
+      'Retirá las alfombras originales del vehículo',
+      'Limpiá el piso del auto antes de colocar las nuevas',
+      'Ubicá cada pieza en su posición (delantera izq/der, trasera, baúl)',
+      'Calzala desde el extremo más profundo hacia el más cercano a la puerta',
+      'Verificá que quede bien ajustada y que el clip de seguridad (si lo tiene) quede enganchado',
     ],
     'cat-accesorios': [
       'Revisá las instrucciones específicas del accesorio antes de instalar',
@@ -1364,6 +1477,7 @@ function renderProductPage(productId) {
             <div class="price-from">${priceFromLabel}</div>
             <div class="price-main" id="pp-price-main-${pid}">${initPriceHtml}</div>
             <div style="font-size:13px;color:var(--metal)">IVA incluido · Envío a calcular según destino</div>
+            <div class="pp-delivery-badge">${icons.truck} <strong>Entrega en 24 a 72 horas hábiles</strong> · Todo el país</div>
           </div>
 
           <div class="product-options">
@@ -1459,7 +1573,7 @@ function renderProductPage(productId) {
         <div id="tab-install" class="tab-content">
           <div class="info-block" style="margin-bottom:20px">
             <div class="info-block-title">${icons.tool} Guía de Instalación</div>
-            <p style="font-size:15px;color:var(--metal2);line-height:1.8;margin-bottom:20px">La instalación es simple y no requiere herramientas. En promedio lleva entre 15 y 30 minutos.</p>
+            <p style="font-size:15px;color:var(--metal2);line-height:1.8;margin-bottom:20px">La instalación es simple y no requiere herramientas. Si preferís, ofrecemos servicio de instalación en nuestro local de Munro.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
               ${instSteps.map((step, i) => `
                 <div style="display:flex;gap:12px;align-items:flex-start">
@@ -1475,11 +1589,17 @@ function renderProductPage(productId) {
           <div class="info-grid">
             <div class="info-block">
               <div class="info-block-title">${icons.truck} Información de Envíos</div>
+              <div class="delivery-highlight">
+                <div class="delivery-highlight-icon">${icons.truck}</div>
+                <div>
+                  <div class="delivery-highlight-title">Entrega en 24 a 72 horas hábiles</div>
+                  <div class="delivery-highlight-sub">Despacho el día hábil siguiente a la confirmación del pago</div>
+                </div>
+              </div>
               <ul>
                 <li>Envíos a todo el país por Andreani, OCA y Correo Argentino</li>
-                <li>Despacho en 24-48hs hábiles tras la confirmación del pago</li>
-                <li>GBA: 2-3 días hábiles</li>
-                <li>Interior del país: 4-7 días hábiles según zona</li>
+                <li>GBA: 1-2 días hábiles</li>
+                <li>Interior del país: 2-5 días hábiles según zona</li>
                 <li>Tracking de tu pedido en tiempo real</li>
               </ul>
             </div>
@@ -1642,6 +1762,40 @@ function renderAboutPage() {
           </div>
         </div>
 
+      </div>
+    </div>
+  `;
+}
+
+// ── FAQ Page ──
+function renderFaqPage() {
+  return `
+    <div class="page-wrapper">
+      <div class="page-hero">
+        <div class="page-hero-inner">
+          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Preguntas Frecuentes</span></div>
+          <h1 class="page-hero-title">Preguntas<br><span style="color:var(--red2)">Frecuentes.</span></h1>
+          <p class="page-hero-sub">Las dudas más comunes resueltas. Si necesitás algo más específico, escribinos por WhatsApp o consultá con Madi, nuestra asistente virtual.</p>
+        </div>
+      </div>
+      <div class="faq-page-body">
+        <div class="faq-list faq-list-page">
+          ${faqs.map(f => `
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">${f.q} ${icons.chevDown}</button>
+              <div class="faq-a">${f.a}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="faq-cta-block">
+          <div class="faq-cta-icon">${icons.phone}</div>
+          <div class="faq-cta-text">
+            <h3>¿No encontraste tu respuesta?</h3>
+            <p>Escribinos por WhatsApp y te responde una persona real, o consultá con <strong>Madi</strong>, nuestra asistente virtual del sitio.</p>
+          </div>
+          <a href="${WA_MSG('Hola! Tengo una consulta sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Consultar por WhatsApp</a>
+        </div>
       </div>
     </div>
   `;
@@ -1984,6 +2138,7 @@ function renderPage(page) {
     else if (page.startsWith('product-')) html = renderProductPage(page);
     else if (page === 'quienes-somos') html = renderAboutPage();
     else if (page === 'como-comprar') html = renderHowToBuyPage();
+    else if (page === 'preguntas-frecuentes') html = renderFaqPage();
     else if (page === 'cambios-devoluciones') html = renderReturnsPage();
     else if (page === 'contacto') html = renderContactPage();
     else html = renderHome();
@@ -2337,6 +2492,34 @@ function closeSearch() {
   document.body.style.overflow = '';
 }
 
+function selectBrand(brand) {
+  document.querySelectorAll('.brand-chip').forEach(b => b.classList.remove('active'));
+  const clicked = Array.from(document.querySelectorAll('.brand-chip')).find(b => b.textContent === brand);
+  if (clicked) clicked.classList.add('active');
+  const input = document.getElementById('brand-model-input');
+  if (input) {
+    input.focus();
+    input.placeholder = `Ej: modelo ${brand}...`;
+  }
+}
+
+function buscarMarcaModelo() {
+  const input = document.getElementById('brand-model-input');
+  const activeChip = document.querySelector('.brand-chip.active');
+  const brand = activeChip ? activeChip.textContent : '';
+  const model = input ? input.value.trim() : '';
+  const query = [brand, model].filter(Boolean).join(' ');
+  if (!query) return;
+  openSearch();
+  setTimeout(() => {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.value = query;
+      runSearch(query);
+    }
+  }, 80);
+}
+
 function runSearch(query) {
   const results = document.getElementById('search-results');
   if (!results) return;
@@ -2375,10 +2558,12 @@ function buildMobileNav() {
       <a href="#" data-page="cat-cubre-capots">Cubre Capots</a>
       <a href="#" data-page="cat-cubre-trompas">Cubre Trompas</a>
       <a href="#" data-page="cat-cubre-motos">Cubre Motos</a>
+      <a href="#" data-page="cat-alfombras-termoformadas">Alfombras Termoformadas</a>
       <a href="#" data-page="cat-accesorios">Accesorios</a>
     </div>
     <a href="#" data-page="quienes-somos">Quiénes Somos</a>
     <a href="#" data-page="como-comprar">Cómo Comprar</a>
+    <a href="#" data-page="preguntas-frecuentes">Preguntas Frecuentes</a>
     <a href="#" data-page="cambios-devoluciones">Cambios y Devoluciones</a>
     <a href="#" data-page="contacto">Contacto</a>
     <div class="mobile-nav-wa">
@@ -2663,7 +2848,7 @@ function cartRender() {
         <div class="cart-item-info">
           <div class="cart-item-cat">${i.cat}</div>
           <div class="cart-item-name">${i.name}</div>
-          <div class="cart-item-price"><span class="cart-item-price-from">Desde</span>$${price}</div>
+          <div class="cart-item-price">$${price}</div>
           <div class="cart-qty">
             <button class="cart-qty-btn" onclick="cartChangeQty('${i.id}',-1)" ${minusDisabled} aria-label="Restar">−</button>
             <span class="cart-qty-num">${qty}</span>

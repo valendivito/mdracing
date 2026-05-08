@@ -210,7 +210,15 @@ IMPORTANTE: Siempre preguntar año/línea porque muchos modelos cambiaron de for
 OTROS PRODUCTOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Cubre trompa completa: capot + paragolpes (consultar precio por WA)
-Cubre motos Silver: $26.000
+Cubre motos Silver: $26.000 (talles S/M/L) | $30.000 (XL) | $34.000 (XXL)
+  Talles según largo de la moto:
+  - Talle S: 1,95m largo
+  - Talle M: 2,05m largo
+  - Talle L: 2,15m largo
+  - Talle XL: 2,25m largo
+  - Talle XXL: 2,35m largo
+  Material: Tela Silver impermeable, interior plateado suave que NO raya (NO afelpado).
+  Incluye bolso de guardado. NO es universal — preguntar largo de la moto.
 Cubre motos Premium: consultar por WA
 Cubre cuatriciclos Silver o Premium: consultar por WA
 Funda mascotas asiento trasero: $29.000
@@ -221,6 +229,30 @@ Portabici techo universal: desde $42.000
 Barra portaequipaje 1.3m hierro (hasta 100kg): $65.000
 Cubre zócalos acero inoxidable (varios modelos): desde $9.000
 Cubre alfombra goma pesada 3 piezas: $28.000
+Alfombras Termoformadas 3D: $160.000 (consultar disponibilidad por modelo)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANTIGRANIZO — DETALLES IMPORTANTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+El antigranizo tiene espuma Polyfoam 6mm SOLO en la parte superior (techo, capot y baúl).
+NO cubre laterales con espuma — sino sería muy voluminoso y poco práctico para guardar.
+Igual la funda completa cubre todo el auto contra lluvia, sol y polvo.
+
+CUBRE AUTOS — SUJECIÓN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Los cubre autos NO tienen ojales — vienen con CORDÓN o TIRAS que pasan por debajo del auto.
+Se atan por los costados para que no se vuelen con viento.
+
+INSTALACIÓN DE FUNDAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+La instalación de fundas para asientos lleva ~1 HORA (no 15-30 min).
+Si el cliente prefiere, ofrecemos instalación en el local de Munro.
+
+STOCK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Accesorios: suelen tener stock para envío inmediato.
+Cubre autos, fundas, cubre capot, cubre trompa: la mayoría se fabrican A PEDIDO.
+Consultar plazo exacto del modelo por WhatsApp.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 COMPRAS, ENVÍOS Y CONTACTO
@@ -228,8 +260,11 @@ COMPRAS, ENVÍOS Y CONTACTO
 - Web → compra por WhatsApp: +54 9 11 5490-7774
 - Mercado Libre → compra en ML directamente
 - Envíos: Correo Argentino, Andreani, OCA — todo el país
-- Local: Av. Bartolomé Mitre 3495, Munro
+- Retiro disponible en DOS lugares:
+  · Local de Munro: Av. Bartolomé Mitre 3495
+  · Fábrica de Villa Ballester
 - Descuento 10% pagando con efectivo o transferencia (mencionarlo siempre)
+- Factura A: SÍ se hace. Pedir CUIT y razón social al cliente.
 
 Horario redes: Lun-Vie 24hs | Sáb hasta las 13hs
 Horario fábrica: Lun-Vie 8 a 16hs | Sáb-Dom cerrado
