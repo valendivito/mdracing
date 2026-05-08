@@ -1025,22 +1025,18 @@ function renderHome() {
         </div>
         <div class="final-cta-gallery">
           ${(() => {
-            // Pull first real image from 4 different products — guaranteed to exist
-            const galleryProducts = [
-              products.find(p => p.id === 'funda-cubre-auto-antigranizo-3-capas-impermeable'),
-              products.find(p => p.id === 'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz'),
-              products.find(p => p.id === 'funda-cubre-auto-antigranizo-polo-track-3-capas'),
-              products.find(p => p.id === 'funda-cubre-moto-silver-impermeable'),
-            ].filter(Boolean);
-            return galleryProducts.map((p, i) => {
-              const img = (p.images && p.images[0]) || (p.colorVariants && p.colorVariants[0] && p.colorVariants[0].images[0]) || '';
-              return img ? `<div class="cta-gallery-img"><img src="${img}" alt="${p.name}" loading="lazy" /></div>` : '';
-            }).join('');
+            const ctaImgs = [
+              { src: 'images/cta-ranger-granizo.jpeg', alt: 'Cubre auto antigranizo Ford Ranger Raptor' },
+              { src: 'images/cta-butacas-fundas.jpeg', alt: 'Fundas de asientos cuero automotor' },
+              { src: 'images/cta-trompa-polo.jpg', alt: 'Cubre trompa VW Polo en estudio' },
+            ];
+            const motoP = products.find(p => p.id === 'funda-cubre-moto-silver-impermeable');
+            if (motoP) {
+              const mImg = (motoP.images && motoP.images[0]) || (motoP.colorVariants && motoP.colorVariants[0] && motoP.colorVariants[0].images[0]) || '';
+              if (mImg) ctaImgs.push({ src: mImg, alt: motoP.name });
+            }
+            return ctaImgs.map(item => `<div class="cta-gallery-img"><img src="${item.src}" alt="${item.alt}" loading="lazy" /></div>`).join('');
           })()}
-          <div class="cta-gallery-badge">
-            <div class="cta-gallery-kpi"><span>${COMPANY.yearsActive}+</span><small>años</small></div>
-            <div class="cta-gallery-kpi"><span>+5.000</span><small>clientes</small></div>
-          </div>
         </div>
       </div>
     </section>
