@@ -64,9 +64,45 @@
 
 <!-- ═══════════════════════════════════════════════ PROMO BAR ═══ -->
 <div id="promo-bar" role="region" aria-label="Promoción">
-  <span class="promo-desktop"><strong>10% OFF</strong> pagando con efectivo o transferencia <span class="promo-sep">·</span> Envíos a todo el país</span>
-  <span class="promo-mobile"><strong>10% OFF</strong> en efectivo o transferencia</span>
+
+  <!-- Hot Sale ticker (visible durante Hot Sale) -->
+  <div id="hs-ticker-bar" class="hs-ticker-bar" style="display:none" aria-label="Hot Sale">
+    <div class="hs-ticker-track">
+      <div class="hs-ticker-content">
+        🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO &nbsp;·&nbsp; 🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆 &nbsp;·&nbsp; ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO &nbsp;·&nbsp; 🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD &nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO &nbsp;·&nbsp; 🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆 &nbsp;·&nbsp; ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO &nbsp;·&nbsp; 🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD &nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra normal (visible fuera del Hot Sale) -->
+  <div id="normal-promo-bar">
+    <span class="promo-desktop"><strong>10% OFF</strong> pagando con efectivo o transferencia <span class="promo-sep">·</span> Envíos a todo el país</span>
+    <span class="promo-mobile"><strong>10% OFF</strong> en efectivo o transferencia</span>
+  </div>
+
 </div>
+<script>
+  (function() {
+    if (new Date() < new Date('2026-05-21T00:00:00-03:00')) {
+      document.getElementById('hs-ticker-bar').style.display = '';
+      document.getElementById('normal-promo-bar').style.display = 'none';
+      // Agregar HOT SALE al menú desplegable
+      var dropdown = document.querySelector('.dropdown-menu');
+      if (dropdown) {
+        var sep = document.createElement('div');
+        sep.style.cssText = 'height:1px;background:rgba(255,50,0,.15);margin:4px 0';
+        var hsLink = document.createElement('a');
+        hsLink.href = '#';
+        hsLink.setAttribute('data-page', 'cat-hot-sale');
+        hsLink.innerHTML = '🔥 HOT SALE';
+        hsLink.style.cssText = 'color:#ff2200!important;font-weight:700;letter-spacing:.5px';
+        dropdown.insertBefore(hsLink, dropdown.firstChild);
+        dropdown.insertBefore(sep, hsLink.nextSibling);
+      }
+    }
+  })();
+</script>
 
 <!-- ═══════════════════════════════════════════════════ NAV ═══ -->
 <header id="site-header">

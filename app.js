@@ -169,8 +169,56 @@ const alfombraSvg = `<svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3
   <text x="100" y="135" text-anchor="middle" fill="#d10000" font-family="Arial" font-size="11" font-weight="bold" opacity="0.5">3D</text>
 </svg>`;
 
+// ── Hot Sale config ──
+const HOTSALE_END = new Date('2026-05-21T00:00:00-03:00');
+const HOT_SALE_ACTIVE = new Date() < HOTSALE_END;
+const HOT_SALE_PRICES = HOT_SALE_ACTIVE ? {
+  // Fundas para asientos
+  'funda-para-asientos-vw-tera-cuero-automotor-acolchado-qj9az':            '179.999',
+  'funda-para-asientos-vw-polo-track-eco-cuero-wpgw2':                      '118.999',
+  'funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz': '129.999',
+  'funda-para-asientos-gol-trend-ecocuero5':                                '115.999',
+  'funda-fiat-mobi-cuero-automotor':                                        '174.999',
+  'funda-vw-polo-2018-cuero-automotor':                                     '177.999',
+  'funda-toyota-hilux-cuerina-automotor-acolchada':                         '189.999',
+  'funda-renault-sandero-tela-jakard-premium':                              '119.999',
+  'funda-fiat-palio-tela-jakard-premium':                                   '119.999',
+  'funda-jakard-premium-fiat-mobi-way':                                     '119.999',
+  'funda-nissan-versa-jackard-premium4':                                    '129.999',
+  'funda-para-asientos-renault-kwid-ecocuero2':                             '119.999',
+  'funda-para-asientos-renault-duster-ecocuero5':                           '119.999',
+  'funda-para-asientos-ford-ecosport-l-vieja-ecocuero5':                    '119.999',
+  'funda-para-asientos-ford-ecosport-l-nueva-ecocuero5':                    '119.999',
+  'funda-toyota-hilux-ecocuero-acolchada-og58b':                            '154.999',
+  // Cubre autos / camionetas
+  'funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux':     '129.999',
+  'funda-cubre-camioneta-antigranizo-3-capas-impermeable-ford-ranger':      '129.999',
+  'funda-cubre-camioneta-antigranizo-vw-amarok':                            '129.999',
+  'funda-cubre-auto-vw-tera-2025-tela-silver':                               '85.999',
+  'funda-cubre-auto-antigranizo-polo-track-3-capas':                        '104.999',
+  'funda-cubre-camioneta-antigranizo-toyota-sw4-3-capas':                   '139.999',
+  // Cubre capots
+  'cubre-capot-vw-amarok-dm92h':                                            '69.999',
+  'cubre-capot-vw-t-cross':                                                 '69.999',
+  'cubre-capot-ford-fiesta-2011-a-2014':                                    '68.999',
+  'cubre-capot-ford-ecosport-kinetic-2018':                                 '68.999',
+  'cubre-capot-peugeot-208':                                                '64.999',
+  'cubre-capot-peugeot-307-linea-vieja':                                    '64.999',
+  'cubre-capot-fiat-toro-mdracing':                                         '64.999',
+  // De la sección Hot Sale (para badge y categoría)
+  'funda-cubre-auto-antigranizo-3-capas-impermeable':                       '110.000',
+  'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g':                     '14.000',
+} : {};
+
+const flameSvg = `<svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <path d="M40 4C40 4 14 32 14 56C14 72 22 82 22 82C22 82 18 70 25 60C29 53 36 53 36 53C36 53 28 70 36 78C39 82 40 92 40 92C40 92 47 83 47 72C47 64 43 60 43 60C43 60 56 66 56 80C56 87 51 94 51 94C60 89 66 79 66 65C66 42 52 18 40 4Z" fill="#ff2200" opacity="0.92"/>
+  <path d="M40 26C40 26 27 44 27 58C27 67 33 75 40 75C47 75 53 67 53 58C53 46 46 32 40 26Z" fill="#ff8800" opacity="0.88"/>
+  <path d="M40 52C40 52 34 58 34 65C34 69 36 73 40 73C44 73 46 69 46 65C46 58 40 52 40 52Z" fill="#ffe000" opacity="0.95"/>
+</svg>`;
+
 // ── Categories data ──
 const categories = [
+  { id: 'cat-hot-sale', tag: '🔥 HASTA EL 20/05', title: 'HOT\nSALE', cat: 'hot-sale', svg: flameSvg, desc: 'Precios que queman. Solo hasta el 20 de mayo.', page: 'cat-hot-sale', hotsaleOnly: true },
   { id: 'cat-cubre-autos', tag: 'Más Vendido', title: 'Cubre\nAutos', cat: 'cubre-autos', svg: coverSvg, desc: 'Antigranizo, lluvia, sol y polvo. Para todos los modelos.', page: 'cat-cubre-autos' },
   { id: 'cat-fundas-asientos', tag: 'Alta Demanda', title: 'Fundas\nAsientos', cat: 'fundas', svg: seatSvg, desc: 'A medida o universales. Eco cuero, tela premium, cuero automotor y más.', page: 'cat-fundas-asientos' },
   { id: 'cat-cubre-capots', tag: 'Premium', title: 'Cubre\nCapots', cat: 'cubre-capots', svg: capotSvg, desc: 'Protección afelpada contra granizo y rayones.', page: 'cat-cubre-capots' },
@@ -539,6 +587,111 @@ const faqs = [
 
 function renderHome() {
   return `
+    <!-- HOT SALE -->
+    ${(() => {
+      const now = new Date();
+      if (now >= HOTSALE_END) return '';
+
+      const hotProducts = [
+        {
+          id: 'funda-cubre-auto-antigranizo-3-capas-impermeable',
+          name: 'Cubre Auto Antigranizo 3 Capas',
+          cat: 'Cubre Autos',
+          price: '130.000', salePrice: '110.000', off: 15,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp'
+        },
+        {
+          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux',
+          name: 'Antigranizo 3 Capas Toyota Hilux',
+          cat: 'Cubre Autos',
+          price: '140.000', salePrice: '129.999', off: 7,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/toyota-hilux-fondo-blanco-photoroom-bdd1fc918f88d65c7717624307664816-1024-1024.webp'
+        },
+        {
+          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-ford-ranger',
+          name: 'Antigranizo 3 Capas Ford Ranger',
+          cat: 'Cubre Autos',
+          price: '140.000', salePrice: '129.999', off: 7,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/ford-ranger-antigranizo-a31b32152e704c8eff17592386661341-1024-1024.webp'
+        },
+        {
+          id: 'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g',
+          name: 'Cubre Volante Base Plana',
+          cat: 'Accesorios',
+          price: '15.000', salePrice: '14.000', off: 7,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp'
+        }
+      ];
+
+      const ctaTexts = [
+        '¡Lo quiero a ese precio! 🔥',
+        'Aprovechar antes que se acabe →',
+        '¡Me la llevo ahora! 🔥',
+        'Comprar con descuento →'
+      ];
+
+      const emberData = [
+        {s:5,l:8,b:12,d:2.4,dl:0.3},{s:4,l:18,b:5,d:3.1,dl:1.2},{s:7,l:28,b:20,d:2.8,dl:0.7},
+        {s:3,l:38,b:8,d:3.5,dl:2.1},{s:6,l:48,b:15,d:2.2,dl:0.1},{s:4,l:58,b:6,d:3.8,dl:1.6},
+        {s:5,l:65,b:22,d:2.6,dl:0.9},{s:8,l:72,b:10,d:3.2,dl:2.4},{s:3,l:82,b:18,d:2.9,dl:0.5},
+        {s:6,l:90,b:4,d:3.6,dl:1.8},{s:4,l:14,b:25,d:2.3,dl:3.0},{s:5,l:44,b:3,d:4.1,dl:1.4},
+        {s:3,l:54,b:28,d:2.7,dl:2.7},{s:7,l:76,b:14,d:3.3,dl:0.2},{s:4,l:94,b:9,d:2.5,dl:1.9}
+      ];
+      const embers = emberData.map(e =>
+        `<div class="hs-ember" style="width:${e.s}px;height:${e.s}px;left:${e.l}%;bottom:${e.b}%;--dur:${e.d}s;animation-delay:${e.dl}s"></div>`
+      ).join('');
+
+      const cardsHTML = hotProducts.map((p, i) => `
+        <div class="hotsale-card" onclick="navigate('product-${p.id}')">
+          <div class="hs-card-off">${p.off}% OFF</div>
+          <div class="hs-card-img">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          </div>
+          <div class="hs-card-body">
+            <span class="hs-card-cat">${p.cat}</span>
+            <h3 class="hs-card-name">${p.name}</h3>
+            <div class="hs-price-row">
+              <span class="hs-price-old">Antes $${p.price}</span>
+              <span class="hs-price-new"><span>$</span>${p.salePrice}</span>
+            </div>
+            <a href="${WA_MSG('¡Hola! Quiero aprovechar el Hot Sale 🔥 y comprar: ' + p.name + '. ¿Está disponible al precio especial?')}"
+               target="_blank" class="hs-card-cta" onclick="event.stopPropagation()">
+              ${ctaTexts[i]}
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+        <section class="hotsale-section">
+          ${embers}
+          <div class="hotsale-inner">
+            <div class="hotsale-header">
+              <div class="hotsale-eyebrow">🔥 EDICIÓN LIMITADA &nbsp;·&nbsp; SOLO HASTA EL 20 DE MAYO</div>
+              <div class="hotsale-title-wrap">
+                <span class="hotsale-title-hs">HOT SALE</span>
+                <span class="hotsale-title-brand">LLEGÓ A MDRACING</span>
+              </div>
+              <p class="hotsale-subtitle">Precios que queman. Ofertas reales directo de fábrica.</p>
+              <div class="hotsale-countdown" id="hotsale-countdown">
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-days">--</span><span class="hsc-label">días</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-hours">--</span><span class="hsc-label">horas</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-mins">--</span><span class="hsc-label">min</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-secs">--</span><span class="hsc-label">seg</span></div>
+              </div>
+            </div>
+            <div class="hotsale-grid">${cardsHTML}</div>
+            <div class="hotsale-footer">
+              <a href="#" data-page="cat-hot-sale" class="hotsale-footer-link">Ver todos los productos con descuento Hot Sale →</a>
+            </div>
+          </div>
+        </section>
+      `;
+    })()}
+
     <!-- HERO -->
     <section class="hero">
       <div class="hero-bg"></div>
@@ -672,112 +825,6 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- HOT SALE -->
-    ${(() => {
-      const now = new Date();
-      const HOTSALE_END = new Date('2026-05-21T00:00:00-03:00');
-      if (now >= HOTSALE_END) return '';
-
-      const hotProducts = [
-        {
-          id: 'funda-cubre-auto-antigranizo-3-capas-impermeable',
-          name: 'Cubre Auto Antigranizo 3 Capas',
-          cat: 'Cubre Autos',
-          price: '130.000', salePrice: '110.000', off: 15,
-          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp'
-        },
-        {
-          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux',
-          name: 'Antigranizo 3 Capas Toyota Hilux',
-          cat: 'Cubre Autos',
-          price: '140.000', salePrice: '135.000', off: 4,
-          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/toyota-hilux-fondo-blanco-photoroom-bdd1fc918f88d65c7717624307664816-1024-1024.webp'
-        },
-        {
-          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-ford-ranger',
-          name: 'Antigranizo 3 Capas Ford Ranger',
-          cat: 'Cubre Autos',
-          price: '140.000', salePrice: '135.000', off: 4,
-          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/ford-ranger-antigranizo-a31b32152e704c8eff17592386661341-1024-1024.webp'
-        },
-        {
-          id: 'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g',
-          name: 'Cubre Volante Base Plana',
-          cat: 'Accesorios',
-          price: '15.000', salePrice: '14.000', off: 7,
-          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp'
-        }
-      ];
-
-      const ctaTexts = [
-        '¡Lo quiero a ese precio! 🔥',
-        'Aprovechar antes que se acabe →',
-        '¡Me la llevo ahora! 🔥',
-        'Comprar con descuento →'
-      ];
-
-      const emberData = [
-        {s:5,l:8,b:12,d:2.4,dl:0.3},{s:4,l:18,b:5,d:3.1,dl:1.2},{s:7,l:28,b:20,d:2.8,dl:0.7},
-        {s:3,l:38,b:8,d:3.5,dl:2.1},{s:6,l:48,b:15,d:2.2,dl:0.1},{s:4,l:58,b:6,d:3.8,dl:1.6},
-        {s:5,l:65,b:22,d:2.6,dl:0.9},{s:8,l:72,b:10,d:3.2,dl:2.4},{s:3,l:82,b:18,d:2.9,dl:0.5},
-        {s:6,l:90,b:4,d:3.6,dl:1.8},{s:4,l:14,b:25,d:2.3,dl:3.0},{s:5,l:44,b:3,d:4.1,dl:1.4},
-        {s:3,l:54,b:28,d:2.7,dl:2.7},{s:7,l:76,b:14,d:3.3,dl:0.2},{s:4,l:94,b:9,d:2.5,dl:1.9}
-      ];
-      const embers = emberData.map(e =>
-        `<div class="hs-ember" style="width:${e.s}px;height:${e.s}px;left:${e.l}%;bottom:${e.b}%;--dur:${e.d}s;animation-delay:${e.dl}s"></div>`
-      ).join('');
-
-      const cardsHTML = hotProducts.map((p, i) => `
-        <div class="hotsale-card" onclick="navigate('product-${p.id}')">
-          <div class="hs-card-off">${p.off}% OFF</div>
-          <div class="hs-card-img">
-            <img src="${p.img}" alt="${p.name}" loading="lazy" />
-          </div>
-          <div class="hs-card-body">
-            <span class="hs-card-cat">${p.cat}</span>
-            <h3 class="hs-card-name">${p.name}</h3>
-            <div class="hs-price-row">
-              <span class="hs-price-old">Antes $${p.price}</span>
-              <span class="hs-price-new"><span>$</span>${p.salePrice}</span>
-            </div>
-            <a href="${WA_MSG('¡Hola! Quiero aprovechar el Hot Sale 🔥 y comprar: ' + p.name + '. ¿Está disponible al precio especial?')}"
-               target="_blank" class="hs-card-cta" onclick="event.stopPropagation()">
-              ${ctaTexts[i]}
-            </a>
-          </div>
-        </div>
-      `).join('');
-
-      return `
-        <section class="hotsale-section">
-          ${embers}
-          <div class="hotsale-inner">
-            <div class="hotsale-header">
-              <div class="hotsale-eyebrow">🔥 EDICIÓN LIMITADA &nbsp;·&nbsp; SOLO HASTA EL 20 DE MAYO</div>
-              <div class="hotsale-title-wrap">
-                <span class="hotsale-title-hs">HOT SALE</span>
-                <span class="hotsale-title-brand">LLEGÓ A MDRACING</span>
-              </div>
-              <p class="hotsale-subtitle">Precios que queman. Ofertas reales directo de fábrica.</p>
-              <div class="hotsale-countdown" id="hotsale-countdown">
-                <div class="hsc-unit"><span class="hsc-num" id="hsc-days">--</span><span class="hsc-label">días</span></div>
-                <span class="hsc-colon">:</span>
-                <div class="hsc-unit"><span class="hsc-num" id="hsc-hours">--</span><span class="hsc-label">horas</span></div>
-                <span class="hsc-colon">:</span>
-                <div class="hsc-unit"><span class="hsc-num" id="hsc-mins">--</span><span class="hsc-label">min</span></div>
-                <span class="hsc-colon">:</span>
-                <div class="hsc-unit"><span class="hsc-num" id="hsc-secs">--</span><span class="hsc-label">seg</span></div>
-              </div>
-            </div>
-            <div class="hotsale-grid">${cardsHTML}</div>
-            <div class="hotsale-footer">
-              <a href="#" data-page="categorias" class="hotsale-footer-link">Ver todo el catálogo con precios Hot Sale →</a>
-            </div>
-          </div>
-        </section>
-      `;
-    })()}
-
     <!-- CATEGORIES -->
     <section class="categories-section">
       <div class="categories-inner">
@@ -790,9 +837,9 @@ function renderHome() {
         ${(() => {
           const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
           const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
-          const secondary = categories.filter(c => !featuredIds.includes(c.id));
+          const secondary = categories.filter(c => !featuredIds.includes(c.id) && (!c.hotsaleOnly || HOT_SALE_ACTIVE));
           const renderCard = (c, isSmall) => `
-            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}${c.id === 'cat-hot-sale' ? ' cat-card-hs' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>
@@ -1203,13 +1250,19 @@ function renderHome() {
 }
 
 function renderProductCard(p) {
+  // Aplicar precio Hot Sale si corresponde
+  const hsPrice = HOT_SALE_PRICES[p.id];
+  if (hsPrice) p = { ...p, salePrice: hsPrice, _isHot: true };
+
   let displayPrice = p.salePrice || p.price;
   if (p.sizeVariants && p.sizeVariants.length > 0) {
     const prices = p.sizeVariants.map(sv => parseInt((sv.salePrice || sv.price).replace(/\./g, ''), 10));
     const minPrice = Math.min(...prices);
     displayPrice = minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
-  const waLink = WA_MSG(`Hola! Quiero consultar por: ${p.name} (desde $${displayPrice})`);
+  const waLink = p._isHot
+    ? WA_MSG(`¡Hola! Quiero aprovechar el Hot Sale 🔥 y consultar por: ${p.name} (precio Hot Sale $${displayPrice})`)
+    : WA_MSG(`Hola! Quiero consultar por: ${p.name} (desde $${displayPrice})`);
 
   let mediaContent;
   if (p.images && p.images.length > 0) {
@@ -1233,9 +1286,11 @@ function renderProductCard(p) {
 
   const hasSaleInSizes = p.sizeVariants && p.sizeVariants.some(sv => sv.salePrice);
   const isLiquidacion = p.badge && p.badge.toLowerCase().includes('liquidaci');
-  const badgeHtml = p.badge
-    ? `<span class="product-badge">${p.badge}</span>`
-    : ((p.salePrice || hasSaleInSizes) ? `<span class="product-badge product-badge-oferta">Oferta</span>` : '');
+  const badgeHtml = p._isHot
+    ? `<span class="product-badge product-badge-hs">🔥 HOT SALE</span>`
+    : (p.badge
+      ? `<span class="product-badge">${p.badge}</span>`
+      : ((p.salePrice || hasSaleInSizes) ? `<span class="product-badge product-badge-oferta">Oferta</span>` : ''));
   const ultimasHtml = isLiquidacion
     ? `<div class="product-last-units"><span class="last-units-dot"></span>Últimas unidades</div>`
     : '';
@@ -1315,6 +1370,33 @@ function renderTestimonial(t) {
 
 // ── Category Page ──
 function renderCategoryPage(catId) {
+  // Categoría especial HOT SALE
+  if (catId === 'cat-hot-sale') {
+    if (!HOT_SALE_ACTIVE) return renderHome();
+    const hsIds = Object.keys(HOT_SALE_PRICES);
+    const hsProducts = products.filter(p => hsIds.includes(p.id));
+    return `
+      <div class="page-wrapper">
+        <div class="page-hero page-hero-hs">
+          <div class="page-hero-inner">
+            <div class="page-breadcrumb">
+              <a href="#" data-page="home">Inicio</a>
+              <span>›</span>
+              <span>🔥 HOT SALE</span>
+            </div>
+            <h1 class="page-hero-title">🔥 HOT SALE <span style="color:var(--red2)">MDRACING</span></h1>
+            <p class="page-hero-sub">Precios especiales directo de fábrica. <strong>Solo hasta el 20 de mayo.</strong> ¡Aprovechá antes que se acabe!</p>
+          </div>
+        </div>
+        <div style="max-width:var(--max);margin:0 auto;padding:48px 24px">
+          <div class="products-grid cat-products-grid">
+            ${hsProducts.map(p => renderProductCard(p)).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   const cat = categories.find(c => c.id === catId) || categories[0];
   const catProducts = products.filter(p => p.catId === catId);
   let allProducts = catProducts.length > 0 ? catProducts : products;
@@ -2274,9 +2356,9 @@ function renderCategoriesPage() {
         ${(() => {
           const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
           const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
-          const secondary = categories.filter(c => !featuredIds.includes(c.id));
+          const secondary = categories.filter(c => !featuredIds.includes(c.id) && (!c.hotsaleOnly || HOT_SALE_ACTIVE));
           const renderCard = (c, isSmall) => `
-            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}${c.id === 'cat-hot-sale' ? ' cat-card-hs' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>

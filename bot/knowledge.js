@@ -424,6 +424,55 @@ COMPRAS, ENVÍOS Y CONTACTO
 Horario redes: Lun-Vie 24hs | Sáb hasta las 13hs
 Horario fábrica: Lun-Vie 8 a 16hs | Sáb-Dom cerrado
 
+╔═══════════════════════════════════════════════════════╗
+║  🔥 HOT SALE MDRACING — VIGENTE HASTA EL 20/05/2026  ║
+╠═══════════════════════════════════════════════════════╣
+║  Precios especiales temporarios. Cuando alguien        ║
+║  pregunte por estos productos, informá el precio       ║
+║  HOT SALE y aclarà que es solo hasta el 20 de mayo.   ║
+║                                                        ║
+║  IMPORTANTE: Si ya pasó el 20/05/2026, estos precios  ║
+║  ya NO aplican — informar precio normal del catálogo. ║
+╚═══════════════════════════════════════════════════════╝
+
+HOT SALE — FUNDAS PARA ASIENTOS (precio HS · válido hasta 20/05):
+- VW Tera — Cuero Automotor Acolchado 3mm | HS: $179.999 (antes $189.999)
+- VW Polo Track — Ecocuero | HS: $118.999 (antes $125.000)
+- VW Polo Track + Cubre Volante Plano (combo) | HS: $129.999 (antes $138.999)
+- VW Gol Trend — Ecocuero | HS: $115.999 (antes $130.000)
+- Fiat Mobi — Cuero Automotor | HS: $174.999 (antes $200.000)
+- VW Polo 2018 — Cuero Automotor | HS: $177.999 (antes $210.000)
+- Toyota Hilux — Cuero Automotor Acolchado 3mm | HS: $189.999 (antes $210.000)
+- Renault Sandero — Tela Jakard Premium | HS: $119.999 (antes $130.000)
+- Fiat Palio — Tela Jakard Premium Lisa | HS: $119.999 (antes $130.000)
+- Fiat Mobi Way — Jakard Premium | HS: $119.999 (antes $132.999)
+- Nissan Versa — Jakard Premium | HS: $129.999 (antes $140.000)
+- Renault Kwid — Ecocuero | HS: $119.999 (antes $130.000)
+- Renault Duster — Ecocuero | HS: $119.999 (antes $130.000)
+- Ford EcoSport Línea Vieja — Ecocuero | HS: $119.999 (antes $140.000)
+- Ford EcoSport Línea Nueva — Ecocuero | HS: $119.999 (antes $140.000)
+- Toyota Hilux — Ecocuero Acolchada 3mm | HS: $154.999 (antes $170.000)
+
+HOT SALE — CUBRE AUTOS / CAMIONETAS (precio HS · válido hasta 20/05):
+- Antigranizo 3 Capas Toyota Hilux | HS: $129.999 (antes $135.000)
+- Antigranizo 3 Capas Ford Ranger | HS: $129.999 (antes $135.000)
+- Antigranizo 3 Capas VW Amarok | HS: $129.999 (antes $135.000)
+- Antigranizo 3 Capas Universal (talle M-L) | HS: $110.000 (antes $120.000)
+- VW Tera 2025 — Tela Silver | HS: $85.999 (antes $99.999)
+- Antigranizo 3 Capas VW Polo Track | HS: $104.999 (antes $113.999)
+- Antigranizo 3 Capas Toyota SW4 | HS: $139.999 (antes $150.000)
+
+HOT SALE — CUBRE CAPOTS (precio HS · válido hasta 20/05):
+- Cubre Capot VW Amarok | HS: $69.999 (antes $80.000)
+- Cubre Capot VW T-Cross | HS: $69.999 (antes $80.000)
+- Cubre Capot Ford Fiesta 2011-2014 | HS: $68.999 (antes $80.000)
+- Cubre Capot Ford EcoSport Kinetic 2018 | HS: $68.999 (antes $80.000)
+- Cubre Capot Peugeot 208 | HS: $64.999 (antes $70.000)
+- Cubre Capot Peugeot 307 Línea Vieja | HS: $64.999 (antes $70.000)
+- Cubre Capot Fiat Toro | HS: $64.999 (antes $70.000)
+
+PROMO ESPECIAL HOT SALE: Con la compra de cualquier Cubre Auto Antigranizo, el cliente recibe un llavero de Argentina de regalo (para el Mundial 2026). Mencionalo si el cliente pregunta por Antigranizo.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CAMBIOS Y DEVOLUCIONES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
