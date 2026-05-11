@@ -1591,7 +1591,7 @@ function renderProductPage(productId) {
             <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
           </div>
 
-          <div style="display:flex;align-items:center;gap:8px;margin-top:16px;padding:16px;background:var(--dark3);border-radius:8px;border:1px solid var(--white08)">
+          <div class="product-security-badge" style="display:flex;align-items:center;gap:8px;margin-top:16px;padding:16px;background:var(--dark3);border-radius:8px;border:1px solid var(--white08)">
             ${icons.shield}
             <span style="font-size:13px;color:var(--metal2)">Compra segura · Cambios en 30 días · Garantía de fábrica</span>
           </div>

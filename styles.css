@@ -2912,6 +2912,28 @@ section { position: relative; }
 
   .product-page-inner { grid-template-columns: 1fr; }
 
+  /* ── Producto: reordenar en mobile — variantes primero, precio después ── */
+  .product-page-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-cat-tag      { order: 1; }
+  .product-page-title   { order: 2; }
+  .product-compat       { order: 3; }
+  .product-options      { order: 4; margin-bottom: 0; } /* sube antes del precio */
+  .product-price-section { order: 5; }
+  .product-ctas         { order: 6; }
+  .product-benefits-top { order: 7; }
+  .product-security-badge { order: 8; }
+
+  /* ── Precio más compacto en mobile ── */
+  .product-price-section { padding: 14px 16px; margin-bottom: 16px; }
+  .price-from { font-size: 10px; letter-spacing: 0.5px; }
+  .price-main { font-size: 38px; margin: 2px 0 8px; }
+  .price-main .currency { font-size: 22px; margin-top: 4px; }
+  .price-old  { font-size: 18px; }
+  .pp-delivery-badge { padding: 8px 10px; font-size: 12px; margin-top: 8px; }
+
   .contact-body { grid-template-columns: 1fr; }
   .policy-grid { grid-template-columns: 1fr; }
   .info-grid { grid-template-columns: 1fr; }
@@ -4570,7 +4592,9 @@ section { position: relative; }
   border: 1.5px solid #d10000;
 }
 @media (max-width: 600px) {
-  #float-cart-btn { bottom: 130px; right: 16px; }
+  /* Madi está en bottom:80px, altura 56px → tope en 136px.
+     Cart: 136 + 12px gap = 148px para que no se solapen */
+  #float-cart-btn { bottom: 148px; right: 16px; }
 }
 
 /* ══════════════════════════════════════════════════════
