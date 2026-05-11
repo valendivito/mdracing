@@ -268,7 +268,8 @@
 @media (max-width: 600px) {
   #md-chat-btn { bottom: 80px; right: 16px; }
 
-  #md-chat-backdrop { display: block; }
+  #md-chat-backdrop { display: block; pointer-events: none; }
+  #md-chat-backdrop.open { pointer-events: auto; }
 
   #md-chat-window {
     /* Sheet deslizable desde abajo */
