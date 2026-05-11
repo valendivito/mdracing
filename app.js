@@ -672,6 +672,112 @@ function renderHome() {
       </div>
     </section>
 
+    <!-- HOT SALE -->
+    ${(() => {
+      const now = new Date();
+      const HOTSALE_END = new Date('2026-05-21T00:00:00-03:00');
+      if (now >= HOTSALE_END) return '';
+
+      const hotProducts = [
+        {
+          id: 'funda-cubre-auto-antigranizo-3-capas-impermeable',
+          name: 'Cubre Auto Antigranizo 3 Capas',
+          cat: 'Cubre Autos',
+          price: '130.000', salePrice: '110.000', off: 15,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp'
+        },
+        {
+          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux',
+          name: 'Antigranizo 3 Capas Toyota Hilux',
+          cat: 'Cubre Autos',
+          price: '140.000', salePrice: '135.000', off: 4,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/toyota-hilux-fondo-blanco-photoroom-bdd1fc918f88d65c7717624307664816-1024-1024.webp'
+        },
+        {
+          id: 'funda-cubre-camioneta-antigranizo-3-capas-impermeable-ford-ranger',
+          name: 'Antigranizo 3 Capas Ford Ranger',
+          cat: 'Cubre Autos',
+          price: '140.000', salePrice: '135.000', off: 4,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/ford-ranger-antigranizo-a31b32152e704c8eff17592386661341-1024-1024.webp'
+        },
+        {
+          id: 'cubre-volante-base-plana-polo-gol-golf-vento-ksc3g',
+          name: 'Cubre Volante Base Plana',
+          cat: 'Accesorios',
+          price: '15.000', salePrice: '14.000', off: 7,
+          img: 'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp'
+        }
+      ];
+
+      const ctaTexts = [
+        '¡Lo quiero a ese precio! 🔥',
+        'Aprovechar antes que se acabe →',
+        '¡Me la llevo ahora! 🔥',
+        'Comprar con descuento →'
+      ];
+
+      const emberData = [
+        {s:5,l:8,b:12,d:2.4,dl:0.3},{s:4,l:18,b:5,d:3.1,dl:1.2},{s:7,l:28,b:20,d:2.8,dl:0.7},
+        {s:3,l:38,b:8,d:3.5,dl:2.1},{s:6,l:48,b:15,d:2.2,dl:0.1},{s:4,l:58,b:6,d:3.8,dl:1.6},
+        {s:5,l:65,b:22,d:2.6,dl:0.9},{s:8,l:72,b:10,d:3.2,dl:2.4},{s:3,l:82,b:18,d:2.9,dl:0.5},
+        {s:6,l:90,b:4,d:3.6,dl:1.8},{s:4,l:14,b:25,d:2.3,dl:3.0},{s:5,l:44,b:3,d:4.1,dl:1.4},
+        {s:3,l:54,b:28,d:2.7,dl:2.7},{s:7,l:76,b:14,d:3.3,dl:0.2},{s:4,l:94,b:9,d:2.5,dl:1.9}
+      ];
+      const embers = emberData.map(e =>
+        `<div class="hs-ember" style="width:${e.s}px;height:${e.s}px;left:${e.l}%;bottom:${e.b}%;--dur:${e.d}s;animation-delay:${e.dl}s"></div>`
+      ).join('');
+
+      const cardsHTML = hotProducts.map((p, i) => `
+        <div class="hotsale-card" onclick="navigate('product-${p.id}')">
+          <div class="hs-card-off">${p.off}% OFF</div>
+          <div class="hs-card-img">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          </div>
+          <div class="hs-card-body">
+            <span class="hs-card-cat">${p.cat}</span>
+            <h3 class="hs-card-name">${p.name}</h3>
+            <div class="hs-price-row">
+              <span class="hs-price-old">Antes $${p.price}</span>
+              <span class="hs-price-new"><span>$</span>${p.salePrice}</span>
+            </div>
+            <a href="${WA_MSG('¡Hola! Quiero aprovechar el Hot Sale 🔥 y comprar: ' + p.name + '. ¿Está disponible al precio especial?')}"
+               target="_blank" class="hs-card-cta" onclick="event.stopPropagation()">
+              ${ctaTexts[i]}
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+        <section class="hotsale-section">
+          ${embers}
+          <div class="hotsale-inner">
+            <div class="hotsale-header">
+              <div class="hotsale-eyebrow">🔥 EDICIÓN LIMITADA &nbsp;·&nbsp; SOLO HASTA EL 20 DE MAYO</div>
+              <div class="hotsale-title-wrap">
+                <span class="hotsale-title-hs">HOT SALE</span>
+                <span class="hotsale-title-brand">LLEGÓ A MDRACING</span>
+              </div>
+              <p class="hotsale-subtitle">Precios que queman. Ofertas reales directo de fábrica.</p>
+              <div class="hotsale-countdown" id="hotsale-countdown">
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-days">--</span><span class="hsc-label">días</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-hours">--</span><span class="hsc-label">horas</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-mins">--</span><span class="hsc-label">min</span></div>
+                <span class="hsc-colon">:</span>
+                <div class="hsc-unit"><span class="hsc-num" id="hsc-secs">--</span><span class="hsc-label">seg</span></div>
+              </div>
+            </div>
+            <div class="hotsale-grid">${cardsHTML}</div>
+            <div class="hotsale-footer">
+              <a href="#" data-page="categorias" class="hotsale-footer-link">Ver todo el catálogo con precios Hot Sale →</a>
+            </div>
+          </div>
+        </section>
+      `;
+    })()}
+
     <!-- CATEGORIES -->
     <section class="categories-section">
       <div class="categories-inner">
@@ -2410,6 +2516,43 @@ function initInteractives() {
   initMaterialsCarousel();
   // Top reviews carousel (mobile)
   initTopReviewsCarousel();
+  // Hot Sale countdown
+  initHotSaleCountdown();
+}
+
+function initHotSaleCountdown() {
+  const days  = document.getElementById('hsc-days');
+  const hours = document.getElementById('hsc-hours');
+  const mins  = document.getElementById('hsc-mins');
+  const secs  = document.getElementById('hsc-secs');
+  if (!days) return;
+
+  const END = new Date('2026-05-21T00:00:00-03:00').getTime();
+  let tid;
+
+  const pad = n => String(n).padStart(2, '0');
+
+  const tick = () => {
+    const diff = END - Date.now();
+    if (diff <= 0) {
+      days.textContent = hours.textContent = mins.textContent = secs.textContent = '00';
+      clearInterval(tid);
+      const sec = document.querySelector('.hotsale-section');
+      if (sec) sec.remove();
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    days.textContent  = pad(d);
+    hours.textContent = pad(h);
+    mins.textContent  = pad(m);
+    secs.textContent  = pad(s);
+  };
+
+  tick();
+  tid = setInterval(tick, 1000);
 }
 
 function initTestimonialsCarousel() {
