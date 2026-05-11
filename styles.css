@@ -55,9 +55,38 @@ ul { list-style: none; }
 ::-webkit-scrollbar-track { background: var(--dark2); }
 ::-webkit-scrollbar-thumb { background: var(--graphite3); border-radius: 3px; }
 
+/* ══════════════════════════════════════════════ PROMO BAR ═══ */
+#promo-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1001;
+  height: 34px;
+  background: linear-gradient(90deg, #b50000 0%, #d10000 50%, #b50000 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  padding: 0 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.18);
+}
+#promo-bar strong { font-weight: 800; letter-spacing: .5px; margin-right: 4px; }
+.promo-sep { opacity: .55; margin: 0 6px; }
+
+@media (max-width: 600px) {
+  #promo-bar { height: 30px; font-size: 11.5px; padding: 0 10px; }
+  .promo-sep { display: none; }
+  .promo-bar-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #site-header { top: 30px; }
+}
+
 /* ══════════════════════════════════════════════ HEADER ═══ */
 #site-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  position: fixed; top: 34px; left: 0; right: 0; z-index: 1000;
   background: rgba(236,236,238,.96);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--white08);

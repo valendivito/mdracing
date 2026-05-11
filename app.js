@@ -23,7 +23,7 @@ const SOCIAL = {
 
 const COMPANY = {
   foundedYear: 2000,
-  yearsActive: 20,
+  yearsActive: 25,
   city: 'Villa Ballester',
   district: 'San Martín',
   province: 'Provincia de Buenos Aires',
@@ -221,7 +221,7 @@ const products = [
     { hex: '#e8e6e0', name: 'Beige', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-con-funda-ecocuero-blanca-photoroom-a9733f252386bd820d17588075704062-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59e20sefstvjvg41mks9a5d_1758032173_img_0-998fd0b49541913d6c17588074792242-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_926383-mla92777642263_092025-b-1b350d9b5b2bce02f817588075432612-1024-1024.webp'] },
     { hex: '#8B0000', name: 'Rojo', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-con-funda-ecocuero-roja-photoroom-515598db9bb31578d917588075688523-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59c89r8e4xa8xdfy3r2ek3e_1758030307_img_0-0cc86d807ca24ba43c17588074838852-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k60g78nafce9zea6bjyvjwft_1758806224_img_1-1a9dd9975a6af66e6117588074878858-1024-1024.webp'] },
   ] },
-  { id: 'funda-renault-kwid-tela-premium-jakard', name: 'Funda Renault Kwid Tela Jakard', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Tela Jakard premium para Renault Kwid. Disponible en varios colores, instalación en local en Olivos.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F805348-mla83092332128%5F032025-o-9d2f4220cbcd4d750d17594983510101-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-jakard-e335acd42e082350de17628702028322-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/20171115_183855-a7ca5466ac9b73d54617628707250855-1024-1024.webp'] },
+  { id: 'funda-renault-kwid-tela-premium-jakard', name: 'Funda Renault Kwid Tela Jakard', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Tela Jakard premium para Renault Kwid. Disponible en varios colores. Instalación opcional en nuestro local de Munro (Av. Bartolomé Mitre 3495).', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F805348-mla83092332128%5F032025-o-9d2f4220cbcd4d750d17594983510101-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-jakard-e335acd42e082350de17628702028322-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/20171115_183855-a7ca5466ac9b73d54617628707250855-1024-1024.webp'] },
   { id: 'funda-para-asientos-renault-duster-ecocuero5', name: 'Funda Renault Duster Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para Renault Duster. Juego completo con apoyacabezas, durabilidad y confort.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-negra-2cc655f24b26e6772f17588079591059-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-gris-36914b7968322f7a5517588079676299-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-azul-68908a49fa5c742e5917588079611763-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-blanca-ffadea1f1fda53d87d17588079636794-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-roja-a3b1a2116493a3ee5a17588079706510-1024-1024.webp'], colorVariants: [
     { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-negra-2cc655f24b26e6772f17588079591059-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59evwnqfwpaegd14xrbcp1m_1758033052_img_0-e8d8755b1008098c9d17588080483706-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881414-mla92778037055_092025-b-afd34c2ee7aa302ec417588080964233-1024-1024.webp'] },
     { hex: '#5a5a5a', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-gris-36914b7968322f7a5517588079676299-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59eecgnect82j8h14x2ynkg_1758032608_img_0-4ac46d1beccb09c6c117588080690967-1024-1024.webp'] },
@@ -1615,7 +1615,7 @@ function renderProductPage(productId) {
             <div class="info-block">
               <div class="info-block-title">${icons.package} Descripción del Producto</div>
               <p style="font-size:15px;color:var(--metal2);line-height:1.8;margin-bottom:20px">${p.desc} Fabricado con materiales seleccionados para garantizar durabilidad y buen aspecto a largo plazo.</p>
-              <p style="font-size:15px;color:var(--metal2);line-height:1.8">Todos nuestros productos son fabricados en Argentina bajo estrictos controles de calidad. Más de 20 años avalan cada costura y cada metro de material.</p>
+              <p style="font-size:15px;color:var(--metal2);line-height:1.8">Todos nuestros productos son fabricados en Argentina bajo estrictos controles de calidad. Más de 25 años avalan cada costura y cada metro de material.</p>
             </div>
             <div class="info-block">
               <div class="info-block-title">${icons.check} Características</div>
@@ -2161,7 +2161,7 @@ function renderCategoriesPage() {
         <div class="page-hero-inner">
           <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Productos</span></div>
           <h1 class="page-hero-title">Todo nuestro<br><span style="color:var(--red2)">catálogo.</span></h1>
-          <p class="page-hero-sub">Fabricantes directos. Más de 20 años de experiencia en accesorios automotrices premium.</p>
+          <p class="page-hero-sub">Fabricantes directos. Más de 25 años de experiencia en accesorios automotrices premium.</p>
         </div>
       </div>
       <div style="max-width:var(--max);margin:0 auto;padding:48px 24px">
@@ -2972,7 +2972,7 @@ function cartRender() {
       </div>
     </div>
     <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout">
-      ${icons.waIcon} Consultar todos por WhatsApp
+      ${icons.waIcon} Finalizar compra por WhatsApp
     </a>
     <p class="cart-note">No es una compra directa. Te derivamos a WhatsApp para coordinar precio final, envío y forma de pago.</p>
     <button class="btn-cart-clear" onclick="clearCart()">Vaciar carrito</button>
