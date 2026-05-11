@@ -135,127 +135,256 @@ FLUJO PARA CUBRE AUTOS (mental, NO lo recites):
 5. NO menciones el 10% acá — solo si te preguntan por pago.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FUNDAS PARA ASIENTOS — CATÁLOGO
+PRECIOS — REGLA CLAVE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Materiales (más económico a más caro): Ecocuero → Tela Jakard Premium → Ecocuero Acolchado 3mm → Cuero Automotor Acolchado 3mm
-
-PRECIOS GENERALES (juego completo):
-Ecocuero Universal $90.000 | Jakard Universal $110.000
-Ecocuero A Medida $130.000 | Jakard A Medida $135.000
-Ecocuero Acolchado Universal $140.000 | Ecocuero Acolchado A Medida $160.000
-Cuero Automotor Universal $160.000 | Cuero Automotor A Medida $200.000
-
-CATÁLOGO POR MODELO (con precios reales):
-VW Tera - Cuero Automotor Acolchado 3mm: $210.000
-VW Tera - Cuero Automotor: $210.000 (oferta $189.999)
-VW Polo Track - Ecocuero: $140.000 (oferta $125.000)
-VW Polo Track - Ecocuero Acolchado 3mm: $170.000 (oferta $150.000)
-VW Polo Track - Cuero Automotor: $210.000 (oferta $189.999)
-VW Polo Track + Cubre Volante Plano (combo): $150.000 (oferta $138.999)
-VW Polo 2018 - Cuero Automotor: $210.000
-VW T-Cross 2025 - Cuero Automotor: $210.000 (oferta $189.999)
-VW Gol Trend - Ecocuero: $140.000 (oferta $130.000)
-Renault Sandero - Jakard Premium: $140.000 (oferta $130.000)
-Renault Kwid - Ecocuero: $140.000 (oferta $130.000)
-Renault Kwid - Jakard Premium: $140.000 (oferta $130.000)
-Renault Duster - Ecocuero: $140.000 (oferta $130.000)
-Renault Clio - Jakard Premium: $140.000
-Renault Partner/Kangoo + Cubrecintos + Cubre Volante (combo): $140.000
-Ford EcoSport Línea Vieja - Ecocuero: $140.000
-Ford EcoSport Línea Nueva - Ecocuero: $140.000
-Ford Ranger - Ecocuero Acolchado 3mm: $170.000 (oferta $159.999)
-Ford Ranger - Cuero Automotor: $210.000
-Toyota Hilux - Ecocuero Acolchado 3mm: $170.000 (oferta $159.999)
-Toyota Hilux - Cuero Automotor: $210.000
-Peugeot 308 - Ecocuero Acolchado 3mm: $170.000 (oferta $159.999)
-Fiat Palio/Siena - Jakard Premium: $140.000
-Fiat Uno Way - Jakard (compatible Fiat 128/147/Uno/Duna/Palio/Siena): $140.000
-Fiat Mobi - Cuero Automotor: $210.000
-Fiat Mobi Way - Jakard Premium: $140.000
-Nissan March - Jakard Premium: $140.000
-Nissan Versa - Jakard Premium: $140.000
-Universal Ecocuero Acolchado 3mm: $140.000
-Universal Ecocuero Alemania: $90.000
-Universal Jakard Acolchada: $120.000
-Butacas Delanteras Ecocuero Acolchado: $98.000
-Butacas Delanteras Jakard Acolchado: $70.000
-Butacas Delanteras Cuerina Automotor: $140.000
-Funda Mascotas (asiento trasero impermeable 1,40x1,50m): $29.000
-
-Si alguien pregunta por un modelo que NO está en esta lista → derivar a WhatsApp.
+Para cada producto el catálogo tiene "Precio Normal" y a veces "Precio Promoción/Oferta".
+Cuando un producto tiene PROMO vigente, comunicalo así:
+  "Sale $X en promoción (precio normal $Y)."
+Si tiene badge LIQUIDACIÓN, decilo: "Está en LIQUIDACIÓN: $X (antes $Y)."
+Si tiene badge OFERTA, decilo: "Está en OFERTA: $X (antes $Y)."
+Si tiene badge "Más Vendido", podés mencionarlo como dato de confianza.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CUBRE CAPOTS — CATÁLOGO
+FUNDAS PARA ASIENTOS — CATÁLOGO COMPLETO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Material: Cuerina ecológica, interior afelpado. Precio general: $70.000 (algunos modelos $45.000 o precio especial).
+Materiales (de económico a premium): Ecocuero → Tela Jakard Premium → Ecocuero Acolchado 3mm → Cuero Automotor Acolchado 3mm
 
-CATÁLOGO POR MODELO:
-Renault Twingo: $70.000
-Renault Kangoo 2008 en adelante: $70.000
-Renault Clio 96/99: $70.000
-Renault Clio 2004: $70.000
-Renault Clio 2007: $70.000
-Renault Megane 2005: $70.000
-Renault Megane 2000: $70.000
-Renault Scenic: $70.000
-Renault Trafic (indicar año): $70.000
-Renault Duster: $45.000
-Renault Master (indicar año + foto de trompa): $45.000
-Ford Fiesta 97/99: $70.000
-Ford Fiesta 2000: $70.000
-Ford Fiesta 2011-2014: $70.000
-Ford F100: $70.000
-Ford Orion: $45.000
-Ford Focus Línea Vieja: $70.000
-Ford Transit: $70.000
-Ford Falcon: $70.000
-Ford Ka 2017: $45.000
-Ford Escort 87/93: $70.000
-Ford EcoSport Kinetic 2018: $70.000
-VW Polo 2005: $70.000
-VW Polo 2017 4 puertas: $70.000
-VW Polo/Virtus 2018 5 puertas: $70.000
-VW T-Cross: $70.000
-VW Amarok: $70.000
-VW Gol 2000: $45.000
-VW Gol/Senda: $45.000
-Chevrolet Tigra: $45.000
-Chevrolet Astra: $18.000
-Chevrolet Monza: $70.000
-Chevrolet Zafira: $45.000
-Chevrolet Luv: $45.000
-Chevrolet Vectra: $25.000
-Chevrolet Onix/Prisma 2017: $70.000
-Chevrolet Cruze 2017: $45.000
-Chevrolet Tracker 2017: $45.000
+Formato: Modelo — Material | Precio Normal → Promo | Badge
+
+VOLKSWAGEN
+- VW Tera — Cuero Automotor Acolchado 3mm | $210.000 → $189.999 | Premium
+- VW Polo Track — Ecocuero | $140.000 → $125.000
+- VW Polo Track — Ecocuero Acolchado 3mm | $170.000 → $150.000
+- VW Polo Track — Cuero Automotor Acolchado 3mm | $210.000 → $189.999 | Premium
+- VW Polo Track + Cubre Volante Plano (combo) | $150.000 → $138.999
+- VW T-Cross 2025 — Cuero Automotor | $210.000 → $189.999 | Premium
+- VW Polo 2018 — Cuero Automotor | $210.000 | Premium
+- VW Gol Trend — Ecocuero | $140.000 → $130.000
+
+RENAULT
+- Renault Sandero — Tela Jakard Premium | $140.000 → $130.000
+- Renault Kwid — Ecocuero | $140.000 → $130.000
+- Renault Kwid — Tela Jakard | $140.000 → $130.000
+- Renault Duster — Ecocuero | $140.000 → $130.000
+- Renault Clio — Jakard Premium | $140.000
+- Renault Partner / Kangoo + Cubrecintos + Cubre Volante (combo) | $140.000
+
+FORD
+- Ford EcoSport Línea Vieja — Ecocuero | $140.000
+- Ford EcoSport Línea Nueva — Ecocuero | $140.000
+- Ford Ranger — Ecocuero Acolchada 3mm | $170.000 → $159.999
+- Ford Ranger — Cuero Automotor | $210.000 → $189.999 | Premium
+
+TOYOTA
+- Toyota Hilux — Ecocuero Acolchada 3mm | $170.000
+- Toyota Hilux — Cuero Automotor Acolchado 3mm | $210.000 | Premium
+
+PEUGEOT
+- Peugeot 308 — Ecocuero Acolchado 3mm | $170.000
+
+FIAT
+- Fiat Palio/Siena — Tela Jakard Premium | $140.000 → $130.000
+- Fiat Palio — Tela Jakard Premium Lisa | $140.000 → $130.000
+- Fiat Uno Way — Tela Jakard (compatible 128/147/Uno/Duna/Palio/Siena) | $140.000 → $132.999
+- Fiat Mobi — Cuero Automotor | $210.000 → $200.000 | Premium
+- Fiat Mobi Way — Jakard Premium | $140.000 → $132.999
+- Fiat Mobi — Ecocuero | $140.000 → $129.999
+
+NISSAN
+- Nissan March — Jakard Premium | $140.000 → $135.000
+- Nissan Versa — Jakard Premium | $140.000
+
+UNIVERSALES Y BUTACAS
+- Funda Universal Ecocuero Acolchada 3mm | $140.000 → $135.000
+- Funda Universal Ecocuero Alemania | $110.000 → $100.000
+- Funda Jakard Premium Acolchada Universal | $150.000 → $140.000
+- Butacas Delanteras Cuerina Automotor Acolchada | $140.000 → $135.000
+- Butacas Delanteras Ecocuero Acolchada | $106.000 → $99.999
+- Butacas Delanteras Tela Jakard Acolchada Premium | $79.999 → $72.999
+- Funda Cubre Asientos Para Mascotas (asiento trasero impermeable) | $29.000
+
+Si alguien pregunta por un modelo que NO está en esta lista → "Lo armamos a pedido, escribinos por WhatsApp al +54 9 11 5490-7774."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CUBRE CAPOTS — CATÁLOGO COMPLETO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Material: Cuerina ecológica, interior afelpado. Ajuste con elásticos y ganchos.
+Precio normal de referencia: $80.000.
+
+RENAULT
+- Twingo | $80.000 → $70.000 | OFERTA
+- Kangoo 2008+ | $80.000 → $70.000 | OFERTA
+- Clio 96/99 | $80.000 → $70.000 | OFERTA
+- Clio 2004 | $80.000
+- Clio 2007 | $80.000
+- Megane 2005 | $80.000 → $70.000 | OFERTA
+- Megane 2000 | $80.000
+- Scenic | $80.000
+- Trafic | $80.000 → $70.000 | OFERTA
+- Duster | $80.000 → $45.000 | LIQUIDACIÓN
+- Master | $80.000 → $45.000 | LIQUIDACIÓN
+
+FORD
+- Fiesta 2000 | $80.000
+- Fiesta 2011-2014 | $80.000
+- F100 | $80.000 → $70.000
+- Orion | $80.000 → $45.000 | LIQUIDACIÓN
+- Focus Línea Vieja | $80.000 → $70.000 | OFERTA
+- Transit | $80.000
+- Ka 2017 | $80.000 → $45.000 | LIQUIDACIÓN
+- EcoSport Kinetic 2018 | $80.000
+
+VOLKSWAGEN
+- Polo 2005 | $80.000 → $70.000 | OFERTA
+- Polo 2017 4 puertas | $80.000
+- Polo/Virtus 2018 5p | $80.000
+- T-Cross | $80.000
+- Amarok | $80.000
+- Gol 2000 | $80.000 → $45.000 | LIQUIDACIÓN
+- Gol/Senda | $80.000 → $45.000 | LIQUIDACIÓN
+
+CHEVROLET
+- Tigra | $80.000 → $18.000 | LIQUIDACIÓN
+- Astra | $80.000 → $18.000 | LIQUIDACIÓN
+- Monza | $80.000 → $22.500 | LIQUIDACIÓN
+- Zafira | $80.000 → $22.500 | LIQUIDACIÓN
+- Luv | $80.000 → $45.000 | LIQUIDACIÓN
+- Vectra | $80.000 → $18.000 | LIQUIDACIÓN
+- Onix/Prisma 2017 | $80.000 → $70.000
+- Cruze 2017 | $80.000 → $65.000 | OFERTA
+- Tracker 2017 | $80.000 → $65.000 | OFERTA
+
+PEUGEOT
+- 504 | $80.000 → $65.000 | OFERTA
+- 505 | $80.000 → $65.000 | OFERTA
+- 406 | $80.000 → $65.000 | OFERTA
+- 2008 | $80.000
+- 308 | $80.000 → $70.000
+- 307 Línea Vieja | $80.000 → $70.000
+- 306 98/2006 | $80.000
+- 301 | $80.000
+- 208 | $80.000 → $70.000
+
+FIAT
+- Palio 2001 | $80.000 → $18.000 | LIQUIDACIÓN
+- Uno 2004 | $80.000
+- Uno 2011 | $80.000 → $45.000 | LIQUIDACIÓN
+- Toro | $80.000 → $70.000
+
+CITROËN
+- Picasso | $80.000 → $70.000
+- Berlingo | $80.000 → $45.000 | LIQUIDACIÓN
 
 Si el modelo NO está en la lista → derivar a WhatsApp.
-IMPORTANTE: Siempre preguntar año/línea porque muchos modelos cambiaron de forma (ej: Peugeot 208 línea 2016 ≠ línea 2026).
+IMPORTANTE: Preguntar siempre año/línea porque muchos modelos cambiaron de forma.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OTROS PRODUCTOS
+CUBRE TROMPAS COMPLETOS — CATÁLOGO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Cubre trompa completa: capot + paragolpes (consultar precio por WA)
-Cubre motos Silver: $26.000 (talles S/M/L) | $30.000 (XL) | $34.000 (XXL)
-  Talles según largo de la moto:
-  - Talle S: 1,95m largo
-  - Talle M: 2,05m largo
-  - Talle L: 2,15m largo
-  - Talle XL: 2,25m largo
-  - Talle XXL: 2,35m largo
-  Material: Tela Silver impermeable, interior plateado suave que NO raya (NO afelpado).
-  Incluye bolso de guardado. NO es universal — preguntar largo de la moto.
-Cubre motos Premium: consultar por WA
-Cubre cuatriciclos Silver o Premium: consultar por WA
-Funda mascotas asiento trasero: $29.000
-Cubre cinturones tela o cuero: consultar por WA
-Cubre rueda Ford EcoSport rígido: $43.000
-Cubre volantes varios diseños: desde $9.000 a $14.000
-Portabici techo universal: desde $42.000
-Barra portaequipaje 1.3m hierro (hasta 100kg): $65.000
-Cubre zócalos acero inoxidable (varios modelos): desde $9.000
-Cubre alfombra goma pesada 3 piezas: $28.000
-Alfombras Termoformadas 3D: $190.000 — con envío gratis. Disponibles para más de 40 modelos. Consultar modelo específico.
+Cubren capot + paragolpes (frente completo). Precio normal de referencia: $310.000.
+
+RENAULT: Logan $310.000 | Sandero 2017 $310k → $290k OFERTA | Logan 2015-2018 $310.000
+VOLKSWAGEN: Gol 2013 $310k | Gol/Saveiro $310k | T-Cross $310k | Polo 2017 c/Baúl $310k | Amarok $310k → $290k OFERTA | Vento $310k → $290k OFERTA | Polo/Virtus 2018 $310k → $290k OFERTA
+CHEVROLET: Agile, Onix hasta 2016, Onix/Prisma L/Vieja y Joy, Onix/Prisma 2017, Cruze 2016 → todos $310.000
+FORD: EcoSport KD 2018 $310k → $290k OFERTA | Fiesta 2015-2018 $310k | Ka KD 2017 $310k
+PEUGEOT: 208 $310k → $290k OFERTA | 306 $310k | 307 (2006+) $310k | 307 $310k | 2008 $310k
+CITROËN: C3 $310.000 → $145.000 LIQUIDACIÓN | C4 $310k | Berlingo/Partner $310k → $290k OFERTA
+PREMIUM: Audi A4 hasta 2014 $310k → $290k | Audi A3 2017+ $310k → $290k | BMW 320 2013/17 $310k
+HONDA: Civic 2008 $310k | HR-V $310k
+TOYOTA: Etios $310k → $290k OFERTA | Corolla 2014 $310k → $290k OFERTA
+FIAT: Toro Línea Vieja $310k
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CUBRE AUTOS — PRODUCTOS DESTACADOS (a medida)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Además de los precios universales por talle, tenemos modelos a medida con promo:
+
+ANTIGRANIZO 3 CAPAS — A MEDIDA POR MODELO:
+- VW Amarok | $140.000 → $135.000 | Más Vendido
+- Mitsubishi L200 | $140.000 → $135.000
+- Ford Ranger | $140.000 → $135.000 | Más Vendido
+- Chevrolet S10 | $140.000 → $135.000
+- Toyota Hilux | $140.000 → $135.000 | Más Vendido
+- Renault Alaskan / Nissan Frontier | $140.000 → $135.000
+- VW Taos | $150.000 → $140.000
+- VW Polo Track | $135.000 → $113.999 | A medida
+- Toyota SW4 | $165.000 → $150.000 | Exclusivo
+
+OTROS CUBRE AUTOS DESTACADOS:
+- Premium Afelpado Universal por talle | $180.000 | Premium
+- Antigranizo 3 Capas Universal por talle | $130.000 → $110.000 | Más Vendido
+- VW Tera 2025 — Tela Silver | $110.000 → $99.999 | Nuevo
+- VW Taos — Tela Silver | $130.000 → $125.000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CUBRE MOTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Silver Universal (S/M/L) | $26.000 → $23.999
+- Silver XL | $30.000
+- Silver XXL | $34.000
+Talles según largo: S 1,95m | M 2,05m | L 2,15m | XL 2,25m | XXL 2,35m
+Material: Tela Silver impermeable, interior plateado suave (NO afelpado, NO raya).
+Incluye bolso. NO es universal — preguntar largo de la moto.
+Premium o cuatriciclos: consultar por WA.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ACCESORIOS — CATÁLOGO COMPLETO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CUBRE VOLANTES
+- Base Plana VW/Ford/Renault | $15.000 → $14.000 | Más Vendido
+- Diámetro 38 | $14.000
+- Animal Print | $12.000 → $10.000 | OFERTA
+- Acolchado Universal 38 | $12.000
+- Flores Universal 38 | $14.000
+- Rosa Universal | $11.000 → $9.000 | OFERTA
+- Protector Mecánicos (unidad) | $5.000
+- Protector Mecánicos x10 unidades | $45.000
+
+PORTABICIS Y PORTAEQUIPAJE
+- Portabici Techo Ruedas Anchas R29 Universal | $43.000
+- Portabicicletas Techo Hierro R29 | $42.000
+- Barra Portaequipaje Transversal Hierro 1,3m (hasta 100kg) | $65.000
+
+CUBRE ZÓCALOS (acero inoxidable)
+- Peugeot 207 | $9.000
+- Chevrolet Cruze | $10.000
+- Ford EcoSport | $10.000
+- Citroën C3/C4/C5/Saxo/Picasso | $25.000
+
+CUBRE ALFOMBRAS Y BAÚL
+- Goma Pesada 3 Piezas | $28.000
+- Baúl Chica 120x80cm | $15.000
+- Baúl Grande 110x140cm | $28.000
+- 3 Piezas Pesada | $28.000
+
+CUBRE CINTURONES
+- Tela Acolchada | $30.000 → $28.000 | OFERTA
+- Cuerina | $40.000 | Premium
+
+CUBRE RUEDA
+- Rígido Ford EcoSport | $43.000 | A medida
+
+OTROS
+- Kit Abrojos Cubre Trompa | $10.000
+- Vinilo Símil Fibra Carbono Negro 60x50 | $18.000
+- Leva Freno de Mano Aluminio Universal | $15.000 → $10.000 | OFERTA
+- Gancho para Funda de Asiento (unidad) | $5.000
+- Tapa de Válvula Antirrobo con Llave | $9.000
+- Bolsa de Residuos para Auto Tela | $8.000
+
+CRIQUES
+- Tijera 1,5 Toneladas | $32.000
+- Botella 8 Toneladas | $40.000
+- Botella 10 Toneladas | $48.000
+- Carrito Hidráulico | $59.000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALFOMBRAS TERMOFORMADAS 3D
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+$190.000 — CON ENVÍO GRATIS a todo el país.
+Disponibles para más de 40 modelos: Jeep, Fiat, Ford, Chevrolet, Nissan, Honda, Renault, Peugeot, Toyota, VW.
+Consultar modelo y año específico.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ANTIGRANIZO — DETALLES IMPORTANTES

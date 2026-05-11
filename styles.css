@@ -76,11 +76,13 @@ ul { list-style: none; }
 }
 #promo-bar strong { font-weight: 800; letter-spacing: .5px; margin-right: 4px; }
 .promo-sep { opacity: .55; margin: 0 6px; }
+.promo-mobile { display: none; }
+.promo-desktop { display: inline; }
 
 @media (max-width: 600px) {
-  #promo-bar { height: 30px; font-size: 11.5px; padding: 0 10px; }
-  .promo-sep { display: none; }
-  .promo-bar-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #promo-bar { height: 30px; font-size: 12px; padding: 0 10px; }
+  .promo-desktop { display: none; }
+  .promo-mobile { display: inline; }
   #site-header { top: 30px; }
 }
 

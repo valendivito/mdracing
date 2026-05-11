@@ -2207,6 +2207,121 @@ function navigate(page) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeMobileNav();
   updateActiveNav(page);
+  applySEO(page);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SEO — actualización dinámica de title / meta / OG por página
+// ═══════════════════════════════════════════════════════════
+const SITE_BASE = 'https://www.mdracingfundas.com.ar';
+const SITE_DEFAULT_IMAGE = SITE_BASE + '/logo.png';
+
+function setMeta(selector, attr, value) {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute(attr, value);
+}
+
+function applySEO(page) {
+  let title, description, image, urlPath;
+  image = SITE_DEFAULT_IMAGE;
+  urlPath = '/#' + page;
+
+  // Producto
+  if (page.startsWith('product-')) {
+    const id = page.replace('product-', '');
+    const p = products.find(pp => pp.id === id);
+    if (p) {
+      const offer = p.salePrice ? ` — Oferta $${p.salePrice}` : '';
+      title = `${p.name} — $${p.price}${offer} | MDRACING`;
+      description = (p.desc || `${p.name} fabricado por MDRACING. Calidad premium, envíos a todo el país.`).slice(0, 158);
+      if (p.images && p.images[0]) image = p.images[0].startsWith('http') ? p.images[0] : SITE_BASE + '/' + p.images[0];
+      injectProductJsonLd(p);
+    }
+  }
+  // Categoría
+  else if (page.startsWith('cat-')) {
+    const cat = categories.find(c => c.id === page);
+    if (cat) {
+      const cleanTitle = cat.title.replace('\n', ' ');
+      title = `${cleanTitle} para tu Vehículo | MDRACING`;
+      description = `${cat.desc} Fabricantes directos con más de 25 años. Envíos a todo el país y retiro en Munro.`;
+    } else {
+      title = 'Productos | MDRACING';
+      description = 'Catálogo completo de fundas, cubre autos, cubre capots, cubre trompas y accesorios automotrices MDRACING.';
+    }
+    removeProductJsonLd();
+  }
+  // Páginas estáticas
+  else {
+    removeProductJsonLd();
+    const seoMap = {
+      'home':                   { t: 'MDRACING — Fundas, Cubre Autos y Accesorios para tu Vehículo',
+                                  d: 'Fabricantes de fundas para asientos, cubre autos antigranizo, cubre capots y accesorios. +25 años de trayectoria. Envíos a todo el país.' },
+      'categorias':             { t: 'Productos | MDRACING',
+                                  d: 'Catálogo completo de fundas para asientos, cubre autos, cubre capots, cubre trompas, alfombras termoformadas y accesorios.' },
+      'quienes-somos':          { t: 'Quiénes Somos | MDRACING — 25 años fabricando en Argentina',
+                                  d: 'MDRACING fabrica accesorios automotrices premium desde el año 2000. Conocé nuestra historia, nuestro proceso y por qué nos eligen.' },
+      'como-comprar':           { t: 'Cómo Comprar | MDRACING — Compras simples por WhatsApp',
+                                  d: 'Comprá fácil en 3 pasos. Envíos a todo el país, retiro en Munro y atención personalizada por WhatsApp.' },
+      'preguntas-frecuentes':   { t: 'Preguntas Frecuentes | MDRACING',
+                                  d: 'Resolvemos tus dudas sobre productos, materiales, envíos, talles y garantías de MDRACING.' },
+      'cambios-devoluciones':   { t: 'Cambios y Devoluciones | MDRACING',
+                                  d: 'Garantía de 30 días por fallas de fábrica. Política de cambios y devoluciones MDRACING.' },
+      'contacto':               { t: 'Contacto | MDRACING — WhatsApp, Local Munro y Fábrica',
+                                  d: 'Escribinos por WhatsApp +54 9 11 5490-7774 o visitá nuestro local en Av. Bartolomé Mitre 3495, Munro.' },
+    };
+    const seo = seoMap[page] || seoMap['home'];
+    title = seo.t;
+    description = seo.d;
+  }
+
+  if (!title) title = 'MDRACING — Fundas, Cubre Autos y Accesorios';
+  if (!description) description = 'Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria.';
+
+  const fullUrl = SITE_BASE + urlPath;
+
+  document.title = title;
+  setMeta('meta[name="description"]', 'content', description);
+  setMeta('#canonical-link', 'href', fullUrl);
+  setMeta('#og-title', 'content', title);
+  setMeta('#og-description', 'content', description);
+  setMeta('#og-url', 'content', fullUrl);
+  setMeta('#og-image', 'content', image);
+  setMeta('#tw-title', 'content', title);
+  setMeta('#tw-description', 'content', description);
+  setMeta('#tw-image', 'content', image);
+}
+
+function injectProductJsonLd(p) {
+  removeProductJsonLd();
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'product-jsonld';
+  const priceNum = (p.salePrice || p.price || '0').replace(/\./g, '');
+  const imageUrl = (p.images && p.images[0])
+    ? (p.images[0].startsWith('http') ? p.images[0] : SITE_BASE + '/' + p.images[0])
+    : SITE_DEFAULT_IMAGE;
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": p.name,
+    "description": p.desc || p.name,
+    "image": imageUrl,
+    "brand": { "@type": "Brand", "name": "MDRACING" },
+    "offers": {
+      "@type": "Offer",
+      "url": SITE_BASE + '/#product-' + p.id,
+      "priceCurrency": "ARS",
+      "price": priceNum,
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "MDRACING" }
+    }
+  });
+  document.head.appendChild(script);
+}
+function removeProductJsonLd() {
+  const old = document.getElementById('product-jsonld');
+  if (old) old.remove();
 }
 
 function renderPage(page) {
@@ -3003,9 +3118,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   buildMobileNav();
   const startPage = location.hash.slice(1) || 'home';
+  currentPage = startPage;
   history.replaceState({ page: startPage }, '', '#' + startPage);
   renderPage(startPage);
   updateActiveNav(startPage);
+  applySEO(startPage);
   cartUpdateBadge();
 
   window.addEventListener('popstate', (e) => {
@@ -3014,6 +3131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     updateActiveNav(page);
+    applySEO(page);
   });
 
   // ESC cierra el carrito
