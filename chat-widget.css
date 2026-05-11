@@ -19,6 +19,8 @@
   justify-content: center;
   box-shadow: 0 4px 20px rgba(209,0,0,.45);
   transition: transform .2s, box-shadow .2s;
+  /* prevent double-tap zoom on mobile */
+  touch-action: manipulation;
 }
 #md-chat-btn:hover {
   transform: scale(1.08);
@@ -26,23 +28,39 @@
 }
 #md-chat-btn svg { width: 26px; height: 26px; }
 
-/* Tooltip */
-#md-chat-btn::before {
-  content: 'Consultar con Madi IA';
-  position: absolute;
-  right: 64px;
-  white-space: nowrap;
-  background: #111;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s;
+/* Tooltip — desktop only */
+@media (min-width: 481px) {
+  #md-chat-btn::before {
+    content: 'Consultar con Madi IA';
+    position: absolute;
+    right: 64px;
+    white-space: nowrap;
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+  }
+  #md-chat-btn:hover::before { opacity: 1; }
 }
-#md-chat-btn:hover::before { opacity: 1; }
+
+/* ── Backdrop (mobile) ── */
+#md-chat-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 9997;
+  opacity: 0;
+  transition: opacity .25s;
+}
+#md-chat-backdrop.open {
+  opacity: 1;
+}
 
 /* ── Ventana ── */
 #md-chat-window {
@@ -118,9 +136,10 @@
   border: none;
   color: rgba(255,255,255,.5);
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
   border-radius: 4px;
   transition: color .15s;
+  touch-action: manipulation;
 }
 #md-chat-close:hover { color: #fff; }
 #md-chat-close svg { width: 18px; height: 18px; display: block; }
@@ -129,12 +148,16 @@
 #md-chat-messages {
   flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
+  overscroll-behavior: contain;      /* prevent scroll leaking to page */
+  touch-action: pan-y;               /* allow vertical touch scroll */
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   background: #f6f6f8;
   scroll-behavior: smooth;
+  min-height: 0; /* important for flex child scroll */
 }
 #md-chat-messages::-webkit-scrollbar { width: 4px; }
 #md-chat-messages::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
@@ -224,6 +247,7 @@
   justify-content: center;
   flex-shrink: 0;
   transition: background .2s, transform .15s;
+  touch-action: manipulation;
 }
 #md-chat-send:hover { background: #e50000; }
 #md-chat-send:active { transform: scale(.93); }
@@ -240,15 +264,51 @@
   background: #fff;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  #md-chat-btn { bottom: 80px; right: 16px; }
+
+  #md-chat-backdrop { display: block; }
+
   #md-chat-window {
+    /* Sheet deslizable desde abajo */
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
+    top: auto;
     width: 100%;
-    max-height: 75dvh;
+    max-height: 82dvh;    /* dvh ajusta con teclado virtual */
     border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 32px rgba(0,0,0,.18);
+    /* Animación desde abajo en mobile */
+    transform: translateY(24px) scale(1);
+    transition: transform .3s cubic-bezier(.4,0,.2,1), opacity .3s;
   }
-  #md-chat-btn { bottom: 80px; right: 16px; }
+  #md-chat-window.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  /* Pastilla "drag handle" visual */
+  #md-chat-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.25);
+  }
+  #md-chat-header { position: relative; padding-top: 20px; }
+
+  /* Evita zoom de iOS al enfocar el textarea */
+  #md-chat-input {
+    font-size: 16px;
+  }
+
+  .md-bubble { font-size: 14px; }
+  #md-chat-header-name { font-size: 15px; }
 }

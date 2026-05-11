@@ -6,15 +6,45 @@
   // ── Config ──────────────────────────────────
   const API_URL = '/api/chat';
   const WELCOME  = '¡Hola! Soy **Madi**, la asistente virtual de MDRACING. ¿En qué te puedo ayudar? Podés preguntarme sobre nuestros productos, talles, compatibilidad con tu auto, precios, envíos o cómo comprar.';
+  const MOBILE_BP = 600; // px — debe coincidir con el breakpoint del CSS
 
   // ── State ────────────────────────────────────
-  let messages  = [];   // { role: 'user'|'assistant', content: string }[]
-  let isOpen    = false;
-  let isLoading = false;
+  let messages   = [];   // { role: 'user'|'assistant', content: string }[]
+  let isOpen     = false;
+  let isLoading  = false;
+  let _scrollY   = 0;    // para restaurar scroll al cerrar en mobile
+
+  // ── Helpers ──────────────────────────────────
+  const isMobile = () => window.innerWidth <= MOBILE_BP;
+
+  // ── Body scroll lock ─────────────────────────
+  // Técnica confiable en iOS: fijar el body con position:fixed
+  function lockBodyScroll() {
+    if (!isMobile()) return;
+    _scrollY = window.scrollY;
+    document.body.style.position   = 'fixed';
+    document.body.style.top        = `-${_scrollY}px`;
+    document.body.style.width      = '100%';
+    document.body.style.overflowY  = 'scroll'; // evita salto de scroll bar
+  }
+
+  function unlockBodyScroll() {
+    if (!document.body.style.position) return;
+    document.body.style.position  = '';
+    document.body.style.top       = '';
+    document.body.style.width     = '';
+    document.body.style.overflowY = '';
+    window.scrollTo(0, _scrollY);
+  }
 
   // ── DOM ──────────────────────────────────────
   function buildWidget() {
-    // Button
+    // Backdrop (mobile)
+    const backdrop = document.createElement('div');
+    backdrop.id = 'md-chat-backdrop';
+    backdrop.addEventListener('click', closeChat);
+
+    // Botón flotante
     const btn = document.createElement('button');
     btn.id = 'md-chat-btn';
     btn.setAttribute('aria-label', 'Abrir chat con Madi IA');
@@ -31,11 +61,12 @@
       </svg>`;
     btn.addEventListener('click', toggleChat);
 
-    // Window
+    // Ventana
     const win = document.createElement('div');
     win.id = 'md-chat-window';
     win.setAttribute('role', 'dialog');
     win.setAttribute('aria-label', 'Chat con Madi IA — MDRACING');
+    win.setAttribute('aria-modal', 'true');
     win.innerHTML = `
       <div id="md-chat-header">
         <div id="md-chat-header-avatar">
@@ -60,13 +91,16 @@
           </svg>
         </button>
       </div>
-      <div id="md-chat-messages"></div>
+      <div id="md-chat-messages" role="log" aria-live="polite" aria-label="Mensajes"></div>
       <div id="md-chat-input-area">
         <textarea
           id="md-chat-input"
           placeholder="Escribí tu consulta..."
           rows="1"
           aria-label="Mensaje"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
         ></textarea>
         <button id="md-chat-send" aria-label="Enviar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -78,24 +112,41 @@
       <div id="md-chat-footer">Madi puede cometer errores. Para casos especiales, consultá por WhatsApp.</div>
     `;
 
+    document.body.appendChild(backdrop);
     document.body.appendChild(btn);
     document.body.appendChild(win);
 
-    // Events
+    // Eventos
     document.getElementById('md-chat-close').addEventListener('click', closeChat);
     document.getElementById('md-chat-send').addEventListener('click', sendMessage);
 
     const input = document.getElementById('md-chat-input');
+
+    // Enter envía (Shift+Enter = nueva línea)
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     });
+
+    // Auto-resize textarea
     input.addEventListener('input', () => {
       input.style.height = 'auto';
       input.style.height = Math.min(input.scrollHeight, 100) + 'px';
     });
 
-    // Show welcome message
+    // En mobile: cuando el teclado virtual aparece, scrollear al fondo
+    if ('visualViewport' in window) {
+      window.visualViewport.addEventListener('resize', onViewportResize);
+    }
+
+    // Mostrar mensaje de bienvenida
     addBotMessage(WELCOME);
+  }
+
+  // ── Manejo del teclado virtual (iOS / Android) ──
+  function onViewportResize() {
+    if (!isOpen) return;
+    // Scrollear al último mensaje cuando el teclado abre/cierra
+    requestAnimationFrame(scrollToBottom);
   }
 
   // ── Toggle ───────────────────────────────────
@@ -103,18 +154,45 @@
 
   function openChat() {
     isOpen = true;
-    document.getElementById('md-chat-window').classList.add('open');
-    setTimeout(() => document.getElementById('md-chat-input').focus(), 300);
+    const win      = document.getElementById('md-chat-window');
+    const backdrop = document.getElementById('md-chat-backdrop');
+
+    lockBodyScroll();
+
+    win.classList.add('open');
+    if (backdrop) {
+      backdrop.style.display = 'block';
+      // Trigger reflow para que la transición funcione
+      void backdrop.offsetWidth;
+      backdrop.classList.add('open');
+    }
+
+    // Dar tiempo a la animación antes de hacer focus (evita saltos en mobile)
+    setTimeout(() => {
+      const input = document.getElementById('md-chat-input');
+      if (input) input.focus({ preventScroll: true });
+      scrollToBottom();
+    }, 350);
   }
 
   function closeChat() {
     isOpen = false;
-    document.getElementById('md-chat-window').classList.remove('open');
+    const win      = document.getElementById('md-chat-window');
+    const backdrop = document.getElementById('md-chat-backdrop');
+
+    win.classList.remove('open');
+    if (backdrop) {
+      backdrop.classList.remove('open');
+      // Ocultar backdrop luego de la transición
+      setTimeout(() => { backdrop.style.display = ''; }, 300);
+    }
+
+    unlockBodyScroll();
   }
 
-  // ── Messages ─────────────────────────────────
+  // ── Mensajes ─────────────────────────────────
   function addBotMessage(text) {
-    const msgs = document.getElementById('md-chat-messages');
+    const msgs   = document.getElementById('md-chat-messages');
     const bubble = document.createElement('div');
     bubble.className = 'md-bubble md-bubble-bot';
     bubble.innerHTML = formatMarkdown(text);
@@ -123,7 +201,7 @@
   }
 
   function addUserMessage(text) {
-    const msgs = document.getElementById('md-chat-messages');
+    const msgs   = document.getElementById('md-chat-messages');
     const bubble = document.createElement('div');
     bubble.className = 'md-bubble md-bubble-user';
     bubble.textContent = text;
@@ -132,7 +210,7 @@
   }
 
   function showTyping() {
-    const msgs = document.getElementById('md-chat-messages');
+    const msgs   = document.getElementById('md-chat-messages');
     const typing = document.createElement('div');
     typing.className = 'md-bubble md-bubble-bot md-typing';
     typing.id = 'md-typing-indicator';
@@ -149,28 +227,29 @@
 
   function scrollToBottom() {
     const msgs = document.getElementById('md-chat-messages');
-    msgs.scrollTop = msgs.scrollHeight;
+    if (!msgs) return;
+    // requestAnimationFrame asegura que el DOM ya se actualizó
+    requestAnimationFrame(() => {
+      msgs.scrollTop = msgs.scrollHeight;
+    });
   }
 
-  // ── Send ─────────────────────────────────────
+  // ── Enviar ───────────────────────────────────
   async function sendMessage() {
     if (isLoading) return;
     const input = document.getElementById('md-chat-input');
     const text  = input.value.trim();
     if (!text) return;
 
-    // Clear input
     input.value = '';
     input.style.height = 'auto';
 
-    // Add user bubble
     addUserMessage(text);
     messages.push({ role: 'user', content: text });
 
-    // Loading state
     isLoading = true;
     document.getElementById('md-chat-send').disabled = true;
-    const typing = showTyping();
+    showTyping();
 
     try {
       const res = await fetch(API_URL, {
@@ -195,7 +274,11 @@
 
     isLoading = false;
     document.getElementById('md-chat-send').disabled = false;
-    document.getElementById('md-chat-input').focus();
+
+    // Solo hacer focus en desktop para no re-abrir teclado en mobile
+    if (!isMobile()) {
+      document.getElementById('md-chat-input').focus();
+    }
   }
 
   // ── Markdown básico ──────────────────────────
@@ -207,7 +290,7 @@
       .replace(/\n/g, '<br>');
   }
 
-  // ── API global para abrir el chat desde otros botones ──
+  // ── API global ───────────────────────────────
   window.openMadiChat = function () {
     if (!document.getElementById('md-chat-window')) buildWidget();
     openChat();
