@@ -87,6 +87,7 @@
     if (new Date() < new Date('2026-05-21T00:00:00-03:00')) {
       document.getElementById('hs-ticker-bar').style.display = '';
       document.getElementById('normal-promo-bar').style.display = 'none';
+      document.body.classList.add('hs-active');
       // Agregar HOT SALE al menú desplegable
       var dropdown = document.querySelector('.dropdown-menu');
       if (dropdown) {
