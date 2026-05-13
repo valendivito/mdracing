@@ -224,7 +224,7 @@ const categories = [
   { id: 'cat-cubre-capots', tag: 'Premium', title: 'Cubre\nCapots', cat: 'cubre-capots', svg: capotSvg, desc: 'Protección afelpada contra granizo y rayones.', page: 'cat-cubre-capots' },
   { id: 'cat-cubre-trompas', tag: 'Performance', title: 'Cubre\nTrompas', cat: 'cubre-trompas', svg: trompaSvg, desc: 'Protección para el frente completo de tu vehículo.', page: 'cat-cubre-trompas' },
   { id: 'cat-cubre-motos', tag: 'Motos', title: 'Cubre\nMotos', cat: 'cubre-motos', svg: motoSvg, desc: 'Cobertura completa para motos y scooters.', page: 'cat-cubre-motos' },
-  { id: 'cat-alfombras-termoformadas', tag: 'Nuevo', title: 'Alfombras\nTermoformadas', cat: 'alfombras-termoformadas', svg: `<img src="images/alfombras%20termoformadas/foto%20categoria%20alfombras.jpeg" alt="Alfombras Termoformadas" class="cat-real-img" loading="lazy" />`, desc: 'Alfombras 3D termoformadas con bordes elevados. Protección total del piso.', page: 'cat-alfombras-termoformadas' },
+  { id: 'cat-alfombras-termoformadas', tag: 'Nuevo', title: 'Alfombras\nTermoformadas', cat: 'alfombras-termoformadas', svg: alfombraSvg, desc: 'Alfombras 3D termoformadas con bordes elevados. Protección total del piso.', page: 'cat-alfombras-termoformadas' },
   { id: 'cat-accesorios', tag: 'Complementos', title: 'Accesorios', cat: 'accesorios', svg: accesorioSvg, desc: 'Todo lo que necesitás para proteger y personalizar.', page: 'cat-accesorios' },
 ];
 

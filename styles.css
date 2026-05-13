@@ -963,6 +963,9 @@ section { position: relative; }
 .cat-card[data-cat="accesorios"] .cat-card-bg {
   background: url('images/cat-accesorios.jpg') center/cover no-repeat;
 }
+.cat-card[data-cat="alfombras-termoformadas"] .cat-card-bg {
+  background: url('images/alfombras termoformadas/foto categoria alfombras.jpeg') center/cover no-repeat;
+}
 
 /* Stronger overlay for ALL photo-backed cards (better text legibility) */
 .cat-card[data-cat="cubre-autos"] .cat-card-overlay,
@@ -970,7 +973,8 @@ section { position: relative; }
 .cat-card[data-cat="cubre-capots"] .cat-card-overlay,
 .cat-card[data-cat="cubre-trompas"] .cat-card-overlay,
 .cat-card[data-cat="cubre-motos"] .cat-card-overlay,
-.cat-card[data-cat="accesorios"] .cat-card-overlay {
+.cat-card[data-cat="accesorios"] .cat-card-overlay,
+.cat-card[data-cat="alfombras-termoformadas"] .cat-card-overlay {
   background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.78) 65%, rgba(0,0,0,.92) 100%);
 }
 .cat-card[data-cat="cubre-autos"]:hover .cat-card-overlay,
@@ -978,7 +982,8 @@ section { position: relative; }
 .cat-card[data-cat="cubre-capots"]:hover .cat-card-overlay,
 .cat-card[data-cat="cubre-trompas"]:hover .cat-card-overlay,
 .cat-card[data-cat="cubre-motos"]:hover .cat-card-overlay,
-.cat-card[data-cat="accesorios"]:hover .cat-card-overlay {
+.cat-card[data-cat="accesorios"]:hover .cat-card-overlay,
+.cat-card[data-cat="alfombras-termoformadas"]:hover .cat-card-overlay {
   background: linear-gradient(180deg, rgba(209,0,0,.08) 0%, rgba(0,0,0,.82) 65%, rgba(0,0,0,.95) 100%);
 }
 
@@ -988,7 +993,8 @@ section { position: relative; }
 .cat-card[data-cat="cubre-capots"] .cat-visual,
 .cat-card[data-cat="cubre-trompas"] .cat-visual,
 .cat-card[data-cat="cubre-motos"] .cat-visual,
-.cat-card[data-cat="accesorios"] .cat-visual {
+.cat-card[data-cat="accesorios"] .cat-visual,
+.cat-card[data-cat="alfombras-termoformadas"] .cat-visual {
   display: none;
 }
 
@@ -5639,23 +5645,6 @@ body.hs-active #promo-bar {
   .hs-ticker-bar { min-height: 30px; }
 }
 
-/* ══════════════════════════════════════════════════════
-   IMAGEN REAL EN CATEGORY CARD (alfombras)
-══════════════════════════════════════════════════════ */
-.cat-real-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: .55;
-  transition: opacity .35s ease, transform .6s cubic-bezier(.4,0,.2,1);
-}
-.cat-card:hover .cat-real-img {
-  opacity: .75;
-  transform: scale(1.05);
-}
-.cat-visual:has(.cat-real-img) { opacity: 1; }
 
 /* ══════════════════════════════════════════════════════
    HOT SALE — Badge de producto
