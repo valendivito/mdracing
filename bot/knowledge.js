@@ -35,9 +35,9 @@ REGLAS DE COMPORTAMIENTO
 
 EJEMPLO BUENO (respuesta corta):
 Usuario: "tienen cubre auto para vw vento?"
-Madi: "Sí, para Vento (sedan, talle M):
+Madi: "Sí, para Vento (sedan, talle L):
 • Tela Silver — $100.000
-• Premium Afelpada — $200.000
+• Premium Afelpada — $210.000
 • Antigranizo 3 Capas — $120.000
 ¿Cuál te interesa?"
 
@@ -82,6 +82,79 @@ Talles según largo del vehículo:
 VARIANTE (U) — terminación trasera redondeada (hatchbacks con techo curvo):
 Ej con (U): VW Tera → M(U), Renault Sandero → S(U) o M(U), Peugeot 208 línea vieja → S(U)
 Sin (U): sedans con baúl separado (VW Vento, Corolla, Fiat Cronos) y pickups.
+
+╔═══════════════════════════════════════════════════════╗
+║  TALLES POR MODELO — REFERENCIA EXACTA               ║
+║  (SIEMPRE usar esta tabla antes de calcular a ojo)   ║
+╠═══════════════════════════════════════════════════════╣
+║  VOLKSWAGEN                                           ║
+║  VW Gol Trend / Senda        → M(U)  (~4.00m)        ║
+║  VW Polo Track / Polo 2018   → M(U)  (~4.05m)        ║
+║  VW Golf                     → M(U)  (~4.26m)        ║
+║  VW Vento                    → L     (~4.47m) sedan  ║
+║  VW Virtus / Virtus 2023     → L     (~4.48m) sedan  ║
+║  VW Taos                     → L     (~4.46m) SUV    ║
+║  VW T-Cross                  → M(U)  (~4.23m) SUV    ║
+║  VW Tera                     → M(U)  (~4.27m) SUV    ║
+║  VW Amarok                   → XXL   (~5.25m) pickup ║
+║                                                       ║
+║  TOYOTA                                               ║
+║  Toyota Etios                → M     (~4.06m) sedan  ║
+║  Toyota Corolla              → L     (~4.63m) sedan  ║
+║  Toyota Yaris                → M(U)  (~4.11m)        ║
+║  Toyota Hilux                → XXL   (~5.33m) pickup ║
+║  Toyota SW4                  → XL    (~4.93m) SUV    ║
+║  Toyota RAV4                 → L     (~4.60m) SUV    ║
+║                                                       ║
+║  FORD                                                 ║
+║  Ford Ka                     → S(U)  (~3.92m)        ║
+║  Ford Fiesta                 → M(U)  (~4.06m)        ║
+║  Ford EcoSport               → M(U)  (~4.19m) SUV    ║
+║  Ford Focus                  → M(U)  (~4.35m)        ║
+║  Ford Territory              → L     (~4.56m) SUV    ║
+║  Ford Ranger                 → XXL   (~5.35m) pickup ║
+║                                                       ║
+║  CHEVROLET                                            ║
+║  Chevrolet Onix / Prisma     → M(U)  (~4.06m)        ║
+║  Chevrolet Cruze             → L     (~4.65m) sedan  ║
+║  Chevrolet Tracker           → M(U)  (~4.27m) SUV    ║
+║  Chevrolet S10               → XXL   (~5.27m) pickup ║
+║  Chevrolet Montana           → XL    (~5.08m) pickup ║
+║                                                       ║
+║  FIAT                                                 ║
+║  Fiat Mobi                   → S(U)  (~3.75m)        ║
+║  Fiat Argo / Cronos          → M(U) / L (~4.45m)     ║
+║  Fiat Cronos                 → L     (~4.45m) sedan  ║
+║  Fiat Pulse                  → M(U)  (~4.08m) SUV    ║
+║  Fiat Toro                   → XL    (~4.99m) pickup ║
+║                                                       ║
+║  RENAULT                                              ║
+║  Renault Kwid                → S(U)  (~3.68m)        ║
+║  Renault Sandero             → M(U)  (~4.07m)        ║
+║  Renault Logan               → M     (~4.25m) sedan  ║
+║  Renault Duster              → L     (~4.47m) SUV    ║
+║  Renault Oroch               → XL    (~5.07m) pickup ║
+║  Renault Alaskan             → XXL   (~5.24m) pickup ║
+║                                                       ║
+║  PEUGEOT / CITROËN                                    ║
+║  Peugeot 208                 → M(U)  (~4.05m)        ║
+║  Peugeot 308                 → M(U)  (~4.25m)        ║
+║  Peugeot 2008                → M(U)  (~4.16m) SUV    ║
+║  Citroën C3                  → M(U)  (~4.04m)        ║
+║  Citroën C4 Cactus           → M(U)  (~4.16m)        ║
+║                                                       ║
+║  NISSAN / MITSUBISHI / HONDA                          ║
+║  Nissan Versa                → L     (~4.49m) sedan  ║
+║  Nissan Kicks                → M(U)  (~4.30m) SUV    ║
+║  Nissan Frontier             → XXL   (~5.28m) pickup ║
+║  Mitsubishi L200             → XXL   (~5.22m) pickup ║
+║  Honda Civic                 → L     (~4.63m) sedan  ║
+║  Honda HR-V                  → L     (~4.35m) SUV    ║
+╚═══════════════════════════════════════════════════════╝
+
+⚠ REGLA CLAVE DE TALLES: Ante la duda entre M y L, SIEMPRE verificar el largo real del modelo.
+Los sedanes modernos (Vento, Virtus, Cronos, Corolla, Cruze, Versa) casi todos son talle L.
+Los hatchbacks y SUV chicos (Polo, Gol, EcoSport, Onix, 208) casi todos son talle M.
 
 ╔═══════════════════════════════════════════════════════╗
 ║  JERARQUÍA DE CALIDAD — CUBRE AUTOS (MUY IMPORTANTE) ║
