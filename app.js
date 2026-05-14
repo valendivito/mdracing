@@ -2387,15 +2387,30 @@ function renderCategoriesPage() {
 // ═══════════════════════════════════════════════════════════
 
 let currentPage = 'home';
+let isNavigating = false;
 
 function navigate(page) {
+  if (!page) return;
+  // Evita doble click / clicks múltiples rapidísimos
+  if (isNavigating) return;
+  // Si ya estamos en esa página, igual scrollear arriba (UX) pero no re-renderizar
+  if (page === currentPage) {
+    window.scrollTo(0, 0);
+    closeMobileNav();
+    return;
+  }
+  isNavigating = true;
   currentPage = page;
   history.pushState({ page }, '', '#' + page);
   renderPage(page);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0); // instantáneo, no bloquea
   closeMobileNav();
   updateActiveNav(page);
   applySEO(page);
+  // Liberar lock en el próximo frame: el navegador pinta primero, después acepta más clicks
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { isNavigating = false; });
+  });
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2537,14 +2552,57 @@ function renderPage(page) {
   initInteractives();
 }
 
-function bindLinks() {
-  document.querySelectorAll('[data-page]').forEach(el => {
-    el.addEventListener('click', (e) => {
+// bindLinks() ya NO ata listeners por elemento.
+// La delegación global en document se encarga de [data-page], color-swatches, variant-btns y product-thumbs.
+function bindLinks() { /* noop — delegación global */ }
+
+// Delegación global única: se ata UNA sola vez a document
+function setupGlobalDelegation() {
+  if (window.__mdGlobalDelegated) return;
+  window.__mdGlobalDelegated = true;
+
+  document.addEventListener('click', (e) => {
+    // 1) Navegación por data-page
+    const pageLink = e.target.closest('[data-page]');
+    if (pageLink) {
       e.preventDefault();
-      const page = el.getAttribute('data-page');
-      if (page) navigate(page);
-    });
-  });
+      navigate(pageLink.getAttribute('data-page'));
+      return;
+    }
+
+    // 2) Color swatch
+    const swatch = e.target.closest('.color-swatch');
+    if (swatch) {
+      const wrap = swatch.closest('.color-swatches');
+      if (wrap) {
+        wrap.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
+      }
+      return;
+    }
+
+    // 3) Variant button
+    const vbtn = e.target.closest('.variant-btn');
+    if (vbtn) {
+      const wrap = vbtn.closest('.variant-btns');
+      if (wrap) {
+        wrap.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+        vbtn.classList.add('active');
+      }
+      return;
+    }
+
+    // 4) Product thumbnail
+    const thumb = e.target.closest('.product-thumb');
+    if (thumb) {
+      const wrap = thumb.closest('.product-thumbs');
+      if (wrap) {
+        wrap.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      }
+      return;
+    }
+  }, { passive: false });
 }
 
 function updateActiveNav(page) {
@@ -2562,43 +2620,13 @@ function updateActiveNav(page) {
 // ═══════════════════════════════════════════════════════════
 
 function initInteractives() {
-  // Color swatches
-  document.querySelectorAll('.color-swatches').forEach(wrap => {
-    wrap.querySelectorAll('.color-swatch').forEach(swatch => {
-      swatch.addEventListener('click', () => {
-        wrap.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-        swatch.classList.add('active');
-      });
-    });
-  });
+  // Color swatches, variant buttons y product thumbs ahora se manejan por delegación global
+  // (ver setupGlobalDelegation). Acá solo lo que necesita binding específico:
 
-  // Variant buttons
-  document.querySelectorAll('.variant-btns').forEach(wrap => {
-    wrap.querySelectorAll('.variant-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        wrap.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  });
-
-  // Product thumbs
-  document.querySelectorAll('.product-thumbs').forEach(wrap => {
-    wrap.querySelectorAll('.product-thumb').forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        wrap.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-      });
-    });
-  });
-
-  // Testimonials carousel
+  // Carruseles y countdown — se inicializan al renderizar la home/categorías
   initTestimonialsCarousel();
-  // Materials carousel
   initMaterialsCarousel();
-  // Top reviews carousel (mobile)
   initTopReviewsCarousel();
-  // Hot Sale countdown
   initHotSaleCountdown();
 }
 
@@ -3324,21 +3352,8 @@ function cartRender() {
 // ═══════════════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Bind static nav links
-  document.querySelectorAll('[data-page]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      navigate(el.getAttribute('data-page'));
-    });
-  });
-
-  // Bind footer links
-  document.querySelectorAll('#site-footer [data-page]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      navigate(el.getAttribute('data-page'));
-    });
-  });
+  // Delegación global única — reemplaza cientos de listeners individuales
+  setupGlobalDelegation();
 
   initHeader();
   buildMobileNav();
@@ -3352,9 +3367,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('popstate', (e) => {
     const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
+    if (page === currentPage) return;
     currentPage = page;
     renderPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
     updateActiveNav(page);
     applySEO(page);
   });
