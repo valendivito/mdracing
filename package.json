@@ -5,7 +5,8 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0"
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@vercel/analytics": "^2.0.1"
   },
   "devDependencies": {
     "heic-convert": "^2.1.0",
