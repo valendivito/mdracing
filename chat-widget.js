@@ -133,9 +133,10 @@
       input.style.height = Math.min(input.scrollHeight, 100) + 'px';
     });
 
-    // En mobile: cuando el teclado virtual aparece, scrollear al fondo
+    // En mobile: cuando el teclado virtual aparece, scrollear al fondo y reposicionar
     if ('visualViewport' in window) {
       window.visualViewport.addEventListener('resize', onViewportResize);
+      window.visualViewport.addEventListener('scroll', onViewportResize);
     }
 
     // Mostrar mensaje de bienvenida
@@ -143,10 +144,31 @@
   }
 
   // ── Manejo del teclado virtual (iOS / Android) ──
+  // Cuando se abre el teclado en mobile, el visual viewport se achica pero
+  // el chat (fixed al bottom del layout viewport) queda tapado por el teclado.
+  // Reposicionamos el chat para que se "apoye" sobre el teclado.
   function onViewportResize() {
     if (!isOpen) return;
-    // Scrollear al último mensaje cuando el teclado abre/cierra
+    if (!isMobile()) return;
+    const win = document.getElementById('md-chat-window');
+    if (!win) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+    // Espacio que ocupa el teclado (px que quedan abajo del visual viewport)
+    const keyboardSpace = Math.max(0, window.innerHeight - (vv.offsetTop + vv.height));
+    // Subimos el chat por encima del teclado
+    win.style.bottom = keyboardSpace + 'px';
+    // Limitamos la altura al área visible (con un pequeño margen)
+    win.style.maxHeight = Math.max(280, vv.height - 8) + 'px';
     requestAnimationFrame(scrollToBottom);
+  }
+
+  // Resetea estilos inline aplicados por onViewportResize
+  function resetChatWindowPosition() {
+    const win = document.getElementById('md-chat-window');
+    if (!win) return;
+    win.style.bottom = '';
+    win.style.maxHeight = '';
   }
 
   // ── Toggle ───────────────────────────────────
@@ -170,7 +192,20 @@
     // Dar tiempo a la animación antes de hacer focus (evita saltos en mobile)
     setTimeout(() => {
       const input = document.getElementById('md-chat-input');
-      if (input) input.focus({ preventScroll: true });
+      if (input) {
+        // Listener para reposicionar APENAS el input recibe foco
+        // (en algunos casos visualViewport.resize no dispara inmediatamente)
+        input.addEventListener('focus', () => {
+          // Esperar a que el teclado termine de aparecer
+          setTimeout(onViewportResize, 250);
+        });
+        input.addEventListener('blur', () => {
+          // Al perder foco, el teclado se cierra: reseteamos posición
+          setTimeout(resetChatWindowPosition, 100);
+        });
+
+        if (!isMobile()) input.focus({ preventScroll: true });
+      }
       scrollToBottom();
     }, 350);
   }
@@ -180,12 +215,19 @@
     const win      = document.getElementById('md-chat-window');
     const backdrop = document.getElementById('md-chat-backdrop');
 
+    // Cerrar el teclado virtual si está abierto
+    const input = document.getElementById('md-chat-input');
+    if (input) input.blur();
+
     win.classList.remove('open');
     if (backdrop) {
       backdrop.classList.remove('open');
       // Ocultar backdrop luego de la transición
       setTimeout(() => { backdrop.style.display = ''; }, 300);
     }
+
+    // Reset de posicionamiento por teclado
+    resetChatWindowPosition();
 
     unlockBodyScroll();
   }
