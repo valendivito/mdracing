@@ -3601,14 +3601,26 @@ section { position: relative; }
   .carousel-arrow { width: 38px; height: 38px; }
   /* Botones mobile: WA arriba full-width, Ver más + + en la misma fila abajo */
   .product-card-actions {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    grid-auto-rows: auto;
+    gap: 6px !important;
+    flex-direction: initial !important;
   }
-  .product-btn-wa    { width: 100%; order: 1; }
-  .product-btn-detail { flex: 1; order: 2; min-width: 0; }
-  .product-btn-cart  { flex-shrink: 0; order: 3; }
+  .product-btn-wa {
+    grid-column: 1 / -1 !important;
+    width: auto !important;
+    flex: initial !important;
+  }
+  .product-btn-detail {
+    width: auto !important;
+    flex: initial !important;
+    white-space: nowrap;
+  }
+  .product-btn-cart {
+    width: auto !important;
+    flex: initial !important;
+  }
   /* Ocultar descripción en cards de categoría (solo mostrar título) */
   .in-cat-page .product-desc { display: none; }
 }
