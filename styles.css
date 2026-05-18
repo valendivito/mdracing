@@ -5903,6 +5903,7 @@ html { touch-action: manipulation; }
 }
 
 /* Lightbox / zoom-in viewer */
+body.md-lightbox-open { overflow: hidden !important; touch-action: none; }
 .md-lightbox {
   position: fixed;
   inset: 0;
@@ -5914,7 +5915,9 @@ html { touch-action: manipulation; }
   padding: 16px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .2s ease;
+  transition: opacity .2s ease, background-color .15s ease;
+  touch-action: none;
+  overscroll-behavior: contain;
 }
 .md-lightbox.open { opacity: 1; pointer-events: auto; }
 .md-lightbox img {
@@ -5925,7 +5928,13 @@ html { touch-action: manipulation; }
   object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 12px 60px rgba(0,0,0,0.6);
+  will-change: transform;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
+.md-lightbox.dragging img { transition: none; }
 .md-lightbox-close {
   position: absolute;
   top: 18px;

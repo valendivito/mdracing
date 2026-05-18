@@ -2672,13 +2672,74 @@ function ensureLightbox() {
   lb.className = 'md-lightbox';
   lb.innerHTML = `
     <button class="md-lightbox-close" aria-label="Cerrar">×</button>
-    <img alt="" />
+    <img alt="" draggable="false" />
   `;
   document.body.appendChild(lb);
-  const close = () => lb.classList.remove('open');
+
+  const img = lb.querySelector('img');
+  const closeBtn = lb.querySelector('.md-lightbox-close');
+
+  const close = () => {
+    lb.classList.remove('open');
+    lb.classList.remove('dragging');
+    img.style.transform = '';
+    lb.style.background = '';
+    document.body.classList.remove('md-lightbox-open');
+  };
+  lb._close = close;
+
+  // Click outside image to close
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  lb.querySelector('.md-lightbox-close').addEventListener('click', close);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
+
+  // Swipe up/down to close (touch + mouse)
+  let startY = 0, startX = 0, dy = 0, dragging = false, pointerId = null;
+  const THRESHOLD = 90;
+
+  const onDown = (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.target === closeBtn) return;
+    pointerId = e.pointerId;
+    startY = e.clientY;
+    startX = e.clientX;
+    dy = 0;
+    dragging = true;
+    lb.classList.add('dragging');
+    try { lb.setPointerCapture(pointerId); } catch(_) {}
+  };
+  const onMove = (e) => {
+    if (!dragging || e.pointerId !== pointerId) return;
+    dy = e.clientY - startY;
+    const dx = e.clientX - startX;
+    // Only respond to vertical drag (ignore mostly-horizontal)
+    if (Math.abs(dx) > Math.abs(dy) * 1.5 && Math.abs(dy) < 20) return;
+    e.preventDefault();
+    img.style.transform = `translateY(${dy}px) scale(${Math.max(0.7, 1 - Math.abs(dy)/1200)})`;
+    const fade = Math.max(0.3, 1 - Math.abs(dy)/500);
+    lb.style.background = `rgba(0,0,0,${0.92 * fade})`;
+  };
+  const onUp = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    lb.classList.remove('dragging');
+    try { lb.releasePointerCapture(pointerId); } catch(_) {}
+    if (Math.abs(dy) > THRESHOLD) {
+      close();
+    } else {
+      img.style.transform = '';
+      lb.style.background = '';
+    }
+    pointerId = null;
+  };
+  lb.addEventListener('pointerdown', onDown);
+  lb.addEventListener('pointermove', onMove);
+  lb.addEventListener('pointerup', onUp);
+  lb.addEventListener('pointercancel', onUp);
+
+  // Block touchmove from bubbling to page (extra defense)
+  lb.addEventListener('touchmove', e => { e.preventDefault(); }, { passive: false });
+
   return lb;
 }
 function openLightbox(src, alt) {
@@ -2686,7 +2747,10 @@ function openLightbox(src, alt) {
   const img = lb.querySelector('img');
   img.src = src;
   img.alt = alt || '';
+  img.style.transform = '';
+  lb.style.background = '';
   lb.classList.add('open');
+  document.body.classList.add('md-lightbox-open');
 }
 function initLightboxTargets() {
   // Helper: attach click that ignores drag (so swipe doesn't trigger zoom)
@@ -2942,18 +3006,69 @@ function initMaterialsCarousel() {
     clearTimeout(rsz);
     rsz = setTimeout(() => {
       if (isMobile()) {
-        // Strip widths so flex layout takes over
-        Array.from(track.children).forEach(el => { el.style.width = ''; el.style.minWidth = ''; el.style.maxWidth = ''; });
+        setupMobileInfinite();
       } else {
+        if (mobileScrollHandler) { viewport.removeEventListener('scroll', mobileScrollHandler); mobileScrollHandler = null; }
         buildClones(); setWidths(); moveTo(clonesBefore + pos, false);
       }
     }, 150);
   });
 
-  // On initial load: only build desktop carousel; mobile uses native scroll
-  if (isMobile()) {
-    // Make sure no inline widths are set so flex layout works
+  // ── Mobile infinite scroll: 3 sets [clonesBefore, originals, clonesAfter] ──
+  let mobileJumping = false;
+  let mobileScrollHandler = null;
+
+  function setupMobileInfinite() {
+    // Strip inline widths so CSS flex (80%/86%) applies
+    track.querySelectorAll('.mat-clone').forEach(el => el.remove());
     Array.from(track.children).forEach(el => { el.style.width = ''; el.style.minWidth = ''; el.style.maxWidth = ''; });
+    // Append a full copy after originals
+    origItems.forEach(item => {
+      const c = item.cloneNode(true);
+      c.classList.add('mat-clone');
+      c.querySelectorAll('[data-lb-bound]').forEach(el => el.removeAttribute('data-lb-bound'));
+      track.appendChild(c);
+    });
+    // Prepend a full copy before originals (insert in reverse to preserve order)
+    for (let i = N - 1; i >= 0; i--) {
+      const c = origItems[i].cloneNode(true);
+      c.classList.add('mat-clone');
+      c.querySelectorAll('[data-lb-bound]').forEach(el => el.removeAttribute('data-lb-bound'));
+      track.insertBefore(c, track.firstChild);
+    }
+    // After layout, position viewport at start of originals (middle set)
+    requestAnimationFrame(() => {
+      const setWidth = track.scrollWidth / 3;
+      viewport.scrollLeft = setWidth;
+    });
+    // Bind lightbox clicks on the new clones
+    initLightboxTargets();
+    // Scroll listener: silent jump when reaching edge sets
+    if (mobileScrollHandler) viewport.removeEventListener('scroll', mobileScrollHandler);
+    mobileScrollHandler = () => {
+      if (mobileJumping) return;
+      const sw = track.scrollWidth / 3;
+      const sl = viewport.scrollLeft;
+      if (sl >= sw * 2 - 2) {
+        mobileJumping = true;
+        const prevBehavior = viewport.style.scrollBehavior;
+        viewport.style.scrollBehavior = 'auto';
+        viewport.scrollLeft = sl - sw;
+        requestAnimationFrame(() => { viewport.style.scrollBehavior = prevBehavior; mobileJumping = false; });
+      } else if (sl <= 2) {
+        mobileJumping = true;
+        const prevBehavior = viewport.style.scrollBehavior;
+        viewport.style.scrollBehavior = 'auto';
+        viewport.scrollLeft = sl + sw;
+        requestAnimationFrame(() => { viewport.style.scrollBehavior = prevBehavior; mobileJumping = false; });
+      }
+    };
+    viewport.addEventListener('scroll', mobileScrollHandler, { passive: true });
+  }
+
+  // On initial load: build appropriate carousel
+  if (isMobile()) {
+    setupMobileInfinite();
   } else {
     init();
   }
