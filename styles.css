@@ -5699,6 +5699,67 @@ body.hs-active #promo-bar {
 }
 
 /* ══════════════════════════════════════════════════════
+   HOT SALE — Banner full-width en grilla categorías
+══════════════════════════════════════════════════════ */
+.cat-hs-fullbanner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(135deg, #b50000 0%, #7a0000 100%);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-top: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+.cat-hs-fullbanner:hover { opacity: 0.93; transform: translateY(-2px); }
+.cat-hs-fb-flame { width: 60px; height: 75px; flex-shrink: 0; opacity: 0.85; }
+.cat-hs-fb-flame svg { width: 100%; height: 100%; }
+.cat-hs-fb-text { flex: 1; }
+.cat-hs-fb-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+.cat-hs-fb-title {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.cat-hs-fb-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+.cat-hs-fb-cta {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  padding: 12px 20px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .cat-hs-fullbanner { flex-wrap: wrap; gap: 14px; padding: 20px; }
+  .cat-hs-fb-flame { width: 44px; height: 55px; }
+  .cat-hs-fb-cta { width: 100%; justify-content: center; }
+}
+
+/* ══════════════════════════════════════════════════════
    HOT SALE — Hero de página de categoría
 ══════════════════════════════════════════════════════ */
 .page-hero-hs {

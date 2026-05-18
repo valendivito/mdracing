@@ -837,9 +837,9 @@ function renderHome() {
         ${(() => {
           const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
           const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
-          const secondary = categories.filter(c => !featuredIds.includes(c.id) && (!c.hotsaleOnly || HOT_SALE_ACTIVE));
+          const secondary = categories.filter(c => !featuredIds.includes(c.id) && !c.hotsaleOnly);
           const renderCard = (c, isSmall) => `
-            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}${c.id === 'cat-hot-sale' ? ' cat-card-hs' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>
@@ -849,6 +849,16 @@ function renderHome() {
                 <div class="cat-card-arrow">Ver productos ${icons.arrowRight}</div>
               </div>
             </div>`;
+          const hotSaleBanner = HOT_SALE_ACTIVE ? `
+            <div class="cat-hs-fullbanner" onclick="navigate('cat-hot-sale')" style="cursor:pointer">
+              <div class="cat-hs-fb-flame">${flameSvg}</div>
+              <div class="cat-hs-fb-text">
+                <span class="cat-hs-fb-tag">🔥 HASTA EL 20/05</span>
+                <h3 class="cat-hs-fb-title">HOT SALE MDRACING</h3>
+                <p class="cat-hs-fb-sub">Precios que queman directo de fábrica</p>
+              </div>
+              <div class="cat-hs-fb-cta">Ver todas las ofertas ${icons.arrowRight}</div>
+            </div>` : '';
           return `
             <div class="cat-grid cat-grid-featured">
               ${featured.map(c => renderCard(c, false)).join('')}
@@ -856,6 +866,7 @@ function renderHome() {
             <div class="cat-grid cat-grid-secondary">
               ${secondary.map(c => renderCard(c, true)).join('')}
             </div>
+            ${hotSaleBanner}
           `;
         })()}
       </div>
@@ -2360,9 +2371,9 @@ function renderCategoriesPage() {
         ${(() => {
           const featuredIds = ['cat-cubre-autos','cat-fundas-asientos','cat-alfombras-termoformadas'];
           const featured = featuredIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
-          const secondary = categories.filter(c => !featuredIds.includes(c.id) && (!c.hotsaleOnly || HOT_SALE_ACTIVE));
+          const secondary = categories.filter(c => !featuredIds.includes(c.id) && !c.hotsaleOnly);
           const renderCard = (c, isSmall) => `
-            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}${c.id === 'cat-hot-sale' ? ' cat-card-hs' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
+            <div class="cat-card${isSmall ? ' cat-card-sm' : ''}" data-cat="${c.cat}" onclick="navigate('${c.page}')" style="cursor:pointer">
               <div class="cat-card-bg"></div>
               <div class="cat-visual">${c.svg}</div>
               <div class="cat-card-overlay"></div>
@@ -2372,6 +2383,16 @@ function renderCategoriesPage() {
                 <div class="cat-card-arrow">Ver productos ${icons.arrowRight}</div>
               </div>
             </div>`;
+          const hotSaleBanner = HOT_SALE_ACTIVE ? `
+            <div class="cat-hs-fullbanner" onclick="navigate('cat-hot-sale')" style="cursor:pointer">
+              <div class="cat-hs-fb-flame">${flameSvg}</div>
+              <div class="cat-hs-fb-text">
+                <span class="cat-hs-fb-tag">🔥 HASTA EL 20/05</span>
+                <h3 class="cat-hs-fb-title">HOT SALE MDRACING</h3>
+                <p class="cat-hs-fb-sub">Precios que queman directo de fábrica</p>
+              </div>
+              <div class="cat-hs-fb-cta">Ver todas las ofertas ${icons.arrowRight}</div>
+            </div>` : '';
           return `
             <div class="cat-grid cat-grid-featured">
               ${featured.map(c => renderCard(c, false)).join('')}
@@ -2379,6 +2400,7 @@ function renderCategoriesPage() {
             <div class="cat-grid cat-grid-secondary">
               ${secondary.map(c => renderCard(c, true)).join('')}
             </div>
+            ${hotSaleBanner}
           `;
         })()}
       </div>
