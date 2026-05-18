@@ -2700,6 +2700,8 @@ function ensureLightbox() {
   const onDown = (e) => {
     if (!lb.classList.contains('open')) return;
     if (e.target === closeBtn) return;
+    // Sólo gesto swipe-to-close en touch/pen — en mouse se cierra con X / click fuera / Escape
+    if (e.pointerType === 'mouse') return;
     pointerId = e.pointerId;
     startY = e.clientY;
     startX = e.clientX;
