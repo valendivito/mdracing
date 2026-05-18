@@ -731,6 +731,9 @@ function renderHome() {
               <span class="hero-stat-num">+5.000</span>
               <span class="hero-stat-label">clientes en todo el país 🇦🇷</span>
             </div>
+          <!-- Foto fábrica solo visible en mobile -->
+          <div class="hero-mobile-factory">
+            <img src="images/fabrica.png" alt="Fábrica MDRACING — Villa Ballester" />
           </div>
         </div>
         <div class="hero-visual animate-in animate-delay-2">
