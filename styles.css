@@ -1157,6 +1157,8 @@ section { position: relative; }
   color: var(--red2);
   margin-bottom: 8px;
 }
+/* Ocultar categoría en páginas de categoría (es redundante) */
+.in-cat-page .product-cat-tag { display: none; }
 .product-name {
   font-family: var(--font-head);
   font-weight: 700;
@@ -3597,8 +3599,15 @@ section { position: relative; }
   .local-section { padding: 44px 20px; }
   .social-proof-section { padding: 44px 20px; }
   .carousel-arrow { width: 38px; height: 38px; }
-  .product-card-actions { flex-direction: column; }
-  .product-btn-detail { width: 100%; }
+  /* Botones mobile: WA arriba full-width, Ver más + + en la misma fila abajo */
+  .product-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .product-btn-wa    { width: 100%; order: 1; }
+  .product-btn-detail { flex: 1; order: 2; min-width: 0; }
+  .product-btn-cart  { flex-shrink: 0; order: 3; }
 }
 
 /* ═══════════════ HERO FACTORY IMAGE ═══ */

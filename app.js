@@ -1519,7 +1519,7 @@ function renderCategoryPage(catId) {
               </select>
             </div>
           </div>
-          <div class="cat-products-grid" id="cat-products-grid">
+          <div class="cat-products-grid in-cat-page" id="cat-products-grid">
             ${allProducts.map(p => renderProductCard(p)).join('')}
           </div>
         </div>
