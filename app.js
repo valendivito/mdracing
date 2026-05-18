@@ -2658,6 +2658,63 @@ function initInteractives() {
   initMaterialsCarousel();
   initTopReviewsCarousel();
   initHotSaleCountdown();
+  initLightboxTargets();
+}
+
+// ═══════════════════════════════════════════════════════════
+// LIGHTBOX (zoom-in viewer for material slides + CTA images)
+// ═══════════════════════════════════════════════════════════
+function ensureLightbox() {
+  let lb = document.getElementById('md-lightbox');
+  if (lb) return lb;
+  lb = document.createElement('div');
+  lb.id = 'md-lightbox';
+  lb.className = 'md-lightbox';
+  lb.innerHTML = `
+    <button class="md-lightbox-close" aria-label="Cerrar">×</button>
+    <img alt="" />
+  `;
+  document.body.appendChild(lb);
+  const close = () => lb.classList.remove('open');
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  lb.querySelector('.md-lightbox-close').addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  return lb;
+}
+function openLightbox(src, alt) {
+  const lb = ensureLightbox();
+  const img = lb.querySelector('img');
+  img.src = src;
+  img.alt = alt || '';
+  lb.classList.add('open');
+}
+function initLightboxTargets() {
+  // Helper: attach click that ignores drag (so swipe doesn't trigger zoom)
+  const attachClickNoDrag = (el, onClick) => {
+    if (el.dataset.lbBound) return;
+    el.dataset.lbBound = '1';
+    let downX = 0, downY = 0, moved = false;
+    el.addEventListener('pointerdown', e => { downX = e.clientX; downY = e.clientY; moved = false; });
+    el.addEventListener('pointermove', e => {
+      if (Math.abs(e.clientX - downX) > 8 || Math.abs(e.clientY - downY) > 8) moved = true;
+    });
+    el.addEventListener('click', e => {
+      if (moved) { e.preventDefault(); e.stopPropagation(); return; }
+      onClick(e);
+    });
+  };
+  // Materials
+  document.querySelectorAll('.mat-slide-img').forEach(box => {
+    const img = box.querySelector('img');
+    if (!img) return;
+    attachClickNoDrag(box, () => openLightbox(img.src, img.alt));
+  });
+  // CTA Gallery
+  document.querySelectorAll('.cta-gallery-img').forEach(box => {
+    const img = box.querySelector('img');
+    if (!img) return;
+    attachClickNoDrag(box, () => openLightbox(img.src, img.alt));
+  });
 }
 
 function initHotSaleCountdown() {
@@ -2736,14 +2793,27 @@ function initTestimonialsCarousel() {
     }
   };
 
-  prev?.addEventListener('click', () => { if (index > 0) { index--; update(); } });
-  next?.addEventListener('click', () => { if (index < totalPages() - 1) { index++; update(); } });
+  const isMobile = () => window.matchMedia('(max-width: 720px)').matches;
+  const scroller = track.parentElement; // .testimonials-carousel
+  const mobileStep = () => (cards[0] ? cards[0].getBoundingClientRect().width + 16 : scroller.clientWidth);
 
-  // Swipe support
+  prev?.addEventListener('click', () => {
+    if (isMobile()) { scroller.scrollBy({ left: -mobileStep(), behavior: 'smooth' }); return; }
+    if (index > 0) { index--; update(); }
+  });
+  next?.addEventListener('click', () => {
+    if (isMobile()) { scroller.scrollBy({ left:  mobileStep(), behavior: 'smooth' }); return; }
+    if (index < totalPages() - 1) { index++; update(); }
+  });
+
+  // Desktop-only swipe (mobile uses native scroll which follows finger fluidly)
   let startX = 0, isDown = false;
-  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; isDown = true; }, { passive: true });
+  track.addEventListener('touchstart', (e) => {
+    if (isMobile()) return;
+    startX = e.touches[0].clientX; isDown = true;
+  }, { passive: true });
   track.addEventListener('touchend', (e) => {
-    if (!isDown) return;
+    if (isMobile() || !isDown) return;
     const dx = e.changedTouches[0].clientX - startX;
     if (dx < -40 && index < totalPages() - 1) { index++; update(); }
     else if (dx > 40 && index > 0) { index--; update(); }
@@ -2753,10 +2823,10 @@ function initTestimonialsCarousel() {
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(update, 120);
+    resizeTimer = setTimeout(() => { if (!isMobile()) update(); }, 120);
   });
 
-  update();
+  if (!isMobile()) update();
 }
 
 function initMaterialsCarousel() {
@@ -2839,13 +2909,29 @@ function initMaterialsCarousel() {
     moveTo(clonesBefore + pos, false);
   }
 
-  prevBtn?.addEventListener('click', () => go(-1));
-  nextBtn?.addEventListener('click', () => go(1));
+  const isMobile = () => window.matchMedia('(max-width: 780px)').matches;
+  const mobileStep = () => {
+    const firstSlide = track.querySelector('.mat-slide:not(.mat-clone)') || track.firstElementChild;
+    return firstSlide ? firstSlide.getBoundingClientRect().width + 16 : viewport.clientWidth;
+  };
 
-  // Swipe
+  prevBtn?.addEventListener('click', () => {
+    if (isMobile()) { viewport.scrollBy({ left: -mobileStep(), behavior: 'smooth' }); return; }
+    go(-1);
+  });
+  nextBtn?.addEventListener('click', () => {
+    if (isMobile()) { viewport.scrollBy({ left:  mobileStep(), behavior: 'smooth' }); return; }
+    go(1);
+  });
+
+  // Desktop-only swipe (mobile uses native fluid scroll)
   let startX = 0;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchstart', e => {
+    if (isMobile()) return;
+    startX = e.touches[0].clientX;
+  }, { passive: true });
   track.addEventListener('touchend', e => {
+    if (isMobile()) return;
     const dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
   });
@@ -2854,10 +2940,23 @@ function initMaterialsCarousel() {
   let rsz;
   window.addEventListener('resize', () => {
     clearTimeout(rsz);
-    rsz = setTimeout(() => { buildClones(); setWidths(); moveTo(clonesBefore + pos, false); }, 150);
+    rsz = setTimeout(() => {
+      if (isMobile()) {
+        // Strip widths so flex layout takes over
+        Array.from(track.children).forEach(el => { el.style.width = ''; el.style.minWidth = ''; el.style.maxWidth = ''; });
+      } else {
+        buildClones(); setWidths(); moveTo(clonesBefore + pos, false);
+      }
+    }, 150);
   });
 
-  init();
+  // On initial load: only build desktop carousel; mobile uses native scroll
+  if (isMobile()) {
+    // Make sure no inline widths are set so flex layout works
+    Array.from(track.children).forEach(el => { el.style.width = ''; el.style.minWidth = ''; el.style.maxWidth = ''; });
+  } else {
+    init();
+  }
 }
 
 // Tab switching
