@@ -3602,12 +3602,15 @@ section { position: relative; }
   /* Botones mobile: WA arriba full-width, Ver más + + en la misma fila abajo */
   .product-card-actions {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 6px;
   }
   .product-btn-wa    { width: 100%; order: 1; }
   .product-btn-detail { flex: 1; order: 2; min-width: 0; }
   .product-btn-cart  { flex-shrink: 0; order: 3; }
+  /* Ocultar descripción en cards de categoría (solo mostrar título) */
+  .in-cat-page .product-desc { display: none; }
 }
 
 /* ═══════════════ HERO FACTORY IMAGE — MOBILE ONLY ═══ */
