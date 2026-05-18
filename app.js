@@ -1519,7 +1519,11 @@ function renderCategoryPage(catId) {
 
 // ── Product Page ──
 function renderProductPage(productId) {
-  const p = products.find(pr => `product-${pr.id}` === productId) || products[0];
+  let p = products.find(pr => `product-${pr.id}` === productId) || products[0];
+
+  // Aplicar precio Hot Sale si corresponde (igual que en renderProductCard)
+  const hsPriceDetail = HOT_SALE_PRICES[p.id];
+  if (hsPriceDetail) p = { ...p, salePrice: hsPriceDetail, _isHot: true };
 
   // ── Versión options por categoría ──
   const versionHtml = (() => {
