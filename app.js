@@ -1271,9 +1271,14 @@ function renderProductCard(p) {
 
   let displayPrice = p.salePrice || p.price;
   if (p.sizeVariants && p.sizeVariants.length > 0) {
-    const prices = p.sizeVariants.map(sv => parseInt((sv.salePrice || sv.price).replace(/\./g, ''), 10));
-    const minPrice = Math.min(...prices);
-    displayPrice = minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    if (p._isHot) {
+      // Hot Sale price siempre gana sobre sizeVariants
+      displayPrice = p.salePrice;
+    } else {
+      const prices = p.sizeVariants.map(sv => parseInt((sv.salePrice || sv.price).replace(/\./g, ''), 10));
+      const minPrice = Math.min(...prices);
+      displayPrice = minPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
   }
   const waLink = p._isHot
     ? WA_MSG(`¡Hola! Quiero aprovechar el Hot Sale 🔥 y consultar por: ${p.name} (precio Hot Sale $${displayPrice})`)
@@ -1314,11 +1319,19 @@ function renderProductCard(p) {
     : '';
   let priceHtml;
   if (p.sizeVariants && p.sizeVariants.length > 0) {
-    const hasSale = p.sizeVariants.some(sv => sv.salePrice);
-    priceHtml = `<div class="product-price-block">
-        ${hasSale ? `<span class="product-price-label">Desde</span>` : ''}
-        <div class="product-price${hasSale ? ' product-price-sale' : ''}">$${displayPrice}</div>
-       </div>`;
+    if (p._isHot) {
+      // Hot Sale: mostrar precio original tachado + precio Hot Sale
+      priceHtml = `<div class="product-price-block">
+          <span class="product-price-original">$${p.price}</span>
+          <div class="product-price product-price-sale">$${displayPrice}</div>
+         </div>`;
+    } else {
+      const hasSale = p.sizeVariants.some(sv => sv.salePrice);
+      priceHtml = `<div class="product-price-block">
+          ${hasSale ? `<span class="product-price-label">Desde</span>` : ''}
+          <div class="product-price${hasSale ? ' product-price-sale' : ''}">$${displayPrice}</div>
+         </div>`;
+    }
   } else if (p.salePrice) {
     priceHtml = `<div class="product-price-block">
         <span class="product-price-original">$${p.price}</span>
@@ -1700,18 +1713,27 @@ function renderProductPage(productId) {
       </div>`;
 
   // ── Size variant selector ──
+  // Si Hot Sale activo en este producto, los botones de talle siempre muestran el precio Hot Sale
   const sizeHtml = (() => {
     if (!p.sizeVariants || p.sizeVariants.length === 0) return '';
     return `<div class="option-group">
       <span class="option-label">Talle</span>
       <div class="variant-btns">
-        ${p.sizeVariants.map((sv, i) => `<button class="variant-btn ${i===0?'active':''}" onclick="selectSizeVariant(this,'${pid}','${sv.price}','${sv.salePrice||''}')">${sv.label}</button>`).join('')}
+        ${p.sizeVariants.map((sv, i) => {
+          const effSale = p._isHot ? p.salePrice : (sv.salePrice || '');
+          const effOrig = p._isHot ? p.price : sv.price;
+          return `<button class="variant-btn ${i===0?'active':''}" onclick="selectSizeVariant(this,'${pid}','${effOrig}','${effSale}')">${sv.label}</button>`;
+        }).join('')}
       </div>
     </div>`;
   })();
 
   // ── Initial price display ──
   const initPriceHtml = (() => {
+    if (p._isHot) {
+      // Hot Sale price siempre gana sobre sizeVariants
+      return `<span class="price-old">$${p.price}</span> <span class="currency">$</span>${p.salePrice}`;
+    }
     if (p.sizeVariants && p.sizeVariants.length > 0) {
       const sv = p.sizeVariants[0];
       if (sv.salePrice) return `<span class="price-old">$${sv.price}</span> <span class="currency">$</span>${sv.salePrice}`;
@@ -1720,7 +1742,7 @@ function renderProductPage(productId) {
     if (p.salePrice) return `<span class="price-old">$${p.price}</span> <span class="currency">$</span>${p.salePrice}`;
     return `<span class="currency">$</span>${p.price}`;
   })();
-  const priceFromLabel = p.sizeVariants && p.sizeVariants.length > 0 ? 'Precio · elegí tu talle' : 'Precio';
+  const priceFromLabel = (p._isHot ? 'Precio Hot Sale 🔥' : (p.sizeVariants && p.sizeVariants.length > 0 ? 'Precio · elegí tu talle' : 'Precio'));
 
   return `
     <div class="page-wrapper">
@@ -1793,7 +1815,7 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-ctas">
-            <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
+            <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.salePrice || p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
             <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2)">${icons.cart} Sumar al carrito</button>
             <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
           </div>
@@ -3415,8 +3437,15 @@ function sortProducts(order) {
 const CART_KEY = 'mdracing_cart_v1';
 
 function cartGet() {
-  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-  catch { return []; }
+  try {
+    const items = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    // Auto-aplicar Hot Sale price a items guardados (corrige carritos viejos)
+    return items.map(i => {
+      const hsPrice = (typeof HOT_SALE_PRICES !== 'undefined') && HOT_SALE_PRICES[i.id];
+      if (hsPrice) return { ...i, salePrice: hsPrice };
+      return i;
+    });
+  } catch { return []; }
 }
 function cartSave(items) {
   localStorage.setItem(CART_KEY, JSON.stringify(items));
