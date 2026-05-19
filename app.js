@@ -3437,8 +3437,13 @@ function cartUpdateBadge() {
   if (floatCount) floatCount.textContent = n;
 }
 function addToCart(productId) {
-  const p = products.find(pr => pr.id === productId);
+  let p = products.find(pr => pr.id === productId);
   if (!p) return;
+  // Aplicar Hot Sale price si corresponde
+  const hsPrice = HOT_SALE_PRICES && HOT_SALE_PRICES[p.id];
+  if (hsPrice) p = { ...p, salePrice: hsPrice };
+  // Precio efectivo: salePrice si existe, sino price
+  const effectivePrice = p.salePrice || p.price;
   const items = cartGet();
   const existing = items.find(i => i.id === productId);
   if (existing) {
@@ -3448,6 +3453,9 @@ function addToCart(productId) {
       return;
     }
     existing.qty = (existing.qty || 1) + 1;
+    // Actualizar precio por si cambió (ej: Hot Sale activó después de agregar)
+    existing.salePrice = p.salePrice || null;
+    existing.price = p.price;
   } else {
     items.push({
       id: p.id,
