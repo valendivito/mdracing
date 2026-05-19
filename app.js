@@ -196,7 +196,7 @@ const HOT_SALE_PRICES = HOT_SALE_ACTIVE ? {
   'funda-cubre-camioneta-antigranizo-vw-amarok':                            '129.999',
   'funda-cubre-auto-vw-tera-2025-tela-silver':                               '85.999',
   'funda-cubre-auto-antigranizo-polo-track-3-capas':                        '104.999',
-  'funda-cubre-camioneta-antigranizo-toyota-sw4-3-capas':                   '139.999',
+  'funda-cubre-auto-antigranizo-toyota-sw4-3-capas':                        '139.999',
   // Cubre capots
   'cubre-capot-vw-amarok-dm92h':                                            '69.999',
   'cubre-capot-vw-t-cross':                                                 '69.999',
