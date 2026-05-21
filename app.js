@@ -2297,6 +2297,227 @@ function renderReturnsPage() {
   `;
 }
 
+// ── Terms & Conditions ──
+function renderTermsPage() {
+  const today = new Date().toLocaleDateString('es-AR');
+  return `
+    <div class="page-wrapper">
+      <div class="page-hero">
+        <div class="page-hero-inner">
+          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Términos y Condiciones</span></div>
+          <h1 class="page-hero-title">Términos y<br><span style="color:var(--red2)">Condiciones</span></h1>
+          <p class="page-hero-sub">Las reglas claras y por escrito de comprar en MDRACING.</p>
+        </div>
+      </div>
+
+      <div class="legal-body" style="max-width:880px;margin:0 auto;padding:48px 24px 80px">
+
+        <p style="color:var(--metal);font-size:14px;margin-bottom:32px">Última actualización: ${today}</p>
+
+        <h2 class="legal-h2">1 · Datos del titular del sitio</h2>
+        <p>El sitio <strong>www.mdracingfundas.com</strong> (en adelante, "el Sitio") es operado por <strong>Miguel Angel Di Vito</strong>, CUIT <strong>20-22862560-5</strong>, con domicilio comercial en <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Provincia de Buenos Aires, Argentina</strong>. Comercializa la marca <strong>MDRACING</strong> (en adelante, "MDRACING", "nosotros").</p>
+
+        <h2 class="legal-h2">2 · Aceptación de los términos</h2>
+        <p>El uso del Sitio implica la aceptación plena de estos Términos y Condiciones (en adelante, "T&C") y de la Política de Privacidad. Si no estás de acuerdo con alguna de las cláusulas, no deberías utilizar el Sitio ni realizar compras.</p>
+
+        <h2 class="legal-h2">3 · Productos y catálogo</h2>
+        <p>Los productos exhibidos en el Sitio son fabricados por MDRACING o adquiridos a proveedores. Las imágenes son ilustrativas: pequeñas variaciones de color, textura o tono pueden existir entre el producto fotografiado y el entregado, sin que ello implique un defecto.</p>
+        <p>Los precios y la disponibilidad pueden modificarse sin aviso previo. El precio vigente para cada compra es el publicado al momento de confirmar el pedido.</p>
+        <p>Muchos productos (cubre autos, fundas a medida, cubre capots, cubre trompas) se fabrican <strong>a pedido</strong>. El plazo de producción se informa por WhatsApp al momento de coordinar la compra.</p>
+
+        <h2 class="legal-h2">4 · Proceso de compra</h2>
+        <p>La compra se concreta cuando:</p>
+        <ul>
+          <li>El cliente completa el formulario de checkout con sus datos y método de pago.</li>
+          <li>Se acredita el pago a través de <strong>Mercado Pago</strong>, o bien</li>
+          <li>El cliente envía el comprobante de transferencia bancaria por WhatsApp y MDRACING lo confirma.</li>
+        </ul>
+        <p>Hasta que el pago no esté acreditado/confirmado, el pedido se considera <strong>reservado</strong> pero no confirmado. MDRACING podrá cancelar pedidos reservados sin acreditación dentro de un plazo razonable.</p>
+
+        <h2 class="legal-h2">5 · Medios de pago</h2>
+        <ul>
+          <li><strong>Tarjeta de crédito o débito</strong> a través de Mercado Pago. Aplican cuotas según el plan vigente del banco emisor.</li>
+          <li><strong>Transferencia bancaria</strong> a la cuenta de Mercado Pago de Miguel Angel Di Vito (CUIT 20-22862560-5). El cliente envía el comprobante por WhatsApp.</li>
+          <li><strong>Efectivo</strong> al momento de retirar en fábrica (Villa Ballester) o en el local (Av. Bartolomé Mitre 3495, Munro).</li>
+        </ul>
+        <p>Pagos por transferencia y efectivo tienen un <strong>descuento del 10%</strong> sobre el subtotal, ya aplicado en el checkout.</p>
+
+        <h2 class="legal-h2">6 · Envíos</h2>
+        <p>MDRACING realiza envíos a todo el territorio argentino a través de <strong>Andreani, Correo Argentino y OCA</strong>. Los costos y plazos varían según destino y se informan al confirmar el pedido. También se puede retirar sin costo en:</p>
+        <ul>
+          <li><strong>Fábrica:</strong> Villa Ballester, San Martín, Buenos Aires.</li>
+          <li><strong>Local:</strong> Av. Bartolomé Mitre 3495, Munro, Vicente López, Buenos Aires.</li>
+        </ul>
+        <p>Los plazos de entrega son estimativos y dependen del operador logístico. MDRACING no se responsabiliza por demoras del correo no imputables a la empresa.</p>
+        <p>Una vez despachado, MDRACING informará el código de seguimiento al cliente por email o WhatsApp.</p>
+
+        <h2 class="legal-h2">7 · Derecho de revocación (botón de arrepentimiento)</h2>
+        <p>De acuerdo con el Art. 1110 del Código Civil y Comercial y la Ley 24.240 de Defensa del Consumidor, el cliente tiene derecho a revocar la compra <strong>dentro de los 10 días corridos</strong> desde la recepción del producto, sin necesidad de expresar causa, en compras realizadas fuera del establecimiento comercial.</p>
+        <p>Para ejercer este derecho:</p>
+        <ul>
+          <li>El producto debe devolverse <strong>sin uso, sin lavado y con su empaque original</strong>.</li>
+          <li>El cliente debe contactar a MDRACING por WhatsApp (<strong>+54 9 11 5490-7774</strong>) o por email a <strong>mdracingdv@gmail.com</strong> dentro del plazo de 10 días.</li>
+          <li>Los costos de devolución son a cargo del cliente, salvo en caso de falla de fábrica.</li>
+          <li>Una vez recibido el producto en perfecto estado, MDRACING reintegrará el monto abonado dentro de los 10 días hábiles, por el mismo medio de pago utilizado.</li>
+        </ul>
+
+        <h2 class="legal-h2">8 · Garantía</h2>
+        <p>Todos los productos de MDRACING cuentan con <strong>garantía de 30 días</strong> por fallas de fábrica desde la fecha de entrega. La garantía cubre defectos de fabricación verificables y no aplica a daños por mal uso, lavado inadecuado, golpes, exposición prolongada a condiciones extremas o desgaste normal por uso.</p>
+        <p>Para hacer efectiva la garantía, contactar por WhatsApp con fotos del producto y descripción del problema.</p>
+
+        <h2 class="legal-h2">9 · Cambios de talle / color / modelo</h2>
+        <p>Los cambios por talle, color o modelo equivocado están sujetos a stock y aceptación de MDRACING. Aplica el mismo plazo de 10 días desde la recepción. El producto debe estar sin uso.</p>
+        <p>En productos fabricados a medida (fundas custom, cubre autos específicos), <strong>el cliente es responsable de verificar el modelo y año del vehículo antes de confirmar la compra</strong>. Ante duda, recomendamos consultar por WhatsApp o usar el asistente Madi en el sitio.</p>
+
+        <h2 class="legal-h2">10 · Facturación</h2>
+        <p>MDRACING emite <strong>Factura A</strong> para clientes con CUIT (a solicitud, indicando CUIT y razón social en el checkout) y <strong>Factura B/C</strong> para consumidores finales.</p>
+
+        <h2 class="legal-h2">11 · Propiedad intelectual</h2>
+        <p>Todos los contenidos del Sitio (textos, fotos, logos, diseño) son propiedad de MDRACING o de sus respectivos titulares. Está prohibida su reproducción, distribución o uso comercial sin autorización expresa por escrito.</p>
+
+        <h2 class="legal-h2">12 · Asistente virtual (Madi)</h2>
+        <p>El Sitio dispone de un asistente automático llamado "Madi" que brinda información de productos y precios. Las respuestas de Madi son orientativas y no constituyen un compromiso comercial. Ante duda, prevalece la información publicada en el catálogo y la confirmación por WhatsApp.</p>
+
+        <h2 class="legal-h2">13 · Limitación de responsabilidad</h2>
+        <p>MDRACING no se responsabiliza por:</p>
+        <ul>
+          <li>Daños indirectos o consecuentes derivados del uso del producto.</li>
+          <li>Errores en los datos provistos por el cliente (dirección de envío, modelo de vehículo).</li>
+          <li>Interrupciones temporales del Sitio por mantenimiento, fallas técnicas o causas de fuerza mayor.</li>
+          <li>Demoras del operador logístico ajenas al control de MDRACING.</li>
+        </ul>
+
+        <h2 class="legal-h2">14 · Modificaciones de los T&C</h2>
+        <p>MDRACING se reserva el derecho de modificar estos T&C en cualquier momento. Los cambios entran en vigencia desde su publicación en el Sitio. La fecha de "última actualización" siempre estará indicada al inicio del documento.</p>
+
+        <h2 class="legal-h2">15 · Jurisdicción</h2>
+        <p>Las partes acuerdan someter cualquier controversia derivada de la relación comercial a los tribunales ordinarios de <strong>San Martín, Provincia de Buenos Aires, Argentina</strong>, renunciando a cualquier otro fuero o jurisdicción que pudiera corresponder.</p>
+
+        <h2 class="legal-h2">16 · Contacto</h2>
+        <p>Para consultas sobre estos términos:</p>
+        <ul>
+          <li>WhatsApp: <strong>+54 9 11 5490-7774</strong></li>
+          <li>Email: <strong>mdracingdv@gmail.com</strong></li>
+          <li>Dirección: <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Buenos Aires</strong></li>
+        </ul>
+
+        <p style="margin-top:48px;font-size:13px;color:var(--metal);font-style:italic">
+          Para reclamos ante la Dirección de Defensa del Consumidor podés ingresar a
+          <a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor" target="_blank" style="color:var(--red2)">www.argentina.gob.ar/produccion/defensadelconsumidor</a>.
+        </p>
+
+      </div>
+    </div>
+  `;
+}
+
+// ── Privacy Policy ──
+function renderPrivacyPage() {
+  const today = new Date().toLocaleDateString('es-AR');
+  return `
+    <div class="page-wrapper">
+      <div class="page-hero">
+        <div class="page-hero-inner">
+          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Política de Privacidad</span></div>
+          <h1 class="page-hero-title">Política de<br><span style="color:var(--red2)">Privacidad</span></h1>
+          <p class="page-hero-sub">Cómo cuidamos los datos que nos confiás.</p>
+        </div>
+      </div>
+
+      <div class="legal-body" style="max-width:880px;margin:0 auto;padding:48px 24px 80px">
+
+        <p style="color:var(--metal);font-size:14px;margin-bottom:32px">Última actualización: ${today}</p>
+
+        <h2 class="legal-h2">1 · Quiénes somos</h2>
+        <p>Esta Política de Privacidad describe cómo <strong>MDRACING</strong> (operada por Miguel Angel Di Vito, CUIT 20-22862560-5, con domicilio en Av. Bartolomé Mitre 3495, Munro, Vicente López, Bs. As., Argentina) recolecta, usa y protege los datos personales de los usuarios del sitio <strong>www.mdracingfundas.com</strong> (el "Sitio").</p>
+        <p>Esta política se ajusta a la <strong>Ley 25.326 de Protección de Datos Personales</strong> de la República Argentina.</p>
+
+        <h2 class="legal-h2">2 · Qué datos recolectamos</h2>
+        <p>Recolectamos los siguientes datos personales cuando interactuás con el Sitio:</p>
+        <ul>
+          <li><strong>Datos de identificación:</strong> nombre, apellido, DNI, CUIT (opcional para Factura A).</li>
+          <li><strong>Datos de contacto:</strong> email, teléfono / WhatsApp.</li>
+          <li><strong>Datos de envío:</strong> dirección, ciudad, provincia, código postal.</li>
+          <li><strong>Datos de navegación:</strong> dirección IP, navegador, dispositivo, páginas visitadas (vía Google Analytics y Meta Pixel).</li>
+          <li><strong>Datos de la compra:</strong> productos seleccionados, monto, fecha, método de pago.</li>
+          <li><strong>Comunicaciones:</strong> mensajes enviados al asistente Madi o por WhatsApp.</li>
+        </ul>
+        <p>No recolectamos datos sensibles de tarjetas de crédito: el procesamiento de pagos se realiza directamente en la plataforma de <strong>Mercado Pago</strong>, que cumple con los estándares de seguridad PCI-DSS.</p>
+
+        <h2 class="legal-h2">3 · Para qué usamos los datos</h2>
+        <p>Los datos recolectados se utilizan para:</p>
+        <ul>
+          <li>Procesar y entregar tu pedido.</li>
+          <li>Comunicarnos contigo respecto del estado del pedido (email, WhatsApp).</li>
+          <li>Emitir factura conforme a la normativa fiscal.</li>
+          <li>Brindar atención post-venta y soporte.</li>
+          <li>Enviar comunicaciones promocionales <strong>solo si lo aceptaste expresamente</strong> (newsletter, ofertas).</li>
+          <li>Analizar el uso del Sitio para mejorar la experiencia (estadísticas agregadas).</li>
+          <li>Cumplir con obligaciones legales y normativas.</li>
+        </ul>
+
+        <h2 class="legal-h2">4 · Con quién compartimos los datos</h2>
+        <p>Compartimos los datos estrictamente necesarios con:</p>
+        <ul>
+          <li><strong>Mercado Pago</strong> (procesamiento de pagos)</li>
+          <li><strong>Andreani, Correo Argentino, OCA</strong> (envíos)</li>
+          <li><strong>Resend</strong> (servicio de envío de emails transaccionales)</li>
+          <li><strong>Vercel</strong> (hosting del Sitio)</li>
+          <li><strong>Google Analytics, Meta (Facebook/Instagram)</strong> (análisis de uso y publicidad)</li>
+          <li><strong>Anthropic</strong> (procesamiento de mensajes del asistente Madi)</li>
+        </ul>
+        <p>No vendemos ni cedemos datos personales a terceros con fines comerciales ajenos a la operación del Sitio.</p>
+
+        <h2 class="legal-h2">5 · Conservación de los datos</h2>
+        <p>Conservamos los datos por el tiempo necesario para cumplir con las finalidades descriptas y con las obligaciones legales (mínimo 10 años para datos de facturación, según normativa fiscal argentina).</p>
+
+        <h2 class="legal-h2">6 · Tus derechos (ARCO)</h2>
+        <p>De acuerdo con la Ley 25.326, podés ejercer en cualquier momento los siguientes derechos sobre tus datos:</p>
+        <ul>
+          <li><strong>Acceso:</strong> consultar qué datos tuyos tenemos.</li>
+          <li><strong>Rectificación:</strong> corregir datos inexactos.</li>
+          <li><strong>Cancelación / Supresión:</strong> solicitar la eliminación de tus datos cuando no sean ya necesarios.</li>
+          <li><strong>Oposición:</strong> oponerte a que tus datos sean utilizados para fines de marketing.</li>
+        </ul>
+        <p>Para ejercerlos, escribinos a <strong>mdracingdv@gmail.com</strong> indicando "Solicitud ARCO" en el asunto, junto con copia de tu DNI para validar identidad. Tenemos 10 días hábiles para responder.</p>
+
+        <h2 class="legal-h2">7 · Cookies y tecnologías similares</h2>
+        <p>El Sitio utiliza cookies y tecnologías similares para:</p>
+        <ul>
+          <li>Mantener tu carrito de compras entre sesiones.</li>
+          <li>Recordar preferencias de navegación.</li>
+          <li>Medir tráfico y comportamiento agregado (Google Analytics, Vercel Analytics).</li>
+          <li>Optimizar campañas publicitarias en Meta (Facebook, Instagram) e Instagram Shopping.</li>
+        </ul>
+        <p>Podés configurar tu navegador para rechazar cookies, aunque esto puede afectar el funcionamiento del Sitio (por ejemplo, el carrito).</p>
+
+        <h2 class="legal-h2">8 · Seguridad</h2>
+        <p>Implementamos medidas técnicas y organizativas razonables para proteger tus datos (HTTPS, almacenamiento cifrado, control de accesos). Sin embargo, ninguna transmisión por Internet es 100% segura. En caso de detectar una brecha de seguridad que afecte tus datos, te lo informaremos según lo establecido por la normativa.</p>
+
+        <h2 class="legal-h2">9 · Menores de edad</h2>
+        <p>El Sitio no está destinado a menores de 18 años. No recolectamos a sabiendas datos de menores. Si sos menor, abstenete de proporcionar datos personales.</p>
+
+        <h2 class="legal-h2">10 · Cambios en esta política</h2>
+        <p>Podemos actualizar esta política cuando sea necesario. Los cambios entran en vigencia al publicarse en el Sitio. La fecha de "última actualización" siempre estará indicada al inicio.</p>
+
+        <h2 class="legal-h2">11 · Contacto</h2>
+        <ul>
+          <li>Responsable de datos: <strong>Miguel Angel Di Vito</strong></li>
+          <li>Email: <strong>mdracingdv@gmail.com</strong></li>
+          <li>WhatsApp: <strong>+54 9 11 5490-7774</strong></li>
+          <li>Dirección: <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Bs. As.</strong></li>
+        </ul>
+
+        <p style="margin-top:48px;font-size:13px;color:var(--metal);font-style:italic">
+          La Agencia de Acceso a la Información Pública es el órgano de control de la Ley 25.326.
+          Más información en <a href="https://www.argentina.gob.ar/aaip" target="_blank" style="color:var(--red2)">www.argentina.gob.ar/aaip</a>.
+        </p>
+
+      </div>
+    </div>
+  `;
+}
+
 // ── Contact Page ──
 function renderContactPage() {
   return `
@@ -2526,6 +2747,10 @@ function applySEO(page) {
                                   d: 'Garantía de 30 días por fallas de fábrica. Política de cambios y devoluciones MDRACING.' },
       'contacto':               { t: 'Contacto | MDRACING — WhatsApp, Local Munro y Fábrica',
                                   d: 'Escribinos por WhatsApp +54 9 11 5490-7774 o visitá nuestro local en Av. Bartolomé Mitre 3495, Munro.' },
+      'terminos-y-condiciones': { t: 'Términos y Condiciones | MDRACING',
+                                  d: 'Condiciones de compra, envíos, garantía y derecho de revocación de MDRACING. Ajustado a la Ley 24.240 de Defensa del Consumidor.' },
+      'politica-privacidad':    { t: 'Política de Privacidad | MDRACING',
+                                  d: 'Cómo MDRACING recolecta, usa y protege tus datos personales. Conforme a la Ley 25.326 de Protección de Datos Personales (Argentina).' },
     };
     const seo = seoMap[page] || seoMap['home'];
     title = seo.t;
@@ -2597,6 +2822,8 @@ function renderPage(page) {
     else if (page === 'como-comprar') html = renderHowToBuyPage();
     else if (page === 'preguntas-frecuentes') html = renderFaqPage();
     else if (page === 'cambios-devoluciones') html = renderReturnsPage();
+    else if (page === 'terminos-y-condiciones') html = renderTermsPage();
+    else if (page === 'politica-privacidad') html = renderPrivacyPage();
     else if (page === 'contacto') html = renderContactPage();
     else html = renderHome();
   }
