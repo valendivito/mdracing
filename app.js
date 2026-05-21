@@ -566,10 +566,11 @@ const testimonials = [
 
 // ── FAQ data ──
 const faqs = [
+  { q: '¿Cómo compro en MDRACING?', a: 'Tenés <strong>2 formas</strong>: <br><strong>(1) Compra online directa</strong> — tocás "Comprar ahora" en el producto, completás tus datos y pagás con tarjeta (con cuotas) o transferencia/efectivo (10% OFF). Te llega un email con tu pedido confirmado.<br><strong>(2) Asesoramiento por WhatsApp</strong> — si tenés dudas sobre talle, modelo o material (típico en fundas y cubre autos), consultá primero con Madi (chat del sitio) o por WhatsApp al +54 9 11 5490-7774. Después podés cerrar la compra online o por WA, como prefieras.' },
   { q: '¿Le va a mi auto?', a: 'Para confirmar compatibilidad podés escribirnos por WhatsApp con tu marca, modelo y año, o consultar con <strong>Madi</strong>, nuestra asistente virtual del sitio (botón flotante en la parte inferior). Madi te responde al momento en base a nuestro catálogo. Si tu modelo no figura, lo armamos a pedido.' },
   { q: '¿Tienen stock disponible o es a pedido?', a: 'Los <strong>accesorios</strong> suelen estar en stock para envío inmediato. La mayoría de <strong>fundas, cubre autos, cubre capots y cubre trompas</strong> son <strong>a pedido</strong> — los fabricamos especialmente para tu vehículo. Consultanos por WhatsApp el plazo exacto del modelo que te interesa.' },
-  { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El costo se calcula según destino y peso, y te lo presupuestamos antes de confirmar la compra. Te pasamos el tracking apenas despachamos.' },
-  { q: '¿Qué formas de pago aceptan?', a: 'Tarjetas de crédito (hasta 6 cuotas sin interés según banco), transferencia bancaria (con <strong>10% de descuento</strong>), MercadoPago para envíos a domicilio y efectivo en el local. <strong>Sí hacemos factura A</strong> — pedila al momento de la compra junto con tus datos fiscales.' },
+  { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El <strong>costo se calcula automáticamente en el checkout</strong> según tu zona (CABA, GBA, Interior). <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000 o más. Te pasamos el tracking apenas despachamos.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Todas estas disponibles en el checkout online:<br>· <strong>Tarjeta de crédito o débito</strong> vía Mercado Pago, con cuotas sin interés según banco.<br>· <strong>Mercado Pago wallet</strong>, QR, dinero en cuenta, Pago Fácil, Rapipago.<br>· <strong>Transferencia bancaria</strong> directa con <strong style="color:var(--red2)">10% OFF</strong> — te mostramos los datos en el checkout y mandás el comprobante por WhatsApp.<br>· <strong>Efectivo</strong> al retirar en local de Munro o fábrica de Villa Ballester, también con <strong style="color:var(--red2)">10% OFF</strong>.<br><strong>Sí hacemos factura A</strong> — pedila al momento de la compra con tu CUIT.' },
   { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> — techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
   { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares — más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
   { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo — si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
@@ -2110,14 +2111,19 @@ function renderFaqPage() {
 
 // ── How to Buy Page ──
 function renderHowToBuyPage() {
-  const steps = [
-    { n: '01', title: 'Elegí el producto que querés', text: 'Explorá el catálogo por categoría. Si tenés dudas sobre qué modelo o talla es la correcta para tu vehículo, no te preocupes: te asesoramos sin ningún compromiso.' },
-    { n: '02', title: 'Sumalo al carrito (o consultá uno por uno)', text: 'Podés armar un carrito con todos los productos que te interesen y consultarlos juntos por WhatsApp en un solo mensaje. Si preferís, también podés consultar producto por producto desde su ficha.' },
-    { n: '03', title: 'Consultá por WhatsApp', text: 'Hacé clic en "Consultar todos por WhatsApp" desde el carrito, o "Comprar por WhatsApp" desde la ficha del producto. Te responde un asesor real, sin bots ni formularios.' },
-    { n: '04', title: 'Sacate todas las dudas', text: 'Consultá todo lo que necesites: medidas, materiales, compatibilidad con tu auto, colores disponibles. Respondemos con detalle para que no te quede ninguna duda antes de comprar.' },
-    { n: '05', title: 'Definí cómo recibís el pedido', text: 'Coordiná con tu asesor si preferís recibir el pedido por envío a domicilio (todo el país) o retirarlo personalmente en nuestro local de Munro o en nuestra fábrica de Villa Ballester.' },
-    { n: '06', title: 'Elegí cómo pagás', text: 'Podés abonar por transferencia bancaria, efectivo, tarjeta de débito o crédito (online o en local) y Mercado Pago para envíos a domicilio. ¡Pagando con efectivo o transferencia te hacemos un 10% de descuento!' },
-    { n: '07', title: '¡Listo! Confirmamos y despachamos', text: 'Si abonás por transferencia o Mercado Pago, envianos el comprobante por WhatsApp. Si retirás en persona, coordinamos el día y horario. Preparamos tu pedido y te avisamos cuando está listo.' },
+  // 2 caminos paralelos: compra rápida online vs. compra con asesoramiento.
+  const stepsFast = [
+    { n: '01', title: 'Elegí tu producto',         text: 'Buscá en el catálogo o usá el filtro por marca. Cada ficha tiene fotos, descripción y precio actualizado.' },
+    { n: '02', title: 'Tocá "Comprar ahora"',      text: 'El botón rojo en la ficha del producto. Se abre el checkout sin salir del sitio.' },
+    { n: '03', title: 'Completá tus datos',        text: 'Nombre, email, teléfono, dirección de envío o retiro. Te calculamos el envío en segundos.' },
+    { n: '04', title: 'Pagá y listo',              text: 'Elegí <strong>tarjeta de crédito o débito</strong> (cuotas según banco) <strong>o transferencia/efectivo con 10% OFF</strong>. Te llega un email con tu pedido confirmado y te avisamos por WhatsApp cuando despachamos.' },
+  ];
+
+  const stepsAdvised = [
+    { n: '01', title: 'Tenés dudas, lo entendemos', text: 'Cubre autos, fundas a medida, cubre capots, cubre trompas — son productos donde elegir mal el modelo o talle es caro. Mejor preguntar.' },
+    { n: '02', title: 'Consultá con Madi o por WhatsApp', text: 'Madi (el chat del sitio) responde 24/7 sobre precios, materiales y compatibilidad. Para casos especiales, escribinos directo al WhatsApp: <strong>+54 9 11 5490-7774</strong>.' },
+    { n: '03', title: 'Te asesoramos sin compromiso', text: 'Vemos foto de tu auto si hace falta, confirmamos modelo y talle exacto, te recomendamos el material correcto según uso. Sin presión de venta.' },
+    { n: '04', title: 'Cerramos por donde prefieras', text: 'Una vez claro el producto, podés finalizar online (volvés al sitio y tocás "Comprar ahora") o lo cerramos por WhatsApp coordinando pago y envío.' },
   ];
 
   return `
@@ -2125,66 +2131,141 @@ function renderHowToBuyPage() {
       <div class="page-hero">
         <div class="page-hero-inner">
           <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Cómo Comprar</span></div>
-          <h1 class="page-hero-title">Comprar es<br><span style="color:var(--red2)">simple.</span></h1>
-          <p class="page-hero-sub">Te explicamos paso a paso cómo adquirir cualquier producto de MDRACING. Sin complicaciones, con atención personalizada en cada etapa.</p>
+          <h1 class="page-hero-title">Dos formas<br>de <span style="color:var(--red2)">comprar.</span></h1>
+          <p class="page-hero-sub">Elegí la que mejor se adapte a vos: <strong>compra rápida online</strong> con tarjeta o transferencia, o <strong>asesoramiento por WhatsApp</strong> antes de decidir. Las dos son simples y seguras.</p>
         </div>
       </div>
+
       <div class="howto-body">
-        <div class="steps-list">
-          ${steps.map((s, i) => `
-            ${i > 0 ? '<div class="step-connector"></div>' : ''}
-            <div class="step-item">
-              <div class="step-num">${s.n}</div>
-              <div class="step-content">
-                <h3>${s.title}</h3>
-                <p>${s.text}</p>
-              </div>
-            </div>
-          `).join('')}
+
+        <!-- TWO PATHS RECOMMENDATION -->
+        <div style="margin-bottom:60px;display:grid;grid-template-columns:1fr 1fr;gap:20px" class="howto-two-paths">
+          <div style="background:var(--dark2);border:2px solid var(--red2);border-radius:14px;padding:24px;position:relative">
+            <span style="position:absolute;top:-12px;left:24px;background:var(--red2);color:#fff;padding:4px 12px;border-radius:6px;font-family:var(--font-small);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase">Recomendado para accesorios</span>
+            <h3 style="font-family:var(--font-head);font-weight:800;font-size:22px;color:var(--white);margin:8px 0 10px;letter-spacing:-.3px">⚡ Compra rápida online</h3>
+            <p style="color:var(--metal2);font-size:14.5px;line-height:1.6;margin:0">Cubre volantes, cubre alfombras, criques, portabicis y accesorios donde sabés exactamente qué necesitás. Se compra en 2 minutos sin salir del sitio.</p>
+          </div>
+          <div style="background:var(--dark2);border:2px solid #25d366;border-radius:14px;padding:24px;position:relative">
+            <span style="position:absolute;top:-12px;left:24px;background:#25d366;color:#fff;padding:4px 12px;border-radius:6px;font-family:var(--font-small);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase">Recomendado para productos custom</span>
+            <h3 style="font-family:var(--font-head);font-weight:800;font-size:22px;color:var(--white);margin:8px 0 10px;letter-spacing:-.3px">💬 Asesoramiento por WhatsApp</h3>
+            <p style="color:var(--metal2);font-size:14.5px;line-height:1.6;margin:0">Fundas, cubre autos, cubre capots y trompas — donde el modelo/talle/material importa. Te asesoramos para evitar errores y luego elegís cómo cerrar la compra.</p>
+          </div>
         </div>
 
+        <!-- PATH A: FAST ONLINE -->
         <div style="margin-bottom:64px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+            <span style="background:var(--red2);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:14px">A</span>
+            <h2 class="section-title" style="margin:0">Comprá <span>online en 4 pasos</span></h2>
+          </div>
+          <div class="steps-list">
+            ${stepsFast.map((s, i) => `
+              ${i > 0 ? '<div class="step-connector"></div>' : ''}
+              <div class="step-item">
+                <div class="step-num">${s.n}</div>
+                <div class="step-content">
+                  <h3>${s.title}</h3>
+                  <p>${s.text}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- PATH B: ADVISED -->
+        <div style="margin-bottom:64px;padding-top:48px;border-top:1px solid var(--white08)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+            <span style="background:#25d366;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:14px">B</span>
+            <h2 class="section-title" style="margin:0">Te <span>asesoramos primero</span></h2>
+          </div>
+          <div class="steps-list">
+            ${stepsAdvised.map((s, i) => `
+              ${i > 0 ? '<div class="step-connector"></div>' : ''}
+              <div class="step-item">
+                <div class="step-num">${s.n}</div>
+                <div class="step-content">
+                  <h3>${s.title}</h3>
+                  <p>${s.text}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- MEDIOS DE PAGO -->
+        <div style="margin-bottom:64px;padding-top:48px;border-top:1px solid var(--white08)">
           <span class="section-label">Medios de pago</span>
-          <h2 class="section-title" style="margin-bottom:40px">Pagá como <span>más te convenga</span></h2>
+          <h2 class="section-title" style="margin-bottom:16px">Pagá como <span>más te convenga</span></h2>
+          <p style="color:var(--metal2);font-size:15px;line-height:1.6;margin-bottom:32px;max-width:680px">Todos los métodos están disponibles en el checkout online. Eligiendo <strong>transferencia o efectivo</strong> tenés <strong style="color:var(--red2)">10% OFF automático</strong> en cualquier producto.</p>
+
           <div class="payment-methods">
             <div class="payment-card">
-              <div class="payment-icon">🏦</div>
-              <div class="payment-name">Transferencia Bancaria</div>
-              <div class="payment-desc">Para compras con envío o retiro</div>
-            </div>
-            <div class="payment-card">
-              <div class="payment-icon">💵</div>
-              <div class="payment-name">Efectivo</div>
-              <div class="payment-desc">Al retirar en local o fábrica</div>
-            </div>
-            <div class="payment-card">
               <div class="payment-icon">💳</div>
-              <div class="payment-name">Tarjeta (débito/crédito)</div>
-              <div class="payment-desc">Online o en local de Munro</div>
+              <div class="payment-name">Tarjeta crédito o débito</div>
+              <div class="payment-desc">Cuotas sin interés según tu banco · Vía Mercado Pago</div>
+            </div>
+            <div class="payment-card" style="border-color:var(--red2)">
+              <div class="payment-icon">🏦</div>
+              <div class="payment-name">Transferencia bancaria <span style="display:inline-block;background:var(--red2);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;margin-left:6px;letter-spacing:.5px">10% OFF</span></div>
+              <div class="payment-desc">Te mostramos los datos en el checkout. Mandás el comprobante por WhatsApp.</div>
+            </div>
+            <div class="payment-card" style="border-color:var(--red2)">
+              <div class="payment-icon">💵</div>
+              <div class="payment-name">Efectivo <span style="display:inline-block;background:var(--red2);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;margin-left:6px;letter-spacing:.5px">10% OFF</span></div>
+              <div class="payment-desc">Al retirar tu pedido en local de Munro o en fábrica de Villa Ballester.</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">📱</div>
               <div class="payment-name">Mercado Pago</div>
-              <div class="payment-desc">Disponible para envíos a domicilio</div>
+              <div class="payment-desc">Dinero en cuenta, QR, Pago Fácil, Rapipago, tarjetas. Todo desde el checkout.</div>
             </div>
           </div>
+
           <div class="info-block" style="margin-top:24px">
-            <div class="info-block-title">${icons.check} Importante sobre los medios de pago</div>
+            <div class="info-block-title">${icons.check} Lo importante en una línea</div>
             <ul>
-              <li>Aceptamos <strong>tarjeta de débito o crédito</strong> tanto <strong>online</strong> como retirando en nuestro local de <strong>Av. Bartolomé Mitre 3495, Munro.</strong></li>
-              <li>Para envíos a domicilio podés abonar con <strong>transferencia bancaria, Mercado Pago o tarjeta online</strong>.</li>
-              <li>Pagando con <strong>efectivo o transferencia</strong> tenés un <strong>10% de descuento</strong> en todos los productos.</li>
-              <li>Una vez confirmado el pago, preparamos tu pedido en 24-48hs hábiles.</li>
+              <li>El <strong>10% OFF se aplica solo</strong> al elegir "Transferencia o efectivo" en el checkout. No tenés que pedirlo.</li>
+              <li><strong>Cuotas sin interés</strong> disponibles según tu tarjeta y banco emisor (se ve en el checkout de Mercado Pago).</li>
+              <li>Pago 100% seguro vía Mercado Pago. Nosotros nunca vemos los datos de tu tarjeta.</li>
+              <li>Una vez confirmado el pago, preparamos el pedido en <strong>24-48 hs hábiles</strong> (productos en stock) o en el plazo informado para fabricación a pedido.</li>
             </ul>
           </div>
         </div>
 
+        <!-- ENVÍOS Y RETIROS -->
+        <div style="margin-bottom:48px;padding-top:48px;border-top:1px solid var(--white08)">
+          <span class="section-label">Envíos y retiros</span>
+          <h2 class="section-title" style="margin-bottom:32px">A todo el país <span>o retirás vos</span></h2>
+          <div class="payment-methods">
+            <div class="payment-card">
+              <div class="payment-icon">📦</div>
+              <div class="payment-name">Envío a domicilio</div>
+              <div class="payment-desc">Andreani · Correo Argentino · OCA. Costo automático en el checkout según zona. <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000+.</div>
+            </div>
+            <div class="payment-card">
+              <div class="payment-icon">🏪</div>
+              <div class="payment-name">Retiro en local</div>
+              <div class="payment-desc">Av. Bartolomé Mitre 3495, Munro · Lun-Vie 8-18hs, Sáb 9-13hs. Sin costo.</div>
+            </div>
+            <div class="payment-card">
+              <div class="payment-icon">🏭</div>
+              <div class="payment-name">Retiro en fábrica</div>
+              <div class="payment-desc">Paraná 2185, Villa Ballester · Lun-Vie 8-16hs. Sin costo.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA FINAL -->
         <div style="text-align:center;padding:60px 0;border-top:1px solid var(--white08)">
           <span class="section-label">¿Quedó alguna duda?</span>
           <h2 class="section-title" style="margin-bottom:16px">Estamos <span>a tu disposición.</span></h2>
           <div class="divider-line" style="margin:16px auto 32px"></div>
-          <a href="${WA_MSG('Hola! Quiero hacer una consulta antes de comprar')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:15px 36px">${icons.waIcon} Consultar por WhatsApp</a>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+            <a href="#" data-page="categorias" class="btn-primary" style="font-size:16px;padding:15px 36px">Ver catálogo</a>
+            <a href="${WA_MSG('Hola! Quiero hacer una consulta antes de comprar')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:15px 36px">${icons.waIcon} Consultar por WhatsApp</a>
+          </div>
         </div>
+
       </div>
     </div>
   `;
