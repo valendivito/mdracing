@@ -1357,8 +1357,8 @@ function renderProductCard(p) {
         ${ultimasHtml}
         <div class="product-price-row">${priceHtml}</div>
         <div class="product-card-actions">
-          <a href="${waLink}" target="_blank" class="product-btn-wa">${icons.waIcon} Consultar</a>
-          <button class="product-btn-detail" onclick="navigate('product-${p.id}')">Ver más</button>
+          <button class="product-btn-buynow" onclick="event.stopPropagation();openCheckoutForProduct('${p.id}')" aria-label="Comprar ahora">${icons.cart} Comprar</button>
+          <a href="${waLink}" target="_blank" class="product-btn-wa" onclick="event.stopPropagation()">${icons.waIcon} Consultar</a>
           <button class="product-btn-cart" data-cart-btn="${p.id}" onclick="event.stopPropagation();addToCart('${p.id}')" aria-label="Sumar al carrito" title="Sumar al carrito">${icons.plus}</button>
         </div>
       </div>
@@ -1815,28 +1815,11 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-ctas">
-            ${(() => {
-              // ── Productos con "Comprar ahora" habilitado (checkout MP / transferencia) ──
-              // Lista global definida en app.js (window.PILOT_PRODUCT_IDS).
-              const isPilot = (window.PILOT_PRODUCT_IDS || []).includes(p.id);
-
-              if (isPilot) {
-                return `
-                  <button type="button" onclick="openCheckoutForProduct('${p.id}')" class="btn-primary btn-primary-full">
-                    ${icons.cart} Comprar ahora
-                  </button>
-                  <a href="${WA_MSG(`Hola! Quiero consultar antes de comprar: ${p.name}`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full">${icons.waIcon} Consultar antes de comprar</a>
-                  <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2);font-size:14px">${icons.cart} Sumar al carrito</button>
-                `;
-              }
-
-              // ── Comportamiento actual para productos no-piloto (sin cambios) ──
-              return `
-                <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.salePrice || p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
-                <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2)">${icons.cart} Sumar al carrito</button>
-                <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
-              `;
-            })()}
+            <button type="button" onclick="openCheckoutForProduct('${p.id}')" class="btn-primary btn-primary-full">
+              ${icons.cart} Comprar ahora
+            </button>
+            <a href="${WA_MSG(`Hola! Quiero consultar antes de comprar: ${p.name}`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full">${icons.waIcon} Consultar antes de comprar</a>
+            <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2);font-size:14px">${icons.cart} Sumar al carrito</button>
           </div>
 
           <div class="product-security-badge" style="display:flex;align-items:center;gap:8px;margin-top:16px;padding:16px;background:var(--dark3);border-radius:8px;border:1px solid var(--white08)">
@@ -3661,43 +3644,32 @@ function cartRender() {
     return sum + p * (i.qty || 1);
   }, 0);
   const totalStr = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  // ── Comprar ahora con MP / Transferencia desde el carrito ──
-  // Disponible solo cuando TODOS los productos del carrito están en la lista de pilotos.
-  // (Por ahora solo el cubre-volante; se irá habilitando producto por producto.)
-  const PILOT_PRODUCT_IDS = (typeof window !== 'undefined' && window.PILOT_PRODUCT_IDS) || [];
-  const allArePilot = items.length > 0 && items.every(i => PILOT_PRODUCT_IDS.includes(i.id));
-
-  const buyNowBtn = allArePilot ? `
-    <button type="button" class="btn-cart-buynow" onclick="openCheckoutFromCart()">
-      ${icons.cart} Comprar ahora · Mercado Pago o transferencia
-    </button>
-  ` : '';
+  // Todos los productos del catálogo soportan compra online (MP o transferencia).
+  const hasItems = items.length > 0;
 
   footer.innerHTML = `
     <div class="cart-summary">
       <div class="cart-summary-row">
         <span>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en el carrito</span>
-        <strong>${allArePilot ? 'Compra online' : 'Consulta sin cargo'}</strong>
+        <strong>Compra online</strong>
       </div>
       <div class="cart-total-row">
         <span>Total estimado</span>
         <span class="cart-total-price">$${totalStr}</span>
       </div>
     </div>
-    ${buyNowBtn}
-    <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout ${allArePilot ? 'secondary' : ''}">
-      ${icons.waIcon} ${allArePilot ? 'Consultar antes de comprar' : 'Finalizar compra por WhatsApp'}
+    ${hasItems ? `
+      <button type="button" class="btn-cart-buynow" onclick="openCheckoutFromCart()">
+        ${icons.cart} Comprar ahora · Tarjeta, efectivo o transferencia
+      </button>
+    ` : ''}
+    <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout secondary">
+      ${icons.waIcon} Consultar antes de comprar
     </a>
-    <p class="cart-note">${allArePilot
-      ? 'Comprá online con tarjeta o transferencia (10% OFF). O consultá por WhatsApp si tenés dudas.'
-      : 'No es una compra directa. Te derivamos a WhatsApp para coordinar precio final, envío y forma de pago.'}</p>
+    <p class="cart-note">Comprá online con tarjeta o transferencia (10% OFF). O consultá por WhatsApp si tenés dudas.</p>
     <button class="btn-cart-clear" onclick="clearCart()">Vaciar carrito</button>
   `;
 }
-
-// ── Lista global de productos con "Comprar ahora" habilitado ──
-// (Por ahora solo el producto piloto. Después la expandimos a los 167.)
-window.PILOT_PRODUCT_IDS = ['cubre-volante-base-plana-polo-gol-golf-vento-ksc3g'];
 
 // Abre el modal de checkout con los items del carrito (multi-item)
 function openCheckoutFromCart() {
