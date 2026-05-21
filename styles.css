@@ -3120,6 +3120,63 @@ section { position: relative; }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ── Hero trust grid (4 íconos) ── */
+.hero-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 24px 0 4px;
+  padding: 16px;
+  background: var(--white04);
+  border: 1px solid var(--white08);
+  border-radius: 12px;
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.hero-trust-item > svg {
+  width: 26px;
+  height: 26px;
+  color: var(--red2);
+  flex-shrink: 0;
+}
+.hero-trust-item > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.hero-trust-item strong {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero-trust-item small {
+  font-family: var(--font-small);
+  font-size: 11px;
+  color: var(--metal);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 1024px) {
+  .hero-trust-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+@media (max-width: 480px) {
+  .hero-trust-grid { padding: 12px; }
+  .hero-trust-item > svg { width: 22px; height: 22px; }
+  .hero-trust-item strong { font-size: 12px; }
+  .hero-trust-item small { font-size: 10.5px; }
+}
+
 /* ── Hero trustline ── */
 .hero-trustline {
   display: flex;
@@ -4807,6 +4864,66 @@ section { position: relative; }
 .steps-cta {
   margin-top: 24px;
 }
+
+/* Medios de pago debajo de los pasos */
+.steps-payments {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--white08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.steps-payments-label {
+  font-family: var(--font-small);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--metal);
+}
+.steps-payments-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pay-badge {
+  background: var(--dark2);
+  border: 1px solid var(--white08);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--metal2);
+  letter-spacing: .3px;
+  transition: var(--trans);
+}
+.pay-badge:hover {
+  border-color: var(--white15);
+  color: var(--white);
+}
+.pay-badge-cash {
+  background: rgba(209, 0, 0, .08);
+  border-color: rgba(209, 0, 0, .25);
+  color: var(--red);
+}
+.pay-badge-cash strong {
+  color: var(--red);
+  font-weight: 700;
+}
+.pay-badge-cash:hover {
+  background: rgba(209, 0, 0, .12);
+  border-color: var(--red2);
+}
+@media (max-width: 700px) {
+  .steps-payments { gap: 12px; }
+  .pay-badge { font-size: 11.5px; padding: 7px 11px; }
+}
+
 @media (max-width: 700px) {
   .steps-section { padding: 28px 0; }
   .steps-cards { flex-direction: column; gap: 10px; max-width: 100%; }

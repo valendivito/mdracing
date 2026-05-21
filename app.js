@@ -709,11 +709,42 @@ function renderHome() {
           </h1>
           <p class="hero-sub">
             <strong>Fabricantes directos</strong> de fundas para asientos, cubre autos, cubre capots, cubre motos y accesorios.
-            Atención personal por WhatsApp, envíos a todo el país y local de confianza en Munro.
+            <strong style="color:var(--white)">Comprá online</strong> con tarjeta en cuotas o transferencia con <strong style="color:var(--red2)">10% OFF</strong>. Envíos a todo el país.
           </p>
           <div class="hero-ctas">
-            <a href="${WA_MSG('Hola! Quiero consultar por un producto MDRACING')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Consultar por WhatsApp</a>
-            <a href="#" data-page="categorias" class="btn-outline">Ver Catálogo ${icons.arrowRight}</a>
+            <a href="#" data-page="categorias" class="btn-primary">${icons.cart} Comprar ahora</a>
+            <a href="${WA_MSG('Hola! Quiero consultar por un producto MDRACING')}" target="_blank" class="btn-whatsapp" style="font-size:15px;padding:13px 28px">${icons.waIcon} Consultar por WhatsApp</a>
+          </div>
+          <!-- Trust signals: pago seguro · cuotas · envío · devolución -->
+          <div class="hero-trust-grid">
+            <div class="hero-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div>
+                <strong>Pago seguro</strong>
+                <small>Mercado Pago + SSL</small>
+              </div>
+            </div>
+            <div class="hero-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              <div>
+                <strong>Cuotas sin interés</strong>
+                <small>Según tu tarjeta</small>
+              </div>
+            </div>
+            <div class="hero-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <div>
+                <strong>Envíos a todo el país</strong>
+                <small>Gratis +$130.000</small>
+              </div>
+            </div>
+            <div class="hero-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              <div>
+                <strong>30 días para devolver</strong>
+                <small>Cambios gratis</small>
+              </div>
+            </div>
           </div>
           <div class="hero-trustline">
             <div class="hero-trustline-stars">${'★'.repeat(5)}</div>
@@ -921,8 +952,9 @@ function renderHome() {
     <section class="steps-section">
       <div class="steps-inner">
         <div class="steps-header">
-          <span class="section-label">Simple y rápido</span>
+          <span class="section-label">Compra rápida y segura</span>
           <h2 class="section-title">Comprá en <span>3 pasos</span></h2>
+          <p class="section-sub" style="margin:14px auto 0;text-align:center;max-width:580px">Online directo desde el sitio o con asesoramiento por WhatsApp. Vos elegís.</p>
         </div>
         <div class="steps-cards">
           <div class="step-card">
@@ -931,25 +963,43 @@ function renderHome() {
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
             <div class="step-title">Elegí tu producto</div>
-            <div class="step-desc">Explorá el catálogo y encontrá lo que necesitás.</div>
+            <div class="step-desc">Explorá el catálogo y tocá "Comprar ahora" en lo que te interese.</div>
           </div>
           <div class="step-sep">→</div>
           <div class="step-card">
             <div class="step-num">02</div>
-            <div class="step-icon">${icons.waIcon}</div>
-            <div class="step-title">Escribinos por WhatsApp</div>
-            <div class="step-desc">Confirmamos talle, precio y disponibilidad al instante.</div>
+            <div class="step-icon">${icons.cart}</div>
+            <div class="step-title">Completá y pagá</div>
+            <div class="step-desc">Tus datos + dirección + método de pago. Tarjeta con cuotas o transferencia con <strong style="color:var(--red2)">10% OFF</strong>.</div>
           </div>
           <div class="step-sep">→</div>
           <div class="step-card">
             <div class="step-num">03</div>
             <div class="step-icon">${icons.truck}</div>
-            <div class="step-title">Recibilo en tu puerta</div>
-            <div class="step-desc">Enviamos en 24 a 72 hs a todo el país. O retirás en local.</div>
+            <div class="step-title">Lo recibís en casa</div>
+            <div class="step-desc">Despacho en 24-72 hs a todo el país. O lo retirás en local Munro o fábrica Ballester.</div>
           </div>
         </div>
-        <div class="steps-cta">
-          <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Empezar ahora</a>
+        <div class="steps-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="#" data-page="categorias" class="btn-primary">${icons.cart} Ver catálogo</a>
+          <a href="${WA_MSG('Hola! Quiero consultar antes de comprar')}" target="_blank" class="btn-whatsapp" style="font-size:15px;padding:13px 28px">${icons.waIcon} Consultar por WhatsApp</a>
+        </div>
+
+        <!-- Medios de pago strip -->
+        <div class="steps-payments">
+          <span class="steps-payments-label">Aceptamos:</span>
+          <div class="steps-payments-list">
+            <div class="pay-badge" title="Mercado Pago">Mercado Pago</div>
+            <div class="pay-badge" title="Visa">VISA</div>
+            <div class="pay-badge" title="Mastercard">Mastercard</div>
+            <div class="pay-badge" title="American Express">Amex</div>
+            <div class="pay-badge" title="Naranja X">Naranja</div>
+            <div class="pay-badge" title="Cabal">Cabal</div>
+            <div class="pay-badge" title="Pago Fácil">Pago Fácil</div>
+            <div class="pay-badge" title="Rapipago">Rapipago</div>
+            <div class="pay-badge pay-badge-cash" title="Transferencia bancaria"><strong>Transferencia</strong> · 10% OFF</div>
+            <div class="pay-badge pay-badge-cash" title="Efectivo"><strong>Efectivo</strong> · 10% OFF</div>
+          </div>
         </div>
       </div>
     </section>
