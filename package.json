@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
+    "@supabase/supabase-js": "^2.106.1",
     "mercadopago": "^2.12.1",
     "resend": "^6.12.3"
   },

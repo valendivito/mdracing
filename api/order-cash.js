@@ -12,6 +12,7 @@
 
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
 const { calcShipping, priceToNumber } = require('../lib/shipping');
+const { saveOrder } = require('../lib/db');
 
 function generateOrderId() {
   const date = new Date();
@@ -91,6 +92,15 @@ module.exports = async (req, res) => {
       shippingCost: shippingResult.cost,
       total,
     };
+
+    // Persistir en DB
+    try {
+      const dbRes = await saveOrder(order);
+      if (!dbRes.ok) console.error('[order-cash] DB save failed:', dbRes.error);
+      else console.log('[order-cash] guardado en DB:', order.id);
+    } catch (e) {
+      console.error('[order-cash] DB exception:', e && e.message);
+    }
 
     // Notificaciones (no bloqueamos si una falla)
     try {

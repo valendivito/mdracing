@@ -10,6 +10,7 @@
 const crypto = require('crypto');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
+const { saveOrder } = require('../lib/db');
 
 function getMP() {
   const mode = (process.env.MP_MODE || 'test').toLowerCase();
@@ -161,7 +162,16 @@ module.exports = async (req, res) => {
 
     console.log('[mp-webhook] payment status:', payment.status, 'orderId:', order.id);
 
-    // Solo notificar si el pago está aprobado.
+    // Persistir en DB siempre (también pedidos pending — útil para tracking)
+    try {
+      const dbRes = await saveOrder(order);
+      if (!dbRes.ok) console.error('[mp-webhook] DB save failed:', dbRes.error);
+      else console.log('[mp-webhook] guardado en DB:', order.id);
+    } catch (e) {
+      console.error('[mp-webhook] DB exception:', e && e.message);
+    }
+
+    // Solo notificar por email si el pago está aprobado.
     // Para "pending" (efectivo Rapipago/Pago Fácil sin pagar aún) no notificamos.
     let adminResult = null, customerResult = null;
     if (payment.status === 'approved') {
