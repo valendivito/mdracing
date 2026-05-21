@@ -58,11 +58,18 @@ module.exports = async (req, res) => {
     }));
     const subtotal = normalizedItems.reduce((s, it) => s + it.unitPrice * it.qty, 0);
     const shippingResult = calcShipping(normalizedItems, shipping.zone);
-    const total = subtotal + shippingResult.cost;
+
+    // Descuento 10% si el método es 'transfer' (transferencia o efectivo)
+    // Permitimos que el cliente mande `discount` calculado en frontend pero lo
+    // re-calculamos en backend como seguridad.
+    const requestedMethod = body.paymentMethod || 'transfer'; // 'transfer' o 'cash' = mismo flujo
+    const isTransferOrCash = requestedMethod === 'transfer' || requestedMethod === 'cash';
+    const discount = isTransferOrCash ? Math.round(subtotal * 0.10) : 0;
+    const total = subtotal - discount + shippingResult.cost;
 
     const order = {
       id: generateOrderId(),
-      paymentMethod: 'cash',
+      paymentMethod: isTransferOrCash ? 'transfer' : 'cash',
       paymentStatus: 'reserved',
       createdAt: new Date().toISOString(),
       customer: {
@@ -80,6 +87,7 @@ module.exports = async (req, res) => {
         address: shipping.address || null,
       },
       subtotal,
+      discount,
       shippingCost: shippingResult.cost,
       total,
     };

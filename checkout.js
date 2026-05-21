@@ -1,17 +1,16 @@
 /* ═══════════════════════════════════════════════════════════
    MDRACING — Checkout Modal
-   Modal de compra directa con Mercado Pago o reserva con efectivo.
+   Render inicial completo (los inputs NO se pierden al cambiar opciones).
 
    API global:
-     openCheckout({
-       id, name, image, unitPrice, variant?, freeShipping?
-     })
+     openCheckout({ id, name, image, unitPrice, variant?, freeShipping? })
 ═══════════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
   const FREE_SHIPPING_THRESHOLD = 130000;
+  const CASH_TRANSFER_DISCOUNT = 0.10; // 10% OFF
 
   const SHIPPING_ZONES = [
     { id: 'retiro-fabrica',   label: 'Retiro en fábrica',          cost: 0,    sub: 'Villa Ballester, San Martín' },
@@ -22,21 +21,36 @@
     { id: 'interior',         label: 'Envío al interior del país',  cost: 9500, sub: 'Resto de Argentina' },
   ];
 
-  // Estado del modal actual
+  // Datos bancarios para transferencia
+  // ⚠️ COMPLETAR con los datos reales de MDRACING
+  const BANK_INFO = {
+    bank: 'Mercado Pago',
+    alias: 'MDRACING.FUNDAS',
+    cbu: '0000003100012345678901',
+    holder: 'MDRACING (Valentino Divito)',
+    cuit: '20-XXXXXXXX-X',
+  };
+
+  const WA_NUMBER = '5491154907774';
+
+  // Estado del modal
   let currentItem = null;
   let currentQty = 1;
   let selectedZone = 'retiro-fabrica';
-  let selectedPayment = 'mp';
+  let selectedPayment = 'card'; // 'card' = MP tarjeta | 'transfer' = transferencia/efectivo + WA
   let isSubmitting = false;
+  let lastOrderId = null;
 
+  // ─── Utils ───
   function priceToNumber(p) {
     if (typeof p === 'number') return p;
     if (!p) return 0;
     return parseInt(String(p).replace(/[^\d]/g, ''), 10) || 0;
   }
-
-  function money(n) {
-    return '$' + (Number(n) || 0).toLocaleString('es-AR');
+  function money(n) { return '$' + (Number(n) || 0).toLocaleString('es-AR'); }
+  function escapeHtml(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function qualifiesForFreeShipping() {
@@ -61,11 +75,13 @@
     const unit = priceToNumber(currentItem.unitPrice);
     const subtotal = unit * currentQty;
     const shippingCost = getShippingCost();
-    const total = subtotal + shippingCost;
-    return { subtotal, shippingCost, total };
+    // Si el pago es transferencia/efectivo, aplicar 10% OFF sobre el subtotal (no sobre el envío)
+    const discount = selectedPayment === 'transfer' ? Math.round(subtotal * CASH_TRANSFER_DISCOUNT) : 0;
+    const total = subtotal - discount + shippingCost;
+    return { subtotal, discount, shippingCost, total };
   }
 
-  // ─── Construir DOM ───
+  // ─── DOM (build una sola vez) ───
   function buildModal() {
     if (document.getElementById('mdco-modal')) return;
 
@@ -80,8 +96,8 @@
     modal.setAttribute('aria-label', 'Finalizar compra');
     modal.innerHTML = `
       <div class="mdco-header">
-        <h3>Finalizar compra</h3>
-        <button class="mdco-close" aria-label="Cerrar" onclick="closeCheckout()">
+        <h3 id="mdco-title">Finalizar compra</h3>
+        <button class="mdco-close" aria-label="Cerrar" type="button">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
@@ -90,29 +106,29 @@
 
     document.body.appendChild(backdrop);
     document.body.appendChild(modal);
+
+    modal.querySelector('.mdco-close').addEventListener('click', closeCheckout);
   }
 
-  function renderBody() {
-    const t = calcTotals();
-    const free = getShippingCost() === 0 && !selectedZone.startsWith('retiro-');
-
+  // ─── Vista de Checkout (formulario) ───
+  function renderCheckoutView() {
+    document.getElementById('mdco-title').textContent = 'Finalizar compra';
     const body = document.getElementById('mdco-body');
     body.innerHTML = `
-      <!-- Mensajes -->
       <div class="mdco-msg" id="mdco-msg"></div>
 
       <!-- Resumen del producto -->
       <div class="mdco-product-summary">
-        <img src="${currentItem.image || '/logo.png'}" alt="${escapeHtml(currentItem.name)}" />
+        <img src="${escapeHtml(currentItem.image || '/logo.png')}" alt="${escapeHtml(currentItem.name)}" />
         <div class="mdco-product-summary-info">
           <div class="mdco-product-summary-name">${escapeHtml(currentItem.name)}</div>
           ${currentItem.variant ? `<div class="mdco-product-summary-variant">${escapeHtml(currentItem.variant)}</div>` : ''}
           <div class="mdco-product-summary-price">${money(priceToNumber(currentItem.unitPrice))}</div>
         </div>
         <div class="mdco-product-summary-qty">
-          <button class="mdco-qty-btn" onclick="mdcoChangeQty(-1)" ${currentQty <= 1 ? 'disabled' : ''}>−</button>
-          <span class="mdco-qty-val">${currentQty}</span>
-          <button class="mdco-qty-btn" onclick="mdcoChangeQty(1)" ${currentQty >= 20 ? 'disabled' : ''}>+</button>
+          <button class="mdco-qty-btn" type="button" data-qty-delta="-1">−</button>
+          <span class="mdco-qty-val" id="mdco-qty-val">${currentQty}</span>
+          <button class="mdco-qty-btn" type="button" data-qty-delta="1">+</button>
         </div>
       </div>
 
@@ -148,7 +164,9 @@
       <!-- Envío -->
       <div class="mdco-section">
         <div class="mdco-section-title">2 · Envío</div>
-        ${SHIPPING_ZONES.map(z => renderZoneCard(z)).join('')}
+        <div id="mdco-zones">
+          ${SHIPPING_ZONES.map(z => renderZoneCardHTML(z)).join('')}
+        </div>
 
         <div id="mdco-address-block" class="${selectedZone.startsWith('retiro-') ? '' : 'show'}">
           <div class="mdco-field">
@@ -172,83 +190,91 @@
         </div>
 
         <div class="mdco-field" style="margin-top:12px">
-          <label>Notas para el envío <span class="opt">(opcional — timbre, piso, indicaciones)</span></label>
+          <label>Notas para el envío <span class="opt">(opcional)</span></label>
           <textarea id="mdco-notes" placeholder="Ej: Timbre Depto B, entre 14 y 18hs"></textarea>
-        </div>
-      </div>
-
-      <!-- Totales -->
-      <div class="mdco-totals">
-        <div class="mdco-totals-row">
-          <span>Subtotal</span>
-          <span>${money(t.subtotal)}</span>
-        </div>
-        <div class="mdco-totals-row">
-          <span>Envío</span>
-          <span class="${free || selectedZone.startsWith('retiro-') ? 'mdco-totals-free' : ''}">
-            ${t.shippingCost === 0 ? 'GRATIS' : money(t.shippingCost)}
-          </span>
-        </div>
-        <div class="mdco-totals-row total">
-          <span>Total</span>
-          <span>${money(t.total)}</span>
         </div>
       </div>
 
       <!-- Método de pago -->
       <div class="mdco-section">
         <div class="mdco-section-title">3 · Método de pago</div>
-
-        <label class="mdco-radio-card ${selectedPayment === 'mp' ? 'selected' : ''}" onclick="mdcoSelectPayment('mp')">
-          <input type="radio" name="mdco-payment" value="mp" ${selectedPayment === 'mp' ? 'checked' : ''} />
-          <div class="mdco-radio-card-content">
-            <div class="mdco-radio-card-label">
-              <span>Mercado Pago</span>
-              <span style="font-size:11px;color:#666;font-weight:500">+ tarjetas, efectivo, transferencia</span>
+        <div id="mdco-payments">
+          <label class="mdco-radio-card ${selectedPayment === 'card' ? 'selected' : ''}" data-payment="card">
+            <input type="radio" name="mdco-payment" value="card" ${selectedPayment === 'card' ? 'checked' : ''} />
+            <div class="mdco-radio-card-content">
+              <div class="mdco-radio-card-label">
+                <span>Tarjeta de crédito o débito</span>
+                <span style="font-size:11px;color:#666;font-weight:500">Mercado Pago</span>
+              </div>
+              <div class="mdco-radio-card-sub">Pagás online ahora. Cuotas sin interés disponibles según tarjeta.</div>
             </div>
-            <div class="mdco-radio-card-sub">Pagás online ahora. Cuotas sin interés disponibles según tarjeta.</div>
-          </div>
-        </label>
+          </label>
 
-        <label class="mdco-radio-card ${selectedPayment === 'cash' ? 'selected' : ''}" onclick="mdcoSelectPayment('cash')">
-          <input type="radio" name="mdco-payment" value="cash" ${selectedPayment === 'cash' ? 'checked' : ''} />
-          <div class="mdco-radio-card-content">
-            <div class="mdco-radio-card-label">
-              <span>Efectivo / Transferencia</span>
-              <span style="font-size:11px;color:#22a35e;font-weight:700">10% OFF</span>
+          <label class="mdco-radio-card ${selectedPayment === 'transfer' ? 'selected' : ''}" data-payment="transfer">
+            <input type="radio" name="mdco-payment" value="transfer" ${selectedPayment === 'transfer' ? 'checked' : ''} />
+            <div class="mdco-radio-card-content">
+              <div class="mdco-radio-card-label">
+                <span>Transferencia o efectivo</span>
+                <span style="font-size:11px;color:#22a35e;font-weight:700">10% OFF</span>
+              </div>
+              <div class="mdco-radio-card-sub">Te mostramos los datos y mandás el comprobante por WhatsApp. Si retirás, podés abonar en efectivo.</div>
             </div>
-            <div class="mdco-radio-card-sub">Reservás el pedido. Te contactamos por WhatsApp para coordinar pago y entrega.</div>
-          </div>
-        </label>
+          </label>
+        </div>
       </div>
 
-      <!-- Botón submit -->
-      <button class="mdco-submit ${selectedPayment === 'cash' ? 'cash' : ''}" id="mdco-submit" onclick="mdcoSubmit()">
-        ${selectedPayment === 'mp'
-          ? `Pagar ${money(t.total)} con Mercado Pago`
-          : `Reservar pedido por ${money(t.total)}`}
-      </button>
+      <!-- Totales -->
+      <div class="mdco-totals" id="mdco-totals"></div>
+
+      <!-- Submit -->
+      <button class="mdco-submit" id="mdco-submit" type="button"></button>
 
       <p class="mdco-footer-note">
         Datos protegidos · Pago seguro · Garantía 30 días<br>
-        ¿Dudas? <a href="https://wa.me/5491154907774" target="_blank" style="color:#d10000">Escribinos por WhatsApp</a>
+        ¿Dudas? <a href="https://wa.me/${WA_NUMBER}" target="_blank" style="color:#d10000">Escribinos por WhatsApp</a>
       </p>
     `;
+
+    // ─── Wire up listeners (event delegation amigable) ───
+
+    // Qty +/-
+    body.querySelectorAll('[data-qty-delta]').forEach(btn => {
+      btn.addEventListener('click', () => updateQty(parseInt(btn.dataset.qtyDelta, 10)));
+    });
+
+    // Zones (click en cualquier parte de la card)
+    body.querySelectorAll('[data-zone]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectZone(card.dataset.zone);
+      });
+    });
+
+    // Payments
+    body.querySelectorAll('[data-payment]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectPayment(card.dataset.payment);
+      });
+    });
+
+    // Submit
+    document.getElementById('mdco-submit').addEventListener('click', submit);
+
+    // Pintar totales y botón inicial
+    updateTotalsUI();
+    updateSubmitButtonUI();
   }
 
-  function renderZoneCard(zone) {
+  function renderZoneCardHTML(zone) {
     const isSelected = selectedZone === zone.id;
     const isPickup = zone.id.startsWith('retiro-');
     const wouldBeFree = !isPickup && qualifiesForFreeShipping();
-    const displayPrice = isPickup
-      ? 'GRATIS'
-      : wouldBeFree
-      ? 'GRATIS'
-      : money(zone.cost);
-    const priceClass = isPickup || wouldBeFree ? 'free' : '';
+    const displayPrice = (isPickup || wouldBeFree) ? 'GRATIS' : money(zone.cost);
+    const priceClass = (isPickup || wouldBeFree) ? 'free' : '';
 
     return `
-      <label class="mdco-radio-card ${isSelected ? 'selected' : ''}" onclick="mdcoSelectZone('${zone.id}')">
+      <label class="mdco-radio-card ${isSelected ? 'selected' : ''}" data-zone="${zone.id}">
         <input type="radio" name="mdco-zone" value="${zone.id}" ${isSelected ? 'checked' : ''} />
         <div class="mdco-radio-card-content">
           <div class="mdco-radio-card-label">
@@ -261,31 +287,109 @@
     `;
   }
 
-  function escapeHtml(s) {
-    if (s === null || s === undefined) return '';
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  // ─── Updates parciales (NO destructivos: mantienen los inputs) ───
+
+  function updateQty(delta) {
+    currentQty = Math.max(1, Math.min(20, currentQty + delta));
+    const qtyEl = document.getElementById('mdco-qty-val');
+    if (qtyEl) qtyEl.textContent = currentQty;
+    // Cambia el qty → puede cambiar si califica para envío gratis → re-pintar zonas
+    repaintZonesPrices();
+    updateTotalsUI();
+    updateSubmitButtonUI();
   }
 
-  // ─── Handlers globales ───
-  window.mdcoChangeQty = function (delta) {
-    currentQty = Math.max(1, Math.min(20, currentQty + delta));
-    renderBody();
-  };
-
-  window.mdcoSelectZone = function (zoneId) {
+  function selectZone(zoneId) {
     selectedZone = zoneId;
-    renderBody();
-  };
+    // Cambiar la clase .selected
+    document.querySelectorAll('#mdco-zones [data-zone]').forEach(c => {
+      const isSel = c.dataset.zone === zoneId;
+      c.classList.toggle('selected', isSel);
+      const radio = c.querySelector('input[type="radio"]');
+      if (radio) radio.checked = isSel;
+    });
+    // Mostrar/ocultar bloque de dirección
+    const addr = document.getElementById('mdco-address-block');
+    if (addr) addr.classList.toggle('show', !zoneId.startsWith('retiro-'));
+    updateTotalsUI();
+    updateSubmitButtonUI();
+  }
 
-  window.mdcoSelectPayment = function (method) {
+  function selectPayment(method) {
     selectedPayment = method;
-    renderBody();
-  };
+    document.querySelectorAll('#mdco-payments [data-payment]').forEach(c => {
+      const isSel = c.dataset.payment === method;
+      c.classList.toggle('selected', isSel);
+      const radio = c.querySelector('input[type="radio"]');
+      if (radio) radio.checked = isSel;
+    });
+    updateTotalsUI();
+    updateSubmitButtonUI();
+  }
 
-  window.mdcoSubmit = async function () {
+  function repaintZonesPrices() {
+    // Solo actualiza los precios y la badge "GRATIS" en cada card sin reemplazar el HTML completo
+    const cards = document.querySelectorAll('#mdco-zones [data-zone]');
+    cards.forEach(card => {
+      const zone = SHIPPING_ZONES.find(z => z.id === card.dataset.zone);
+      const isPickup = zone.id.startsWith('retiro-');
+      const wouldBeFree = !isPickup && qualifiesForFreeShipping();
+      const priceEl = card.querySelector('.mdco-radio-card-price');
+      if (!priceEl) return;
+      priceEl.textContent = (isPickup || wouldBeFree) ? 'GRATIS' : money(zone.cost);
+      priceEl.classList.toggle('free', isPickup || wouldBeFree);
+    });
+  }
+
+  function updateTotalsUI() {
+    const t = calcTotals();
+    const totalsEl = document.getElementById('mdco-totals');
+    if (!totalsEl) return;
+
+    const freeShip = t.shippingCost === 0;
+    const discountRow = t.discount > 0
+      ? `<div class="mdco-totals-row" style="color:#22a35e;font-weight:600">
+           <span>Descuento (10% OFF · transferencia o efectivo)</span>
+           <span>− ${money(t.discount)}</span>
+         </div>`
+      : '';
+
+    totalsEl.innerHTML = `
+      <div class="mdco-totals-row">
+        <span>Subtotal</span>
+        <span>${money(t.subtotal)}</span>
+      </div>
+      ${discountRow}
+      <div class="mdco-totals-row">
+        <span>Envío</span>
+        <span class="${freeShip ? 'mdco-totals-free' : ''}">
+          ${freeShip ? 'GRATIS' : money(t.shippingCost)}
+        </span>
+      </div>
+      <div class="mdco-totals-row total">
+        <span>Total</span>
+        <span>${money(t.total)}</span>
+      </div>
+    `;
+  }
+
+  function updateSubmitButtonUI() {
+    const t = calcTotals();
+    const btn = document.getElementById('mdco-submit');
+    if (!btn) return;
+    btn.classList.toggle('cash', selectedPayment === 'transfer');
+    if (selectedPayment === 'card') {
+      btn.innerHTML = `Pagar ${money(t.total)} con tarjeta`;
+    } else {
+      btn.innerHTML = `Reservar pedido por ${money(t.total)}`;
+    }
+  }
+
+  // ─── Submit ───
+  async function submit() {
     if (isSubmitting) return;
 
-    // Validar formulario
+    // Validar
     const name = document.getElementById('mdco-name').value.trim();
     const email = document.getElementById('mdco-email').value.trim();
     const phone = document.getElementById('mdco-phone').value.trim();
@@ -310,6 +414,7 @@
     }
 
     const notes = document.getElementById('mdco-notes').value.trim();
+    const t = calcTotals();
 
     const payload = {
       items: [{
@@ -322,11 +427,14 @@
       }],
       customer: { name, email, phone, dni, cuit },
       shipping: { zone: selectedZone, address, notes },
+      // Para que el backend sepa que hay descuento aplicado en el caso transfer
+      paymentMethod: selectedPayment === 'card' ? 'mp' : 'transfer',
+      discount: t.discount,
     };
 
-    const endpoint = selectedPayment === 'mp' ? '/api/checkout' : '/api/order-cash';
-
+    const endpoint = selectedPayment === 'card' ? '/api/checkout' : '/api/order-cash';
     setSubmitting(true);
+
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -334,30 +442,29 @@
         body: JSON.stringify(payload),
       });
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Error procesando el pedido');
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Error procesando el pedido');
-      }
-
-      if (selectedPayment === 'mp') {
-        // Redirigir a MP — usar sandbox si estamos en modo test
+      if (selectedPayment === 'card') {
         const redirectUrl = data.mode === 'production' ? data.initPoint : data.sandboxInitPoint;
         if (!redirectUrl) throw new Error('No se obtuvo URL de pago');
         showMsg('success', '✅ Redirigiendo a Mercado Pago...');
         setTimeout(() => { window.location.href = redirectUrl; }, 600);
       } else {
-        // Reserva con efectivo
-        showMsg('success', `✅ ¡Pedido reservado! Te enviamos un email a ${email} con los detalles. Te contactamos por WhatsApp.`);
+        // Pasar a la vista de éxito con datos bancarios + WhatsApp
+        lastOrderId = data.orderId;
+        renderTransferSuccessView({
+          orderId: data.orderId,
+          customerName: name,
+          total: t.total,
+        });
         setSubmitting(false);
-        // Cerrar modal después de 4 segundos
-        setTimeout(() => { closeCheckout(); }, 4000);
       }
     } catch (err) {
       console.error(err);
       showMsg('error', err.message || 'Error procesando el pedido. Probá de nuevo.');
       setSubmitting(false);
     }
-  };
+  }
 
   function setSubmitting(state) {
     isSubmitting = state;
@@ -367,7 +474,8 @@
       btn.disabled = true;
       btn.innerHTML = '<span class="mdco-spinner"></span> Procesando...';
     } else {
-      renderBody(); // re-render normal
+      updateSubmitButtonUI();
+      btn.disabled = false;
     }
   }
 
@@ -376,9 +484,107 @@
     if (!msg) return alert(text);
     msg.className = 'mdco-msg show ' + type;
     msg.textContent = text;
-    // Scroll al mensaje
     const body = document.getElementById('mdco-body');
     if (body) body.scrollTop = 0;
+  }
+
+  // ─── Vista de Éxito (transferencia/efectivo) ───
+  function renderTransferSuccessView({ orderId, customerName, total }) {
+    document.getElementById('mdco-title').textContent = '¡Pedido reservado!';
+
+    const isPickup = selectedZone.startsWith('retiro-');
+    const zoneLabel = (SHIPPING_ZONES.find(z => z.id === selectedZone) || {}).label || '';
+
+    const waMsg = encodeURIComponent(
+      `Hola! Te paso el comprobante de mi pedido en MDRACING.\n\n` +
+      `Pedido: #${orderId}\n` +
+      `Producto: ${currentItem.name}${currentItem.variant ? ' - ' + currentItem.variant : ''}\n` +
+      `Cantidad: ${currentQty}\n` +
+      `Total: $${total.toLocaleString('es-AR')}\n` +
+      `Entrega: ${zoneLabel}\n` +
+      `Cliente: ${customerName}\n\n` +
+      `Adjunto el comprobante de transferencia.`
+    );
+
+    const body = document.getElementById('mdco-body');
+    body.innerHTML = `
+      <div style="text-align:center;padding:24px 8px 12px">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:#e6f7ec;margin-bottom:14px">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#22a35e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;letter-spacing:.5px">¡Pedido reservado!</h2>
+        <p style="margin:8px 0 0;color:#666;font-size:14px">#${escapeHtml(orderId)} · Total ${money(total)}</p>
+        <p style="margin:6px 0 0;color:#666;font-size:14px">Te enviamos los detalles por email.</p>
+      </div>
+
+      <div style="background:#fff7d9;border:1px solid #ffe178;border-left:4px solid #d4a020;padding:14px 16px;border-radius:8px;margin:16px 0;">
+        <p style="margin:0;font-weight:700;color:#5a4400;font-size:14.5px">📌 Para confirmar tu pedido</p>
+        <p style="margin:8px 0 0;color:#5a4400;font-size:14px;line-height:1.5">
+          ${isPickup ? `
+            Si vas a pagar en <strong>efectivo al retirar</strong>, dejá pasar este paso.<br>
+            Si preferís pagar por <strong>transferencia ya</strong>, hacela con los datos de abajo y mandanos el comprobante por WhatsApp.
+          ` : `
+            Hacé la transferencia con los datos de abajo y mandanos el comprobante por WhatsApp.<br>
+            Sin el comprobante no podemos preparar el envío.
+          `}
+        </p>
+      </div>
+
+      <div style="background:#f6f6f8;padding:18px;border-radius:10px;margin-bottom:16px">
+        <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#d10000;margin-bottom:12px">
+          🏦 Datos para transferir
+        </div>
+        ${renderBankRow('Banco', BANK_INFO.bank)}
+        ${renderBankRow('Alias', BANK_INFO.alias)}
+        ${renderBankRow('CBU/CVU', BANK_INFO.cbu)}
+        ${renderBankRow('Titular', BANK_INFO.holder)}
+        ${renderBankRow('CUIT', BANK_INFO.cuit)}
+        <div style="margin-top:14px;padding:12px;background:#fff;border-radius:6px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px">
+          <span>Monto a transferir</span>
+          <span style="color:#d10000;font-family:'Barlow Condensed',sans-serif;font-size:20px">${money(total)}</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}"
+         target="_blank" rel="noopener"
+         style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25d366;color:#fff;padding:18px 24px;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.35);transition:all .25s">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059M12 0C5.373 0 0 5.373 0 12c0 2.115.547 4.097 1.508 5.83L0 24l6.336-1.488A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        Enviar comprobante por WhatsApp
+      </a>
+
+      <p style="text-align:center;color:#666;font-size:12px;margin:14px 0 0;line-height:1.6">
+        Si pagás en efectivo al retirar, solo escribinos para coordinar.<br>
+        ¿Consultas? WhatsApp <a href="https://wa.me/${WA_NUMBER}" style="color:#d10000">+54 9 11 5490-7774</a>
+      </p>
+
+      <button type="button" id="mdco-close-success"
+        style="display:block;margin:18px auto 0;background:transparent;border:1.5px solid #ddd;color:#666;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500">
+        Cerrar
+      </button>
+    `;
+
+    document.getElementById('mdco-close-success').addEventListener('click', closeCheckout);
+
+    // Scroll arriba del modal
+    body.scrollTop = 0;
+  }
+
+  function renderBankRow(label, value) {
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(0,0,0,.08);gap:12px">
+        <span style="font-size:13px;color:#666">${escapeHtml(label)}</span>
+        <button type="button" onclick="navigator.clipboard.writeText('${escapeHtml(value).replace(/'/g, "\\'")}').then(()=>this.querySelector('span').textContent='✓ Copiado')"
+          style="background:transparent;border:none;cursor:pointer;font-family:monospace;font-size:14px;font-weight:700;color:#0a0a0a;display:flex;align-items:center;gap:8px;padding:0;text-align:right">
+          <span>${escapeHtml(value)}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+      </div>
+    `;
   }
 
   // ─── API Pública ───
@@ -390,11 +596,12 @@
     currentItem = item;
     currentQty = 1;
     selectedZone = 'retiro-fabrica';
-    selectedPayment = 'mp';
+    selectedPayment = 'card';
     isSubmitting = false;
+    lastOrderId = null;
 
     buildModal();
-    renderBody();
+    renderCheckoutView();
 
     const backdrop = document.getElementById('mdco-backdrop');
     const modal = document.getElementById('mdco-modal');
@@ -411,7 +618,6 @@
     document.body.style.overflow = '';
   };
 
-  // Cerrar con Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const modal = document.getElementById('mdco-modal');
