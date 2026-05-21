@@ -359,6 +359,8 @@
 
   function selectPayment(method) {
     selectedPayment = method;
+    // Si el botón quedó bloqueado por un submit previo, desbloquear
+    if (isSubmitting) resetSubmitState();
     document.querySelectorAll('#mdco-payments [data-payment]').forEach(c => {
       const isSel = c.dataset.payment === method;
       c.classList.toggle('selected', isSel);
@@ -514,18 +516,48 @@
     }
   }
 
+  let submitTimeoutId = null;
   function setSubmitting(state) {
     isSubmitting = state;
+    if (submitTimeoutId) { clearTimeout(submitTimeoutId); submitTimeoutId = null; }
     const btn = document.getElementById('mdco-submit');
     if (!btn) return;
     if (state) {
       btn.disabled = true;
       btn.innerHTML = '<span class="mdco-spinner"></span> Procesando...';
+      // Auto-reset por seguridad si pasaron 30s sin respuesta ni redirect
+      // (cubre el caso de timeout de red, error MP, o usuario que vuelve atrás)
+      submitTimeoutId = setTimeout(() => {
+        if (isSubmitting) {
+          console.warn('[mdco] Auto-reset por timeout');
+          resetSubmitState();
+        }
+      }, 30000);
     } else {
       updateSubmitButtonUI();
       btn.disabled = false;
     }
   }
+
+  function resetSubmitState() {
+    isSubmitting = false;
+    if (submitTimeoutId) { clearTimeout(submitTimeoutId); submitTimeoutId = null; }
+    const btn = document.getElementById('mdco-submit');
+    if (btn) { btn.disabled = false; }
+    updateSubmitButtonUI();
+    const msg = document.getElementById('mdco-msg');
+    if (msg) msg.className = 'mdco-msg';
+  }
+
+  // Detectar cuando el usuario vuelve a la página con el botón "atrás" del
+  // browser (después de haber sido redirigido a Mercado Pago). pageshow se
+  // dispara con event.persisted=true cuando se restaura desde bfcache.
+  window.addEventListener('pageshow', (event) => {
+    if (isSubmitting) {
+      // El modal quedó en estado "Procesando" pero el usuario está acá de nuevo
+      resetSubmitState();
+    }
+  });
 
   function showMsg(type, text) {
     const msg = document.getElementById('mdco-msg');
