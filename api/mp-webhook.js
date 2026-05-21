@@ -7,6 +7,7 @@
  * MP envía el evento en `body.type === 'payment'` con `body.data.id` (a veces en query).
  */
 
+const crypto = require('crypto');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
 
@@ -16,6 +17,61 @@ function getMP() {
     ? process.env.MP_ACCESS_TOKEN
     : process.env.MP_ACCESS_TOKEN_TEST;
   return new MercadoPagoConfig({ accessToken: token });
+}
+
+/**
+ * Valida la firma del webhook de Mercado Pago.
+ * MP envía headers x-signature (formato "ts=TIMESTAMP,v1=HMAC") y x-request-id.
+ * El template a firmar es: id:DATA_ID;request-id:X_REQUEST_ID;ts:TIMESTAMP;
+ * Se firma con HMAC-SHA256 usando MP_WEBHOOK_SECRET.
+ *
+ * Si MP_WEBHOOK_SECRET no está configurada, NO valida (permite el request,
+ * útil durante setup inicial). Cuando se setea la env var, empieza a rechazar
+ * webhooks no firmados o con firma inválida.
+ *
+ * Docs: https://www.mercadopago.com.ar/developers/es/docs/your-integrations/notifications/webhooks
+ */
+function validateMpSignature(req) {
+  const secret = process.env.MP_WEBHOOK_SECRET;
+  if (!secret) {
+    console.warn('[mp-webhook] MP_WEBHOOK_SECRET no configurada — saltando validación');
+    return { valid: true, reason: 'no-secret-configured' };
+  }
+
+  const xSignature = req.headers['x-signature'];
+  const xRequestId = req.headers['x-request-id'];
+  if (!xSignature || !xRequestId) {
+    return { valid: false, reason: 'missing-headers' };
+  }
+
+  // Parse "ts=...,v1=..." → { ts, v1 }
+  const parts = String(xSignature).split(',').reduce((acc, p) => {
+    const [k, v] = p.split('=').map(s => s.trim());
+    if (k && v) acc[k] = v;
+    return acc;
+  }, {});
+  const ts = parts.ts;
+  const v1 = parts.v1;
+  if (!ts || !v1) return { valid: false, reason: 'invalid-signature-format' };
+
+  // dataId: viene en query.id o body.data.id según el tipo de notificación
+  const query = req.query || {};
+  const body = req.body || {};
+  const dataId = query['data.id'] || query.id || (body.data && body.data.id) || '';
+
+  // Template: "id:DATA_ID;request-id:X_REQUEST_ID;ts:TIMESTAMP;"
+  const manifest = `id:${dataId};request-id:${xRequestId};ts:${ts};`;
+  const expected = crypto.createHmac('sha256', secret).update(manifest).digest('hex');
+
+  // timing-safe compare
+  let valid = false;
+  try {
+    valid = crypto.timingSafeEqual(Buffer.from(v1, 'hex'), Buffer.from(expected, 'hex'));
+  } catch (e) {
+    valid = false;
+  }
+
+  return { valid, reason: valid ? 'ok' : 'signature-mismatch', dataId, manifest };
 }
 
 function buildOrderFromPayment(payment) {
@@ -76,13 +132,22 @@ function buildOrderFromPayment(payment) {
 module.exports = async (req, res) => {
   // MP requiere responder rápido (200) para confirmar recepción
   try {
+    // ── 1. Validar firma del webhook ──
+    const sig = validateMpSignature(req);
+    if (!sig.valid) {
+      console.error('[mp-webhook] FIRMA INVÁLIDA:', sig.reason, '- rechazando request');
+      // 401 le indica a MP (y a quien sea que esté forjando webhooks) que la firma es inválida
+      return res.status(401).json({ ok: false, error: 'invalid signature', reason: sig.reason });
+    }
+    console.log('[mp-webhook] firma OK (' + sig.reason + ')');
+
     const body = req.body || {};
     const query = req.query || {};
 
     const type = body.type || body.topic || query.type || query.topic || '';
     const dataId = (body.data && body.data.id) || query['data.id'] || query.id;
 
-    console.log('[mp-webhook] received', { type, dataId, body, query });
+    console.log('[mp-webhook] received', { type, dataId });
 
     // MP también manda eventos de merchant_order, etc. Solo nos interesa "payment"
     if (type !== 'payment' || !dataId) {

@@ -2315,7 +2315,7 @@ function renderTermsPage() {
         <p style="color:var(--metal);font-size:14px;margin-bottom:32px">Última actualización: ${today}</p>
 
         <h2 class="legal-h2">1 · Datos del titular del sitio</h2>
-        <p>El sitio <strong>www.mdracingfundas.com</strong> (en adelante, "el Sitio") es operado por <strong>Miguel Angel Di Vito</strong>, CUIT <strong>20-22862560-5</strong>, con domicilio comercial en <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Provincia de Buenos Aires, Argentina</strong>. Comercializa la marca <strong>MDRACING</strong> (en adelante, "MDRACING", "nosotros").</p>
+        <p>El sitio <strong>www.mdracingfundas.com</strong> (en adelante, "el Sitio") es operado por <strong>Miguel Angel Di Vito</strong>, CUIT <strong>20-22862560-5</strong>, con domicilio comercial en <strong>Paraná 2185, Villa Ballester, San Martín, Provincia de Buenos Aires, Argentina</strong>. Comercializa la marca <strong>MDRACING</strong> (en adelante, "MDRACING", "nosotros").</p>
 
         <h2 class="legal-h2">2 · Aceptación de los términos</h2>
         <p>El uso del Sitio implica la aceptación plena de estos Términos y Condiciones (en adelante, "T&C") y de la Política de Privacidad. Si no estás de acuerdo con alguna de las cláusulas, no deberías utilizar el Sitio ni realizar compras.</p>
@@ -2398,7 +2398,7 @@ function renderTermsPage() {
         <ul>
           <li>WhatsApp: <strong>+54 9 11 5490-7774</strong></li>
           <li>Email: <strong>mdracingdv@gmail.com</strong></li>
-          <li>Dirección: <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Buenos Aires</strong></li>
+          <li>Dirección: <strong>Paraná 2185, Villa Ballester, San Martín, Buenos Aires</strong></li>
         </ul>
 
         <p style="margin-top:48px;font-size:13px;color:var(--metal);font-style:italic">
@@ -2429,7 +2429,7 @@ function renderPrivacyPage() {
         <p style="color:var(--metal);font-size:14px;margin-bottom:32px">Última actualización: ${today}</p>
 
         <h2 class="legal-h2">1 · Quiénes somos</h2>
-        <p>Esta Política de Privacidad describe cómo <strong>MDRACING</strong> (operada por Miguel Angel Di Vito, CUIT 20-22862560-5, con domicilio en Av. Bartolomé Mitre 3495, Munro, Vicente López, Bs. As., Argentina) recolecta, usa y protege los datos personales de los usuarios del sitio <strong>www.mdracingfundas.com</strong> (el "Sitio").</p>
+        <p>Esta Política de Privacidad describe cómo <strong>MDRACING</strong> (operada por Miguel Angel Di Vito, CUIT 20-22862560-5, con domicilio en Paraná 2185, Villa Ballester, San Martín, Bs. As., Argentina) recolecta, usa y protege los datos personales de los usuarios del sitio <strong>www.mdracingfundas.com</strong> (el "Sitio").</p>
         <p>Esta política se ajusta a la <strong>Ley 25.326 de Protección de Datos Personales</strong> de la República Argentina.</p>
 
         <h2 class="legal-h2">2 · Qué datos recolectamos</h2>
@@ -2505,7 +2505,7 @@ function renderPrivacyPage() {
           <li>Responsable de datos: <strong>Miguel Angel Di Vito</strong></li>
           <li>Email: <strong>mdracingdv@gmail.com</strong></li>
           <li>WhatsApp: <strong>+54 9 11 5490-7774</strong></li>
-          <li>Dirección: <strong>Av. Bartolomé Mitre 3495, Munro, Vicente López, Bs. As.</strong></li>
+          <li>Dirección: <strong>Paraná 2185, Villa Ballester, San Martín, Bs. As.</strong></li>
         </ul>
 
         <p style="margin-top:48px;font-size:13px;color:var(--metal);font-style:italic">
