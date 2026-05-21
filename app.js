@@ -1815,9 +1815,29 @@ function renderProductPage(productId) {
           </div>
 
           <div class="product-ctas">
-            <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.salePrice || p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
-            <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2)">${icons.cart} Sumar al carrito</button>
-            <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
+            ${(() => {
+              // ── Productos con "Comprar ahora" habilitado (checkout MP / efectivo) ──
+              // Por ahora solo el producto piloto. Después agregamos al resto.
+              const PILOT_PRODUCT_IDS = ['cubre-volante-base-plana-polo-gol-golf-vento-ksc3g'];
+              const isPilot = PILOT_PRODUCT_IDS.includes(p.id);
+
+              if (isPilot) {
+                return `
+                  <button type="button" onclick="openCheckoutForProduct('${p.id}')" class="btn-primary btn-primary-full">
+                    ${icons.cart} Comprar ahora
+                  </button>
+                  <a href="${WA_MSG(`Hola! Quiero consultar antes de comprar: ${p.name}`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full">${icons.waIcon} Consultar antes de comprar</a>
+                  <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2);font-size:14px">${icons.cart} Sumar al carrito</button>
+                `;
+              }
+
+              // ── Comportamiento actual para productos no-piloto (sin cambios) ──
+              return `
+                <a href="${WA_MSG(`Hola! Quiero comprar: ${p.name}. Precio $${p.salePrice || p.price}`)}" target="_blank" class="btn-primary btn-primary-full">${icons.waIcon} Comprar por WhatsApp</a>
+                <button type="button" onclick="addToCart('${p.id}');openCart()" class="btn-primary btn-primary-full" data-cart-btn="${p.id}" style="background:transparent;border:1.5px solid var(--red2);color:var(--red2)">${icons.cart} Sumar al carrito</button>
+                <a href="${WA_MSG(`Hola! Quiero consultar compatibilidad para: ${p.name}. Mi vehículo es...`)}" target="_blank" class="btn-whatsapp btn-whatsapp-full" style="background:transparent;border:1.5px solid #25d366;color:#25d366;font-size:14px">Consultar compatibilidad con mi vehículo</a>
+              `;
+            })()}
           </div>
 
           <div class="product-security-badge" style="display:flex;align-items:center;gap:8px;margin-top:16px;padding:16px;background:var(--dark3);border-radius:8px;border:1px solid var(--white08)">
@@ -3465,6 +3485,37 @@ function cartUpdateBadge() {
   if (floatBtn) floatBtn.style.display = n === 0 ? 'none' : 'flex';
   if (floatCount) floatCount.textContent = n;
 }
+// ── Checkout directo (Mercado Pago / Efectivo) ──
+// Lookup en products + apertura del modal de checkout.
+function openCheckoutForProduct(productId) {
+  const p = products.find(pr => pr.id === productId);
+  if (!p) {
+    console.error('Producto no encontrado:', productId);
+    return;
+  }
+  // Aplicar Hot Sale price si corresponde
+  const hsPrice = typeof HOT_SALE_PRICES !== 'undefined' && HOT_SALE_PRICES[p.id];
+  const effectivePriceStr = hsPrice || p.salePrice || p.price;
+  const priceNum = parseInt(String(effectivePriceStr).replace(/[^\d]/g, ''), 10) || 0;
+  // Primera imagen disponible (real o cdn)
+  const firstImage = (p.images && p.images[0]) || '/logo.png';
+  // Envío gratis si: badge "Envío Gratis" o precio >= $130k
+  const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 130000;
+
+  if (typeof window.openCheckout !== 'function') {
+    console.error('openCheckout no disponible. ¿Cargó checkout.js?');
+    return;
+  }
+  window.openCheckout({
+    id: p.id,
+    name: p.name,
+    image: firstImage,
+    unitPrice: priceNum,
+    freeShipping: freeShip,
+  });
+}
+window.openCheckoutForProduct = openCheckoutForProduct;
+
 function addToCart(productId) {
   let p = products.find(pr => pr.id === productId);
   if (!p) return;

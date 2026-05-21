@@ -1,0 +1,429 @@
+/* ═══════════════════════════════════════════════════════════
+   MDRACING — Checkout Modal
+═══════════════════════════════════════════════════════════ */
+
+#mdco-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+#mdco-backdrop.open {
+  display: block;
+  opacity: 1;
+}
+
+#mdco-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%) scale(.97);
+  opacity: 0;
+  z-index: 10001;
+  width: min(680px, calc(100vw - 24px));
+  max-height: calc(100vh - 48px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  transition: opacity .25s ease, transform .25s cubic-bezier(.4, 0, .2, 1);
+}
+#mdco-modal.open {
+  display: flex;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Header */
+.mdco-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: #0a0a0a;
+  color: #fff;
+  flex-shrink: 0;
+}
+.mdco-header h3 {
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.mdco-close {
+  background: rgba(255, 255, 255, .1);
+  border: none;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.mdco-close:hover { background: rgba(255, 255, 255, .2); }
+
+/* Body */
+.mdco-body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: #fff;
+}
+
+/* Resumen del producto arriba */
+.mdco-product-summary {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  background: #f6f6f8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.mdco-product-summary img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  flex-shrink: 0;
+}
+.mdco-product-summary-info {
+  flex: 1;
+  min-width: 0;
+}
+.mdco-product-summary-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0a0a0a;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.mdco-product-summary-variant {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+.mdco-product-summary-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: #d10000;
+}
+.mdco-product-summary-qty {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0;
+  border: 1px solid #ddd;
+}
+.mdco-qty-btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: #0a0a0a;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mdco-qty-btn:hover { background: #f6f6f8; }
+.mdco-qty-btn:disabled { color: #ccc; cursor: not-allowed; }
+.mdco-qty-val {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Section */
+.mdco-section {
+  margin-bottom: 22px;
+}
+.mdco-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #d10000;
+  margin-bottom: 10px;
+}
+
+/* Form fields */
+.mdco-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 480px) {
+  .mdco-grid-2 { grid-template-columns: 1fr; }
+}
+.mdco-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.mdco-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  font-family: 'Inter', sans-serif;
+}
+.mdco-field label .opt {
+  color: #999;
+  font-weight: 400;
+  margin-left: 4px;
+}
+.mdco-field input,
+.mdco-field select,
+.mdco-field textarea {
+  background: #f6f6f8;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14.5px;
+  color: #0a0a0a;
+  outline: none;
+  transition: all .2s;
+}
+.mdco-field input:focus,
+.mdco-field select:focus,
+.mdco-field textarea:focus {
+  background: #fff;
+  border-color: #d10000;
+  box-shadow: 0 0 0 3px rgba(209, 0, 0, .1);
+}
+.mdco-field textarea { resize: vertical; min-height: 70px; }
+.mdco-field input::placeholder,
+.mdco-field textarea::placeholder { color: rgba(10, 10, 10, .35); }
+
+/* Radio cards (envío + pago) */
+.mdco-radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #f6f6f8;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: 8px;
+}
+.mdco-radio-card:hover {
+  background: #ededf0;
+}
+.mdco-radio-card.selected {
+  background: #fff;
+  border-color: #d10000;
+  box-shadow: 0 4px 16px rgba(209, 0, 0, .12);
+}
+.mdco-radio-card input[type="radio"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: #d10000;
+  cursor: pointer;
+}
+.mdco-radio-card-content {
+  flex: 1;
+  min-width: 0;
+}
+.mdco-radio-card-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0a0a0a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.mdco-radio-card-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.mdco-radio-card-price.free { color: #22a35e; }
+.mdco-radio-card-sub {
+  font-size: 12px;
+  color: #666;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+/* Address (collapsible) */
+#mdco-address-block {
+  display: none;
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px solid #ededf0;
+}
+#mdco-address-block.show { display: block; }
+
+/* Totales */
+.mdco-totals {
+  background: #f6f6f8;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.mdco-totals-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+.mdco-totals-row.total {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #0a0a0a;
+  padding-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  border-top: 1px solid #ddd;
+}
+.mdco-totals-free {
+  color: #22a35e;
+  font-weight: 700;
+}
+
+/* Submit buttons */
+.mdco-submit {
+  width: 100%;
+  background: #d10000;
+  color: #fff;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.mdco-submit:hover:not(:disabled) {
+  background: #e50000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(209, 0, 0, .35);
+}
+.mdco-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.mdco-submit.cash {
+  background: #0a0a0a;
+}
+.mdco-submit.cash:hover:not(:disabled) {
+  background: #333;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
+}
+
+/* Estado de loading */
+.mdco-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(255, 255, 255, .3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: mdco-spin 0.7s linear infinite;
+}
+@keyframes mdco-spin { to { transform: rotate(360deg); } }
+
+/* Mensaje de error/éxito */
+.mdco-msg {
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  display: none;
+}
+.mdco-msg.show { display: block; }
+.mdco-msg.error {
+  background: #fee;
+  color: #b00;
+  border-left: 4px solid #d10000;
+}
+.mdco-msg.success {
+  background: #efe;
+  color: #060;
+  border-left: 4px solid #22a35e;
+}
+
+/* Footer info */
+.mdco-footer-note {
+  font-size: 11.5px;
+  color: #666;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.mdco-footer-note strong { color: #0a0a0a; }
+
+/* Pago piloto banner */
+.mdco-test-banner {
+  background: linear-gradient(90deg, #ffe169, #ffd633);
+  color: #5a4400;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: .3px;
+}
+
+/* Mobile fixes */
+@media (max-width: 600px) {
+  #mdco-modal {
+    top: 0;
+    left: 0;
+    transform: translate(0, 100%);
+    width: 100vw;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+  }
+  #mdco-modal.open {
+    transform: translate(0, 0);
+  }
+  .mdco-header {
+    padding: 14px 16px;
+  }
+  .mdco-body {
+    padding: 16px;
+  }
+  .mdco-product-summary img {
+    width: 56px;
+    height: 56px;
+  }
+}

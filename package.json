@@ -5,7 +5,9 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0"
+    "@anthropic-ai/sdk": "^0.39.0",
+    "mercadopago": "^2.12.1",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "heic-convert": "^2.1.0",
