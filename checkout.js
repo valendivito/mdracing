@@ -13,31 +13,38 @@
   const CASH_TRANSFER_DISCOUNT = 0.10; // 10% OFF
 
   const SHIPPING_ZONES = [
-    { id: 'retiro-fabrica',   label: 'Retiro en fábrica',          cost: 0,    sub: 'Villa Ballester, San Martín' },
-    { id: 'retiro-local',     label: 'Retiro en local',            cost: 0,    sub: 'Av. Bartolomé Mitre 3495, Munro' },
-    { id: 'caba',             label: 'Envío a CABA',                cost: 5000, sub: 'Ciudad Autónoma de Buenos Aires' },
-    { id: 'gba-norte-oeste',  label: 'Envío a GBA Norte y Oeste',   cost: 6500, sub: 'San Isidro, Tigre, Morón, etc.' },
-    { id: 'gba-sur-resto-ba', label: 'Envío a GBA Sur y resto BA',  cost: 7500, sub: 'Quilmes, La Plata, resto de Bs As' },
-    { id: 'interior',         label: 'Envío al interior del país',  cost: 9500, sub: 'Resto de Argentina' },
+    { id: 'retiro-fabrica',   label: 'Retiro en fábrica',          cost: 0,    sub: 'Villa Ballester, San Martín',                  shortName: 'Fábrica Ballester' },
+    { id: 'retiro-local',     label: 'Retiro en local',            cost: 0,    sub: 'Av. Bartolomé Mitre 3495, Munro',              shortName: 'Local Munro' },
+    { id: 'caba',             label: 'Envío a CABA',                cost: 5000, sub: 'Ciudad Autónoma de Buenos Aires',              shortName: 'CABA' },
+    { id: 'gba-norte-oeste',  label: 'Envío a GBA Norte y Oeste',   cost: 6500, sub: 'San Isidro, Tigre, Morón, etc.',               shortName: 'GBA N/O' },
+    { id: 'gba-sur-resto-ba', label: 'Envío a GBA Sur y resto BA',  cost: 7500, sub: 'Quilmes, La Plata, resto de Bs As',            shortName: 'GBA S' },
+    { id: 'interior',         label: 'Envío al interior del país',  cost: 9500, sub: 'Resto de Argentina',                           shortName: 'Interior' },
   ];
 
-  // Datos bancarios para transferencia
-  // ⚠️ COMPLETAR con los datos reales de MDRACING
+  function getZoneShortName(id) {
+    const z = SHIPPING_ZONES.find(x => x.id === id);
+    return z ? z.shortName : '';
+  }
+
+  // Datos bancarios reales MDRACING (transferencia o Mercado Pago)
   const BANK_INFO = {
     bank: 'Mercado Pago',
-    alias: 'MDRACING.FUNDAS',
-    cbu: '0000003100012345678901',
-    holder: 'MDRACING (Valentino Divito)',
-    cuit: '20-XXXXXXXX-X',
+    alias: 'mdracing',
+    cbu: '0000003100003718736706',
+    holder: 'Miguel Angel Di Vito',
+    cuit: '20-22862560-5',
   };
 
   const WA_NUMBER = '5491154907774';
 
   // Estado del modal
-  let currentItem = null;
-  let currentQty = 1;
+  // currentItems: array de productos en el checkout.
+  // isSingleProduct: true si se abrió desde "Comprar ahora" en ficha de producto (con qty selector).
+  //                  false si se abrió desde el carrito (qty fija, ítems múltiples).
+  let currentItems = [];
+  let isSingleProduct = true;
   let selectedZone = 'retiro-fabrica';
-  let selectedPayment = 'card'; // 'card' = MP tarjeta | 'transfer' = transferencia/efectivo + WA
+  let selectedPayment = 'card';
   let isSubmitting = false;
   let lastOrderId = null;
 
@@ -53,14 +60,19 @@
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  function computeSubtotal() {
+    return currentItems.reduce((s, it) => s + priceToNumber(it.unitPrice) * (it.qty || 1), 0);
+  }
+
   function qualifiesForFreeShipping() {
-    if (!currentItem) return false;
-    const unit = priceToNumber(currentItem.unitPrice);
-    const total = unit * currentQty;
-    if (total >= FREE_SHIPPING_THRESHOLD) return true;
-    if (unit >= FREE_SHIPPING_THRESHOLD) return true;
-    if (currentItem.freeShipping === true) return true;
-    return false;
+    if (!currentItems.length) return false;
+    const subtotal = computeSubtotal();
+    if (subtotal >= FREE_SHIPPING_THRESHOLD) return true;
+    return currentItems.some(it => {
+      if (it.freeShipping === true) return true;
+      if (priceToNumber(it.unitPrice) >= FREE_SHIPPING_THRESHOLD) return true;
+      return false;
+    });
   }
 
   function getShippingCost() {
@@ -72,10 +84,8 @@
   }
 
   function calcTotals() {
-    const unit = priceToNumber(currentItem.unitPrice);
-    const subtotal = unit * currentQty;
+    const subtotal = computeSubtotal();
     const shippingCost = getShippingCost();
-    // Si el pago es transferencia/efectivo, aplicar 10% OFF sobre el subtotal (no sobre el envío)
     const discount = selectedPayment === 'transfer' ? Math.round(subtotal * CASH_TRANSFER_DISCOUNT) : 0;
     const total = subtotal - discount + shippingCost;
     return { subtotal, discount, shippingCost, total };
@@ -117,20 +127,8 @@
     body.innerHTML = `
       <div class="mdco-msg" id="mdco-msg"></div>
 
-      <!-- Resumen del producto -->
-      <div class="mdco-product-summary">
-        <img src="${escapeHtml(currentItem.image || '/logo.png')}" alt="${escapeHtml(currentItem.name)}" />
-        <div class="mdco-product-summary-info">
-          <div class="mdco-product-summary-name">${escapeHtml(currentItem.name)}</div>
-          ${currentItem.variant ? `<div class="mdco-product-summary-variant">${escapeHtml(currentItem.variant)}</div>` : ''}
-          <div class="mdco-product-summary-price">${money(priceToNumber(currentItem.unitPrice))}</div>
-        </div>
-        <div class="mdco-product-summary-qty">
-          <button class="mdco-qty-btn" type="button" data-qty-delta="-1">−</button>
-          <span class="mdco-qty-val" id="mdco-qty-val">${currentQty}</span>
-          <button class="mdco-qty-btn" type="button" data-qty-delta="1">+</button>
-        </div>
-      </div>
+      <!-- Resumen del producto / productos -->
+      ${isSingleProduct ? renderSingleProductSummary() : renderMultiProductSummary()}
 
       <!-- Datos del cliente -->
       <div class="mdco-section">
@@ -266,11 +264,54 @@
     updateSubmitButtonUI();
   }
 
+  function renderSingleProductSummary() {
+    const it = currentItems[0];
+    return `
+      <div class="mdco-product-summary">
+        <img src="${escapeHtml(it.image || '/logo.png')}" alt="${escapeHtml(it.name)}" />
+        <div class="mdco-product-summary-info">
+          <div class="mdco-product-summary-name">${escapeHtml(it.name)}</div>
+          ${it.variant ? `<div class="mdco-product-summary-variant">${escapeHtml(it.variant)}</div>` : ''}
+          <div class="mdco-product-summary-price">${money(priceToNumber(it.unitPrice))}</div>
+        </div>
+        <div class="mdco-product-summary-qty">
+          <button class="mdco-qty-btn" type="button" data-qty-delta="-1">−</button>
+          <span class="mdco-qty-val" id="mdco-qty-val">${it.qty}</span>
+          <button class="mdco-qty-btn" type="button" data-qty-delta="1">+</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderMultiProductSummary() {
+    // Lista compacta de productos sin qty selector (qty fija desde carrito)
+    return `
+      <div class="mdco-multi-summary">
+        <div class="mdco-multi-summary-header">${currentItems.length} producto${currentItems.length === 1 ? '' : 's'} en tu pedido</div>
+        ${currentItems.map(it => `
+          <div class="mdco-multi-item">
+            <img src="${escapeHtml(it.image || '/logo.png')}" alt="${escapeHtml(it.name)}" />
+            <div class="mdco-multi-item-info">
+              <div class="mdco-multi-item-name">${escapeHtml(it.name)}</div>
+              ${it.variant ? `<div class="mdco-multi-item-variant">${escapeHtml(it.variant)}</div>` : ''}
+            </div>
+            <div class="mdco-multi-item-qty-price">
+              <div class="mdco-multi-item-qty">×${it.qty}</div>
+              <div class="mdco-multi-item-price">${money(priceToNumber(it.unitPrice) * it.qty)}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
   function renderZoneCardHTML(zone) {
     const isSelected = selectedZone === zone.id;
     const isPickup = zone.id.startsWith('retiro-');
     const wouldBeFree = !isPickup && qualifiesForFreeShipping();
-    const displayPrice = (isPickup || wouldBeFree) ? 'GRATIS' : money(zone.cost);
+    const displayPrice = isPickup
+      ? 'Sin costo'
+      : (wouldBeFree ? 'GRATIS' : money(zone.cost));
     const priceClass = (isPickup || wouldBeFree) ? 'free' : '';
 
     return `
@@ -290,10 +331,11 @@
   // ─── Updates parciales (NO destructivos: mantienen los inputs) ───
 
   function updateQty(delta) {
-    currentQty = Math.max(1, Math.min(20, currentQty + delta));
+    if (!isSingleProduct) return; // qty selector solo cuando es 1 producto
+    const it = currentItems[0];
+    it.qty = Math.max(1, Math.min(20, (it.qty || 1) + delta));
     const qtyEl = document.getElementById('mdco-qty-val');
-    if (qtyEl) qtyEl.textContent = currentQty;
-    // Cambia el qty → puede cambiar si califica para envío gratis → re-pintar zonas
+    if (qtyEl) qtyEl.textContent = it.qty;
     repaintZonesPrices();
     updateTotalsUI();
     updateSubmitButtonUI();
@@ -328,7 +370,7 @@
   }
 
   function repaintZonesPrices() {
-    // Solo actualiza los precios y la badge "GRATIS" en cada card sin reemplazar el HTML completo
+    // Solo actualiza los precios sin reemplazar el HTML completo (preserva inputs)
     const cards = document.querySelectorAll('#mdco-zones [data-zone]');
     cards.forEach(card => {
       const zone = SHIPPING_ZONES.find(z => z.id === card.dataset.zone);
@@ -336,7 +378,9 @@
       const wouldBeFree = !isPickup && qualifiesForFreeShipping();
       const priceEl = card.querySelector('.mdco-radio-card-price');
       if (!priceEl) return;
-      priceEl.textContent = (isPickup || wouldBeFree) ? 'GRATIS' : money(zone.cost);
+      priceEl.textContent = isPickup
+        ? 'Sin costo'
+        : (wouldBeFree ? 'GRATIS' : money(zone.cost));
       priceEl.classList.toggle('free', isPickup || wouldBeFree);
     });
   }
@@ -346,7 +390,12 @@
     const totalsEl = document.getElementById('mdco-totals');
     if (!totalsEl) return;
 
-    const freeShip = t.shippingCost === 0;
+    const isPickup = selectedZone.startsWith('retiro-');
+    const freeShip = t.shippingCost === 0 && !isPickup;
+    const shippingDisplay = isPickup
+      ? getZoneShortName(selectedZone)
+      : (freeShip ? 'GRATIS' : money(t.shippingCost));
+
     const discountRow = t.discount > 0
       ? `<div class="mdco-totals-row" style="color:#22a35e;font-weight:600">
            <span>Descuento (10% OFF · transferencia o efectivo)</span>
@@ -362,8 +411,8 @@
       ${discountRow}
       <div class="mdco-totals-row">
         <span>Envío</span>
-        <span class="${freeShip ? 'mdco-totals-free' : ''}">
-          ${freeShip ? 'GRATIS' : money(t.shippingCost)}
+        <span class="${(freeShip || isPickup) ? 'mdco-totals-free' : ''}">
+          ${shippingDisplay}
         </span>
       </div>
       <div class="mdco-totals-row total">
@@ -417,17 +466,16 @@
     const t = calcTotals();
 
     const payload = {
-      items: [{
-        id: currentItem.id,
-        name: currentItem.name,
-        variant: currentItem.variant || '',
-        qty: currentQty,
-        unitPrice: priceToNumber(currentItem.unitPrice),
-        freeShipping: currentItem.freeShipping || false,
-      }],
+      items: currentItems.map(it => ({
+        id: it.id,
+        name: it.name,
+        variant: it.variant || '',
+        qty: it.qty,
+        unitPrice: priceToNumber(it.unitPrice),
+        freeShipping: it.freeShipping || false,
+      })),
       customer: { name, email, phone, dni, cuit },
       shipping: { zone: selectedZone, address, notes },
-      // Para que el backend sepa que hay descuento aplicado en el caso transfer
       paymentMethod: selectedPayment === 'card' ? 'mp' : 'transfer',
       discount: t.discount,
     };
@@ -495,11 +543,14 @@
     const isPickup = selectedZone.startsWith('retiro-');
     const zoneLabel = (SHIPPING_ZONES.find(z => z.id === selectedZone) || {}).label || '';
 
+    const productLines = currentItems.map(it =>
+      `- ${it.name}${it.variant ? ' (' + it.variant + ')' : ''} × ${it.qty}`
+    ).join('\n');
+
     const waMsg = encodeURIComponent(
       `Hola! Te paso el comprobante de mi pedido en MDRACING.\n\n` +
       `Pedido: #${orderId}\n` +
-      `Producto: ${currentItem.name}${currentItem.variant ? ' - ' + currentItem.variant : ''}\n` +
-      `Cantidad: ${currentQty}\n` +
+      `Productos:\n${productLines}\n` +
       `Total: $${total.toLocaleString('es-AR')}\n` +
       `Entrega: ${zoneLabel}\n` +
       `Cliente: ${customerName}\n\n` +
@@ -521,13 +572,13 @@
 
       <div style="background:#fff7d9;border:1px solid #ffe178;border-left:4px solid #d4a020;padding:14px 16px;border-radius:8px;margin:16px 0;">
         <p style="margin:0;font-weight:700;color:#5a4400;font-size:14.5px">📌 Para confirmar tu pedido</p>
-        <p style="margin:8px 0 0;color:#5a4400;font-size:14px;line-height:1.5">
+        <p style="margin:8px 0 0;color:#5a4400;font-size:14px;line-height:1.55">
           ${isPickup ? `
-            Si vas a pagar en <strong>efectivo al retirar</strong>, dejá pasar este paso.<br>
-            Si preferís pagar por <strong>transferencia ya</strong>, hacela con los datos de abajo y mandanos el comprobante por WhatsApp.
+            <strong>Si pagás en efectivo al retirar</strong>, escribinos por WhatsApp para coordinar el retiro.<br>
+            <strong>Si elegiste transferencia</strong>, usá los datos de abajo y mandanos el comprobante. Sin el comprobante el pedido no queda confirmado.
           ` : `
             Hacé la transferencia con los datos de abajo y mandanos el comprobante por WhatsApp.<br>
-            Sin el comprobante no podemos preparar el envío.
+            <strong>Sin el comprobante el pedido no queda confirmado y no podemos despachar el envío.</strong>
           `}
         </p>
       </div>
@@ -588,13 +639,47 @@
   }
 
   // ─── API Pública ───
-  window.openCheckout = function (item) {
-    if (!item || !item.id || !item.name || !item.unitPrice) {
-      console.error('openCheckout: item incompleto', item);
+  // Acepta:
+  //   openCheckout({ id, name, image, unitPrice, ... })  → single product con qty selector
+  //   openCheckout([{...},{...}])                         → multi product (sin qty selector)
+  //   openCheckout({ items: [...] })                      → multi product (sin qty selector)
+  window.openCheckout = function (input) {
+    let items = [];
+    let single = false;
+
+    if (Array.isArray(input)) {
+      items = input;
+      single = false;
+    } else if (input && Array.isArray(input.items)) {
+      items = input.items;
+      single = false;
+    } else if (input && input.id && input.name && input.unitPrice) {
+      items = [{ ...input, qty: input.qty || 1 }];
+      single = true;
+    } else {
+      console.error('openCheckout: input inválido', input);
       return;
     }
-    currentItem = item;
-    currentQty = 1;
+
+    // Normalizar items
+    currentItems = items
+      .filter(it => it && it.id && it.name && it.unitPrice)
+      .map(it => ({
+        id: it.id,
+        name: it.name,
+        image: it.image || '/logo.png',
+        variant: it.variant || '',
+        unitPrice: priceToNumber(it.unitPrice),
+        qty: parseInt(it.qty, 10) || 1,
+        freeShipping: it.freeShipping || false,
+      }));
+
+    if (!currentItems.length) {
+      console.error('openCheckout: no hay items válidos');
+      return;
+    }
+
+    isSingleProduct = single;
     selectedZone = 'retiro-fabrica';
     selectedPayment = 'card';
     isSubmitting = false;

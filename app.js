@@ -1816,10 +1816,9 @@ function renderProductPage(productId) {
 
           <div class="product-ctas">
             ${(() => {
-              // ── Productos con "Comprar ahora" habilitado (checkout MP / efectivo) ──
-              // Por ahora solo el producto piloto. Después agregamos al resto.
-              const PILOT_PRODUCT_IDS = ['cubre-volante-base-plana-polo-gol-golf-vento-ksc3g'];
-              const isPilot = PILOT_PRODUCT_IDS.includes(p.id);
+              // ── Productos con "Comprar ahora" habilitado (checkout MP / transferencia) ──
+              // Lista global definida en app.js (window.PILOT_PRODUCT_IDS).
+              const isPilot = (window.PILOT_PRODUCT_IDS || []).includes(p.id);
 
               if (isPilot) {
                 return `
@@ -3662,24 +3661,77 @@ function cartRender() {
     return sum + p * (i.qty || 1);
   }, 0);
   const totalStr = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  // ── Comprar ahora con MP / Transferencia desde el carrito ──
+  // Disponible solo cuando TODOS los productos del carrito están en la lista de pilotos.
+  // (Por ahora solo el cubre-volante; se irá habilitando producto por producto.)
+  const PILOT_PRODUCT_IDS = (typeof window !== 'undefined' && window.PILOT_PRODUCT_IDS) || [];
+  const allArePilot = items.length > 0 && items.every(i => PILOT_PRODUCT_IDS.includes(i.id));
+
+  const buyNowBtn = allArePilot ? `
+    <button type="button" class="btn-cart-buynow" onclick="openCheckoutFromCart()">
+      ${icons.cart} Comprar ahora · Mercado Pago o transferencia
+    </button>
+  ` : '';
+
   footer.innerHTML = `
     <div class="cart-summary">
       <div class="cart-summary-row">
         <span>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en el carrito</span>
-        <strong>Consulta sin cargo</strong>
+        <strong>${allArePilot ? 'Compra online' : 'Consulta sin cargo'}</strong>
       </div>
       <div class="cart-total-row">
         <span>Total estimado</span>
         <span class="cart-total-price">$${totalStr}</span>
       </div>
     </div>
-    <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout">
-      ${icons.waIcon} Finalizar compra por WhatsApp
+    ${buyNowBtn}
+    <a href="${WA_MSG(waMsg)}" target="_blank" class="btn-cart-checkout ${allArePilot ? 'secondary' : ''}">
+      ${icons.waIcon} ${allArePilot ? 'Consultar antes de comprar' : 'Finalizar compra por WhatsApp'}
     </a>
-    <p class="cart-note">No es una compra directa. Te derivamos a WhatsApp para coordinar precio final, envío y forma de pago.</p>
+    <p class="cart-note">${allArePilot
+      ? 'Comprá online con tarjeta o transferencia (10% OFF). O consultá por WhatsApp si tenés dudas.'
+      : 'No es una compra directa. Te derivamos a WhatsApp para coordinar precio final, envío y forma de pago.'}</p>
     <button class="btn-cart-clear" onclick="clearCart()">Vaciar carrito</button>
   `;
 }
+
+// ── Lista global de productos con "Comprar ahora" habilitado ──
+// (Por ahora solo el producto piloto. Después la expandimos a los 167.)
+window.PILOT_PRODUCT_IDS = ['cubre-volante-base-plana-polo-gol-golf-vento-ksc3g'];
+
+// Abre el modal de checkout con los items del carrito (multi-item)
+function openCheckoutFromCart() {
+  const cartItems = (typeof cartGet === 'function') ? cartGet() : [];
+  if (!cartItems.length) {
+    console.warn('Carrito vacío');
+    return;
+  }
+  // Construir items en formato esperado por openCheckout
+  const checkoutItems = cartItems.map(ci => {
+    const p = products.find(pr => pr.id === ci.id) || ci;
+    const hsPrice = typeof HOT_SALE_PRICES !== 'undefined' && HOT_SALE_PRICES[p.id];
+    const effectivePriceStr = hsPrice || ci.salePrice || ci.price || p.salePrice || p.price;
+    const priceNum = parseInt(String(effectivePriceStr).replace(/[^\d]/g, ''), 10) || 0;
+    const firstImage = (p.images && p.images[0]) || ci.img || '/logo.png';
+    const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 130000;
+    return {
+      id: p.id || ci.id,
+      name: p.name || ci.name,
+      image: firstImage,
+      qty: ci.qty || 1,
+      unitPrice: priceNum,
+      freeShipping: freeShip,
+    };
+  });
+  if (typeof window.openCheckout !== 'function') {
+    console.error('openCheckout no disponible. ¿Cargó checkout.js?');
+    return;
+  }
+  // Cerrar el cart drawer antes de abrir el modal
+  if (typeof closeCart === 'function') closeCart();
+  window.openCheckout({ items: checkoutItems });
+}
+window.openCheckoutFromCart = openCheckoutFromCart;
 
 // ═══════════════════════════════════════════════════════════
 // INIT

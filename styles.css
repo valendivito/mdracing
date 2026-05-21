@@ -5284,6 +5284,48 @@ section { position: relative; }
   text-decoration: none;
 }
 .btn-cart-checkout:hover { background: #1ea854; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,211,102,.25); }
+
+/* Variante secundaria: cuando hay botón "Comprar ahora" arriba */
+.btn-cart-checkout.secondary {
+  background: transparent;
+  color: #25d366;
+  border: 1.5px solid #25d366;
+}
+.btn-cart-checkout.secondary:hover {
+  background: rgba(37,211,102,.08);
+  color: #1ea854;
+  border-color: #1ea854;
+  box-shadow: none;
+}
+
+/* Botón "Comprar ahora con MP / Transferencia" — principal del carrito */
+.btn-cart-buynow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--red2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--trans);
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.btn-cart-buynow:hover {
+  background: var(--red);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(209,0,0,.3);
+}
+
 .btn-cart-clear {
   background: transparent;
   border: 1px solid var(--white15);
