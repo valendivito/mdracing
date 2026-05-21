@@ -3467,6 +3467,94 @@ function cartUpdateBadge() {
   if (floatBtn) floatBtn.style.display = n === 0 ? 'none' : 'flex';
   if (floatCount) floatCount.textContent = n;
 }
+// ── Manejo del retorno de Mercado Pago ──
+// MP redirige a /?compra=ok|pending|failure&id=MDR-XXX después del pago.
+// Mostramos un modal de confirmación + limpiamos la URL + vaciamos carrito si compró desde ahí.
+function handleMpReturn() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('compra');
+  const orderId = params.get('id') || '';
+  if (!status) return;
+
+  // Limpiar URL para que al refrescar no aparezca el modal
+  const cleanUrl = window.location.pathname + window.location.hash;
+  history.replaceState(null, '', cleanUrl);
+
+  // Si la compra fue exitosa, vaciar carrito (probablemente vino desde ahí)
+  if (status === 'ok' && typeof clearCart === 'function') {
+    try { clearCart(); } catch (e) {}
+  }
+
+  // Configurar contenido del modal según el estado
+  const cfg = {
+    ok: {
+      title: '¡Pedido confirmado!',
+      icon: '✅',
+      iconBg: '#e6f7ec',
+      iconColor: '#22a35e',
+      text: `Recibimos tu pago. <strong>Pedido #${orderId}</strong>.<br>Te enviamos un email con todos los detalles. Te avisamos por WhatsApp cuando despachemos el producto.`,
+      ctaLabel: 'Seguir comprando',
+      ctaColor: '#d10000',
+    },
+    pending: {
+      title: 'Pago pendiente',
+      icon: '⏳',
+      iconBg: '#fff7d9',
+      iconColor: '#d4a020',
+      text: `Tu pago de la <strong>#${orderId}</strong> está en proceso (puede tardar unas horas si pagaste en efectivo en Rapipago/Pago Fácil).<br>Cuando se acredite, te avisamos por email y empezamos a preparar el pedido.`,
+      ctaLabel: 'Seguir navegando',
+      ctaColor: '#d10000',
+    },
+    failure: {
+      title: 'El pago no se completó',
+      icon: '❌',
+      iconBg: '#fee',
+      iconColor: '#d10000',
+      text: `Hubo un problema con tu pago${orderId ? ' (#' + orderId + ')' : ''}. No se realizó ningún cargo a tu cuenta.<br>Podés intentar de nuevo o consultarnos por WhatsApp.`,
+      ctaLabel: 'Intentar de nuevo',
+      ctaColor: '#0a0a0a',
+    },
+  };
+
+  const c = cfg[status] || cfg.failure;
+
+  // Crear modal de confirmación
+  const backdrop = document.createElement('div');
+  backdrop.id = 'mp-return-backdrop';
+  backdrop.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:10010;display:flex;align-items:center;justify-content:center;padding:16px;animation:mpReturnFade .3s ease';
+  backdrop.innerHTML = `
+    <div style="background:#fff;border-radius:14px;max-width:480px;width:100%;padding:32px 28px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;animation:mpReturnPop .35s cubic-bezier(.4,0,.2,1)">
+      <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:${c.iconBg};margin-bottom:18px;font-size:38px">
+        ${c.icon}
+      </div>
+      <h2 style="margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:#0a0a0a;letter-spacing:-.3px;line-height:1.1">
+        ${c.title}
+      </h2>
+      <p style="margin:14px 0 22px;color:#444;font-size:15px;line-height:1.55">
+        ${c.text}
+      </p>
+      <button type="button" onclick="document.getElementById('mp-return-backdrop').remove()"
+        style="display:inline-block;background:${c.ctaColor};color:#fff;border:none;padding:14px 32px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:transform .2s">
+        ${c.ctaLabel}
+      </button>
+      ${status !== 'ok' ? `
+        <p style="margin:18px 0 0;font-size:12.5px;color:#666">
+          ¿Consultas? <a href="https://wa.me/5491154907774" target="_blank" style="color:#d10000;font-weight:600;text-decoration:none">WhatsApp +54 9 11 5490-7774</a>
+        </p>
+      ` : ''}
+    </div>
+    <style>
+      @keyframes mpReturnFade { from{opacity:0} to{opacity:1} }
+      @keyframes mpReturnPop { from{opacity:0;transform:scale(.9) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    </style>
+  `;
+  // Click fuera del modal → cerrar
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) backdrop.remove();
+  });
+  document.body.appendChild(backdrop);
+}
+
 // ── Checkout directo (Mercado Pago / Efectivo) ──
 // Lookup en products + apertura del modal de checkout.
 function openCheckoutForProduct(productId) {
@@ -3722,6 +3810,9 @@ document.addEventListener('DOMContentLoaded', () => {
   updateActiveNav(startPage);
   applySEO(startPage);
   cartUpdateBadge();
+
+  // ── Detectar retorno de Mercado Pago (post-checkout) ──
+  handleMpReturn();
 
   window.addEventListener('popstate', (e) => {
     const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
