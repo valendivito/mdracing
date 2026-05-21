@@ -3480,9 +3480,9 @@ function handleMpReturn() {
   const cleanUrl = window.location.pathname + window.location.hash;
   history.replaceState(null, '', cleanUrl);
 
-  // Si la compra fue exitosa, vaciar carrito (probablemente vino desde ahí)
-  if (status === 'ok' && typeof clearCart === 'function') {
-    try { clearCart(); } catch (e) {}
+  // Si la compra fue exitosa, vaciar carrito SIN preguntar (uso interno)
+  if (status === 'ok' && typeof clearCartSilent === 'function') {
+    try { clearCartSilent(); } catch (e) {}
   }
 
   // Configurar contenido del modal según el estado
@@ -3645,10 +3645,15 @@ function removeFromCart(productId) {
   cartSave(cartGet().filter(i => i.id !== productId));
   cartRender();
 }
-function clearCart() {
-  if (!confirm('¿Vaciar el carrito?')) return;
+// Vacía el carrito sin preguntar (uso interno, ej. post-compra exitosa)
+function clearCartSilent() {
   cartSave([]);
   cartRender();
+}
+// Vacía el carrito pidiendo confirmación (uso desde botón "Vaciar carrito")
+function clearCart() {
+  if (!confirm('¿Vaciar el carrito?')) return;
+  clearCartSilent();
 }
 function openCart() {
   const drawer = document.getElementById('cart-drawer');
