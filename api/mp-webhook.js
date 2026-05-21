@@ -94,18 +94,34 @@ module.exports = async (req, res) => {
 
     const order = buildOrderFromPayment(payment);
 
+    console.log('[mp-webhook] payment status:', payment.status, 'orderId:', order.id);
+
     // Solo notificar si el pago está aprobado.
     // Para "pending" (efectivo Rapipago/Pago Fácil sin pagar aún) no notificamos.
+    let adminResult = null, customerResult = null;
     if (payment.status === 'approved') {
       try {
-        await sendAdminNotification(order);
-      } catch (e) { console.error('[mp-webhook] error admin email:', e); }
+        adminResult = await sendAdminNotification(order);
+        console.log('[mp-webhook] admin email enviado:', adminResult && adminResult.data && adminResult.data.id);
+      } catch (e) {
+        console.error('[mp-webhook] ERROR enviando admin email:', e && e.message, e);
+      }
       try {
-        await sendCustomerConfirmation(order);
-      } catch (e) { console.error('[mp-webhook] error customer email:', e); }
+        customerResult = await sendCustomerConfirmation(order);
+        console.log('[mp-webhook] customer email enviado a', order.customer.email, ':', customerResult && customerResult.data && customerResult.data.id);
+      } catch (e) {
+        console.error('[mp-webhook] ERROR enviando customer email:', e && e.message, e);
+      }
+    } else {
+      console.log('[mp-webhook] pago no aprobado, no se envían emails');
     }
 
-    return res.status(200).json({ ok: true, status: payment.status });
+    return res.status(200).json({
+      ok: true,
+      status: payment.status,
+      adminEmailSent: !!(adminResult && adminResult.data),
+      customerEmailSent: !!(customerResult && customerResult.data),
+    });
   } catch (err) {
     console.error('[mp-webhook] ERROR:', err);
     // Igual respondemos 200 para evitar reintentos infinitos de MP en caso de error nuestro
