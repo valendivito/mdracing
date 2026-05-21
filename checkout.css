@@ -482,21 +482,40 @@
     left: 0;
     transform: translate(0, 100%);
     width: 100vw;
+    /* dvh (dynamic viewport height) considera la barra inferior de Safari iOS */
     max-height: 100vh;
+    max-height: 100dvh;
     height: 100vh;
+    height: 100dvh;
     border-radius: 0;
+    /* Layout column para que el body scrollee y el botón quede dentro */
+    display: none;
+    flex-direction: column;
   }
   #mdco-modal.open {
+    display: flex;
     transform: translate(0, 0);
   }
   .mdco-header {
     padding: 14px 16px;
+    flex-shrink: 0; /* el header no se achica */
   }
   .mdco-body {
-    padding: 16px;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    /* Padding-bottom extra para que el botón submit no quede tapado por la
+       barra de Safari iOS y por el iPhone notch / home indicator */
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   .mdco-product-summary img {
     width: 56px;
     height: 56px;
+  }
+  /* Asegurar que el botón submit (el último elemento) tenga margen abajo */
+  .mdco-submit,
+  #mdco-close-success {
+    margin-bottom: 12px;
   }
 }
