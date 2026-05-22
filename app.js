@@ -734,15 +734,15 @@ function renderHome() {
             <div class="hero-trust-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
               <div>
-                <strong>Envíos a todo el país</strong>
-                <small>Gratis +$130.000</small>
+                <strong>Envío a todo el país</strong>
+                <small>Gratis desde $130.000</small>
               </div>
             </div>
             <div class="hero-trust-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               <div>
-                <strong>30 días para devolver</strong>
-                <small>Cambios gratis</small>
+                <strong>Cambios en 30 días</strong>
+                <small>Garantía de fábrica</small>
               </div>
             </div>
           </div>
@@ -1275,24 +1275,25 @@ function renderHome() {
     <section class="final-cta">
       <div class="final-cta-inner final-cta-2col">
         <div class="final-cta-text">
-          <div class="final-cta-badge">⚡ Respondemos en minutos</div>
+          <div class="final-cta-badge">⚡ Comprá online o consultá por WA</div>
           <span class="section-label" style="display:block;margin-bottom:10px;text-align:left">Sin intermediarios · Fabricado en Argentina</span>
-          <h2 class="section-title" style="text-align:left">Armamos el combo<br><span>justo para tu auto.</span></h2>
+          <h2 class="section-title" style="text-align:left">Comprá fácil <br><span>o pedí tu combo a medida.</span></h2>
           <div class="divider-line" style="margin:18px 0"></div>
-          <p class="section-sub" style="text-align:left;margin:0 0 22px">Escribinos con tu marca y modelo. Te respondemos en minutos con tu presupuesto a medida, sin vueltas.</p>
+          <p class="section-sub" style="text-align:left;margin:0 0 22px">Comprá directo desde el sitio con tarjeta en cuotas o transferencia con <strong style="color:var(--red2)">10% OFF</strong>. Si necesitás asesoramiento o un combo a medida para tu auto, escribinos por WhatsApp.</p>
           <div class="final-cta-chips" style="justify-content:flex-start">
-            <span class="cta-chip">✔ A medida o universal</span>
+            <span class="cta-chip">✔ Pago online seguro</span>
+            <span class="cta-chip">✔ Cuotas sin interés</span>
+            <span class="cta-chip">✔ 10% OFF transferencia/efectivo</span>
             <span class="cta-chip">✔ Envío 24–72 hs</span>
             <span class="cta-chip">✔ Garantía 30 días</span>
-            <span class="cta-chip">✔ Instalación en local</span>
           </div>
           <div class="final-cta-actions" style="justify-content:flex-start;margin-top:24px">
-            <a href="${WA_MSG('Hola! Quiero armar un combo para mi vehículo con MDRACING. ¿Me pueden pasar presupuesto?')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:14px 28px">${icons.waIcon} Pedir presupuesto</a>
-            <a href="#" data-page="categorias" class="btn-outline" style="font-size:16px;padding:13px 24px">Ver Catálogo</a>
+            <a href="#" data-page="categorias" class="btn-primary" style="font-size:16px;padding:14px 28px">${icons.cart} Comprar ahora</a>
+            <a href="${WA_MSG('Hola! Quiero asesoramiento para mi vehículo con MDRACING. Mi marca y modelo es...')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:14px 28px">${icons.waIcon} Asesoramiento WhatsApp</a>
           </div>
           <p class="final-cta-note" style="text-align:left;margin-top:16px">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-            Lun–Vie 8 a 18hs · Sáb 9 a 13hs
+            WhatsApp Lun–Vie 8 a 18hs · Sáb 9 a 13hs · Compra online 24/7
           </p>
         </div>
         <div class="final-cta-gallery">

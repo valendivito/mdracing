@@ -3154,18 +3154,14 @@ section { position: relative; }
   font-weight: 600;
   font-size: 13px;
   color: var(--white);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 .hero-trust-item small {
   font-family: var(--font-small);
   font-size: 11px;
   color: var(--metal);
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-top: 3px;
+  line-height: 1.25;
 }
 @media (max-width: 1024px) {
   .hero-trust-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
