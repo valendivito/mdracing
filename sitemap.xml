@@ -1,58 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!--
+    Sitemap MDRACING.
+    El sitio es un SPA con ruteo por hash (/#categoria) renderizado del lado del cliente.
+    Google ignora los fragmentos después de #, por lo que listar URLs con # genera
+    duplicados detectados por Search Console. Hasta migrar a rutas reales (SSR/SSG),
+    el sitemap solo declara la URL raíz canónica.
+  -->
   <url>
     <loc>https://www.mdracingfundas.com/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-fundas-asientos</loc>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-cubre-autos</loc>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-alfombras-termoformadas</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-cubre-capots</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-cubre-trompas</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-cubre-motos</loc>
-    <priority>0.7</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#cat-accesorios</loc>
-    <priority>0.7</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#quienes-somos</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#preguntas-frecuentes</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mdracingfundas.com/#como-comprar</loc>
-    <priority>0.5</priority>
-    <changefreq>monthly</changefreq>
   </url>
 </urlset>
