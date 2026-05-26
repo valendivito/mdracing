@@ -3,11 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    {
-      "source": "/((?!api/|admin/|admin$|_vercel/|.*\\.(?:js|css|png|jpg|jpeg|webp|gif|svg|ico|xml|txt|json|woff2?|map)$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ],
   "headers": [
     {

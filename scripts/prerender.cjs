@@ -400,7 +400,7 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
 
   // Inyectar el contenido renderizado dentro del <main id="app">
   html = html.replace(
-    /<main\s+id="app"[^>]*><\/main>/i,
+    /<main\s+id="app"[^>]*>[\s\S]*?<\/main>/i,
     `<main id="app">${renderedAppHtml}</main>`
   );
 
@@ -411,12 +411,29 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
 // 5) SCRIPT PRINCIPAL
 // ═══════════════════════════════════════════════════════════════
 
+/**
+ * Limpia el HTML del template para que sea reutilizable.
+ * Como index.html guarda la home pre-renderizada, al regenerar tenemos que
+ * vaciar el <main id="app">, remover el marker viejo y cualquier JSON-LD de
+ * producto que haya quedado de un build previo. Esto hace el script idempotente.
+ */
+function normalizeTemplate(html) {
+  // Vaciar el <main id="app"> (puede tener contenido pre-renderizado de un build previo)
+  html = html.replace(/<main\s+id="app"[^>]*>[\s\S]*?<\/main>/i, '<main id="app"></main>');
+  // Remover marker __PRERENDERED_PAGE viejo
+  html = html.replace(/\s*<script>\s*window\.__PRERENDERED_PAGE\s*=\s*"[^"]*";?\s*<\/script>/g, '');
+  // Remover Product JSON-LD viejo
+  html = html.replace(/\s*<script[^>]*id="product-jsonld"[^>]*>[\s\S]*?<\/script>/g, '');
+  return html;
+}
+
 async function main() {
   console.log('[prerender] Cargando app.js en sandbox...');
   const sandbox = loadAppInSandbox();
   console.log(`[prerender] OK — ${sandbox.products.length} productos, ${sandbox.categories.length} categorías.`);
 
-  const templateHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+  const rawTemplate = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+  const templateHtml = normalizeTemplate(rawTemplate);
 
   const routes = [];
 
