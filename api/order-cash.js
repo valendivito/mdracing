@@ -12,7 +12,7 @@
 
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
 const { calcShipping, priceToNumber } = require('../lib/shipping');
-const { saveOrder } = require('../lib/db');
+const { saveOrder, validateCoupon, incrementCouponUses } = require('../lib/db');
 
 function generateOrderId() {
   const date = new Date();
@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
   try {
     const body = req.body || {};
-    const { items, customer, shipping } = body;
+    const { items, customer, shipping, couponCode } = body;
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: 'items requerido' });
@@ -61,12 +61,22 @@ module.exports = async (req, res) => {
     const shippingResult = calcShipping(normalizedItems, shipping.zone);
 
     // Descuento 10% si el método es 'transfer' (transferencia o efectivo)
-    // Permitimos que el cliente mande `discount` calculado en frontend pero lo
-    // re-calculamos en backend como seguridad.
-    const requestedMethod = body.paymentMethod || 'transfer'; // 'transfer' o 'cash' = mismo flujo
+    const requestedMethod = body.paymentMethod || 'transfer';
     const isTransferOrCash = requestedMethod === 'transfer' || requestedMethod === 'cash';
     const discount = isTransferOrCash ? Math.round(subtotal * 0.10) : 0;
-    const total = subtotal - discount + shippingResult.cost;
+
+    // ── Cupón (validación backend) ──
+    let couponDiscount = 0;
+    let validatedCoupon = null;
+    if (couponCode && String(couponCode).trim()) {
+      const couponResult = await validateCoupon(couponCode, subtotal);
+      if (couponResult.ok) {
+        couponDiscount = couponResult.discountAmount;
+        validatedCoupon = couponResult.coupon;
+      }
+    }
+
+    const total = subtotal - discount - couponDiscount + shippingResult.cost;
 
     const order = {
       id: generateOrderId(),
@@ -89,6 +99,8 @@ module.exports = async (req, res) => {
       },
       subtotal,
       discount,
+      couponCode: validatedCoupon ? validatedCoupon.code : null,
+      couponDiscount,
       shippingCost: shippingResult.cost,
       total,
     };
@@ -97,7 +109,15 @@ module.exports = async (req, res) => {
     try {
       const dbRes = await saveOrder(order);
       if (!dbRes.ok) console.error('[order-cash] DB save failed:', dbRes.error);
-      else console.log('[order-cash] guardado en DB:', order.id);
+      else {
+        console.log('[order-cash] guardado en DB:', order.id);
+        // Incrementar uso del cupón
+        if (validatedCoupon) {
+          incrementCouponUses(validatedCoupon.id).catch(e =>
+            console.error('[order-cash] incrementCouponUses failed:', e)
+          );
+        }
+      }
     } catch (e) {
       console.error('[order-cash] DB exception:', e && e.message);
     }
@@ -110,7 +130,13 @@ module.exports = async (req, res) => {
       await sendCustomerConfirmation(order);
     } catch (e) { console.error('[order-cash] error customer email:', e); }
 
-    return res.status(200).json({ ok: true, orderId: order.id, total });
+    return res.status(200).json({
+      ok: true,
+      orderId: order.id,
+      total,
+      couponCode: validatedCoupon?.code || null,
+      couponDiscount,
+    });
   } catch (err) {
     console.error('Error en /api/order-cash:', err);
     return res.status(500).json({ error: err.message });

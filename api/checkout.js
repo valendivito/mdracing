@@ -24,6 +24,7 @@
 
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { calcShipping, priceToNumber } = require('../lib/shipping');
+const { validateCoupon, incrementCouponUses } = require('../lib/db');
 
 function getMP() {
   const mode = (process.env.MP_MODE || 'test').toLowerCase();
@@ -62,7 +63,7 @@ module.exports = async (req, res) => {
 
   try {
     const body = req.body || {};
-    const { items, customer, shipping } = body;
+    const { items, customer, shipping, couponCode } = body;
 
     // ── Validaciones básicas ──
     if (!Array.isArray(items) || items.length === 0) {
@@ -96,7 +97,20 @@ module.exports = async (req, res) => {
 
     const subtotal = normalizedItems.reduce((s, it) => s + it.unitPrice * it.qty, 0);
     const shippingResult = calcShipping(normalizedItems, shipping.zone);
-    const total = subtotal + shippingResult.cost;
+
+    // ── Cupón (validación backend) ──
+    let couponDiscount = 0;
+    let validatedCoupon = null;
+    if (couponCode && String(couponCode).trim()) {
+      const couponResult = await validateCoupon(couponCode, subtotal);
+      if (couponResult.ok) {
+        couponDiscount = couponResult.discountAmount;
+        validatedCoupon = couponResult.coupon;
+      }
+      // Si el cupón es inválido lo ignoramos silenciosamente (el frontend ya validó)
+    }
+
+    const total = subtotal - couponDiscount + shippingResult.cost;
 
     if (total <= 0) {
       return res.status(400).json({ error: 'total inválido' });
@@ -106,23 +120,38 @@ module.exports = async (req, res) => {
     const baseUrl = getBaseUrl(req);
 
     // ── Construir items para MP ──
-    const mpItems = normalizedItems.map(it => ({
-      id: it.id,
-      title: it.name + (it.variant ? ` — ${it.variant}` : ''),
-      quantity: it.qty,
-      unit_price: it.unitPrice,
-      currency_id: 'ARS',
-    }));
-
-    // Agregar línea de envío como item si tiene costo
-    if (shippingResult.cost > 0) {
-      mpItems.push({
-        id: 'shipping',
-        title: shippingResult.label,
+    // Si hay descuento de cupón, consolidamos todo en un ítem para evitar problemas
+    // de precios negativos con la API de MP. El desglose queda en metadata/DB.
+    let mpItems;
+    if (couponDiscount > 0) {
+      const titleParts = normalizedItems.map(it =>
+        it.name + (it.variant ? ` (${it.variant})` : '')
+      ).join(', ');
+      mpItems = [{
+        id: 'pedido',
+        title: `MDRACING · ${titleParts.slice(0, 120)} · Cupón ${validatedCoupon?.code || couponCode}`,
         quantity: 1,
-        unit_price: shippingResult.cost,
+        unit_price: total, // ya incluye descuento + envío
         currency_id: 'ARS',
-      });
+      }];
+    } else {
+      mpItems = normalizedItems.map(it => ({
+        id: it.id,
+        title: it.name + (it.variant ? ` — ${it.variant}` : ''),
+        quantity: it.qty,
+        unit_price: it.unitPrice,
+        currency_id: 'ARS',
+      }));
+      // Agregar línea de envío como item si tiene costo
+      if (shippingResult.cost > 0) {
+        mpItems.push({
+          id: 'shipping',
+          title: shippingResult.label,
+          quantity: 1,
+          unit_price: shippingResult.cost,
+          currency_id: 'ARS',
+        });
+      }
     }
 
     // ── Crear preferencia ──
@@ -156,11 +185,27 @@ module.exports = async (req, res) => {
           shipping_postal: shipping.address.postal || '',
         } : {}),
         ...(shipping.notes ? { shipping_notes: shipping.notes } : {}),
+        // Cupón (para que el webhook lo guarde en la DB)
+        ...(validatedCoupon ? {
+          coupon_code: validatedCoupon.code,
+          coupon_id: validatedCoupon.id,
+          coupon_discount: String(couponDiscount),
+          subtotal: String(subtotal),
+          discount: String(couponDiscount),
+        } : {}),
       },
     };
 
     const mp = getMP();
     const pref = await new Preference(mp).create({ body: preferenceBody });
+
+    // Si hay cupón válido, incrementar el uso al confirmar el pedido.
+    // Para MP lo hacemos optimistamente acá (el webhook puede hacer upsert).
+    if (validatedCoupon) {
+      incrementCouponUses(validatedCoupon.id).catch(e =>
+        console.error('[checkout] incrementCouponUses failed:', e)
+      );
+    }
 
     return res.status(200).json({
       orderId,
@@ -170,6 +215,8 @@ module.exports = async (req, res) => {
       mode: (process.env.MP_MODE || 'test').toLowerCase(),
       summary: {
         subtotal,
+        couponCode: validatedCoupon?.code || null,
+        couponDiscount,
         shippingCost: shippingResult.cost,
         shippingLabel: shippingResult.label,
         shippingFree: shippingResult.free,

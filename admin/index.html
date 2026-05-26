@@ -50,6 +50,10 @@
         <span>Pedidos</span>
         <span class="ad-nav-badge" id="nav-orders-count" hidden>0</span>
       </a>
+      <a href="#coupons" class="ad-nav-link" data-view="coupons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span>Cupones</span>
+      </a>
       <a href="https://www.mdracingfundas.com" target="_blank" class="ad-nav-link ad-nav-external">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         <span>Ver sitio</span>
@@ -159,11 +163,93 @@
       <div id="order-detail-content"></div>
     </section>
 
+    <!-- ── COUPONS VIEW ── -->
+    <section id="view-coupons" class="ad-view" hidden>
+      <header class="ad-header">
+        <div>
+          <h2>Cupones de descuento</h2>
+          <p class="ad-header-sub">Creá y gestioná cupones para tus clientes.</p>
+        </div>
+        <button class="ad-btn ad-btn-primary" onclick="openCouponModal()">+ Nuevo cupón</button>
+      </header>
+
+      <div id="coupons-list" class="ad-table-wrap">
+        <div class="ad-loading">Cargando cupones…</div>
+      </div>
+    </section>
+
   </main>
 </div>
 
 <!-- ═══ Toast container ═══ -->
 <div id="ad-toast" class="ad-toast" hidden></div>
+
+<!-- ═══ Modal: Nuevo/Editar cupón ═══ -->
+<div id="coupon-modal-backdrop" class="ad-modal-backdrop" hidden></div>
+<div id="coupon-modal" class="ad-modal" hidden>
+  <div class="ad-modal-header">
+    <h3 id="coupon-modal-title">Nuevo cupón</h3>
+    <button class="ad-modal-close" onclick="closeCouponModal()">✕</button>
+  </div>
+  <div class="ad-modal-body">
+    <div id="coupon-form-msg" class="ad-msg" style="display:none"></div>
+
+    <div class="ad-field">
+      <label>Código <span class="ad-field-hint">(mayúsculas, sin espacios)</span></label>
+      <input type="text" id="cf-code" placeholder="MDRACING10" autocapitalize="characters" maxlength="32" />
+    </div>
+
+    <div class="ad-grid-2">
+      <div class="ad-field">
+        <label>Tipo</label>
+        <select id="cf-type">
+          <option value="percent">Porcentaje (%)</option>
+          <option value="amount">Monto fijo (ARS)</option>
+        </select>
+      </div>
+      <div class="ad-field">
+        <label id="cf-value-label">Valor (%)</label>
+        <input type="number" id="cf-value" placeholder="10" min="1" step="1" />
+      </div>
+    </div>
+
+    <div class="ad-grid-2">
+      <div class="ad-field">
+        <label>Pedido mínimo (ARS) <span class="ad-field-hint">(opcional)</span></label>
+        <input type="number" id="cf-min-order" placeholder="0" min="0" step="1" />
+      </div>
+      <div class="ad-field">
+        <label>Usos máximos <span class="ad-field-hint">(opcional)</span></label>
+        <input type="number" id="cf-max-uses" placeholder="Sin límite" min="1" step="1" />
+      </div>
+    </div>
+
+    <div class="ad-grid-2">
+      <div class="ad-field">
+        <label>Válido desde <span class="ad-field-hint">(opcional)</span></label>
+        <input type="datetime-local" id="cf-starts-at" />
+      </div>
+      <div class="ad-field">
+        <label>Vence el <span class="ad-field-hint">(opcional)</span></label>
+        <input type="datetime-local" id="cf-expires-at" />
+      </div>
+    </div>
+
+    <div class="ad-field">
+      <label>Descripción interna <span class="ad-field-hint">(no visible al cliente)</span></label>
+      <input type="text" id="cf-description" placeholder="Ej: Campaña Instagram mayo 2026" maxlength="200" />
+    </div>
+
+    <div class="ad-field">
+      <label class="ad-toggle-label">
+        <input type="checkbox" id="cf-active" checked />
+        <span>Activo (disponible para usar)</span>
+      </label>
+    </div>
+
+    <button class="ad-btn ad-btn-primary" id="coupon-form-submit" onclick="submitCouponForm()" style="width:100%;margin-top:8px">Crear cupón</button>
+  </div>
+</div>
 
 <script src="/admin/admin.js"></script>
 </body>

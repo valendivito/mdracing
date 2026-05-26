@@ -475,6 +475,61 @@
   letter-spacing: .3px;
 }
 
+/* ── Cupón de descuento ── */
+.mdco-coupon-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mdco-coupon-row input {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #111;
+  transition: border-color .2s;
+  outline: none;
+}
+.mdco-coupon-row input:focus {
+  border-color: #d10000;
+  box-shadow: 0 0 0 3px rgba(209,0,0,.08);
+}
+.mdco-coupon-btn {
+  height: 40px;
+  padding: 0 16px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.mdco-coupon-btn:hover:not(:disabled) { background: #333; }
+.mdco-coupon-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+.mdco-coupon-status {
+  font-size: 12.5px;
+  margin-top: 6px;
+  min-height: 18px;
+  line-height: 1.4;
+}
+.mdco-coupon-status.success { color: #1a7a4a; }
+.mdco-coupon-status.error   { color: #b00020; }
+
+.mdco-totals-discount { color: #1a7a4a; font-weight: 600; }
+.mdco-totals-coupon   { color: #9900cc; font-weight: 600; }
+
 /* Mobile fixes */
 @media (max-width: 600px) {
   #mdco-modal {

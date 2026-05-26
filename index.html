@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MDRACING — Fundas, Cubre Autos y Accesorios para tu Vehículo</title>
-  <meta name="description" content="Fabricantes de fundas para asientos, cubre autos antigranizo, cubre capots, cubre trompas y accesorios automotrices premium. +25 años. Envíos a todo el país." />
-  <meta name="keywords" content="fundas para asientos, cubre auto antigranizo, cubre capot, cubre trompa, alfombras termoformadas, accesorios auto, MDRACING, Argentina" />
+  <title>MDRACING · Fundas y Cubre Autos a medida · Fábrica directa hace 25 años</title>
+  <meta name="description" content="Fundas para asientos a medida desde $50.000, cubre autos antigranizo, cubre capots y accesorios premium. Fábrica directa hace 25 años. 10% OFF con transferencia. Envíos a todo el país." />
+  <meta name="keywords" content="fundas para asientos a medida, cubre auto antigranizo, cubre capot, cubre trompa, alfombras termoformadas, accesorios auto, MDRACING, fábrica fundas autos Argentina" />
   <meta name="author" content="MDRACING" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.mdracingfundas.com/" id="canonical-link" />
@@ -49,17 +49,20 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MDRACING" />
-  <meta property="og:title" content="MDRACING — Fundas, Cubre Autos y Accesorios" id="og-title" />
-  <meta property="og:description" content="Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria. Fundas, cubre autos antigranizo, cubre capots y más." id="og-description" />
+  <meta property="og:title" content="MDRACING · Fundas y Cubre Autos a medida" id="og-title" />
+  <meta property="og:description" content="Fábrica directa hace 25 años. Fundas para asientos, cubre autos antigranizo, cubre capots y accesorios. 10% OFF con transferencia · Envíos a todo el país." id="og-description" />
   <meta property="og:url" content="https://www.mdracingfundas.com/" id="og-url" />
-  <meta property="og:image" content="https://www.mdracingfundas.com/logo.png" id="og-image" />
+  <meta property="og:image" content="https://www.mdracingfundas.com/og-image.jpg" id="og-image" />
+  <meta property="og:image:width" content="1641" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MDRACING — Fábrica de fundas y cubre autos a medida desde el año 2000" />
   <meta property="og:locale" content="es_AR" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MDRACING — Fundas, Cubre Autos y Accesorios" id="tw-title" />
-  <meta name="twitter:description" content="Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria." id="tw-description" />
-  <meta name="twitter:image" content="https://www.mdracingfundas.com/logo.png" id="tw-image" />
+  <meta name="twitter:title" content="MDRACING · Fundas y Cubre Autos a medida" id="tw-title" />
+  <meta name="twitter:description" content="Fábrica directa hace 25 años. 10% OFF con transferencia · Envíos a todo el país." id="tw-description" />
+  <meta name="twitter:image" content="https://www.mdracingfundas.com/og-image.jpg" id="tw-image" />
 
   <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
@@ -101,28 +104,27 @@
 
 <!-- ═══════════════════════════════════════════════ PROMO BAR ═══ -->
 <div id="promo-bar" role="region" aria-label="Promoción">
-
-  <!-- Hot Sale ticker (visible durante Hot Sale) -->
-  <div id="hs-ticker-bar" class="hs-ticker-bar" style="display:none" aria-label="Hot Sale">
-    <div class="hs-ticker-track">
-      <div class="hs-ticker-content">
-        🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO &nbsp;·&nbsp; 🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆 &nbsp;·&nbsp; ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO &nbsp;·&nbsp; 🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD &nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO &nbsp;·&nbsp; 🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆 &nbsp;·&nbsp; ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO &nbsp;·&nbsp; 🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD &nbsp;·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
-    </div>
-  </div>
-
-  <!-- Barra normal (visible fuera del Hot Sale) -->
+  <!-- Barra normal (default visible). Si hay Hot Sale activo, JS la oculta y muestra el ticker. -->
   <div id="normal-promo-bar">
     <span class="promo-desktop"><strong>10% OFF</strong> pagando con efectivo o transferencia <span class="promo-sep">·</span> Envíos a todo el país</span>
     <span class="promo-mobile"><strong>10% OFF</strong> en efectivo o transferencia</span>
   </div>
-
+  <!-- Hot Sale ticker: contenedor vacío. Texto y visibilidad controlados por JS para que no aparezca en crawlers cuando la promo está vencida. -->
+  <div id="hs-ticker-bar" class="hs-ticker-bar" style="display:none" aria-label="Hot Sale" aria-hidden="true"></div>
 </div>
 <script>
   (function() {
-    if (new Date() < new Date('2026-05-21T00:00:00-03:00')) {
-      document.getElementById('hs-ticker-bar').style.display = '';
+    // ── Configuración Hot Sale ──
+    // Para activar: cambiar HS_END a una fecha futura. Para desactivar: dejar una fecha pasada.
+    var HS_END = '2026-05-21T00:00:00-03:00';
+    var HS_TEXT = '🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO  ·  🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆  ·  ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO  ·  🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD  ·     ';
+
+    if (new Date() < new Date(HS_END)) {
+      var ticker = document.getElementById('hs-ticker-bar');
+      ticker.style.display = '';
+      ticker.removeAttribute('aria-hidden');
+      // Inyectar el contenido (duplicado para el efecto ticker)
+      ticker.innerHTML = '<div class="hs-ticker-track"><div class="hs-ticker-content">' + HS_TEXT + HS_TEXT + '</div></div>';
       document.getElementById('normal-promo-bar').style.display = 'none';
       document.body.classList.add('hs-active');
       // Agregar HOT SALE al menú desplegable

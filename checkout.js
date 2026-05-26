@@ -48,6 +48,11 @@
   let isSubmitting = false;
   let lastOrderId = null;
 
+  // ─── Estado del cupón ───
+  let couponCode = '';         // código ingresado
+  let couponData = null;       // { couponId, code, type, value, discountAmount, description }
+  let couponValidating = false;
+
   // ─── Utils ───
   function priceToNumber(p) {
     if (typeof p === 'number') return p;
@@ -87,8 +92,9 @@
     const subtotal = computeSubtotal();
     const shippingCost = getShippingCost();
     const discount = selectedPayment === 'transfer' ? Math.round(subtotal * CASH_TRANSFER_DISCOUNT) : 0;
-    const total = subtotal - discount + shippingCost;
-    return { subtotal, discount, shippingCost, total };
+    const couponDiscount = couponData ? (couponData.discountAmount || 0) : 0;
+    const total = subtotal - discount - couponDiscount + shippingCost;
+    return { subtotal, discount, couponDiscount, shippingCost, total };
   }
 
   // ─── DOM (build una sola vez) ───
@@ -221,6 +227,25 @@
         </div>
       </div>
 
+      <!-- Cupón de descuento -->
+      <div class="mdco-section">
+        <div class="mdco-section-title">4 · Cupón de descuento <span class="opt">(opcional)</span></div>
+        <div class="mdco-coupon-row">
+          <input
+            type="text"
+            id="mdco-coupon-input"
+            placeholder="Ej: MDRACING10"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            maxlength="32"
+          />
+          <button class="mdco-coupon-btn" id="mdco-coupon-btn" type="button">Aplicar</button>
+        </div>
+        <div class="mdco-coupon-status" id="mdco-coupon-status"></div>
+      </div>
+
       <!-- Totales -->
       <div class="mdco-totals" id="mdco-totals"></div>
 
@@ -258,6 +283,25 @@
 
     // Submit
     document.getElementById('mdco-submit').addEventListener('click', submit);
+
+    // Cupón
+    const couponInput = document.getElementById('mdco-coupon-input');
+    const couponBtn = document.getElementById('mdco-coupon-btn');
+
+    // Restaurar estado del cupón si ya estaba aplicado
+    if (couponCode) couponInput.value = couponCode;
+    updateCouponStatusUI();
+
+    couponBtn.addEventListener('click', applyCoupon);
+    couponInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); }
+    });
+    // Limpiar cupón si el usuario borra el input
+    couponInput.addEventListener('input', () => {
+      if (!couponInput.value.trim() && couponData) {
+        clearCoupon();
+      }
+    });
 
     // Pintar totales y botón inicial
     updateTotalsUI();
@@ -371,6 +415,98 @@
     updateSubmitButtonUI();
   }
 
+  // ─── Cupón ───
+
+  async function applyCoupon() {
+    const input = document.getElementById('mdco-coupon-input');
+    if (!input) return;
+    const code = input.value.trim().toUpperCase();
+    if (!code) {
+      clearCoupon();
+      return;
+    }
+    if (couponValidating) return;
+
+    const subtotal = computeSubtotal();
+    couponValidating = true;
+    const btn = document.getElementById('mdco-coupon-btn');
+    if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+    try {
+      const res = await fetch('/api/coupon/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, subtotal }),
+      });
+      const data = await res.json();
+
+      if (data.valid) {
+        couponCode = code;
+        couponData = data;
+      } else {
+        couponCode = '';
+        couponData = null;
+        // Mantener el código en el input para que el usuario lo vea
+      }
+      updateCouponStatusUI();
+      updateTotalsUI();
+      updateSubmitButtonUI();
+    } catch (e) {
+      console.error('[mdco] Error validando cupón:', e);
+      updateCouponStatusUI('Error de conexión. Intentá de nuevo.');
+    } finally {
+      couponValidating = false;
+      if (btn) { btn.disabled = false; btn.textContent = couponData ? 'Quitar' : 'Aplicar'; }
+    }
+  }
+
+  function clearCoupon() {
+    couponCode = '';
+    couponData = null;
+    const input = document.getElementById('mdco-coupon-input');
+    if (input) input.value = '';
+    const btn = document.getElementById('mdco-coupon-btn');
+    if (btn) { btn.textContent = 'Aplicar'; }
+    updateCouponStatusUI();
+    updateTotalsUI();
+    updateSubmitButtonUI();
+  }
+
+  function updateCouponStatusUI(errorMsg) {
+    const statusEl = document.getElementById('mdco-coupon-status');
+    const btn = document.getElementById('mdco-coupon-btn');
+    if (!statusEl) return;
+
+    if (errorMsg) {
+      statusEl.className = 'mdco-coupon-status error';
+      statusEl.textContent = '✕ ' + errorMsg;
+      return;
+    }
+
+    if (couponData) {
+      const { code, type, value, discountAmount, description } = couponData;
+      const discLabel = type === 'percent'
+        ? `${value}% OFF`
+        : `$${(discountAmount || 0).toLocaleString('es-AR')} OFF`;
+      statusEl.className = 'mdco-coupon-status success';
+      statusEl.innerHTML = `✔ Cupón <strong>${code}</strong> aplicado · ${discLabel}${description ? ` — ${escapeHtml(description)}` : ''}`;
+      if (btn) btn.textContent = 'Quitar';
+    } else if (couponCode === '' && document.getElementById('mdco-coupon-input')?.value === '') {
+      statusEl.className = 'mdco-coupon-status';
+      statusEl.textContent = '';
+    } else {
+      // Hubo intento pero falló
+      const lastTried = document.getElementById('mdco-coupon-input')?.value.trim();
+      if (lastTried) {
+        statusEl.className = 'mdco-coupon-status error';
+        statusEl.textContent = '✕ Cupón inválido o no disponible';
+      } else {
+        statusEl.className = 'mdco-coupon-status';
+        statusEl.textContent = '';
+      }
+    }
+  }
+
   function repaintZonesPrices() {
     // Solo actualiza los precios sin reemplazar el HTML completo (preserva inputs)
     const cards = document.querySelectorAll('#mdco-zones [data-zone]');
@@ -399,9 +535,16 @@
       : (freeShip ? 'GRATIS' : money(t.shippingCost));
 
     const discountRow = t.discount > 0
-      ? `<div class="mdco-totals-row" style="color:#22a35e;font-weight:600">
-           <span>Descuento (10% OFF · transferencia o efectivo)</span>
+      ? `<div class="mdco-totals-row mdco-totals-discount">
+           <span>Descuento 10% OFF (transferencia / efectivo)</span>
            <span>− ${money(t.discount)}</span>
+         </div>`
+      : '';
+
+    const couponRow = t.couponDiscount > 0 && couponData
+      ? `<div class="mdco-totals-row mdco-totals-coupon">
+           <span>Cupón <strong>${escapeHtml(couponData.code)}</strong></span>
+           <span>− ${money(t.couponDiscount)}</span>
          </div>`
       : '';
 
@@ -410,6 +553,7 @@
         <span>Subtotal</span>
         <span>${money(t.subtotal)}</span>
       </div>
+      ${couponRow}
       ${discountRow}
       <div class="mdco-totals-row">
         <span>Envío</span>
@@ -480,6 +624,7 @@
       shipping: { zone: selectedZone, address, notes },
       paymentMethod: selectedPayment === 'card' ? 'mp' : 'transfer',
       discount: t.discount,
+      couponCode: couponCode || null,
     };
 
     const endpoint = selectedPayment === 'card' ? '/api/checkout' : '/api/order-cash';
@@ -716,6 +861,10 @@
     selectedPayment = 'card';
     isSubmitting = false;
     lastOrderId = null;
+    // Reset cupón al abrir un nuevo checkout
+    couponCode = '';
+    couponData = null;
+    couponValidating = false;
 
     buildModal();
     renderCheckoutView();
