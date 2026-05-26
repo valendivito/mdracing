@@ -70,6 +70,69 @@ const icons = {
   plus: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
 };
 
+// ═══════════════════════════════════════════════════════════
+// ROUTING — URLs reales (no hash) para SEO
+// ═══════════════════════════════════════════════════════════
+//
+// Mapping bidireccional entre la "page id" interna (string usado por
+// renderPage / navigate) y la URL pública limpia que ve Google y el usuario.
+//
+// Convenciones:
+//   - "/" siempre = home
+//   - Categorías: /<slug-categoria>  (sin prefijo /categoria/)
+//   - Productos:  /producto/<slug-producto>
+//   - Páginas estáticas: /<slug-pagina>
+//
+// Si agregás una nueva ruta estática, sumala acá Y al sitemap.
+// Las categorías y productos se descubren automáticamente del catálogo.
+
+const ROUTE_TO_PAGE = {
+  '/':                          'home',
+  '/categorias':                'categorias',
+  '/cubre-autos':               'cat-cubre-autos',
+  '/fundas-asientos':           'cat-fundas-asientos',
+  '/cubre-capots':              'cat-cubre-capots',
+  '/cubre-trompas':             'cat-cubre-trompas',
+  '/cubre-motos':               'cat-cubre-motos',
+  '/alfombras-termoformadas':   'cat-alfombras-termoformadas',
+  '/accesorios':                'cat-accesorios',
+  '/hot-sale':                  'cat-hot-sale',
+  '/quienes-somos':             'quienes-somos',
+  '/como-comprar':              'como-comprar',
+  '/preguntas-frecuentes':      'preguntas-frecuentes',
+  '/cambios-devoluciones':      'cambios-devoluciones',
+  '/terminos-y-condiciones':    'terminos-y-condiciones',
+  '/politica-privacidad':       'politica-privacidad',
+  '/contacto':                  'contacto',
+};
+
+const PAGE_TO_ROUTE = Object.fromEntries(
+  Object.entries(ROUTE_TO_PAGE).map(([path, page]) => [page, path])
+);
+
+/** Convierte una page id interna ('cat-cubre-autos', 'product-vw-tera-xxx') a ruta pública ('/cubre-autos', '/producto/vw-tera-xxx'). */
+function pageToPath(page) {
+  if (!page) return '/';
+  if (page.startsWith('product-')) {
+    return '/producto/' + page.slice('product-'.length);
+  }
+  return PAGE_TO_ROUTE[page] || '/';
+}
+
+/** Convierte una URL ('/cubre-autos', '/producto/xxx') a page id interna. Devuelve null si no matchea. */
+function pathToPage(pathname) {
+  if (!pathname) return 'home';
+  // Normalizar: quitar trailing slash (excepto root) y trailing index.html
+  if (pathname.length > 1 && pathname.endsWith('/')) pathname = pathname.slice(0, -1);
+  if (pathname.endsWith('/index.html')) pathname = pathname.slice(0, -('/index.html'.length)) || '/';
+
+  if (pathname.startsWith('/producto/')) {
+    const slug = pathname.slice('/producto/'.length);
+    return slug ? 'product-' + slug : null;
+  }
+  return ROUTE_TO_PAGE[pathname] || null;
+}
+
 // ── Color name map ──
 const COLOR_NAMES = {
   '#1a1a1a': 'Negro',
@@ -2808,7 +2871,7 @@ function navigate(page) {
   }
   isNavigating = true;
   currentPage = page;
-  history.pushState({ page }, '', '#' + page);
+  history.pushState({ page }, '', pageToPath(page));
   renderPage(page);
   window.scrollTo(0, 0); // instantáneo, no bloquea
   closeMobileNav();
@@ -2823,8 +2886,8 @@ function navigate(page) {
 // ═══════════════════════════════════════════════════════════
 // SEO — actualización dinámica de title / meta / OG por página
 // ═══════════════════════════════════════════════════════════
-const SITE_BASE = 'https://www.mdracingfundas.com.ar';
-const SITE_DEFAULT_IMAGE = SITE_BASE + '/logo.png';
+const SITE_BASE = 'https://www.mdracingfundas.com';
+const SITE_DEFAULT_IMAGE = SITE_BASE + '/og-image.jpg';
 
 function setMeta(selector, attr, value) {
   const el = document.querySelector(selector);
@@ -2834,7 +2897,7 @@ function setMeta(selector, attr, value) {
 function applySEO(page) {
   let title, description, image, urlPath;
   image = SITE_DEFAULT_IMAGE;
-  urlPath = '/#' + page;
+  urlPath = pageToPath(page);
 
   // Producto
   if (page.startsWith('product-')) {
@@ -2924,7 +2987,7 @@ function injectProductJsonLd(p) {
     "brand": { "@type": "Brand", "name": "MDRACING" },
     "offers": {
       "@type": "Offer",
-      "url": SITE_BASE + '/#product-' + p.id,
+      "url": SITE_BASE + '/producto/' + p.id,
       "priceCurrency": "ARS",
       "price": priceNum,
       "availability": "https://schema.org/InStock",
@@ -3836,8 +3899,8 @@ function handleMpReturn() {
   if (!status) return;
 
   // Limpiar URL para que al refrescar no aparezca el modal
-  const cleanUrl = window.location.pathname + window.location.hash;
-  history.replaceState(null, '', cleanUrl);
+  // (saca los query params ?compra=ok&id=... pero mantiene la ruta)
+  history.replaceState(null, '', window.location.pathname);
 
   // Si la compra fue exitosa, vaciar carrito SIN preguntar (uso interno)
   if (status === 'ok' && typeof clearCartSilent === 'function') {
@@ -4167,10 +4230,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHeader();
   buildMobileNav();
-  const startPage = location.hash.slice(1) || 'home';
+
+  // ── Detectar página inicial ──
+  // Prioridad: 1) URL real (/cubre-autos), 2) Hash legacy (#cat-cubre-autos), 3) home
+  let startPage = pathToPage(location.pathname);
+  if (!startPage) {
+    const legacyHash = location.hash.slice(1);
+    if (legacyHash) {
+      // Hash legacy detectado → redirigir silenciosamente a la URL real (sin recarga)
+      startPage = legacyHash;
+      history.replaceState({ page: startPage }, '', pageToPath(startPage));
+    } else {
+      startPage = 'home';
+    }
+  } else {
+    // Asegurar que el state tenga la page id (necesario para popstate)
+    history.replaceState({ page: startPage }, '', pageToPath(startPage));
+  }
+
   currentPage = startPage;
-  history.replaceState({ page: startPage }, '', '#' + startPage);
-  renderPage(startPage);
+
+  // ── Hidratación inteligente ──
+  // Si el HTML ya vino pre-renderizado (build-time SSG con scripts/prerender.cjs),
+  // skipeamos renderPage() para evitar un flash visual y reutilizamos el DOM.
+  // Solo enganchamos interactividad (listeners, lazy load de imágenes, etc.).
+  const isPrerendered =
+    typeof window !== 'undefined' &&
+    window.__PRERENDERED_PAGE === startPage &&
+    document.getElementById('app') &&
+    document.getElementById('app').children.length > 0;
+
+  if (isPrerendered) {
+    initInteractives();
+  } else {
+    renderPage(startPage);
+  }
+
   updateActiveNav(startPage);
   applySEO(startPage);
   cartUpdateBadge();
@@ -4179,7 +4274,11 @@ document.addEventListener('DOMContentLoaded', () => {
   handleMpReturn();
 
   window.addEventListener('popstate', (e) => {
-    const page = (e.state && e.state.page) || location.hash.slice(1) || 'home';
+    // Resolver page id: 1) state, 2) pathname, 3) hash legacy, 4) home
+    const page = (e.state && e.state.page)
+      || pathToPage(location.pathname)
+      || location.hash.slice(1)
+      || 'home';
     if (page === currentPage) return;
     currentPage = page;
     renderPage(page);

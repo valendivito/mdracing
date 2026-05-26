@@ -2,7 +2,9 @@
   "name": "mdracing",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vercel dev"
+    "dev": "vercel dev",
+    "build:ssg": "node scripts/prerender.cjs",
+    "vercel-build": "node scripts/prerender.cjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
