@@ -1,5 +1,7 @@
+const { applyCors } = require('../lib/cors');
+
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (applyCors(req, res)) return;
 
   const key = process.env.ANTHROPIC_API_KEY;
 
