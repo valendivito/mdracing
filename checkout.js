@@ -630,6 +630,25 @@
     const endpoint = selectedPayment === 'card' ? '/api/checkout' : '/api/order-cash';
     setSubmitting(true);
 
+    // ── Meta: InitiateCheckout (antes del POST y del redirect a MP) ──
+    try {
+      if (typeof window.mdTrackEvent === 'function') {
+        const totalItems = currentItems.reduce((s, it) => s + (it.qty || 1), 0);
+        window.mdTrackEvent('InitiateCheckout', {
+          content_ids: currentItems.map(it => it.id),
+          content_type: 'product',
+          num_items: totalItems,
+          value: t.total,
+          currency: 'ARS',
+        }, {
+          email: email || undefined,
+          phone: phone || undefined,
+          firstName: name ? name.split(' ')[0] : undefined,
+          lastName: name && name.includes(' ') ? name.split(' ').slice(1).join(' ') : undefined,
+        });
+      }
+    } catch (e) { /* fail-soft */ }
+
     try {
       const res = await fetch(endpoint, {
         method: 'POST',

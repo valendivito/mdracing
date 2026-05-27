@@ -71,6 +71,83 @@ const icons = {
 };
 
 // ═══════════════════════════════════════════════════════════
+// META TRACKING — Pixel (browser) + CAPI (server) deduplicado
+// ═══════════════════════════════════════════════════════════
+//
+// trackEvent() dispara un evento al Pixel client-side Y al endpoint
+// /api/meta/event server-side con el MISMO event_id, para que Meta
+// deduplique y solo cuente el evento UNA vez.
+//
+// Beneficio: recuperar el ~30-50% de eventos perdidos por iOS / ad
+// blockers / Safari ITP. Mejor atribución y mejor optimización de
+// las campañas pagas.
+//
+// Si el pixel no está cargado (network bloqueado) o si /api/meta/event
+// falla, NUNCA debe romper el flujo del usuario. Fail-soft.
+
+function _mdReadCookie(name) {
+  if (typeof document === 'undefined') return null;
+  const m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]+)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
+function _mdGenEventId(eventName) {
+  return `${eventName}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+}
+
+/**
+ * Dispara un evento Meta (Pixel + CAPI) deduplicado.
+ *
+ * @param {string} eventName - 'ViewContent' | 'AddToCart' | 'InitiateCheckout' | 'Purchase' | 'Lead' | 'PageView' | ...
+ * @param {object} customData - { value, currency, content_ids, content_type, num_items, order_id, content_name }
+ * @param {object} userData - opcional, PII para mejor Event Match Quality { email, phone, firstName, lastName }
+ * @returns {string} event_id (útil si después querés referenciarlo desde otro lado)
+ */
+function trackEvent(eventName, customData = {}, userData = {}) {
+  const eventId = _mdGenEventId(eventName);
+
+  // 1) Pixel client-side (con eventID explícito para dedup)
+  try {
+    if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+      window.fbq('track', eventName, customData, { eventID: eventId });
+    }
+  } catch (e) {
+    // silenciar errores del pixel para no romper flujo
+  }
+
+  // 2) CAPI server-side (no esperamos respuesta, fire-and-forget con keepalive)
+  try {
+    const payload = {
+      event_name: eventName,
+      event_id: eventId,
+      event_source_url: window.location.href,
+      user_data: {
+        ...userData,
+        fbp: _mdReadCookie('_fbp'),
+        fbc: _mdReadCookie('_fbc'),
+      },
+      custom_data: customData,
+    };
+    // keepalive: true → el request sobrevive si el usuario navega/cierra pestaña
+    fetch('/api/meta/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  } catch (e) {
+    // silenciar
+  }
+
+  return eventId;
+}
+
+// Exponer para uso desde otros scripts (chat-widget, checkout)
+if (typeof window !== 'undefined') {
+  window.mdTrackEvent = trackEvent;
+}
+
+// ═══════════════════════════════════════════════════════════
 // ROUTING — URLs reales (no hash) para SEO
 // ═══════════════════════════════════════════════════════════
 //
@@ -2877,6 +2954,25 @@ function navigate(page) {
   closeMobileNav();
   updateActiveNav(page);
   applySEO(page);
+
+  // ── Meta: ViewContent cuando entra a una ficha de producto ──
+  try {
+    if (page.startsWith('product-')) {
+      const productId = page.slice('product-'.length);
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        const priceNum = parseInt(String(product.salePrice || product.price || '0').replace(/[^\d]/g, ''), 10) || 0;
+        trackEvent('ViewContent', {
+          content_ids: [product.id],
+          content_type: 'product',
+          content_name: product.name,
+          content_category: product.cat,
+          value: priceNum,
+          currency: 'ARS',
+        });
+      }
+    }
+  } catch (e) { /* fail-soft */ }
   // Liberar lock en el próximo frame: el navegador pinta primero, después acepta más clicks
   requestAnimationFrame(() => {
     requestAnimationFrame(() => { isNavigating = false; });
@@ -3905,6 +4001,40 @@ function handleMpReturn() {
   // Si la compra fue exitosa, vaciar carrito SIN preguntar (uso interno)
   if (status === 'ok' && typeof clearCartSilent === 'function') {
     try { clearCartSilent(); } catch (e) {}
+
+    // ── Meta: Purchase (browser-side, con event_id determinístico por order_id) ──
+    // El webhook MP también dispara Purchase server-side con el MISMO event_id,
+    // así Meta deduplica y solo cuenta UN Purchase. Si el cliente cerró la
+    // pestaña antes de volver, sólo queda el server-side. Si volvió pero el
+    // webhook tardó, sólo queda el browser-side. Ambos cuentan como 1.
+    try {
+      if (orderId) {
+        const eventId = `purchase-${orderId}`;
+        // Acá no tenemos el value/items del carrito (ya se vació). Pasamos lo
+        // mínimo necesario; el webhook MP completa con la data real desde DB.
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Purchase', { currency: 'ARS' }, { eventID: eventId });
+        }
+        fetch('/api/meta/event', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event_name: 'Purchase',
+            event_id: eventId,
+            event_source_url: window.location.href,
+            user_data: {
+              fbp: _mdReadCookie('_fbp'),
+              fbc: _mdReadCookie('_fbc'),
+            },
+            custom_data: {
+              currency: 'ARS',
+              order_id: orderId,
+            },
+          }),
+          keepalive: true,
+        }).catch(() => {});
+      }
+    } catch (e) { /* fail-soft */ }
   }
 
   // Configurar contenido del modal según el estado
@@ -3998,6 +4128,19 @@ function openCheckoutForProduct(productId) {
     console.error('openCheckout no disponible. ¿Cargó checkout.js?');
     return;
   }
+
+  // ── Meta: AddToCart (compra directa, sin pasar por carrito) ──
+  try {
+    trackEvent('AddToCart', {
+      content_ids: [p.id],
+      content_type: 'product',
+      content_name: p.name,
+      content_category: p.cat,
+      value: priceNum,
+      currency: 'ARS',
+    });
+  } catch (e) { /* fail-soft */ }
+
   window.openCheckout({
     id: p.id,
     name: p.name,
@@ -4040,6 +4183,20 @@ function addToCart(productId) {
     });
   }
   cartSave(items);
+
+  // ── Meta: AddToCart ──
+  try {
+    const priceNum = parseInt(String(p.salePrice || p.price || '0').replace(/[^\d]/g, ''), 10) || 0;
+    trackEvent('AddToCart', {
+      content_ids: [p.id],
+      content_type: 'product',
+      content_name: p.name,
+      content_category: p.cat,
+      value: priceNum,
+      currency: 'ARS',
+    });
+  } catch (e) { /* fail-soft */ }
+
   // Feedback visual en el botón clickeado
   const btn = document.querySelector(`[data-cart-btn="${productId}"]`);
   if (btn) {

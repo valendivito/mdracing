@@ -435,6 +435,54 @@ async function main() {
   const rawTemplate = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
   const templateHtml = normalizeTemplate(rawTemplate);
 
+  // ═══════════════════════════════════════════════════════════════
+  // EXPORTAR data/products.json + data/categories.json (Meta CAPI / feed XML)
+  // ═══════════════════════════════════════════════════════════════
+  // Estos archivos los consumen los endpoints serverless (/api/meta-feed.xml,
+  // /api/meta/event, etc.) para evitar tener que reparsear app.js en runtime.
+  // Se regeneran en cada deploy via hook vercel-build.
+  const DATA_DIR = path.join(ROOT, 'data');
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+
+  // Sanitizar productos para JSON (sin SVGs gigantes, sin redundancia)
+  const productsForJson = sandbox.products.map(p => ({
+    id: p.id,
+    name: p.name,
+    cat: p.cat,
+    catId: p.catId,
+    badge: p.badge || null,
+    price: p.price,
+    salePrice: p.salePrice || null,
+    desc: p.desc || '',
+    images: Array.isArray(p.images) ? p.images : [],
+    colors: Array.isArray(p.colors) ? p.colors : [],
+    colorVariants: Array.isArray(p.colorVariants)
+      ? p.colorVariants.map(v => ({ hex: v.hex, name: v.name, images: v.images || [] }))
+      : [],
+    metaFeedEligible: p.metaFeedEligible !== false, // por default todos elegibles
+  }));
+  fs.writeFileSync(
+    path.join(DATA_DIR, 'products.json'),
+    JSON.stringify(productsForJson, null, 2),
+    'utf8'
+  );
+
+  const categoriesForJson = sandbox.categories.map(c => ({
+    id: c.id,
+    title: c.title,
+    cat: c.cat,
+    desc: c.desc,
+    page: c.page,
+    hotsaleOnly: !!c.hotsaleOnly,
+  }));
+  fs.writeFileSync(
+    path.join(DATA_DIR, 'categories.json'),
+    JSON.stringify(categoriesForJson, null, 2),
+    'utf8'
+  );
+
+  console.log(`[prerender] data/ exportado: ${productsForJson.length} productos, ${categoriesForJson.length} categorías`);
+
   const routes = [];
 
   // Páginas estáticas

@@ -11,6 +11,7 @@ const crypto = require('crypto');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
 const { saveOrder } = require('../lib/db');
+const { sendEvent: metaSendEvent } = require('../lib/meta-capi');
 
 function getMP() {
   const mode = (process.env.MP_MODE || 'test').toLowerCase();
@@ -187,8 +188,46 @@ module.exports = async (req, res) => {
       } catch (e) {
         console.error('[mp-webhook] ERROR enviando customer email:', e && e.message, e);
       }
+
+      // ── Meta CAPI: Purchase ──
+      // Usamos event_id determinístico basado en el order_id. Si el cliente
+      // ya disparó Purchase desde el browser (gracias.html), Meta lo deduplica.
+      // Si nunca volvió (cerró pestaña), igual queda registrado server-side.
+      try {
+        const purchaseEventId = `purchase-${order.id}`;
+        const meta = (payment.metadata && typeof payment.metadata === 'object') ? payment.metadata : {};
+        const result = await metaSendEvent({
+          event_name: 'Purchase',
+          event_id: purchaseEventId,
+          event_source_url: `https://www.mdracingfundas.com/?compra=ok&id=${order.id}`,
+          action_source: 'website',
+          user_data: {
+            email: order.customer.email,
+            phone: order.customer.phone,
+            firstName: order.customer.name ? order.customer.name.split(' ')[0] : undefined,
+            lastName: order.customer.name && order.customer.name.includes(' ')
+              ? order.customer.name.split(' ').slice(1).join(' ')
+              : undefined,
+            dni: order.customer.dni,
+            country: 'AR',
+            // fbp / fbc / client_ip / client_user_agent: no disponibles del lado del webhook,
+            // pero Meta acepta el evento igual (con menor EMQ). El pixel del browser ya envió esos.
+          },
+          custom_data: {
+            currency: 'ARS',
+            value: order.total,
+            content_ids: order.items.map(it => it.id).filter(Boolean),
+            content_type: 'product',
+            num_items: order.items.reduce((s, it) => s + (parseInt(it.qty, 10) || 1), 0),
+            order_id: order.id,
+          },
+        });
+        console.log('[mp-webhook] Meta CAPI Purchase:', result.ok ? 'OK' : 'FAILED', result.error || '');
+      } catch (e) {
+        console.error('[mp-webhook] ERROR enviando Purchase a Meta:', e && e.message);
+      }
     } else {
-      console.log('[mp-webhook] pago no aprobado, no se envían emails');
+      console.log('[mp-webhook] pago no aprobado, no se envían emails ni CAPI Purchase');
     }
 
     return res.status(200).json({

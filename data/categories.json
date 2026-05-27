@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cat-hot-sale",
+    "title": "HOT\nSALE",
+    "cat": "hot-sale",
+    "desc": "Precios que queman. Solo hasta el 20 de mayo.",
+    "page": "cat-hot-sale",
+    "hotsaleOnly": true
+  },
+  {
+    "id": "cat-cubre-autos",
+    "title": "Cubre\nAutos",
+    "cat": "cubre-autos",
+    "desc": "Antigranizo, lluvia, sol y polvo. Para todos los modelos.",
+    "page": "cat-cubre-autos",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-fundas-asientos",
+    "title": "Fundas\nAsientos",
+    "cat": "fundas",
+    "desc": "A medida o universales. Eco cuero, tela premium, cuero automotor y más.",
+    "page": "cat-fundas-asientos",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-cubre-capots",
+    "title": "Cubre\nCapots",
+    "cat": "cubre-capots",
+    "desc": "Protección afelpada contra granizo y rayones.",
+    "page": "cat-cubre-capots",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-cubre-trompas",
+    "title": "Cubre\nTrompas",
+    "cat": "cubre-trompas",
+    "desc": "Protección para el frente completo de tu vehículo.",
+    "page": "cat-cubre-trompas",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-cubre-motos",
+    "title": "Cubre\nMotos",
+    "cat": "cubre-motos",
+    "desc": "Cobertura completa para motos y scooters.",
+    "page": "cat-cubre-motos",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-alfombras-termoformadas",
+    "title": "Alfombras\nTermoformadas",
+    "cat": "alfombras-termoformadas",
+    "desc": "Alfombras 3D termoformadas con bordes elevados. Protección total del piso.",
+    "page": "cat-alfombras-termoformadas",
+    "hotsaleOnly": false
+  },
+  {
+    "id": "cat-accesorios",
+    "title": "Accesorios",
+    "cat": "accesorios",
+    "desc": "Todo lo que necesitás para proteger y personalizar.",
+    "page": "cat-accesorios",
+    "hotsaleOnly": false
+  }
+]
