@@ -152,7 +152,7 @@
     btn.disabled = true;
     btn.textContent = 'Ingresando…';
     try {
-      await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ password }) });
+      await api('/api/admin/auth?action=login', { method: 'POST', body: JSON.stringify({ password }) });
       bootstrap();
     } catch (err) {
       msgEl.className = 'ad-msg show error';
@@ -163,7 +163,7 @@
   }
 
   async function handleLogout() {
-    try { await api('/api/admin/logout', { method: 'POST' }); } catch (e) {}
+    try { await api('/api/admin/auth?action=logout', { method: 'POST' }); } catch (e) {}
     switchView('login');
   }
 
@@ -713,7 +713,7 @@
   async function bootstrap() {
     // Verificar si está logueado
     try {
-      const me = await api('/api/admin/me');
+      const me = await api('/api/admin/auth?action=me');
       if (!me.authed) {
         switchView('login');
         return;
