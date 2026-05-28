@@ -421,14 +421,20 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
 const META_FEED_BRAND = 'MDRACING';
 const META_FEED_CURRENCY = 'ARS';
 
+// Google Product Taxonomy — usamos el path conservador "Vehicles & Parts >
+// Vehicle Parts & Accessories" para TODAS las categorías. Es una rama válida
+// y aceptada por Meta. Los paths más finos (como "Vehicle Seats" o "Vehicle
+// Covers") generaban warnings de "invalid_google_product_category" porque
+// Google cambió la taxonomía y esos nombres ya no existen como hojas válidas.
+const META_GOOGLE_CATEGORY_DEFAULT = 'Vehicles & Parts > Vehicle Parts & Accessories';
 const META_CAT_TO_GOOGLE = {
-  'cat-fundas-asientos':         'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Seating & Interior > Vehicle Seats',
-  'cat-cubre-autos':             'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Maintenance, Care & Decor > Vehicle Covers',
-  'cat-cubre-capots':            'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Maintenance, Care & Decor > Vehicle Covers',
-  'cat-cubre-trompas':           'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Maintenance, Care & Decor > Vehicle Covers',
-  'cat-cubre-motos':             'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Maintenance, Care & Decor > Vehicle Covers',
-  'cat-alfombras-termoformadas': 'Vehicles & Parts > Vehicle Parts & Accessories > Vehicle Seating & Interior > Vehicle Carpet & Floor Mats',
-  'cat-accesorios':              'Vehicles & Parts > Vehicle Parts & Accessories',
+  'cat-fundas-asientos':         META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-cubre-autos':             META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-cubre-capots':            META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-cubre-trompas':           META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-cubre-motos':             META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-alfombras-termoformadas': META_GOOGLE_CATEGORY_DEFAULT,
+  'cat-accesorios':              META_GOOGLE_CATEGORY_DEFAULT,
 };
 
 const META_CAT_TO_PRODUCT_TYPE = {
@@ -501,7 +507,11 @@ function buildMetaItem(p, base) {
   lines.push(`      <g:google_product_category>${escXml(googleCat)}</g:google_product_category>`);
   lines.push(`      <g:product_type>${escXml(productType)}</g:product_type>`);
   lines.push(`      <g:identifier_exists>no</g:identifier_exists>`);
-  lines.push(`      <g:item_group_id>${escXml(p.catId || 'mdracing')}</g:item_group_id>`);
+  // NO incluir <g:item_group_id> con catId — agrupaba a todos los productos
+  // de la misma categoría como variantes del mismo "producto" en Commerce
+  // Manager. Cada producto es independiente. Si en el futuro queremos
+  // exponer colorVariants como variantes reales, hay que emitir un <item>
+  // por variante con el mismo item_group_id (= p.id).
   lines.push('    </item>');
   return lines.join('\n');
 }
