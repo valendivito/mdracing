@@ -887,6 +887,7 @@
 
     buildModal();
     renderCheckoutView();
+    attachAbandonedCartTracking();
 
     const backdrop = document.getElementById('mdco-backdrop');
     const modal = document.getElementById('mdco-modal');
@@ -909,4 +910,89 @@
       if (modal && modal.classList.contains('open')) closeCheckout();
     }
   });
+
+  // ═══════════════════════════════════════════════════════════
+  // ABANDONED CART TRACKING (Sprint F)
+  // ═══════════════════════════════════════════════════════════
+  // Cuando el usuario tiene email válido + items en el checkout,
+  // guardamos el cart en Supabase (vía /api/cart?action=save) con
+  // debounce de 1.5s. Si después no completa el pago, el cron
+  // /api/cart?action=cron le manda recordatorios a las 4h y 24h.
+  //
+  // Si completa la compra, el mp-webhook / order-cash marca el cart
+  // como converted_order_id y los cron skipean ese email.
+
+  let _abandonedCartTimer = null;
+  let _abandonedCartLastSent = '';
+
+  function _abandonedDebounce(fn, ms) {
+    return function () {
+      clearTimeout(_abandonedCartTimer);
+      _abandonedCartTimer = setTimeout(fn, ms);
+    };
+  }
+
+  function _saveAbandonedCartIfReady() {
+    try {
+      const emailEl = document.getElementById('mdco-email');
+      const phoneEl = document.getElementById('mdco-phone');
+      const nameEl  = document.getElementById('mdco-name');
+      if (!emailEl) return;
+
+      const email = (emailEl.value || '').trim();
+      // Validación email simple — si no es válido, no enviamos
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) return;
+
+      const phone = phoneEl ? (phoneEl.value || '').trim() : '';
+      const name  = nameEl  ? (nameEl.value  || '').trim() : '';
+
+      if (!currentItems.length) return;
+
+      // Build payload mínimo (solo lo que necesita el server)
+      const payload = {
+        email,
+        name: name || null,
+        phone: phone || null,
+        total: getSubtotal(),
+        items: currentItems.map(it => ({
+          id: it.id,
+          name: it.name,
+          qty: it.qty || 1,
+          unitPrice: it.unitPrice,
+          image: it.image || null,
+        })),
+      };
+
+      // Dedup: si los datos no cambiaron desde el último save, no insistir
+      const fingerprint = JSON.stringify(payload);
+      if (fingerprint === _abandonedCartLastSent) return;
+      _abandonedCartLastSent = fingerprint;
+
+      // fire-and-forget con keepalive (sobrevive navegación)
+      fetch('/api/cart?action=save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: fingerprint,
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {
+      // fail-soft — nunca romper el flujo del usuario
+    }
+  }
+
+  function attachAbandonedCartTracking() {
+    // Esperamos al próximo tick para que los inputs ya estén en el DOM
+    setTimeout(() => {
+      const ids = ['mdco-email', 'mdco-phone', 'mdco-name'];
+      const debounced = _abandonedDebounce(_saveAbandonedCartIfReady, 1500);
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el || el.dataset.abandonedAttached === '1') return;
+        el.dataset.abandonedAttached = '1';
+        el.addEventListener('input', debounced);
+        el.addEventListener('blur', _saveAbandonedCartIfReady);
+      });
+    }, 50);
+  }
+
 })();

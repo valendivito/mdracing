@@ -10,7 +10,7 @@
 const crypto = require('crypto');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
-const { saveOrder } = require('../lib/db');
+const { saveOrder, markCartConverted } = require('../lib/db');
 const { sendEvent: metaSendEvent } = require('../lib/meta-capi');
 
 function getMP() {
@@ -170,6 +170,14 @@ module.exports = async (req, res) => {
       else console.log('[mp-webhook] guardado en DB:', order.id);
     } catch (e) {
       console.error('[mp-webhook] DB exception:', e && e.message);
+    }
+
+    // Marcar el cart_session de este email como convertido (Sprint F)
+    // Esto evita que el cron mande recordatorios de un carrito ya pagado
+    if (order.customer && order.customer.email) {
+      try { await markCartConverted(order.customer.email, order.id); } catch (e) {
+        console.error('[mp-webhook] markCartConverted error (no crítico):', e && e.message);
+      }
     }
 
     // Solo notificar por email si el pago está aprobado.

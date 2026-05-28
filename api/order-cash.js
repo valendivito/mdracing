@@ -12,7 +12,7 @@
 
 const { sendAdminNotification, sendCustomerConfirmation } = require('../lib/email');
 const { calcShipping, priceToNumber } = require('../lib/shipping');
-const { saveOrder, validateCoupon, incrementCouponUses } = require('../lib/db');
+const { saveOrder, validateCoupon, incrementCouponUses, markCartConverted } = require('../lib/db');
 const { applyCors } = require('../lib/cors');
 
 function generateOrderId() {
@@ -113,6 +113,12 @@ module.exports = async (req, res) => {
         if (validatedCoupon) {
           incrementCouponUses(validatedCoupon.id).catch(e =>
             console.error('[order-cash] incrementCouponUses failed:', e)
+          );
+        }
+        // Marcar cart_session de este email como convertido (Sprint F)
+        if (order.customer && order.customer.email) {
+          markCartConverted(order.customer.email, order.id).catch(e =>
+            console.error('[order-cash] markCartConverted failed (no crítico):', e && e.message)
           );
         }
       }
