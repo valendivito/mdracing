@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Alfombra Termoformada VW Amarok 2010+","description":"ALFOMBRAS TERMOFORMADAS MDRACING – AJUSTE PERFECTO Modelo: Volkswagen Amarok 2010+ Protegé el interior de tu vehículo con las alfombras termoformadas MDRACING, diseñadas específicamente para cada modelo de auto. Ofrecen máxima protección, excelente ajuste y un acabado moderno y funcional. Fabricadas con materiales de alta calidad, estas alfombras se adaptan perfectamente a la forma original del piso del vehículo, cubriendo las zonas más expuestas al desgaste diario, suciedad, barro y líquidos. CARACTERÍSTICAS PRINCIPALES • Diseño termoformado a medida • Ajuste perfecto según el modelo indicado • Material resistente, durable y flexible • Bordes elevados que evitan derrames • Superficie antideslizante • Incluyen clips de sujeción para una fijación segura • Fácil limpieza (agua o paño húmedo) • No retienen olor • Mantienen el interior del vehículo protegido y prolijo BENEFICIOS • Protegen la alfombra original del auto • Evitan manchas, humedad y desgaste • Mejoran la estética interior • Fijación firme que evita desplazamientos • Ideales para uso urbano, viajes, lluvia, barro o arena CONTENIDO DEL PAQUETE • Juego completo de alfombras termoformadas (delanteras y traseras, según modelo) IMPORTANTE • Producto diseñado exclusivamente para el modelo indicado • Las imágenes publicadas corresponden al producto real","sku":"MDR-ALFOMBRA-TERMOFORMADA-VW-AMAROK-2010-7074","image":["https://www.mdracingfundas.com/images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp","https://www.mdracingfundas.com/images/alfombras%20termoformadas/fotos%203%204%205%206/3.webp","https://www.mdracingfundas.com/images/alfombras%20termoformadas/fotos%203%204%205%206/4.webp","https://www.mdracingfundas.com/images/alfombras%20termoformadas/fotos%203%204%205%206/5.webp","https://www.mdracingfundas.com/images/alfombras%20termoformadas/fotos%203%204%205%206/6.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Alfombras Termoformadas","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-amarok-2010-7074","priceCurrency":"ARS","price":"190000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Alfombras Termoformadas","item":"https://www.mdracingfundas.com/alfombras-termoformadas"},{"@type":"ListItem","position":3,"name":"Alfombra Termoformada VW Amarok 2010+","item":"https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-amarok-2010-7074"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-alfombra-termoformada-vw-amarok-2010-7074";</script>
@@ -181,24 +188,24 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-alfombratermoformada">
         <div class="product-main-img">
-          <img src="images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp" alt="Alfombra Termoformada VW Amarok 2010+" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-alfombratermoformada" />
+          <img src="images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp" alt="Alfombra Termoformada VW Amarok 2010+" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-alfombratermoformada" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-alfombratermoformada">
           
               <div class="product-thumb active" onclick="ppThumb(this,'images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp','pp-main-img-alfombratermoformada')">
-                <img src="images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp" alt="Alfombra Termoformada VW Amarok 2010+ 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="images/alfombras%20termoformadas/Alfombra%20Termoformada%20VW%20Amarok%202010%2B/D_NQ_NP_2X_806501-MLA91917302802_092025-F.webp" alt="Alfombra Termoformada VW Amarok 2010+ vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'images/alfombras%20termoformadas/fotos%203%204%205%206/3.webp','pp-main-img-alfombratermoformada')">
-                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/3.webp" alt="Alfombra Termoformada VW Amarok 2010+ 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/3.webp" alt="Alfombra Termoformada VW Amarok 2010+ vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'images/alfombras%20termoformadas/fotos%203%204%205%206/4.webp','pp-main-img-alfombratermoformada')">
-                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/4.webp" alt="Alfombra Termoformada VW Amarok 2010+ 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/4.webp" alt="Alfombra Termoformada VW Amarok 2010+ vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'images/alfombras%20termoformadas/fotos%203%204%205%206/5.webp','pp-main-img-alfombratermoformada')">
-                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/5.webp" alt="Alfombra Termoformada VW Amarok 2010+ 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/5.webp" alt="Alfombra Termoformada VW Amarok 2010+ vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'images/alfombras%20termoformadas/fotos%203%204%205%206/6.webp','pp-main-img-alfombratermoformada')">
-                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/6.webp" alt="Alfombra Termoformada VW Amarok 2010+ 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="images/alfombras%20termoformadas/fotos%203%204%205%206/6.webp" alt="Alfombra Termoformada VW Amarok 2010+ vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

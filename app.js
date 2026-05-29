@@ -1877,17 +1877,17 @@ function renderProductPage(productId) {
   const galleryHtml = galleryImages
     ? `<div class="product-gallery" id="pp-gallery-${pid}">
         <div class="product-main-img">
-          <img src="${galleryImages[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-${pid}" />
+          <img src="${galleryImages[0]}" alt="${p.name}" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-${pid}" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-${pid}">
           ${hasColorVariants
             ? p.colorVariants.map((cv, ci) => cv.images.map((img, ii) => `
               <div class="product-thumb pp-color-thumb ${ci===0&&ii===0?'active':''}" data-color-idx="${ci}" style="${ci!==0?'display:none':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
-                <img src="${img}" alt="${p.name} ${cv.name}" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="${img}" alt="${p.name} color ${cv.name}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>`).join('')).join('')
             : galleryImages.map((img, i) => `
               <div class="product-thumb ${i===0?'active':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
-                <img src="${img}" alt="${p.name} ${i+1}" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="${img}" alt="${p.name} vista ${i+1}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>`).join('')}
         </div>
       </div>`

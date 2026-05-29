@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Funda Ford Ranger Cuero Automotor","description":"Cuero automotor de alta calidad para Ford Ranger. Máxima resistencia y elegancia para trabajo y ciudad.","sku":"MDR-FUNDA-FORD-RANGER-CUERO-AUTOMOTOR","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k6dexj8nfqdtwrwhcwr9gqmg%5F1759241046%5Fimg%5F1-395cd69abaf34207de17592431539210-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F753039-mla81852127232%5F012025-b-390eec4850cc13df5f17592423256273-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F619689-mla26949279958%5F032018-b-f97a3f21202364ecac17592423303202-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F744898-mla26949282426%5F032018-b-1eea61f719b2d4c23817592423350262-1024-1024.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Fundas para Asientos","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/funda-ford-ranger-cuero-automotor","priceCurrency":"ARS","price":"189999","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Fundas Asientos","item":"https://www.mdracingfundas.com/fundas-asientos"},{"@type":"ListItem","position":3,"name":"Funda Ford Ranger Cuero Automotor","item":"https://www.mdracingfundas.com/producto/funda-ford-ranger-cuero-automotor"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-funda-ford-ranger-cuero-automotor";</script>
@@ -181,30 +188,30 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-fundafordrangercuero">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundafordrangercuero" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundafordrangercuero" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-fundafordrangercuero">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-ecoc-acolchado-ranger-photoroom-441a6d991c3c6621f717592428984030-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k6dexj8nfqdtwrwhcwr9gqmg%5F1759241046%5Fimg%5F1-395cd69abaf34207de17592431539210-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k6dexj8nfqdtwrwhcwr9gqmg%5F1759241046%5Fimg%5F1-395cd69abaf34207de17592431539210-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k6dexj8nfqdtwrwhcwr9gqmg%5F1759241046%5Fimg%5F1-395cd69abaf34207de17592431539210-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F753039-mla81852127232%5F012025-b-390eec4850cc13df5f17592423256273-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F753039-mla81852127232%5F012025-b-390eec4850cc13df5f17592423256273-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F753039-mla81852127232%5F012025-b-390eec4850cc13df5f17592423256273-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F619689-mla26949279958%5F032018-b-f97a3f21202364ecac17592423303202-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F619689-mla26949279958%5F032018-b-f97a3f21202364ecac17592423303202-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F619689-mla26949279958%5F032018-b-f97a3f21202364ecac17592423303202-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F744898-mla26949282426%5F032018-b-1eea61f719b2d4c23817592423350262-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F744898-mla26949282426%5F032018-b-1eea61f719b2d4c23817592423350262-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F744898-mla26949282426%5F032018-b-1eea61f719b2d4c23817592423350262-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F634578-mla26949287316%5F032018-b-b9466a900573717d0a17592423422852-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F634578-mla26949287316%5F032018-b-b9466a900573717d0a17592423422852-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 6" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F634578-mla26949287316%5F032018-b-b9466a900573717d0a17592423422852-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 6" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F677222-mla26949292631%5F032018-b-612a8df4b1c2070d4417592423557211-1024-1024.webp','pp-main-img-fundafordrangercuero')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F677222-mla26949292631%5F032018-b-612a8df4b1c2070d4417592423557211-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor 7" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F677222-mla26949292631%5F032018-b-612a8df4b1c2070d4417592423557211-1024-1024.webp" alt="Funda Ford Ranger Cuero Automotor vista 7" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

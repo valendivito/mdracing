@@ -94,10 +94,17 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script>window.__PRERENDERED_PAGE = "home";</script>
 </head>
 <body>

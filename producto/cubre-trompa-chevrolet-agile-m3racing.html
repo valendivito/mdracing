@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Cubre Trompa Chevrolet Agile","description":"Cubre trompa MDRACING para Chevrolet Agile. Ecocuero afelpado, cubre capot y paragolpe.","sku":"MDR-CUBRE-TROMPA-CHEVROLET-AGILE-M3RACING","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_489115-mla25160773811_112016-b-9b5550cee18b6e39c517592438390189-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_397115-mla25160778047_112016-b-c9e62c7fe6887ff49f17592438431719-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_466115-mla25160773815_112016-b-2f698994104c33e2eb17592438489974-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_815215-mla25160773808_112016-b-acaef5d79937f7c40517592438546018-480-0.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Cubre Trompas","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-agile-m3racing","priceCurrency":"ARS","price":"310000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Cubre Trompas","item":"https://www.mdracingfundas.com/cubre-trompas"},{"@type":"ListItem","position":3,"name":"Cubre Trompa Chevrolet Agile","item":"https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-agile-m3racing"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-cubre-trompa-chevrolet-agile-m3racing";</script>
@@ -181,24 +188,24 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-cubretrompachevrolet">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp" alt="Cubre Trompa Chevrolet Agile" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompachevrolet" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp" alt="Cubre Trompa Chevrolet Agile" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompachevrolet" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-cubretrompachevrolet">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp','pp-main-img-cubretrompachevrolet')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp" alt="Cubre Trompa Chevrolet Agile 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_219115-mla25160778056_112016-b-34fc566717ffd621e117592438334375-480-0.webp" alt="Cubre Trompa Chevrolet Agile vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_489115-mla25160773811_112016-b-9b5550cee18b6e39c517592438390189-480-0.webp','pp-main-img-cubretrompachevrolet')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_489115-mla25160773811_112016-b-9b5550cee18b6e39c517592438390189-480-0.webp" alt="Cubre Trompa Chevrolet Agile 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_489115-mla25160773811_112016-b-9b5550cee18b6e39c517592438390189-480-0.webp" alt="Cubre Trompa Chevrolet Agile vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_397115-mla25160778047_112016-b-c9e62c7fe6887ff49f17592438431719-480-0.webp','pp-main-img-cubretrompachevrolet')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_397115-mla25160778047_112016-b-c9e62c7fe6887ff49f17592438431719-480-0.webp" alt="Cubre Trompa Chevrolet Agile 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_397115-mla25160778047_112016-b-c9e62c7fe6887ff49f17592438431719-480-0.webp" alt="Cubre Trompa Chevrolet Agile vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_466115-mla25160773815_112016-b-2f698994104c33e2eb17592438489974-480-0.webp','pp-main-img-cubretrompachevrolet')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_466115-mla25160773815_112016-b-2f698994104c33e2eb17592438489974-480-0.webp" alt="Cubre Trompa Chevrolet Agile 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_466115-mla25160773815_112016-b-2f698994104c33e2eb17592438489974-480-0.webp" alt="Cubre Trompa Chevrolet Agile vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_815215-mla25160773808_112016-b-acaef5d79937f7c40517592438546018-480-0.webp','pp-main-img-cubretrompachevrolet')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_815215-mla25160773808_112016-b-acaef5d79937f7c40517592438546018-480-0.webp" alt="Cubre Trompa Chevrolet Agile 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_815215-mla25160773808_112016-b-acaef5d79937f7c40517592438546018-480-0.webp" alt="Cubre Trompa Chevrolet Agile vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

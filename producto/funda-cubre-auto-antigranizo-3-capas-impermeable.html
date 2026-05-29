@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Funda Cubre Auto Antigranizo 3 Capas Impermeable","description":"Funda cubre auto antigranizo universal 3 capas. Tela Silver exterior impermeable + Polyfoam 6mm + interior afelpado. Elástico perimetral. Talle S/M/L: $135.000 · XL: $150.000.","sku":"MDR-FUNDA-CUBRE-AUTO-ANTIGRANIZO-3-CAPAS-IMPERMEABLE","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Cubre Autos","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-3-capas-impermeable","priceCurrency":"ARS","price":"110000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Cubre Autos","item":"https://www.mdracingfundas.com/cubre-autos"},{"@type":"ListItem","position":3,"name":"Funda Cubre Auto Antigranizo 3 Capas Impermeable","item":"https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-3-capas-impermeable"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-funda-cubre-auto-antigranizo-3-capas-impermeable";</script>
@@ -181,21 +188,21 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-fundacubreautoantigr">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundacubreautoantigr" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundacubreautoantigr" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-fundacubreautoantigr">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp','pp-main-img-fundacubreautoantigr')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7ky0myxf3jr4g3jy99ag6f0%5F1760531937%5Fimg%5F0-eab6a87d6fb053554317611332655636-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp','pp-main-img-fundacubreautoantigr')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7m29tm2f1rr3vt2fh57t2x0%5F1760536456%5Fimg%5F0-e29021bebcdae9a5a217611332829135-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp','pp-main-img-fundacubreautoantigr')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets%5Ftask%5F01k7kz4aw0fajat52c7fsg357c%5F1760533127%5Fimg%5F0-e5001dfb836d768dc317611332732286-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp','pp-main-img-fundacubreautoantigr')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F726652-mla94773545596%5F102025-b-d4b989af0ea5c58b5e17611332998889-1024-1024.webp" alt="Funda Cubre Auto Antigranizo 3 Capas Impermeable vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

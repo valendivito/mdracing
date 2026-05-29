@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Funda Cubre Auto Premium Afelpado","description":"Funda premium con interior afelpado e impermeable. Tela Kipling alta calidad. Talles S/M/L y XL ($210.000).","sku":"MDR-FUNDA-CUBRE-AUTO-PREMIUM-AFELPADO-IMPERMEABLE4","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F915538-mla81837544625%5F012025-b-be66e08032be767f5a17612384213935-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/74dc3f55-c51f-41c5-8511-4da11bb451b9-cdf7a380548317762117612383751398-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F949309-mla81567224900%5F012025-b-4635e88190e547ec2917612384073326-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/2efeae4f-ce1a-40ee-93a1-70e396f5d233-94d874bbf5203e84af17612383808168-1024-1024.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Cubre Autos","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/funda-cubre-auto-premium-afelpado-impermeable4","priceCurrency":"ARS","price":"180000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Cubre Autos","item":"https://www.mdracingfundas.com/cubre-autos"},{"@type":"ListItem","position":3,"name":"Funda Cubre Auto Premium Afelpado","item":"https://www.mdracingfundas.com/producto/funda-cubre-auto-premium-afelpado-impermeable4"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-funda-cubre-auto-premium-afelpado-impermeable4";</script>
@@ -181,33 +188,33 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-fundacubreautopremiu">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundacubreautopremiu" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-fundacubreautopremiu" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-fundacubreautopremiu">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/cubre-auto-premium-ng-photoroom-def6f3b4ec257686a617624317809918-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F915538-mla81837544625%5F012025-b-be66e08032be767f5a17612384213935-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F915538-mla81837544625%5F012025-b-be66e08032be767f5a17612384213935-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F915538-mla81837544625%5F012025-b-be66e08032be767f5a17612384213935-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/74dc3f55-c51f-41c5-8511-4da11bb451b9-cdf7a380548317762117612383751398-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/74dc3f55-c51f-41c5-8511-4da11bb451b9-cdf7a380548317762117612383751398-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/74dc3f55-c51f-41c5-8511-4da11bb451b9-cdf7a380548317762117612383751398-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F949309-mla81567224900%5F012025-b-4635e88190e547ec2917612384073326-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F949309-mla81567224900%5F012025-b-4635e88190e547ec2917612384073326-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F949309-mla81567224900%5F012025-b-4635e88190e547ec2917612384073326-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/2efeae4f-ce1a-40ee-93a1-70e396f5d233-94d874bbf5203e84af17612383808168-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/2efeae4f-ce1a-40ee-93a1-70e396f5d233-94d874bbf5203e84af17612383808168-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/2efeae4f-ce1a-40ee-93a1-70e396f5d233-94d874bbf5203e84af17612383808168-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F697048-mla81567244720%5F012025-b-203cba0cc2ced5a05817612384152917-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F697048-mla81567244720%5F012025-b-203cba0cc2ced5a05817612384152917-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 6" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F697048-mla81567244720%5F012025-b-203cba0cc2ced5a05817612384152917-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 6" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F603661-mla81837875457%5F012025-b-03257e641a2b2f959b17612384180280-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F603661-mla81837875457%5F012025-b-03257e641a2b2f959b17612384180280-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 7" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5F2x%5F603661-mla81837875457%5F012025-b-03257e641a2b2f959b17612384180280-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 7" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/3bf84c57-3e28-4d9b-8dd9-8a7a11e4643d-77a82758cef9e344d217612383878488-1024-1024.webp','pp-main-img-fundacubreautopremiu')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/3bf84c57-3e28-4d9b-8dd9-8a7a11e4643d-77a82758cef9e344d217612383878488-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado 8" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/3bf84c57-3e28-4d9b-8dd9-8a7a11e4643d-77a82758cef9e344d217612383878488-1024-1024.webp" alt="Funda Cubre Auto Premium Afelpado vista 8" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

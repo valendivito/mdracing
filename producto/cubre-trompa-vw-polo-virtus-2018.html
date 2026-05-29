@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Cubre Trompa VW Polo/Virtus 2018","description":"Cubre trompa MDRACING para VW Polo/Virtus 2018. Ecocuero afelpado, ajuste preciso.","sku":"MDR-CUBRE-TROMPA-VW-POLO-VIRTUS-2018","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_666905-mla44329491304_122020-b-9bf383af64556d43b817593211350211-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_627644-mla44329495354_122020-b-b79000e0a86f9da24017593211506437-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_956379-mla44329503034_122020-b-830e703656b96aec8317593211453483-480-0.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881646-mla44329481741_122020-b-9e0a8f0e70bf90f3b517593211623251-480-0.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Cubre Trompas","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/cubre-trompa-vw-polo-virtus-2018","priceCurrency":"ARS","price":"290000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Cubre Trompas","item":"https://www.mdracingfundas.com/cubre-trompas"},{"@type":"ListItem","position":3,"name":"Cubre Trompa VW Polo/Virtus 2018","item":"https://www.mdracingfundas.com/producto/cubre-trompa-vw-polo-virtus-2018"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-cubre-trompa-vw-polo-virtus-2018";</script>
@@ -181,27 +188,27 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-cubretrompavwpolovir">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompavwpolovir" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompavwpolovir" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-cubretrompavwpolovir">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_854360-mla80062807025_102024-b-7a8924e4354da4912c17593211300677-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_666905-mla44329491304_122020-b-9bf383af64556d43b817593211350211-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_666905-mla44329491304_122020-b-9bf383af64556d43b817593211350211-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_666905-mla44329491304_122020-b-9bf383af64556d43b817593211350211-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_627644-mla44329495354_122020-b-b79000e0a86f9da24017593211506437-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_627644-mla44329495354_122020-b-b79000e0a86f9da24017593211506437-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_627644-mla44329495354_122020-b-b79000e0a86f9da24017593211506437-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_956379-mla44329503034_122020-b-830e703656b96aec8317593211453483-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_956379-mla44329503034_122020-b-830e703656b96aec8317593211453483-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_956379-mla44329503034_122020-b-830e703656b96aec8317593211453483-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881646-mla44329481741_122020-b-9e0a8f0e70bf90f3b517593211623251-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881646-mla44329481741_122020-b-9e0a8f0e70bf90f3b517593211623251-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881646-mla44329481741_122020-b-9e0a8f0e70bf90f3b517593211623251-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_777480-mla44329495313_122020-b-ec8fa88bc26c7d1f8517593211699150-480-0.webp','pp-main-img-cubretrompavwpolovir')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_777480-mla44329495313_122020-b-ec8fa88bc26c7d1f8517593211699150-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 6" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_777480-mla44329495313_122020-b-ec8fa88bc26c7d1f8517593211699150-480-0.webp" alt="Cubre Trompa VW Polo/Virtus 2018 vista 6" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

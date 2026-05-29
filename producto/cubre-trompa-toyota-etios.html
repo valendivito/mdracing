@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Cubre Trompa Toyota Etios","description":"Cubre trompa MDRACING para Toyota Etios. Ecocuero afelpado, protección completa del frente.","sku":"MDR-CUBRE-TROMPA-TOYOTA-ETIOS","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_722115-mla25208824819_122016-b-df6c97447a4b65824217592456847820-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_344015-mla25208828687_122016-b-1b7b2445bd74f8889617592456885017-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_447015-mla25208829064_122016-b-218d839289ac41bbda17592456928319-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_632133-mla93825763687_092025-b-d7aabfb0c4c38c705e17592457107236-1024-1024.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Cubre Trompas","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/cubre-trompa-toyota-etios","priceCurrency":"ARS","price":"290000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Cubre Trompas","item":"https://www.mdracingfundas.com/cubre-trompas"},{"@type":"ListItem","position":3,"name":"Cubre Trompa Toyota Etios","item":"https://www.mdracingfundas.com/producto/cubre-trompa-toyota-etios"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-cubre-trompa-toyota-etios";</script>
@@ -181,24 +188,24 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-cubretrompatoyotaeti">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp" alt="Cubre Trompa Toyota Etios" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompatoyotaeti" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp" alt="Cubre Trompa Toyota Etios" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubretrompatoyotaeti" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-cubretrompatoyotaeti">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp','pp-main-img-cubretrompatoyotaeti')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp" alt="Cubre Trompa Toyota Etios 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_540115-mla25208828794_122016-b-24fdd4ac2abd14577417592456991563-1024-1024.webp" alt="Cubre Trompa Toyota Etios vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_722115-mla25208824819_122016-b-df6c97447a4b65824217592456847820-1024-1024.webp','pp-main-img-cubretrompatoyotaeti')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_722115-mla25208824819_122016-b-df6c97447a4b65824217592456847820-1024-1024.webp" alt="Cubre Trompa Toyota Etios 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_722115-mla25208824819_122016-b-df6c97447a4b65824217592456847820-1024-1024.webp" alt="Cubre Trompa Toyota Etios vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_344015-mla25208828687_122016-b-1b7b2445bd74f8889617592456885017-1024-1024.webp','pp-main-img-cubretrompatoyotaeti')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_344015-mla25208828687_122016-b-1b7b2445bd74f8889617592456885017-1024-1024.webp" alt="Cubre Trompa Toyota Etios 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_344015-mla25208828687_122016-b-1b7b2445bd74f8889617592456885017-1024-1024.webp" alt="Cubre Trompa Toyota Etios vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_447015-mla25208829064_122016-b-218d839289ac41bbda17592456928319-1024-1024.webp','pp-main-img-cubretrompatoyotaeti')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_447015-mla25208829064_122016-b-218d839289ac41bbda17592456928319-1024-1024.webp" alt="Cubre Trompa Toyota Etios 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_447015-mla25208829064_122016-b-218d839289ac41bbda17592456928319-1024-1024.webp" alt="Cubre Trompa Toyota Etios vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_632133-mla93825763687_092025-b-d7aabfb0c4c38c705e17592457107236-1024-1024.webp','pp-main-img-cubretrompatoyotaeti')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_632133-mla93825763687_092025-b-d7aabfb0c4c38c705e17592457107236-1024-1024.webp" alt="Cubre Trompa Toyota Etios 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_632133-mla93825763687_092025-b-d7aabfb0c4c38c705e17592457107236-1024-1024.webp" alt="Cubre Trompa Toyota Etios vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>

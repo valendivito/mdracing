@@ -64,10 +64,17 @@
   <!-- Structured Data: LocalBusiness -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts reducidas: solo los pesos efectivamente usados en CSS (eliminados 300, 400 italic, 500 italic, 900) -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- styles.css crítico, en head bloqueante. checkout y chat se difieren con media swap (no críticos para LCP) -->
   <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/chat-widget.css" />
-  <link rel="stylesheet" href="/checkout.css" />
+  <link rel="stylesheet" href="/chat-widget.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/chat-widget.css" /></noscript>
+  <link rel="stylesheet" href="/checkout.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/checkout.css" /></noscript>
+  <!-- Preconnect CDN de imágenes de producto (mitiendanube) para LCP de productos -->
+  <link rel="preconnect" href="https://dcdn-us.mitiendanube.com" crossorigin />
+  <link rel="dns-prefetch" href="https://dcdn-us.mitiendanube.com" />
   <script type="application/ld+json" id="product-jsonld">{"@context":"https://schema.org","@type":"Product","name":"Cubre Volante Base Plana VW/Ford/Renault","description":"Cubre volante base plana 38\". Compatible con volantes planos y redondos de 38\". VW, Peugeot, Citroën, Ford, Renault.","sku":"MDR-CUBRE-VOLANTE-BASE-PLANA-POLO-GOL-GOLF-VENTO-KSC3G","image":["https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp","https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp"],"brand":{"@type":"Brand","name":"MDRACING"},"category":"Accesorios","offers":{"@type":"Offer","url":"https://www.mdracingfundas.com/producto/cubre-volante-base-plana-polo-gol-golf-vento-ksc3g","priceCurrency":"ARS","price":"14000","priceValidUntil":"2026-11-25","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@type":"Organization","name":"MDRACING"}}}</script>
   <script type="application/ld+json" id="breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.mdracingfundas.com/"},{"@type":"ListItem","position":2,"name":"Accesorios","item":"https://www.mdracingfundas.com/accesorios"},{"@type":"ListItem","position":3,"name":"Cubre Volante Base Plana VW/Ford/Renault","item":"https://www.mdracingfundas.com/producto/cubre-volante-base-plana-polo-gol-golf-vento-ksc3g"}]}</script>
   <script>window.__PRERENDERED_PAGE = "product-cubre-volante-base-plana-polo-gol-golf-vento-ksc3g";</script>
@@ -181,27 +188,27 @@
         <!-- Gallery -->
         <div class="product-gallery" id="pp-gallery-cubrevolantebaseplan">
         <div class="product-main-img">
-          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubrevolantebaseplan" />
+          <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-cubrevolantebaseplan" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-cubrevolantebaseplan">
           
               <div class="product-thumb active" onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 1" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_629274-mla52282926741_112022-o-cdf58f73a58e843bf117587257532784-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 1" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 2" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_626330-mla52282969610_112022-o-90100461e3078480a817587257682928-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 2" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 3" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_823792-mla52282841928_112022-o-9b7bc23b184a566e2c17587257554450-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 3" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 4" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_912712-mla52283002449_112022-o-253686a7308ccf33da17587257609320-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 4" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 5" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_799303-mla52283059129_112022-o-5e70ce3350d7815a5e17587257633261-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 5" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
               <div class="product-thumb " onclick="ppThumb(this,'https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_865350-mla52282987564_112022-o-746e629d142ab7009217587257657426-1024-1024.webp','pp-main-img-cubrevolantebaseplan')">
-                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_865350-mla52282987564_112022-o-746e629d142ab7009217587257657426-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault 6" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" loading="lazy" />
+                <img src="https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_np_865350-mla52282987564_112022-o-746e629d142ab7009217587257657426-1024-1024.webp" alt="Cubre Volante Base Plana VW/Ford/Renault vista 6" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>
         </div>
       </div>
