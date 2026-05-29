@@ -1,5 +1,14 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
+Disallow: /admin
 
-Sitemap: https://www.mdracingfundas.com.ar/sitemap.xml
+# Permitir bots de Meta/Facebook para que puedan scrapear OG tags y catálogo
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://www.mdracingfundas.com/sitemap.xml

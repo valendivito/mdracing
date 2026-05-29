@@ -255,20 +255,81 @@ const STATIC_SEO = {
   },
 };
 
+/**
+ * Trunca a `max` chars respetando palabras (no corta a la mitad).
+ * Si trunca, agrega elipsis. Limpia saltos de línea y espacios múltiples.
+ */
+function smartTruncate(text, max = 158) {
+  if (!text) return '';
+  // Limpiar: saltos de línea → espacio; espacios múltiples → uno solo; trim.
+  let s = String(text).replace(/\s+/g, ' ').trim();
+  if (s.length <= max) return s;
+  // Cortar en el último espacio dentro del límite (-1 para hacer lugar a la elipsis)
+  let cut = s.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  if (lastSpace > max * 0.6) cut = cut.slice(0, lastSpace);
+  return cut.replace(/[\s.,;:—-]+$/, '') + '…';
+}
+
+/**
+ * Construye un title SEO-friendly para un producto:
+ *   "Funda VW Tera Cuero Automotor Acolchado 3mm | MDRACING"
+ * Si el resultado quedaría > 60 chars, intenta acortar sacando "| MDRACING".
+ * No incluye precios (van en JSON-LD).
+ */
+function buildProductTitle(name) {
+  const suffix = ' | MDRACING';
+  if ((name + suffix).length <= 60) return name + suffix;
+  if (name.length <= 60) return name;
+  return smartTruncate(name, 60).replace(/…$/, '');
+}
+
+/**
+ * Meta description SEO con CTAs y trim inteligente.
+ * - Limpia saltos de línea y MAYÚSCULAS solo cuando todo el string viene así.
+ * - Si el producto tiene desc corta, agrega CTAs para llegar a ~150 chars.
+ * - Trunca respetando palabras.
+ */
+function buildProductDescription(product) {
+  let base = (product.desc || '').replace(/\s+/g, ' ').trim();
+  // Si toda la descripción está en MAYÚSCULAS (caso alfombras termoformadas),
+  // pasarla a sentence case para mejor look en SERP.
+  if (base && base === base.toUpperCase() && base.length > 30) {
+    base = base.toLowerCase();
+    base = base.charAt(0).toUpperCase() + base.slice(1);
+  }
+  const ctas = ' Fabricación propia hace 25 años. Envíos a todo el país. 10% OFF transferencia.';
+  let full;
+  if (base && base.length > 60) {
+    full = base; // ya es suficientemente rica
+  } else {
+    full = (base ? base + '. ' : '') + `${product.name} fabricado por MDRACING.${ctas}`;
+  }
+  return smartTruncate(full, 158);
+}
+
 function seoForPage(page, sandbox) {
   // Productos
   if (page.startsWith('product-')) {
     const id = page.slice('product-'.length);
     const p = sandbox.products.find(pp => pp.id === id);
     if (!p) return null;
-    const offer = p.salePrice ? ` — Oferta $${p.salePrice}` : '';
-    const title = `${p.name} — $${p.price}${offer} | MDRACING`;
-    const description = (p.desc || `${p.name} fabricado por MDRACING. Calidad premium, envíos a todo el país.`).slice(0, 158);
+    const title = buildProductTitle(p.name);
+    const description = buildProductDescription(p);
     let image = SITE_BASE + '/og-image.jpg';
     if (p.images && p.images[0]) {
       image = p.images[0].startsWith('http') ? p.images[0] : SITE_BASE + '/' + p.images[0];
     }
-    return { title, description, image, path: '/producto/' + id, product: p };
+    return {
+      title,
+      description,
+      image,
+      imageAlt: p.name,
+      // Productos NO deberían declarar dimensiones OG fijas (imagen real es variable)
+      skipOgImageDimensions: true,
+      path: '/producto/' + id,
+      product: p,
+    };
   }
 
   // Categorías
@@ -276,24 +337,29 @@ function seoForPage(page, sandbox) {
     const cat = sandbox.categories.find(c => c.id === page);
     if (cat) {
       const cleanTitle = cat.title.replace('\n', ' ');
+      const rawTitle = `${cleanTitle} para tu Vehículo | MDRACING`;
+      const title = rawTitle.length <= 60 ? rawTitle : smartTruncate(rawTitle, 60).replace(/…$/, '');
       return {
-        title: `${cleanTitle} para tu Vehículo | MDRACING`,
-        description: `${cat.desc} Fabricantes directos con más de 25 años. Envíos a todo el país y retiro en Munro.`,
+        title,
+        description: smartTruncate(`${cat.desc} Fabricantes directos con más de 25 años. Envíos a todo el país y 10% OFF pagando con transferencia.`, 158),
         image: SITE_BASE + '/og-image.jpg',
+        imageAlt: `${cleanTitle} MDRACING`,
         path: sandbox.pageToPath(page),
+        category: cat,
       };
     }
   }
 
   // Páginas estáticas
   const s = STATIC_SEO[page];
-  if (s) return { ...s, image: SITE_BASE + '/og-image.jpg' };
+  if (s) return { ...s, image: SITE_BASE + '/og-image.jpg', imageAlt: s.title };
 
   // Fallback
   return {
     title: 'MDRACING — Fundas, Cubre Autos y Accesorios',
     description: 'Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria.',
     image: SITE_BASE + '/og-image.jpg',
+    imageAlt: 'MDRACING',
     path: '/',
   };
 }
@@ -310,53 +376,132 @@ function escHtml(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function _absImage(src) {
+  if (!src) return SITE_BASE + '/og-image.jpg';
+  return src.startsWith('http') ? src : SITE_BASE + '/' + src;
+}
+
+/**
+ * Schema Product enriquecido:
+ *   - image como array (Google recomienda 3+ formatos: cuadrada/4:3/16:9)
+ *   - sku derivado del id del producto (único, prefijo MDR-)
+ *   - priceValidUntil + itemCondition (requeridos para Google Merchant Listings)
+ *   - description rica si la del catálogo es corta
+ */
 function productJsonLd(p) {
   const priceNum = String(p.salePrice || p.price || '0').replace(/\./g, '');
-  const imageUrl = (p.images && p.images[0])
-    ? (p.images[0].startsWith('http') ? p.images[0] : SITE_BASE + '/' + p.images[0])
-    : (SITE_BASE + '/og-image.jpg');
+  const images = Array.isArray(p.images) && p.images.length
+    ? p.images.slice(0, 5).map(_absImage)
+    : [SITE_BASE + '/og-image.jpg'];
+
+  const desc = (p.desc && p.desc.trim().length > 30)
+    ? p.desc.replace(/\s+/g, ' ').trim()
+    : `${p.name} fabricado por MDRACING en Argentina hace 25 años. ${p.cat || ''}. A medida según marca y modelo. Envíos a todo el país. Garantía 30 días por fallas de fábrica.`.replace(/\s+/g, ' ').trim();
+
+  // priceValidUntil: 6 meses desde ahora (suficiente buffer, se regenera en cada build)
+  const validUntil = new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     'name': p.name,
-    'description': p.desc || p.name,
-    'image': imageUrl,
+    'description': desc,
+    'sku': 'MDR-' + p.id.toUpperCase().slice(0, 60),
+    'image': images,
     'brand': { '@type': 'Brand', 'name': 'MDRACING' },
+    'category': p.cat || undefined,
     'offers': {
       '@type': 'Offer',
       'url': SITE_BASE + '/producto/' + p.id,
       'priceCurrency': 'ARS',
       'price': priceNum,
+      'priceValidUntil': validUntil,
       'availability': 'https://schema.org/InStock',
+      'itemCondition': 'https://schema.org/NewCondition',
       'seller': { '@type': 'Organization', 'name': 'MDRACING' },
     },
   };
   return `<script type="application/ld+json" id="product-jsonld">${JSON.stringify(data)}</script>`;
 }
 
+/**
+ * BreadcrumbList JSON-LD para producto: Inicio › Categoría › Producto
+ */
+function breadcrumbJsonLd(product, sandbox) {
+  const cat = sandbox.categories.find(c => c.id === product.catId);
+  const catPath = cat ? sandbox.pageToPath(cat.id) : '/categorias';
+  const catName = cat ? cat.title.replace('\n', ' ') : 'Productos';
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_BASE + '/' },
+      { '@type': 'ListItem', position: 2, name: catName, item: SITE_BASE + catPath },
+      { '@type': 'ListItem', position: 3, name: product.name, item: SITE_BASE + '/producto/' + product.id },
+    ],
+  };
+  return `<script type="application/ld+json" id="breadcrumb-jsonld">${JSON.stringify(data)}</script>`;
+}
+
+/**
+ * ItemList JSON-LD para categoría: lista hasta 30 productos de esa categoría.
+ */
+function itemListJsonLd(category, sandbox) {
+  const prods = sandbox.products
+    .filter(p => p.catId === category.id)
+    .slice(0, 30);
+  if (!prods.length) return '';
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'itemListElement': prods.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: SITE_BASE + '/producto/' + p.id,
+      name: p.name,
+    })),
+  };
+  return `<script type="application/ld+json" id="itemlist-jsonld">${JSON.stringify(data)}</script>`;
+}
+
+/**
+ * Páginas donde el LocalBusiness JSON-LD del template tiene sentido.
+ * En productos/categorías lo removemos para no diluir la entidad principal.
+ */
+const PAGES_WITH_LOCALBUSINESS = new Set(['home', 'quienes-somos', 'contacto', 'como-comprar']);
+
 function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
   const url = SITE_BASE + seo.path;
   let html = templateHtml;
 
-  // <title>
+  // ── <title> ──
   html = html.replace(
     /<title>[\s\S]*?<\/title>/,
     `<title>${escHtml(seo.title)}</title>`
   );
 
-  // <meta name="description">
+  // ── <meta name="description"> ──
   html = html.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
     `<meta name="description" content="${escAttr(seo.description)}" />`
   );
 
-  // <link rel="canonical">
+  // ── <meta name="keywords"> ── (remover si está duplicada genérica)
+  // Google la ignora desde 2009. Sacarla limpia el head y evita inconsistencia.
+  html = html.replace(/\s*<meta\s+name="keywords"[^>]*\/?>/gi, '');
+
+  // ── <link rel="canonical"> ──
   html = html.replace(
     /<link\s+rel="canonical"[^>]*\/?>/i,
     `<link rel="canonical" href="${escAttr(url)}" id="canonical-link" />`
   );
 
-  // Open Graph
+  // ── Open Graph ──
+  const ogType = seo.product ? 'product' : 'website';
+  html = html.replace(
+    /<meta\s+property="og:type"[^>]*\/?>/i,
+    `<meta property="og:type" content="${ogType}" />`
+  );
   html = html.replace(
     /<meta\s+property="og:title"[^>]*\/?>/i,
     `<meta property="og:title" content="${escAttr(seo.title)}" id="og-title" />`
@@ -373,8 +518,22 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
     /<meta\s+property="og:image"[^>]*\/?>/i,
     `<meta property="og:image" content="${escAttr(seo.image)}" id="og-image" />`
   );
+  // og:image:alt dinámico por página
+  if (seo.imageAlt) {
+    html = html.replace(
+      /<meta\s+property="og:image:alt"[^>]*\/?>/i,
+      `<meta property="og:image:alt" content="${escAttr(seo.imageAlt)}" />`
+    );
+  }
+  // og:image:width/height: SOLO la home tiene dimensiones conocidas (1641x630).
+  // En productos/categorías las imágenes vienen del CDN (cuadradas o variables),
+  // así que removemos las dimensiones hardcoded para no romper previews sociales.
+  if (seo.skipOgImageDimensions || (!seo.product && opts.pageId !== 'home')) {
+    html = html.replace(/\s*<meta\s+property="og:image:width"[^>]*\/?>/gi, '');
+    html = html.replace(/\s*<meta\s+property="og:image:height"[^>]*\/?>/gi, '');
+  }
 
-  // Twitter
+  // ── Twitter ──
   html = html.replace(
     /<meta\s+name="twitter:title"[^>]*\/?>/i,
     `<meta name="twitter:title" content="${escAttr(seo.title)}" id="tw-title" />`
@@ -388,17 +547,36 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
     `<meta name="twitter:image" content="${escAttr(seo.image)}" id="tw-image" />`
   );
 
-  // Product JSON-LD: insertar antes del </head> si es producto
+  // ── LocalBusiness JSON-LD ──
+  // El template (index.html) tiene LocalBusiness inline en el <head>. Solo
+  // tiene sentido en home / quienes-somos / contacto / como-comprar.
+  // En productos/categorías lo removemos para no diluir la entidad principal
+  // y para que Google priorice el Product schema.
+  if (!PAGES_WITH_LOCALBUSINESS.has(opts.pageId)) {
+    // Remover el <script application/ld+json> que contiene "LocalBusiness"
+    html = html.replace(
+      /\s*<script\s+type="application\/ld\+json">[\s\S]*?"LocalBusiness"[\s\S]*?<\/script>/gi,
+      ''
+    );
+  }
+
+  // ── Schemas adicionales antes del </head> ──
+  const extras = [];
   if (seo.product) {
-    const jsonLd = productJsonLd(seo.product);
-    html = html.replace('</head>', `  ${jsonLd}\n</head>`);
+    extras.push(productJsonLd(seo.product));
+    if (opts.sandbox) extras.push(breadcrumbJsonLd(seo.product, opts.sandbox));
+  } else if (seo.category && opts.sandbox) {
+    extras.push(itemListJsonLd(seo.category, opts.sandbox));
   }
 
   // Marca pre-render: el JS lo lee y skipea el render inicial
-  const marker = `<script>window.__PRERENDERED_PAGE = "${escAttr(opts.pageId)}";</script>`;
-  html = html.replace('</head>', `  ${marker}\n</head>`);
+  extras.push(`<script>window.__PRERENDERED_PAGE = "${escAttr(opts.pageId)}";</script>`);
 
-  // Inyectar el contenido renderizado dentro del <main id="app">
+  if (extras.length) {
+    html = html.replace('</head>', `  ${extras.join('\n  ')}\n</head>`);
+  }
+
+  // ── Inyectar contenido renderizado en <main id="app"> ──
   html = html.replace(
     /<main\s+id="app"[^>]*>[\s\S]*?<\/main>/i,
     `<main id="app">${renderedAppHtml}</main>`
@@ -672,7 +850,7 @@ async function main() {
 
       if (!appHtml) throw new Error('renderer devolvió vacío');
 
-      const finalHtml = buildPageHtml(templateHtml, seo, appHtml, { pageId: r.pageId });
+      const finalHtml = buildPageHtml(templateHtml, seo, appHtml, { pageId: r.pageId, sandbox });
 
       // Determinar path de salida
       let outPath;

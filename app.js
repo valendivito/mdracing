@@ -826,7 +826,7 @@ function renderHome() {
             </div>
             <div class="hotsale-grid">${cardsHTML}</div>
             <div class="hotsale-footer">
-              <a href="#" data-page="cat-hot-sale" class="hotsale-footer-link">Ver todos los productos con descuento Hot Sale →</a>
+              <a href="/hot-sale" data-page="cat-hot-sale" class="hotsale-footer-link">Ver todos los productos con descuento Hot Sale →</a>
             </div>
           </div>
         </section>
@@ -852,7 +852,7 @@ function renderHome() {
             <strong style="color:var(--white)">Comprá online</strong> con tarjeta en cuotas o transferencia con <strong style="color:var(--red2)">10% OFF</strong>. Envíos a todo el país.
           </p>
           <div class="hero-ctas">
-            <a href="#" data-page="categorias" class="btn-primary">${icons.cart} Comprar ahora</a>
+            <a href="/categorias" data-page="categorias" class="btn-primary">${icons.cart} Comprar ahora</a>
             <a href="${WA_MSG('Hola! Quiero consultar por un producto MDRACING')}" target="_blank" class="btn-whatsapp" style="font-size:15px;padding:13px 28px">${icons.waIcon} Consultar por WhatsApp</a>
           </div>
           <!-- Trust signals: pago seguro · cuotas · envío · devolución -->
@@ -1072,7 +1072,7 @@ function renderHome() {
             <span class="section-label">Productos Estrella</span>
             <h2 class="section-title">Los más <span>elegidos</span></h2>
           </div>
-          <a href="#" data-page="categorias" class="btn-ghost">Ver todo el catálogo ${icons.arrowRight}</a>
+          <a href="/categorias" data-page="categorias" class="btn-ghost">Ver todo el catálogo ${icons.arrowRight}</a>
         </div>
         <div class="products-grid">
           ${[
@@ -1083,7 +1083,7 @@ function renderHome() {
           ].map(id => products.find(p => p.id === id)).filter(Boolean).map(p => renderProductCard(p)).join('')}
         </div>
         <div style="text-align:center">
-          <a href="#" data-page="categorias" class="btn-outline">Ver Todos los Productos</a>
+          <a href="/categorias" data-page="categorias" class="btn-outline">Ver Todos los Productos</a>
         </div>
       </div>
     </section>
@@ -1121,7 +1121,7 @@ function renderHome() {
           </div>
         </div>
         <div class="steps-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a href="#" data-page="categorias" class="btn-primary">${icons.cart} Ver catálogo</a>
+          <a href="/categorias" data-page="categorias" class="btn-primary">${icons.cart} Ver catálogo</a>
           <a href="${WA_MSG('Hola! Quiero consultar antes de comprar')}" target="_blank" class="btn-whatsapp" style="font-size:15px;padding:13px 28px">${icons.waIcon} Consultar por WhatsApp</a>
         </div>
 
@@ -1428,7 +1428,7 @@ function renderHome() {
             <span class="cta-chip">✔ Garantía 30 días</span>
           </div>
           <div class="final-cta-actions" style="justify-content:flex-start;margin-top:24px">
-            <a href="#" data-page="categorias" class="btn-primary" style="font-size:16px;padding:14px 28px">${icons.cart} Comprar ahora</a>
+            <a href="/categorias" data-page="categorias" class="btn-primary" style="font-size:16px;padding:14px 28px">${icons.cart} Comprar ahora</a>
             <a href="${WA_MSG('Hola! Quiero asesoramiento para mi vehículo con MDRACING. Mi marca y modelo es...')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:14px 28px">${icons.waIcon} Asesoramiento WhatsApp</a>
           </div>
           <p class="final-cta-note" style="text-align:left;margin-top:16px">
@@ -1600,7 +1600,7 @@ function renderCategoryPage(catId) {
         <div class="page-hero page-hero-hs">
           <div class="page-hero-inner">
             <div class="page-breadcrumb">
-              <a href="#" data-page="home">Inicio</a>
+              <a href="/" data-page="home">Inicio</a>
               <span>›</span>
               <span>🔥 HOT SALE</span>
             </div>
@@ -1642,7 +1642,7 @@ function renderCategoryPage(catId) {
       <div class="page-hero">
         <div class="page-hero-inner">
           <div class="page-breadcrumb">
-            <a href="#" data-page="home">Inicio</a>
+            <a href="/" data-page="home">Inicio</a>
             <span>›</span>
             <span>${info.title}</span>
           </div>
@@ -1941,9 +1941,9 @@ function renderProductPage(productId) {
       <div class="page-hero">
         <div class="page-hero-inner">
           <div class="page-breadcrumb">
-            <a href="#" data-page="home">Inicio</a>
+            <a href="/" data-page="home">Inicio</a>
             <span>›</span>
-            <a href="#" data-page="${p.catId}">${p.cat}</a>
+            <a href="${pageToPath(p.catId)}" data-page="${p.catId}">${p.cat}</a>
             <span>›</span>
             <span>${p.name}</span>
           </div>
@@ -2159,7 +2159,7 @@ function renderAboutPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner about-hero-content">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Quiénes Somos</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Quiénes Somos</span></div>
           <h1 class="page-hero-title">25 años fabricando<br><span style="color:var(--red2)">con pasión.</span></h1>
           <p class="page-hero-sub">No somos un local de reventa. Somos fabricantes argentinos con historia real, equipo propio y más de 5.000 clientes satisfechos en todo el país.</p>
         </div>
@@ -2257,7 +2257,7 @@ function renderAboutPage() {
           <div class="divider-line" style="margin:16px auto 32px"></div>
           <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
             <a href="${WA_MSG('Hola! Quiero saber más sobre MDRACING y sus productos')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:15px 36px">${icons.waIcon} Escribinos por WhatsApp</a>
-            <a href="#" data-page="categorias" class="btn-outline-dark" style="font-size:15px;padding:15px 32px">Ver catálogo completo →</a>
+            <a href="/categorias" data-page="categorias" class="btn-outline-dark" style="font-size:15px;padding:15px 32px">Ver catálogo completo →</a>
           </div>
         </div>
 
@@ -2272,7 +2272,7 @@ function renderFaqPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Preguntas Frecuentes</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Preguntas Frecuentes</span></div>
           <h1 class="page-hero-title">Preguntas<br><span style="color:var(--red2)">Frecuentes.</span></h1>
           <p class="page-hero-sub">Las dudas más comunes resueltas. Si necesitás algo más específico, escribinos por WhatsApp o consultá con Madi, nuestra asistente virtual.</p>
         </div>
@@ -2321,7 +2321,7 @@ function renderHowToBuyPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Cómo Comprar</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Cómo Comprar</span></div>
           <h1 class="page-hero-title">Dos formas<br>de <span style="color:var(--red2)">comprar.</span></h1>
           <p class="page-hero-sub">Elegí la que mejor se adapte a vos: <strong>compra rápida online</strong> con tarjeta o transferencia, o <strong>asesoramiento por WhatsApp</strong> antes de decidir. Las dos son simples y seguras.</p>
         </div>
@@ -2452,7 +2452,7 @@ function renderHowToBuyPage() {
           <h2 class="section-title" style="margin-bottom:16px">Estamos <span>a tu disposición.</span></h2>
           <div class="divider-line" style="margin:16px auto 32px"></div>
           <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-            <a href="#" data-page="categorias" class="btn-primary" style="font-size:16px;padding:15px 36px">Ver catálogo</a>
+            <a href="/categorias" data-page="categorias" class="btn-primary" style="font-size:16px;padding:15px 36px">Ver catálogo</a>
             <a href="${WA_MSG('Hola! Quiero hacer una consulta antes de comprar')}" target="_blank" class="btn-whatsapp" style="font-size:16px;padding:15px 36px">${icons.waIcon} Consultar por WhatsApp</a>
           </div>
         </div>
@@ -2468,7 +2468,7 @@ function renderReturnsPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Cambios y Devoluciones</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Cambios y Devoluciones</span></div>
           <h1 class="page-hero-title">Cambios y<br><span style="color:var(--red2)">Devoluciones</span></h1>
           <p class="page-hero-sub">Política clara y transparente. Si hay un problema, lo resolvemos.</p>
         </div>
@@ -2576,7 +2576,7 @@ function renderTermsPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Términos y Condiciones</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Términos y Condiciones</span></div>
           <h1 class="page-hero-title">Términos y<br><span style="color:var(--red2)">Condiciones</span></h1>
           <p class="page-hero-sub">Las reglas claras y por escrito de comprar en MDRACING.</p>
         </div>
@@ -2690,7 +2690,7 @@ function renderPrivacyPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Política de Privacidad</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Política de Privacidad</span></div>
           <h1 class="page-hero-title">Política de<br><span style="color:var(--red2)">Privacidad</span></h1>
           <p class="page-hero-sub">Cómo cuidamos los datos que nos confiás.</p>
         </div>
@@ -2796,7 +2796,7 @@ function renderContactPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Contacto</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Contacto</span></div>
           <h1 class="page-hero-title">Hablemos<br><span style="color:var(--red2)">sin vueltas.</span></h1>
           <p class="page-hero-sub">Estamos disponibles para asesorarte, responder consultas y ayudarte a elegir el producto correcto.</p>
         </div>
@@ -2883,7 +2883,7 @@ function renderCategoriesPage() {
     <div class="page-wrapper">
       <div class="page-hero">
         <div class="page-hero-inner">
-          <div class="page-breadcrumb"><a href="#" data-page="home">Inicio</a> <span>›</span> <span>Productos</span></div>
+          <div class="page-breadcrumb"><a href="/" data-page="home">Inicio</a> <span>›</span> <span>Productos</span></div>
           <h1 class="page-hero-title">Todo nuestro<br><span style="color:var(--red2)">catálogo.</span></h1>
           <p class="page-hero-sub">Fabricantes directos. Más de 25 años de experiencia en accesorios automotrices premium.</p>
         </div>
@@ -3791,22 +3791,22 @@ function buildMobileNav() {
   nav.id = 'mobile-nav';
   nav.innerHTML = `
     <button class="mobile-nav-close" onclick="closeMobileNav()">${icons.x}</button>
-    <a href="#" data-page="home">Inicio</a>
+    <a href="/" data-page="home">Inicio</a>
     <div class="mobile-nav-section-label">Productos</div>
     <div class="mobile-nav-sub">
-      <a href="#" data-page="cat-fundas-asientos">Fundas para Asientos</a>
-      <a href="#" data-page="cat-cubre-autos">Cubre Autos / Camionetas</a>
-      <a href="#" data-page="cat-cubre-capots">Cubre Capots</a>
-      <a href="#" data-page="cat-cubre-trompas">Cubre Trompas</a>
-      <a href="#" data-page="cat-cubre-motos">Cubre Motos</a>
-      <a href="#" data-page="cat-alfombras-termoformadas">Alfombras Termoformadas</a>
-      <a href="#" data-page="cat-accesorios">Accesorios</a>
+      <a href="/fundas-asientos" data-page="cat-fundas-asientos">Fundas para Asientos</a>
+      <a href="/cubre-autos" data-page="cat-cubre-autos">Cubre Autos / Camionetas</a>
+      <a href="/cubre-capots" data-page="cat-cubre-capots">Cubre Capots</a>
+      <a href="/cubre-trompas" data-page="cat-cubre-trompas">Cubre Trompas</a>
+      <a href="/cubre-motos" data-page="cat-cubre-motos">Cubre Motos</a>
+      <a href="/alfombras-termoformadas" data-page="cat-alfombras-termoformadas">Alfombras Termoformadas</a>
+      <a href="/accesorios" data-page="cat-accesorios">Accesorios</a>
     </div>
-    <a href="#" data-page="quienes-somos">Quiénes Somos</a>
-    <a href="#" data-page="como-comprar">Cómo Comprar</a>
-    <a href="#" data-page="preguntas-frecuentes">Preguntas Frecuentes</a>
-    <a href="#" data-page="cambios-devoluciones">Cambios y Devoluciones</a>
-    <a href="#" data-page="contacto">Contacto</a>
+    <a href="/quienes-somos" data-page="quienes-somos">Quiénes Somos</a>
+    <a href="/como-comprar" data-page="como-comprar">Cómo Comprar</a>
+    <a href="/preguntas-frecuentes" data-page="preguntas-frecuentes">Preguntas Frecuentes</a>
+    <a href="/cambios-devoluciones" data-page="cambios-devoluciones">Cambios y Devoluciones</a>
+    <a href="/contacto" data-page="contacto">Contacto</a>
     <div class="mobile-nav-wa">
       <a href="${WA_MSG('Hola! Quiero consultar sobre productos MDRACING')}" target="_blank" class="btn-whatsapp" style="width:100%;justify-content:center">${icons.waIcon} Hablar por WhatsApp</a>
     </div>
