@@ -173,6 +173,8 @@ function loadAppInSandbox() {
     'renderHome', 'renderProductCard', 'renderCategoryPage', 'renderProductPage',
     'renderAboutPage', 'renderFaqPage', 'renderHowToBuyPage', 'renderReturnsPage',
     'renderTermsPage', 'renderPrivacyPage', 'renderContactPage', 'renderCategoriesPage',
+    'renderBrandsPage', 'renderBrandPage',
+    'carBrands', 'getCarBrand', 'getProductsForBrand',
     'carSvg', 'seatSvg', 'coverSvg', 'motoSvg', 'capotSvg', 'accesorioSvg',
     'trompaSvg', 'alfombraSvg', 'flameSvg', 'mantaSvg',
     'faqs', 'faqCategories',
@@ -309,6 +311,37 @@ function buildProductDescription(product) {
 }
 
 function seoForPage(page, sandbox) {
+  // ── Página índice de marcas: /marcas ──
+  if (page === 'marcas') {
+    return {
+      title: 'Productos por Marca de Auto | MDRACING',
+      description: 'Fundas a medida, cubre autos antigranizo, alfombras termoformadas y accesorios MDRACING específicos por marca: Toyota, VW, Ford, Chevrolet, Fiat, Renault y más.',
+      image: SITE_BASE + '/og-image.jpg',
+      imageAlt: 'Productos MDRACING por marca de auto',
+      path: '/marcas',
+    };
+  }
+
+  // ── Página de marca específica: /marcas/<slug> ──
+  if (page.startsWith('brand-')) {
+    const slug = page.slice('brand-'.length);
+    const brand = sandbox.getCarBrand(slug);
+    if (!brand) return null;
+    const prods = sandbox.getProductsForBrand(brand);
+    const count = prods.length;
+    const title = `Fundas y Accesorios ${brand.name} a Medida | MDRACING`;
+    const truncTitle = title.length <= 60 ? title : smartTruncate(title, 60).replace(/…$/, '');
+    return {
+      title: truncTitle,
+      description: smartTruncate(`Fundas a medida, cubre autos antigranizo, cubre capots, alfombras termoformadas y accesorios MDRACING específicos para tu ${brand.name}. ${count} productos compatibles. Fábrica directa hace 25 años. Envíos a todo el país.`, 158),
+      image: SITE_BASE + '/og-image.jpg',
+      imageAlt: `Productos MDRACING para ${brand.name}`,
+      path: '/marcas/' + slug,
+      brand,
+      brandProducts: prods,
+    };
+  }
+
   // Productos
   if (page.startsWith('product-')) {
     const id = page.slice('product-'.length);
@@ -465,6 +498,47 @@ function itemListJsonLd(category, sandbox) {
 }
 
 /**
+ * CollectionPage + ItemList JSON-LD para una página de marca de auto.
+ * Lista hasta 30 productos compatibles con la marca con BreadcrumbList.
+ */
+function brandPageJsonLd(brand, prods) {
+  const list = prods.slice(0, 30);
+  const collection = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    'name': `Productos para ${brand.name} | MDRACING`,
+    'url': SITE_BASE + '/marcas/' + brand.slug,
+    'about': {
+      '@type': 'Brand',
+      'name': brand.name,
+    },
+    'mainEntity': {
+      '@type': 'ItemList',
+      'numberOfItems': list.length,
+      'itemListElement': list.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: SITE_BASE + '/producto/' + p.id,
+        name: p.name,
+      })),
+    },
+  };
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_BASE + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Marcas', item: SITE_BASE + '/marcas' },
+      { '@type': 'ListItem', position: 3, name: brand.name, item: SITE_BASE + '/marcas/' + brand.slug },
+    ],
+  };
+  return [
+    `<script type="application/ld+json" id="collection-jsonld">${JSON.stringify(collection)}</script>`,
+    `<script type="application/ld+json" id="breadcrumb-jsonld">${JSON.stringify(breadcrumb)}</script>`,
+  ].join('\n  ');
+}
+
+/**
  * Páginas donde el LocalBusiness JSON-LD del template tiene sentido.
  * En productos/categorías lo removemos para no diluir la entidad principal.
  */
@@ -570,6 +644,8 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
     if (opts.sandbox) extras.push(breadcrumbJsonLd(seo.product, opts.sandbox));
   } else if (seo.category && opts.sandbox) {
     extras.push(itemListJsonLd(seo.category, opts.sandbox));
+  } else if (seo.brand && seo.brandProducts) {
+    extras.push(brandPageJsonLd(seo.brand, seo.brandProducts));
   }
 
   // Marca pre-render: el JS lo lee y skipea el render inicial
@@ -810,6 +886,16 @@ async function main() {
     routes.push({ pageId: cat.id });
   }
 
+  // Marcas de auto: índice + 1 página por marca con productos
+  routes.push({ pageId: 'marcas' });
+  if (Array.isArray(sandbox.carBrands)) {
+    for (const b of sandbox.carBrands) {
+      // Solo generar si tiene productos (evita páginas vacías)
+      const prods = sandbox.getProductsForBrand(b);
+      if (prods.length > 0) routes.push({ pageId: 'brand-' + b.slug });
+    }
+  }
+
   // Productos
   for (const p of sandbox.products) {
     routes.push({ pageId: 'product-' + p.id });
@@ -831,6 +917,10 @@ async function main() {
         appHtml = sandbox.renderHome();
       } else if (r.pageId === 'categorias') {
         appHtml = sandbox.renderCategoriesPage();
+      } else if (r.pageId === 'marcas') {
+        appHtml = sandbox.renderBrandsPage();
+      } else if (r.pageId.startsWith('brand-')) {
+        appHtml = sandbox.renderBrandPage(r.pageId.slice('brand-'.length));
       } else if (r.pageId.startsWith('cat-')) {
         appHtml = sandbox.renderCategoryPage(r.pageId);
       } else if (r.pageId.startsWith('product-')) {
@@ -864,6 +954,15 @@ async function main() {
         const dir = path.join(ROOT, 'producto');
         if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
         outPath = path.join(dir, slug + '.html');
+      } else if (r.pageId.startsWith('brand-')) {
+        // Marcas individuales viven en /marcas/<slug>.html
+        const slug = r.pageId.slice('brand-'.length);
+        const dir = path.join(ROOT, 'marcas');
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        outPath = path.join(dir, slug + '.html');
+      } else if (r.pageId === 'marcas') {
+        // Índice de marcas: /marcas → marcas.html
+        outPath = path.join(ROOT, 'marcas.html');
       } else {
         // Categorías y estáticas: usar pageToPath y reemplazar / final
         const route = sandbox.pageToPath(r.pageId); // ej "/cubre-autos"
@@ -890,6 +989,8 @@ async function main() {
     if (r.pageId === 'home') { priority = '1.0'; changefreq = 'weekly'; }
     else if (r.pageId.startsWith('cat-')) { priority = '0.9'; changefreq = 'weekly'; }
     else if (r.pageId === 'categorias') { priority = '0.9'; changefreq = 'weekly'; }
+    else if (r.pageId === 'marcas') { priority = '0.9'; changefreq = 'weekly'; }
+    else if (r.pageId.startsWith('brand-')) { priority = '0.9'; changefreq = 'weekly'; }
     else if (r.pageId.startsWith('product-')) { priority = '0.8'; changefreq = 'weekly'; }
     else if (r.pageId === 'quienes-somos' || r.pageId === 'como-comprar') { priority = '0.7'; }
     return `  <url>

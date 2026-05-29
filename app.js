@@ -166,6 +166,7 @@ if (typeof window !== 'undefined') {
 const ROUTE_TO_PAGE = {
   '/':                          'home',
   '/categorias':                'categorias',
+  '/marcas':                    'marcas',
   '/cubre-autos':               'cat-cubre-autos',
   '/fundas-asientos':           'cat-fundas-asientos',
   '/cubre-capots':              'cat-cubre-capots',
@@ -187,22 +188,29 @@ const PAGE_TO_ROUTE = Object.fromEntries(
   Object.entries(ROUTE_TO_PAGE).map(([path, page]) => [page, path])
 );
 
-/** Convierte una page id interna ('cat-cubre-autos', 'product-vw-tera-xxx') a ruta pública ('/cubre-autos', '/producto/vw-tera-xxx'). */
+/** Convierte una page id interna ('cat-cubre-autos', 'product-vw-tera-xxx', 'brand-toyota') a ruta pública. */
 function pageToPath(page) {
   if (!page) return '/';
   if (page.startsWith('product-')) {
     return '/producto/' + page.slice('product-'.length);
   }
+  if (page.startsWith('brand-')) {
+    return '/marcas/' + page.slice('brand-'.length);
+  }
   return PAGE_TO_ROUTE[page] || '/';
 }
 
-/** Convierte una URL ('/cubre-autos', '/producto/xxx') a page id interna. Devuelve null si no matchea. */
+/** Convierte una URL ('/cubre-autos', '/producto/xxx', '/marcas/toyota') a page id interna. */
 function pathToPage(pathname) {
   if (!pathname) return 'home';
   // Normalizar: quitar trailing slash (excepto root) y trailing index.html
   if (pathname.length > 1 && pathname.endsWith('/')) pathname = pathname.slice(0, -1);
   if (pathname.endsWith('/index.html')) pathname = pathname.slice(0, -('/index.html'.length)) || '/';
 
+  if (pathname.startsWith('/marcas/')) {
+    const slug = pathname.slice('/marcas/'.length);
+    return slug ? 'brand-' + slug : null;
+  }
   if (pathname.startsWith('/producto/')) {
     const slug = pathname.slice('/producto/'.length);
     return slug ? 'product-' + slug : null;
@@ -367,6 +375,55 @@ const categories = [
   { id: 'cat-alfombras-termoformadas', tag: 'Nuevo', title: 'Alfombras\nTermoformadas', cat: 'alfombras-termoformadas', svg: alfombraSvg, desc: 'Alfombras 3D termoformadas con bordes elevados. Protección total del piso.', page: 'cat-alfombras-termoformadas' },
   { id: 'cat-accesorios', tag: 'Complementos', title: 'Accesorios', cat: 'accesorios', svg: accesorioSvg, desc: 'Todo lo que necesitás para proteger y personalizar.', page: 'cat-accesorios' },
 ];
+
+// ═══════════════════════════════════════════════════════════
+// MARCAS DE AUTO — páginas hub /marcas/<slug>
+// ═══════════════════════════════════════════════════════════
+//
+// Cada marca tiene:
+//   - slug (URL): /marcas/<slug>
+//   - name: nombre comercial visible
+//   - keywords: palabras a buscar en el nombre del producto para asignarlo
+//                a esta marca. Coincidencia case-insensitive con word
+//                boundary (\b...\b) para evitar falsos positivos (ej. "etios"
+//                no debe matchear "ford ranger").
+//
+// Agregar una marca nueva = agregar 1 línea al array.
+const carBrands = [
+  { slug: 'toyota',        name: 'Toyota',        keywords: ['toyota', 'hilux', 'corolla', 'etios', 'yaris', 'sw4'] },
+  { slug: 'volkswagen',    name: 'Volkswagen',    keywords: ['volkswagen', 'vw', 'amarok', 'polo', 'gol', 'vento', 'tera', 'virtus', 't-cross', 'tcross', 'nivus', 'suran', 'saveiro'] },
+  { slug: 'ford',          name: 'Ford',          keywords: ['ford', 'ranger', 'ecosport', 'ka', 'fiesta', 'focus', 'territory', 'maverick'] },
+  { slug: 'chevrolet',     name: 'Chevrolet',     keywords: ['chevrolet', 'onix', 'cruze', 's10', 'tracker', 'prisma', 'corsa', 'agile', 'spin', 'montana'] },
+  { slug: 'fiat',          name: 'Fiat',          keywords: ['fiat', 'cronos', 'argo', 'toro', 'palio', 'siena', 'strada', 'uno', 'pulse', 'fastback', 'mobi'] },
+  { slug: 'renault',       name: 'Renault',       keywords: ['renault', 'kwid', 'sandero', 'logan', 'duster', 'clio', 'kangoo', 'stepway', 'oroch', 'alaskan'] },
+  { slug: 'peugeot',       name: 'Peugeot',       keywords: ['peugeot', '208', '2008', '308', '408', 'partner', 'expert'] },
+  { slug: 'honda',         name: 'Honda',         keywords: ['honda', 'civic', 'cr-v', 'crv', 'fit', 'hr-v', 'hrv', 'wr-v'] },
+  { slug: 'nissan',        name: 'Nissan',        keywords: ['nissan', 'frontier', 'kicks', 'versa', 'march', 'np300', 'np-300'] },
+  { slug: 'citroen',       name: 'Citroën',       keywords: ['citroen', 'citroën', 'c3', 'c4', 'c5', 'berlingo'] },
+  { slug: 'mitsubishi',    name: 'Mitsubishi',    keywords: ['mitsubishi', 'l200', 'outlander', 'asx', 'eclipse'] },
+  { slug: 'bmw',           name: 'BMW',           keywords: ['bmw', 'serie 1', 'serie 3', 'serie 5', 'x1', 'x3', 'x5'] },
+  { slug: 'mercedes-benz', name: 'Mercedes-Benz', keywords: ['mercedes', 'mercedes-benz', 'mercedes benz', 'clase a', 'clase b', 'clase c', 'sprinter', 'vito'] },
+  { slug: 'jeep',          name: 'Jeep',          keywords: ['jeep', 'renegade', 'compass', 'wrangler', 'grand cherokee'] },
+];
+
+/** Devuelve la marca dado el slug, o null. */
+function getCarBrand(slug) {
+  return carBrands.find(b => b.slug === slug) || null;
+}
+
+/** Devuelve los productos compatibles con una marca dada (matcheo por nombre). */
+function getProductsForBrand(brand) {
+  if (!brand || !brand.keywords) return [];
+  const patterns = brand.keywords.map(kw => {
+    // Escapamos y permitimos guion/espacio dentro
+    const esc = kw.toLowerCase().replace(/[-\s]+/g, '[- ]?').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('\\b' + esc + '\\b', 'i');
+  });
+  return products.filter(p => {
+    const haystack = (p.name || '').toLowerCase();
+    return patterns.some(re => re.test(haystack));
+  });
+}
 
 // ── Products data ──
 const products = [
@@ -3107,6 +3164,8 @@ function renderPage(page) {
   } else {
     app.style.paddingTop = '0';
     if (page === 'categorias') html = renderCategoriesPage();
+    else if (page === 'marcas') html = renderBrandsPage();
+    else if (page.startsWith('brand-')) html = renderBrandPage(page.slice('brand-'.length));
     else if (page.startsWith('cat-')) html = renderCategoryPage(page);
     else if (page.startsWith('product-')) html = renderProductPage(page);
     else if (page === 'quienes-somos') html = renderAboutPage();
@@ -3122,6 +3181,116 @@ function renderPage(page) {
   app.innerHTML = html;
   bindLinks();
   initInteractives();
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER — Páginas de marca de auto
+// ═══════════════════════════════════════════════════════════
+
+/** /marcas — índice con tarjetas a cada marca y cantidad de productos. */
+function renderBrandsPage() {
+  const items = carBrands.map(b => {
+    const count = getProductsForBrand(b).length;
+    if (count === 0) return '';
+    return `
+      <a href="${pageToPath('brand-' + b.slug)}" data-page="brand-${b.slug}" class="brand-card">
+        <div class="brand-card-name">${b.name}</div>
+        <div class="brand-card-count">${count} ${count === 1 ? 'producto' : 'productos'}</div>
+      </a>`;
+  }).filter(Boolean).join('');
+
+  return `
+    <div class="page-wrapper">
+      <div class="page-hero">
+        <div class="page-hero-inner">
+          <div class="page-breadcrumb">
+            <a href="/" data-page="home">Inicio</a>
+            <span>›</span>
+            <span>Productos por Marca</span>
+          </div>
+          <h1 class="page-hero-title">Productos por <span style="color:var(--red2)">Marca de Auto</span></h1>
+          <p class="page-hero-sub">Encontrá fundas, cubre autos, alfombras y accesorios MDRACING específicos para tu modelo. Fábrica directa hace 25 años.</p>
+        </div>
+      </div>
+      <div style="max-width:var(--max);margin:0 auto;padding:48px 24px">
+        <div class="brands-grid">${items}</div>
+      </div>
+    </div>
+  `;
+}
+
+/** /marcas/<slug> — página de productos compatibles con una marca. */
+function renderBrandPage(slug) {
+  const brand = getCarBrand(slug);
+  if (!brand) return renderBrandsPage();
+  const list = getProductsForBrand(brand);
+
+  // Agrupar por catId para mostrar secciones organizadas
+  const grouped = {};
+  for (const p of list) {
+    const k = p.catId || 'otros';
+    if (!grouped[k]) grouped[k] = [];
+    grouped[k].push(p);
+  }
+
+  // Orden de categorías: fundas → cubre autos → cubre capots/trompas → alfombras → motos → accesorios
+  const catOrder = ['cat-fundas-asientos', 'cat-cubre-autos', 'cat-cubre-capots', 'cat-cubre-trompas', 'cat-alfombras-termoformadas', 'cat-cubre-motos', 'cat-accesorios'];
+  const orderedCats = catOrder.filter(c => grouped[c]).concat(Object.keys(grouped).filter(c => !catOrder.includes(c)));
+
+  const sections = orderedCats.map(catId => {
+    const cat = categories.find(c => c.id === catId);
+    const catName = cat ? cat.title.replace('\n', ' ') : 'Otros';
+    const items = grouped[catId];
+    return `
+      <section class="brand-cat-section">
+        <h2 class="brand-cat-title">${catName} <span class="brand-cat-count">(${items.length})</span></h2>
+        <div class="products-grid cat-products-grid">
+          ${items.map(p => renderProductCard(p)).join('')}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  if (list.length === 0) {
+    return `
+      <div class="page-wrapper">
+        <div class="page-hero">
+          <div class="page-hero-inner">
+            <div class="page-breadcrumb">
+              <a href="/" data-page="home">Inicio</a>
+              <span>›</span>
+              <a href="/marcas" data-page="marcas">Marcas</a>
+              <span>›</span>
+              <span>${brand.name}</span>
+            </div>
+            <h1 class="page-hero-title">Productos para <span style="color:var(--red2)">${brand.name}</span></h1>
+            <p class="page-hero-sub">Estamos trabajando en sumar más productos para ${brand.name}. Consultanos por WhatsApp y te asesoramos sobre disponibilidad.</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="page-wrapper">
+      <div class="page-hero">
+        <div class="page-hero-inner">
+          <div class="page-breadcrumb">
+            <a href="/" data-page="home">Inicio</a>
+            <span>›</span>
+            <a href="/marcas" data-page="marcas">Marcas</a>
+            <span>›</span>
+            <span>${brand.name}</span>
+          </div>
+          <h1 class="page-hero-title">Productos para <span style="color:var(--red2)">${brand.name}</span></h1>
+          <p class="page-hero-sub">Fundas a medida, cubre autos antigranizo, alfombras termoformadas y accesorios MDRACING específicos para tu ${brand.name}. ${list.length} productos compatibles · Fábrica directa hace 25 años.</p>
+        </div>
+      </div>
+      <div style="max-width:var(--max);margin:0 auto;padding:48px 24px">
+        ${sections}
+      </div>
+    </div>
+  `;
 }
 
 // bindLinks() ya NO ata listeners por elemento.
