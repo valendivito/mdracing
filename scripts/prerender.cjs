@@ -553,9 +553,12 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
   // En productos/categorías lo removemos para no diluir la entidad principal
   // y para que Google priorice el Product schema.
   if (!PAGES_WITH_LOCALBUSINESS.has(opts.pageId)) {
-    // Remover el <script application/ld+json> que contiene "LocalBusiness"
+    // Remover SOLO el <script application/ld+json> que contiene "LocalBusiness".
+    // El (?:(?!<\/script>)[\s\S])*? evita cruzar a otros bloques <script> —
+    // así Organization y WebSite (que NO tienen LocalBusiness) se conservan
+    // en todas las páginas para reforzar la entidad de marca.
     html = html.replace(
-      /\s*<script\s+type="application\/ld\+json">[\s\S]*?"LocalBusiness"[\s\S]*?<\/script>/gi,
+      /\s*<script\s+type="application\/ld\+json">(?:(?!<\/script>)[\s\S])*?"LocalBusiness"(?:(?!<\/script>)[\s\S])*?<\/script>/gi,
       ''
     );
   }
