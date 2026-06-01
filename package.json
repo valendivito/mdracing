@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vercel dev",
     "build:ssg": "node scripts/prerender.cjs",
-    "vercel-build": "node scripts/prerender.cjs"
+    "urls:google": "node scripts/generate-urls-for-google.cjs",
+    "indexnow:ping": "node scripts/indexnow-ping.cjs",
+    "vercel-build": "node scripts/prerender.cjs && node scripts/indexnow-ping.cjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

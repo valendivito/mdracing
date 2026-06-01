@@ -1,0 +1,292 @@
+# MDRACING — URLs en orden de prioridad para Google Search Console
+# Pegá de a 10/día en: https://search.google.com/search-console → Inspección de URLs
+# Total: 238 URLs
+# Generado: 2026-06-01
+
+## TANDA 1 — DÍA 1 (las 10 más críticas: home + páginas principales + marcas grandes)
+https://www.mdracingfundas.com/
+https://www.mdracingfundas.com/quienes-somos
+https://www.mdracingfundas.com/como-comprar
+https://www.mdracingfundas.com/preguntas-frecuentes
+https://www.mdracingfundas.com/marcas
+https://www.mdracingfundas.com/marcas/volkswagen
+https://www.mdracingfundas.com/marcas/renault
+https://www.mdracingfundas.com/marcas/peugeot
+https://www.mdracingfundas.com/marcas/ford
+https://www.mdracingfundas.com/marcas/chevrolet
+
+## TANDA 2 — DÍA 2 (10 categorías + páginas estáticas + marcas medianas)
+https://www.mdracingfundas.com/categorias
+https://www.mdracingfundas.com/fundas-asientos
+https://www.mdracingfundas.com/cubre-autos
+https://www.mdracingfundas.com/cubre-capots
+https://www.mdracingfundas.com/cubre-trompas
+https://www.mdracingfundas.com/alfombras-termoformadas
+https://www.mdracingfundas.com/cubre-motos
+https://www.mdracingfundas.com/accesorios
+https://www.mdracingfundas.com/marcas/fiat
+https://www.mdracingfundas.com/marcas/toyota
+
+## TANDA 3 — DÍA 3 (cierra estáticas + restantes marcas chicas)
+https://www.mdracingfundas.com/cambios-devoluciones
+https://www.mdracingfundas.com/contacto
+https://www.mdracingfundas.com/marcas/citroen
+https://www.mdracingfundas.com/marcas/nissan
+https://www.mdracingfundas.com/marcas/honda
+https://www.mdracingfundas.com/marcas/jeep
+https://www.mdracingfundas.com/marcas/mitsubishi
+https://www.mdracingfundas.com/marcas/bmw
+
+## TANDAS 4-25 — TOP PRODUCTOS (10/día, ordenados por calidad SEO)
+
+# DÍA 4 (productos 1-10 de 210)
+https://www.mdracingfundas.com/producto/alfombra-termoformada-jeep-commander-7asientos-7089
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-corolla-cross-g11-2021-7085b
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-vento-mk7-2018-7117
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-corolla-g12-2020-7085
+https://www.mdracingfundas.com/producto/alfombra-termoformada-nissan-kicks-play-2017-7102
+https://www.mdracingfundas.com/producto/alfombra-termoformada-renault-sandero-logan-stepway-7105
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-yaris-hatch-sedan-2018-7087
+https://www.mdracingfundas.com/producto/alfombra-termoformada-renault-duster-oroch-2013-7104
+https://www.mdracingfundas.com/producto/alfombra-termoformada-peugeot-3008-2024-7121
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-corolla-g11-2015-2020-7078
+
+# DÍA 5 (productos 11-20 de 210)
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-t-cross-7115
+https://www.mdracingfundas.com/producto/alfombra-termoformada-renault-kangoo-g2-7107
+https://www.mdracingfundas.com/producto/alfombra-termoformada-honda-hrv-2015-7100
+https://www.mdracingfundas.com/producto/alfombra-termoformada-honda-hrv-2023-7101
+https://www.mdracingfundas.com/producto/alfombra-termoformada-chevrolet-tracker-2020-7096
+https://www.mdracingfundas.com/producto/alfombra-termoformada-chevrolet-tracker-2015-7097
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-amarok-2010-7074
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-titano-2024-7120
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-hilux-2016-2025-7076
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-hilux-2005-2020-7112
+
+# DÍA 6 (productos 21-30 de 210)
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-etios-hatchback-7111
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-suran-fox-7113
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-nivus-2025-7118
+https://www.mdracingfundas.com/producto/alfombra-termoformada-fiat-fastback-pulse-7092
+https://www.mdracingfundas.com/producto/alfombra-termoformada-chevrolet-cruze-2016-7098
+https://www.mdracingfundas.com/producto/alfombra-termoformada-nissan-frontier-2018-7103
+https://www.mdracingfundas.com/producto/alfombra-termoformada-peugeot-partner-2012-7122
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-tera-2025-7119
+https://www.mdracingfundas.com/producto/alfombra-termoformada-chevrolet-onix-2022-7094
+https://www.mdracingfundas.com/producto/alfombra-termoformada-peugeot-208-g2-2020-7108
+
+# DÍA 7 (productos 31-40 de 210)
+https://www.mdracingfundas.com/producto/alfombra-termoformada-peugeot-2008-g2-2024-7109
+https://www.mdracingfundas.com/producto/alfombra-termoformada-jeep-renegade-7088
+https://www.mdracingfundas.com/producto/alfombra-termoformada-ford-territory-2025-7082
+https://www.mdracingfundas.com/producto/alfombra-termoformada-chevrolet-s10-2012-7099
+https://www.mdracingfundas.com/producto/alfombra-termoformada-fiat-argo-cronos-7072
+https://www.mdracingfundas.com/producto/alfombra-termoformada-nissan-versa-2024-7095
+https://www.mdracingfundas.com/producto/alfombra-termoformada-toyota-etios-sedan-7110
+https://www.mdracingfundas.com/producto/alfombra-termoformada-jeep-compass-2025-7090
+https://www.mdracingfundas.com/producto/alfombra-termoformada-fiat-strada-2020-7093
+https://www.mdracingfundas.com/producto/alfombra-termoformada-ford-ranger-2023-7070
+
+# DÍA 8 (productos 41-50 de 210)
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-virtus-7114
+https://www.mdracingfundas.com/producto/alfombra-termoformada-renault-kardian-7106
+https://www.mdracingfundas.com/producto/alfombra-termoformada-vw-taos-7116
+https://www.mdracingfundas.com/producto/alfombra-termoformada-fiat-toro-7091
+https://www.mdracingfundas.com/producto/funda-cubre-moto-silver-impermeable
+https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-3-capas-impermeable
+https://www.mdracingfundas.com/producto/funda-fiat-palio-tela-jakard-premium
+https://www.mdracingfundas.com/producto/tapa-de-valvula-antirrobo1
+https://www.mdracingfundas.com/producto/funda-para-asientos-vw-polo-track-cuero-automotor-acolchado
+https://www.mdracingfundas.com/producto/funda-para-asientos-ford-ecosport-l-vieja-ecocuero5
+
+# DÍA 9 (productos 51-60 de 210)
+https://www.mdracingfundas.com/producto/funda-cubre-auto-premium-afelpado-impermeable4
+https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-polo-track-3-capas
+https://www.mdracingfundas.com/producto/funda-fiat-mobi-cuero-automotor
+https://www.mdracingfundas.com/producto/funda-cubre-asientos-vw-polo-track-eco-cuero-cubre-volante-plano-8asgz
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-vw-amarok
+https://www.mdracingfundas.com/producto/cubre-volante-base-plana-polo-gol-golf-vento-ksc3g
+https://www.mdracingfundas.com/producto/cubre-zocalos-citroen-c3-c4-c5-saxo-picasso-air-cross
+https://www.mdracingfundas.com/producto/funda-renault-kwid-tela-premium-jakard
+https://www.mdracingfundas.com/producto/funda-ford-ranger-cuero-automotor
+https://www.mdracingfundas.com/producto/funda-fiat-palio-siena
+
+# DÍA 10 (productos 61-70 de 210)
+https://www.mdracingfundas.com/producto/funda-ford-ranger-ecocuero-acolchada
+https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-vw-taos-3-capas
+https://www.mdracingfundas.com/producto/funda-cubre-auto-vw-tera-2025-tela-silver
+https://www.mdracingfundas.com/producto/bolsa-residuos
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-alaskan-nissan-frontier
+https://www.mdracingfundas.com/producto/barra-portaequipaje-transversal-hierro-recubierto-plastico
+https://www.mdracingfundas.com/producto/funda-peugeot-308-ecocuero-acolchado-gk1p2
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-3-capas-impermeable-mitsubishi-l200
+https://www.mdracingfundas.com/producto/protector-cubre-cinturon-de-seguridad-cuerina
+https://www.mdracingfundas.com/producto/funda-para-asientos-vw-polo-track-eco-cuero-wpgw2
+
+# DÍA 11 (productos 71-80 de 210)
+https://www.mdracingfundas.com/producto/funda-para-asientos-vw-tera-cuero-automotor-acolchado-qj9az
+https://www.mdracingfundas.com/producto/funda-butacas-delanteras-tela-jak-acolchada-premium1
+https://www.mdracingfundas.com/producto/funda-para-asientos-fiat-mobi-ecocuero-2zg7m
+https://www.mdracingfundas.com/producto/funda-jakard-premium-fiat-mobi-way
+https://www.mdracingfundas.com/producto/funda-toyota-hilux-cuerina-automotor-acolchada
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-3-capas-impermeable-toyota-hilux
+https://www.mdracingfundas.com/producto/leva-empunadura-freno-de-mano-aluminio-universal
+https://www.mdracingfundas.com/producto/cubre-cinto-de-seguridad4
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-3-capas-impermeable-ford-ranger
+https://www.mdracingfundas.com/producto/funda-jakard-premium-nissan-march
+
+# DÍA 12 (productos 81-90 de 210)
+https://www.mdracingfundas.com/producto/funda-cubre-auto-antigranizo-toyota-sw4-3-capas
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-208
+https://www.mdracingfundas.com/producto/cubre-trompa-ford-ecosport-kd-2018
+https://www.mdracingfundas.com/producto/funda-cubre-asientos-para-perros-mascota-k5zgc
+https://www.mdracingfundas.com/producto/funda-fiat-uno-way-tela-jakard
+https://www.mdracingfundas.com/producto/funda-cubre-auto-tela-silver-vw-taos
+https://www.mdracingfundas.com/producto/funda-para-asientos-vw-t-cross-2025-cuero-automotor
+https://www.mdracingfundas.com/producto/cubre-alfombra-pesada-3-piezas-pvc
+https://www.mdracingfundas.com/producto/cubre-trompa-citroen-c3-m3-racing-yioi8
+https://www.mdracingfundas.com/producto/funda-renault-sandero-tela-jakard-premium
+
+# DÍA 13 (productos 91-100 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-fiat-uno-2004
+https://www.mdracingfundas.com/producto/cubre-capot-vw-amarok-dm92h
+https://www.mdracingfundas.com/producto/cubre-trompa-vw-polo-virtus-2018
+https://www.mdracingfundas.com/producto/cubre-trompa-completa-audi-a3-2017-en-adelante
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-505
+https://www.mdracingfundas.com/producto/cubre-trompa-completo-vw-polo-2017-con-baul
+https://www.mdracingfundas.com/producto/cubre-trompa-toyota-etios
+https://www.mdracingfundas.com/producto/funda-cubre-camioneta-antigranizo-3-capas-impermeable-chevrolet-s10
+https://www.mdracingfundas.com/producto/funda-renault-clio-jakard-premium
+https://www.mdracingfundas.com/producto/funda-para-asientos-ford-ecosport-l-nueva-ecocuero5
+
+# DÍA 14 (productos 101-110 de 210)
+https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-cruze-2016
+https://www.mdracingfundas.com/producto/portabici-techo-auto-ruedas-anchas-r29-soporte-universal
+https://www.mdracingfundas.com/producto/cubre-capot-renault-master
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-onix-prisma-2017
+https://www.mdracingfundas.com/producto/cubre-capot-renault-kangoo-2008-en-adelante
+https://www.mdracingfundas.com/producto/cubre-capot-renault-clio-2007
+https://www.mdracingfundas.com/producto/funda-para-asientos-gol-trend-ecocuero5
+https://www.mdracingfundas.com/producto/cubre-capot-vw-gol-2000
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-504
+https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-agile-m3racing
+
+# DÍA 15 (productos 111-120 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-renault-trafic
+https://www.mdracingfundas.com/producto/funda-para-asientos-renault-duster-ecocuero5
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-cruze-2017
+https://www.mdracingfundas.com/producto/cubre-trompa-peugeot-307
+https://www.mdracingfundas.com/producto/cubre-volante-protector-mecanicos-detailing
+https://www.mdracingfundas.com/producto/vinilo-simil-fibra-carbono-negro-60x50
+https://www.mdracingfundas.com/producto/cubre-capot-renault-clio-2004
+https://www.mdracingfundas.com/producto/cubre-capot-megane-2000
+https://www.mdracingfundas.com/producto/cubre-capot-vw-gol-senda
+https://www.mdracingfundas.com/producto/cubre-trompa-fiat-toro-linea-vieja
+
+# DÍA 16 (productos 121-130 de 210)
+https://www.mdracingfundas.com/producto/cubre-trompa-vw-amarok
+https://www.mdracingfundas.com/producto/funda-cubre-asiento-jakard-premium-acolchada-universal
+https://www.mdracingfundas.com/producto/cubre-trompa-completo-vw-gol-2013
+https://www.mdracingfundas.com/producto/kit-de-abrojos-cubre-trompa-m3racing
+https://www.mdracingfundas.com/producto/funda-universal-butacas-delanteras-cuerina-automotor-acolchada-utryx
+https://www.mdracingfundas.com/producto/cubre-trompa-completo-vw-vento
+https://www.mdracingfundas.com/producto/cubre-trompa-audi-a4-hasta-2014
+https://www.mdracingfundas.com/producto/cubre-volante-protector-mecanicos-detailing-10-unidades
+https://www.mdracingfundas.com/producto/cubre-alfombra-de-baul-pesada-universal-grande
+https://www.mdracingfundas.com/producto/cubre-alfombra-de-baul-pesada-chica
+
+# DÍA 17 (productos 131-140 de 210)
+https://www.mdracingfundas.com/producto/gancho-para-funda-de-asiento-auto-ecocuero-tela
+https://www.mdracingfundas.com/producto/cubre-capot-renault-twingo
+https://www.mdracingfundas.com/producto/funda-toyota-hilux-ecocuero-acolchada-og58b
+https://www.mdracingfundas.com/producto/cubre-capot-ford-focus-linea-vieja
+https://www.mdracingfundas.com/producto/cubre-capot-vw-polo-2017-4-puertas
+https://www.mdracingfundas.com/producto/portabicicletas-mdracing-techo-hierro-r29-8no1w
+https://www.mdracingfundas.com/producto/cubre-paragolpe-logan-nuevo
+https://www.mdracingfundas.com/producto/cubre-trompa-peugeot-2008
+https://www.mdracingfundas.com/producto/cubre-capot-ford-transit
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-zafira
+
+# DÍA 18 (productos 141-150 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-ford-f100
+https://www.mdracingfundas.com/producto/cubre-capot-fiat-palio-2001
+https://www.mdracingfundas.com/producto/cubre-volante-diametro-38
+https://www.mdracingfundas.com/producto/cubre-capot-ford-fiesta-2000
+https://www.mdracingfundas.com/producto/funda-para-asientos-renault-kwid-ecocuero2
+https://www.mdracingfundas.com/producto/cubre-capot-renault-scenic
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-306-98-2006
+https://www.mdracingfundas.com/producto/cubre-trompa-m3racing-peugeot-208
+https://www.mdracingfundas.com/producto/cubre-trompa-toyota-corolla-2014
+https://www.mdracingfundas.com/producto/cubre-alfombra-3-piezas-pesada
+
+# DÍA 19 (productos 151-160 de 210)
+https://www.mdracingfundas.com/producto/cubre-zocalo-ford-ecosport
+https://www.mdracingfundas.com/producto/cubre-capot-renault-duster
+https://www.mdracingfundas.com/producto/cubre-capot-ford-fiesta-2011-a-2014
+https://www.mdracingfundas.com/producto/cubre-capot-vw-polo-2005
+https://www.mdracingfundas.com/producto/cubre-trompa-peugeot-306-mdracing
+https://www.mdracingfundas.com/producto/cubre-ruedas-rigido-ecosport
+https://www.mdracingfundas.com/producto/funda-butacas-delanteras-ecocuero-acolchada-premium4
+https://www.mdracingfundas.com/producto/cubre-capot-traker-2017
+https://www.mdracingfundas.com/producto/funda-cubre-asientos-partner-kangoo-2-cubrecintos-y-cubre-volante
+https://www.mdracingfundas.com/producto/cubre-capot-citroen-picasso
+
+# DÍA 20 (productos 161-170 de 210)
+https://www.mdracingfundas.com/producto/funda-universal-ecocuero-acolchada
+https://www.mdracingfundas.com/producto/cubre-trompa-renault-sandero-2017
+https://www.mdracingfundas.com/producto/cubre-volante-animal-print
+https://www.mdracingfundas.com/producto/funda-vw-polo-2018-cuero-automotor
+https://www.mdracingfundas.com/producto/cubre-trompa-ford-ka-kd-2017
+https://www.mdracingfundas.com/producto/criqque-botella-8-toneladas
+https://www.mdracingfundas.com/producto/funda-nissan-versa-jackard-premium4
+https://www.mdracingfundas.com/producto/cubre-capot-renault-clio-96-99
+https://www.mdracingfundas.com/producto/cubre-capot-renault-megane-2005
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-406
+
+# DÍA 21 (productos 171-180 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-ford-ecosport-kinetic-2018
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-301
+https://www.mdracingfundas.com/producto/cubre-trompa-onix-hasta-2016
+https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-onix-prisma-2017
+https://www.mdracingfundas.com/producto/cubre-trompa-citroen-berlingo-partner
+https://www.mdracingfundas.com/producto/cubre-zocalo-peugeot-207
+https://www.mdracingfundas.com/producto/cubre-zocalo-chevrolet-cruze
+https://www.mdracingfundas.com/producto/cubre-capot-ford-orion
+https://www.mdracingfundas.com/producto/cubre-capot-vw-t-cross
+https://www.mdracingfundas.com/producto/funda-cubre-asientos-universal-ecocuero-alemania-wspb4
+
+# DÍA 22 (productos 181-190 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-308
+https://www.mdracingfundas.com/producto/cubre-trompa-peugeot-307-2006-en-adelante
+https://www.mdracingfundas.com/producto/cubre-trompa-completo-bmw-320-2013-17
+https://www.mdracingfundas.com/producto/cubre-trompa-vw-t-cross
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-monza
+https://www.mdracingfundas.com/producto/cubre-trompa-citroen-c4
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-307-linea-vieja
+https://www.mdracingfundas.com/producto/cubre-trompa-chevrolet-onix-prisma-l-vieja-y-joy
+https://www.mdracingfundas.com/producto/crique-carrito-toneladas
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-vectra
+
+# DÍA 23 (productos 191-200 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-fiat-toro-mdracing
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-tigra
+https://www.mdracingfundas.com/producto/funda-para-asientos-vw-polo-track-eco-cuero-acolchada-3mm-weji3
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-luv
+https://www.mdracingfundas.com/producto/cubre-capot-fiat-uno-2011
+https://www.mdracingfundas.com/producto/cubre-trompa-ford-fiesta-2015-a-2018
+https://www.mdracingfundas.com/producto/crique-tijera-1-5-toneladas
+https://www.mdracingfundas.com/producto/cubre-capot-chevrolet-astra
+https://www.mdracingfundas.com/producto/cubre-trompa-honda-hrv
+https://www.mdracingfundas.com/producto/crique-botella-10-toneladas
+
+# DÍA 24 (productos 201-210 de 210)
+https://www.mdracingfundas.com/producto/cubre-capot-peugeot-2008
+https://www.mdracingfundas.com/producto/cubre-trompa-renault-logan-2015-a-2018
+https://www.mdracingfundas.com/producto/cubre-trompa-honda-civic-2008
+https://www.mdracingfundas.com/producto/cubre-capot-ford-ka-2017
+https://www.mdracingfundas.com/producto/cubre-capot-volkswagen-polo-virtus-2018-5p
+https://www.mdracingfundas.com/producto/cubre-trompa-vw-gol-saveiro
+https://www.mdracingfundas.com/producto/cubre-volante-rosa-universal
+https://www.mdracingfundas.com/producto/cubre-capot-citroen-berlingo
+https://www.mdracingfundas.com/producto/cubre-volante-flores-universal-38
+https://www.mdracingfundas.com/producto/cubre-volante-acolchado-universal-38
