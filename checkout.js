@@ -234,7 +234,7 @@
           <input
             type="text"
             id="mdco-coupon-input"
-            placeholder="Ej: MDRACING10"
+            placeholder="EJ: CUPON10"
             autocomplete="off"
             autocorrect="off"
             autocapitalize="characters"

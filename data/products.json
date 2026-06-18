@@ -927,6 +927,27 @@
     "metaFeedEligible": true
   },
   {
+    "id": "funda-fiat-palio-ecocuero-acolchado-3mm",
+    "name": "Funda Fiat Palio Ecocuero Acolchado 3mm",
+    "cat": "Fundas para Asientos",
+    "catId": "cat-fundas-asientos",
+    "badge": "Nuevo",
+    "price": "155.000",
+    "salePrice": null,
+    "desc": "Ecocuero acolchado 3mm para Fiat Palio. Confort superior, costuras reforzadas y ajuste exclusivo para este modelo. Tacto premium, fácil limpieza y máxima durabilidad.",
+    "images": [
+      "/images/productos/palio-ecocuero-acolchado/foto-1.jpeg",
+      "/images/productos/palio-ecocuero-acolchado/foto-2.jpeg",
+      "/images/productos/palio-ecocuero-acolchado/foto-3.jpeg",
+      "/images/productos/palio-ecocuero-acolchado/foto-4.jpeg"
+    ],
+    "colors": [
+      "#1a1a1a"
+    ],
+    "colorVariants": [],
+    "metaFeedEligible": true
+  },
+  {
     "id": "funda-fiat-palio-tela-jakard-premium",
     "name": "Funda Fiat Palio Tela Jakard Premium Lisa",
     "cat": "Fundas para Asientos",
