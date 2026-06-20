@@ -1538,7 +1538,7 @@ function renderProductCard(p) {
   if (p.images && p.images.length > 0) {
     const uid = p.id.replace(/[^a-z0-9]/g, '');
     const slides = p.images.map((img, i) =>
-      `<img src="${img}" alt="${p.name}" class="pg-slide${i === 0 ? '' : ' pg-hidden'}" loading="${i === 0 ? 'eager' : 'lazy'}" />`
+      `<img src="${ppImgSrc(img)}" alt="${p.name}" class="pg-slide${i === 0 ? '' : ' pg-hidden'}" loading="${i === 0 ? 'eager' : 'lazy'}" />`
     ).join('');
     const dots = p.images.length > 1
       ? `<div class="pg-dots">${p.images.map((_, i) => `<span class="pg-dot${i === 0 ? ' pg-dot-active' : ''}"></span>`).join('')}</div>`
@@ -1796,6 +1796,15 @@ function renderCategoryPage(catId) {
 }
 
 // ── Product Page ──
+// Normaliza una ruta de imagen a absoluta desde la raíz del sitio.
+// Las páginas de producto viven en /producto/<slug>, así que una ruta
+// relativa ("images/...") resolvería a /producto/images/... → 404.
+// Dejamos intactas las URLs absolutas (http...) y las que ya empiezan con "/".
+function ppImgSrc(u) {
+  if (!u) return u;
+  return /^(https?:)?\/\//.test(u) || u.startsWith('/') ? u : '/' + u;
+}
+
 function renderProductPage(productId) {
   let p = products.find(pr => `product-${pr.id}` === productId) || products[0];
 
@@ -1935,17 +1944,17 @@ function renderProductPage(productId) {
   const galleryHtml = galleryImages
     ? `<div class="product-gallery" id="pp-gallery-${pid}">
         <div class="product-main-img">
-          <img src="${galleryImages[0]}" alt="${p.name}" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-${pid}" />
+          <img src="${ppImgSrc(galleryImages[0])}" alt="${p.name}" width="800" height="800" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:contain;border-radius:8px;background:var(--dark3)" id="pp-main-img-${pid}" />
         </div>
         <div class="product-thumbs" id="pp-thumbs-${pid}">
           ${hasColorVariants
             ? p.colorVariants.map((cv, ci) => cv.images.map((img, ii) => `
-              <div class="product-thumb pp-color-thumb ${ci===0&&ii===0?'active':''}" data-color-idx="${ci}" style="${ci!==0?'display:none':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
-                <img src="${img}" alt="${p.name} color ${cv.name}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
+              <div class="product-thumb pp-color-thumb ${ci===0&&ii===0?'active':''}" data-color-idx="${ci}" style="${ci!==0?'display:none':''}" onclick="ppThumb(this,'${ppImgSrc(img)}','pp-main-img-${pid}')">
+                <img src="${ppImgSrc(img)}" alt="${p.name} color ${cv.name}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>`).join('')).join('')
             : galleryImages.map((img, i) => `
-              <div class="product-thumb ${i===0?'active':''}" onclick="ppThumb(this,'${img}','pp-main-img-${pid}')">
-                <img src="${img}" alt="${p.name} vista ${i+1}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
+              <div class="product-thumb ${i===0?'active':''}" onclick="ppThumb(this,'${ppImgSrc(img)}','pp-main-img-${pid}')">
+                <img src="${ppImgSrc(img)}" alt="${p.name} vista ${i+1}" width="200" height="200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;background:var(--dark3)" />
               </div>`).join('')}
         </div>
       </div>`
