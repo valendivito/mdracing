@@ -98,8 +98,8 @@ async function processJob(job) {
       transcript: tr.transcript || '',
       audio_url: tr.audioUrl,
       duration_sec: tr.duration ? Math.round(tr.duration) : null,
-      // Si YouTube devolvió título y el job no tenía título manual, lo usamos
-      title: job.title || tr.title || null,
+      // NO sobrescribimos job.title — eso es la nota interna del usuario.
+      // El título real del video lo guardamos en analysis si lo queremos.
     });
 
     const an = await analyzeVideo({
@@ -107,9 +107,14 @@ async function processJob(job) {
       segments: tr.segments,
       options: job.options || {},
       videoUrl: job.source_url,
-      title: job.title || tr.title,
+      // userNote = nota interna del usuario (lo que escribió en el form).
+      //   NO es el título real del video.
+      userNote: job.title,
+      // videoTitle = título REAL del video tal como aparece en YouTube/etc.
+      //   Es lo único que Claude debe analizar como "gancho".
+      videoTitle: tr.title,
       description: tr.description,
-      hasCaptions: tr.hasCaptions !== false, // true por default si no viene
+      hasCaptions: tr.hasCaptions !== false,
     });
     if (!an.ok) {
       await updateVideoJob(job.id, {

@@ -141,9 +141,9 @@
       <input type="url" id="va-url" class="va-input" placeholder="https://www.instagram.com/reel/..." />
     </div>
 
-    <label class="va-label" for="va-title">Título (opcional)</label>
+    <label class="va-label" for="va-title">Nota interna (opcional) — solo para identificarlo en tu lista</label>
     <div class="va-form-row">
-      <input type="text" id="va-title" class="va-input" placeholder="Para identificarlo después en la lista" maxlength="200" />
+      <input type="text" id="va-title" class="va-input" placeholder="Ej: 'el de instalación' — no se usa en el análisis" maxlength="200" />
     </div>
 
     <label class="va-label">¿Qué querés que genere?</label>
@@ -389,21 +389,37 @@ function renderJobDetail(job) {
     parts.push(`<div class="va-msg show info">⚙️ Procesando ahora. Refrescá en 1 minuto.</div>`);
   }
 
+  // Helper: chequea si una sección está marcada como unavailable
+  function isUnavailable(v) {
+    return v && typeof v === 'object' && v.unavailable === true;
+  }
+  function renderUnavailable(v) {
+    const reason = (v && v.reason) ? escapeHtml(v.reason) : 'Requiere transcripción del audio que no pudimos extraer';
+    return `<div style="color:var(--ad-text3);font-style:italic;font-size:13px">⚠️ No disponible — ${reason}</div>`;
+  }
+
   // Summary
-  if (a.summary) parts.push(section('Resumen', escapeHtml(a.summary), a.summary));
+  if (a.summary) {
+    if (isUnavailable(a.summary)) parts.push(section('Resumen', renderUnavailable(a.summary)));
+    else parts.push(section('Resumen', escapeHtml(a.summary), typeof a.summary === 'string' ? a.summary : ''));
+  }
 
   // Structure
   if (a.structure_analysis) {
-    const s = a.structure_analysis;
-    let html = '';
-    if (s.score) html += `<strong>Score: ${s.score}/10</strong><br><br>`;
-    if (s.hook) html += `<strong>Hook:</strong> ${escapeHtml(s.hook)}<br>`;
-    if (s.retention) html += `<strong>Retención:</strong> ${escapeHtml(s.retention)}<br>`;
-    if (s.payoff) html += `<strong>Payoff:</strong> ${escapeHtml(s.payoff)}<br>`;
-    if (s.cta) html += `<strong>CTA:</strong> ${escapeHtml(s.cta)}<br>`;
-    if (s.strengths && s.strengths.length) html += `<br><strong>Fortalezas:</strong><br>• ${s.strengths.map(escapeHtml).join('<br>• ')}`;
-    if (s.weaknesses && s.weaknesses.length) html += `<br><strong>Debilidades:</strong><br>• ${s.weaknesses.map(escapeHtml).join('<br>• ')}`;
-    parts.push(section('Análisis de estructura', html));
+    if (isUnavailable(a.structure_analysis)) {
+      parts.push(section('Análisis de estructura', renderUnavailable(a.structure_analysis)));
+    } else {
+      const s = a.structure_analysis;
+      let html = '';
+      if (s.score) html += `<strong>Score: ${s.score}/10</strong><br><br>`;
+      if (s.hook) html += `<strong>Hook:</strong> ${escapeHtml(s.hook)}<br>`;
+      if (s.retention) html += `<strong>Retención:</strong> ${escapeHtml(s.retention)}<br>`;
+      if (s.payoff) html += `<strong>Payoff:</strong> ${escapeHtml(s.payoff)}<br>`;
+      if (s.cta) html += `<strong>CTA:</strong> ${escapeHtml(s.cta)}<br>`;
+      if (s.strengths && s.strengths.length) html += `<br><strong>Fortalezas:</strong><br>• ${s.strengths.map(escapeHtml).join('<br>• ')}`;
+      if (s.weaknesses && s.weaknesses.length) html += `<br><strong>Debilidades:</strong><br>• ${s.weaknesses.map(escapeHtml).join('<br>• ')}`;
+      parts.push(section('Análisis de estructura', html));
+    }
   }
 
   // Hook variants
@@ -439,12 +455,14 @@ function renderJobDetail(job) {
 
   // Transcript clean
   if (a.transcript_clean) {
-    parts.push(section('Transcripción limpia', escapeHtml(a.transcript_clean), a.transcript_clean));
+    if (isUnavailable(a.transcript_clean)) parts.push(section('Transcripción limpia', renderUnavailable(a.transcript_clean)));
+    else parts.push(section('Transcripción limpia', escapeHtml(a.transcript_clean), a.transcript_clean));
   }
 
   // Subtitles (SRT)
   if (a.subtitles) {
-    parts.push(section('Subtítulos (SRT)', `<pre>${escapeHtml(a.subtitles)}</pre>`, a.subtitles));
+    if (isUnavailable(a.subtitles)) parts.push(section('Subtítulos (SRT)', renderUnavailable(a.subtitles)));
+    else parts.push(section('Subtítulos (SRT)', `<pre>${escapeHtml(a.subtitles)}</pre>`, a.subtitles));
   }
 
   // Raw transcript (siempre que esté disponible)
