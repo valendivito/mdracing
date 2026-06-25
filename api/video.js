@@ -95,17 +95,21 @@ async function processJob(job) {
   try {
     const tr = await transcribeVideo(job.source_url);
     await updateVideoJob(job.id, {
-      transcript: tr.transcript,
+      transcript: tr.transcript || '',
       audio_url: tr.audioUrl,
       duration_sec: tr.duration ? Math.round(tr.duration) : null,
+      // Si YouTube devolvió título y el job no tenía título manual, lo usamos
+      title: job.title || tr.title || null,
     });
 
     const an = await analyzeVideo({
-      transcript: tr.transcript,
+      transcript: tr.transcript || '',
       segments: tr.segments,
       options: job.options || {},
       videoUrl: job.source_url,
-      title: job.title,
+      title: job.title || tr.title,
+      description: tr.description,
+      hasCaptions: tr.hasCaptions !== false, // true por default si no viene
     });
     if (!an.ok) {
       await updateVideoJob(job.id, {
