@@ -32,10 +32,10 @@ const COMPANY = {
   hoursSat: 'Sábados · 9 a 13hs',
   warranty: '30 días por fallas de fábrica',
   couriers: ['Correo Argentino', 'Andreani', 'OCA'],
-  localCity: 'Munro',
-  localAddress: 'Av. Bartolomé Mitre 3495',
-  localDistrict: 'Vicente López',
-  localMapsUrl: 'https://maps.app.goo.gl/3WaAFtZGTwL2JovGA',
+  localCity: 'Villa Ballester',
+  localAddress: 'Paraná 2185',
+  localDistrict: 'San Martín',
+  localMapsUrl: 'https://share.google/FRv0pmOaDHDHCuFRh',
 };
 
 // ── SVGs & Icons ──
@@ -466,7 +466,7 @@ const products = [
     { hex: '#e8e6e0', name: 'Beige', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-con-funda-ecocuero-blanca-photoroom-a9733f252386bd820d17588075704062-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59e20sefstvjvg41mks9a5d_1758032173_img_0-998fd0b49541913d6c17588074792242-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_926383-mla92777642263_092025-b-1b350d9b5b2bce02f817588075432612-1024-1024.webp'] },
     { hex: '#8B0000', name: 'Rojo', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-con-funda-ecocuero-roja-photoroom-515598db9bb31578d917588075688523-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59c89r8e4xa8xdfy3r2ek3e_1758030307_img_0-0cc86d807ca24ba43c17588074838852-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k60g78nafce9zea6bjyvjwft_1758806224_img_1-1a9dd9975a6af66e6117588074878858-1024-1024.webp'] },
   ] },
-  { id: 'funda-renault-kwid-tela-premium-jakard', name: 'Funda Renault Kwid Tela Jakard', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Tela Jakard premium para Renault Kwid. Disponible en varios colores. Instalación opcional en nuestro local de Munro (Av. Bartolomé Mitre 3495).', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F805348-mla83092332128%5F032025-o-9d2f4220cbcd4d750d17594983510101-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-jakard-e335acd42e082350de17628702028322-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/20171115_183855-a7ca5466ac9b73d54617628707250855-1024-1024.webp'] },
+  { id: 'funda-renault-kwid-tela-premium-jakard', name: 'Funda Renault Kwid Tela Jakard', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#888888'], svg: seatSvg, desc: 'Tela Jakard premium para Renault Kwid. Disponible en varios colores. Instalación opcional en nuestra fábrica de Villa Ballester (Paraná 2185).', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d%5Fnq%5Fnp%5F805348-mla83092332128%5F032025-o-9d2f4220cbcd4d750d17594983510101-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/kwid-jakard-e335acd42e082350de17628702028322-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/20171115_183855-a7ca5466ac9b73d54617628707250855-1024-1024.webp'] },
   { id: 'funda-para-asientos-renault-duster-ecocuero5', name: 'Funda Renault Duster Ecocuero', cat: 'Fundas para Asientos', catId: 'cat-fundas-asientos', badge: null, price: '140.000', salePrice: '130.000', colors: ['#1a1a1a','#5a5a5a','#1a2a5a','#e8e6e0','#8B0000'], svg: seatSvg, desc: 'Ecocuero para Renault Duster. Juego completo con apoyacabezas, durabilidad y confort.', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-negra-2cc655f24b26e6772f17588079591059-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-gris-36914b7968322f7a5517588079676299-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-azul-68908a49fa5c742e5917588079611763-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-blanca-ffadea1f1fda53d87d17588079636794-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-roja-a3b1a2116493a3ee5a17588079706510-1024-1024.webp'], colorVariants: [
     { hex: '#1a1a1a', name: 'Negro', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-negra-2cc655f24b26e6772f17588079591059-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59evwnqfwpaegd14xrbcp1m_1758033052_img_0-e8d8755b1008098c9d17588080483706-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/d_nq_2x_881414-mla92778037055_092025-b-afd34c2ee7aa302ec417588080964233-1024-1024.webp'] },
     { hex: '#5a5a5a', name: 'Gris', images: ['https://dcdn-us.mitiendanube.com/stores/004/478/482/products/funda-duster-ecocuero-gris-36914b7968322f7a5517588079676299-1024-1024.webp','https://dcdn-us.mitiendanube.com/stores/004/478/482/products/assets_task_01k59eecgnect82j8h14x2ynkg_1758032608_img_0-4ac46d1beccb09c6c117588080690967-1024-1024.webp'] },
@@ -769,13 +769,13 @@ const faqs = [
   { q: '¿Le va a mi auto?', a: 'Para confirmar compatibilidad podés escribirnos por WhatsApp con tu marca, modelo y año, o consultar con <strong>Madi</strong>, nuestra asistente virtual del sitio (botón flotante en la parte inferior). Madi te responde al momento en base a nuestro catálogo. Si tu modelo no figura, lo armamos a pedido.' },
   { q: '¿Tienen stock disponible o es a pedido?', a: 'Los <strong>accesorios</strong> suelen estar en stock para envío inmediato. La mayoría de <strong>fundas, cubre autos, cubre capots y cubre trompas</strong> son <strong>a pedido</strong> — los fabricamos especialmente para tu vehículo. Consultanos por WhatsApp el plazo exacto del modelo que te interesa.' },
   { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El <strong>costo se calcula automáticamente en el checkout</strong> según tu zona (CABA, GBA, Interior). <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000 o más. Te pasamos el tracking apenas despachamos.' },
-  { q: '¿Qué formas de pago aceptan?', a: 'Todas estas disponibles en el checkout online:<br>· <strong>Tarjeta de crédito o débito</strong> vía Mercado Pago, con cuotas sin interés según banco.<br>· <strong>Mercado Pago wallet</strong>, QR, dinero en cuenta, Pago Fácil, Rapipago.<br>· <strong>Transferencia bancaria</strong> directa con <strong style="color:var(--red2)">10% OFF</strong> — te mostramos los datos en el checkout y mandás el comprobante por WhatsApp.<br>· <strong>Efectivo</strong> al retirar en local de Munro o fábrica de Villa Ballester, también con <strong style="color:var(--red2)">10% OFF</strong>.<br><strong>Sí hacemos factura A</strong> — pedila al momento de la compra con tu CUIT.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Todas estas disponibles en el checkout online:<br>· <strong>Tarjeta de crédito o débito</strong> vía Mercado Pago, con cuotas sin interés según banco.<br>· <strong>Mercado Pago wallet</strong>, QR, dinero en cuenta, Pago Fácil, Rapipago.<br>· <strong>Transferencia bancaria</strong> directa con <strong style="color:var(--red2)">10% OFF</strong> — te mostramos los datos en el checkout y mandás el comprobante por WhatsApp.<br>· <strong>Efectivo</strong> al retirar en nuestra fábrica de Villa Ballester, también con <strong style="color:var(--red2)">10% OFF</strong>.<br><strong>Sí hacemos factura A</strong> — pedila al momento de la compra con tu CUIT.' },
   { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> — techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
   { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares — más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
   { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo — si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
-  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, ofrecemos <strong>instalación en nuestro local de Munro</strong> (Av. Bartolomé Mitre 3495). Coordinás el turno por WhatsApp.' },
+  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, ofrecemos <strong>instalación en nuestra fábrica de Villa Ballester</strong> (Paraná 2185). Coordinás el turno por WhatsApp.' },
   { q: '¿Qué materiales manejan para fundas, cubre autos y los demás productos?', a: '<strong>Fundas:</strong> ecocuero, ecocuero acolchado 3mm, cuero automotor y tela Jakard premium.<br><strong>Cubre autos y motos:</strong> Tela Silver impermeable y Tela Premium afelpada.<br><strong>Antigranizo:</strong> 3 capas (Silver exterior + Polyfoam 6mm + interior Silver suave).<br><strong>Cubre capots y trompas:</strong> cuerina afelpada por dentro, impermeable por fuera.<br><strong>Alfombras termoformadas:</strong> material 3D con bordes elevados.' },
-  { q: '¿Puedo pasar a retirar?', a: 'Sí, podés retirar en cualquiera de nuestros dos puntos: <strong>local de Munro</strong> (Av. Bartolomé Mitre 3495) o nuestra <strong>fábrica de Villa Ballester</strong>. En los dos lados podés ver y probar los productos. Coordiná previamente por WhatsApp para asegurarnos que esté listo.' },
+  { q: '¿Puedo pasar a retirar?', a: 'Sí, podés retirar en nuestra <strong>fábrica de Villa Ballester</strong> (Paraná 2185). Ahí podés ver y probar los productos. Coordiná previamente por WhatsApp para asegurarnos que esté listo.' },
   { q: '¿Hacen factura A?', a: 'Sí, hacemos factura A. Al momento de la compra pasanos tus datos fiscales (CUIT y razón social) y te la emitimos.' },
   { q: '¿Qué otros productos puedo combinar con mis fundas o cubre autos?', a: '<strong>Combos populares para el interior:</strong> funda + cubre volante + cubre cinturones + alfombras termoformadas.<br><strong>Para protección externa:</strong> cubre auto + cubre capot + antigranizo + cubre trompa.<br>Si pensás un combo, escribinos por WhatsApp y te armamos un precio especial.' },
   { q: '¿Qué diferencia a MDRACING de otras marcas?', a: 'Tres cosas concretas: <strong>(1)</strong> somos fabricantes directos desde el año 2000 — no revendemos, controlamos cada etapa de producción.<br><strong>(2)</strong> Cada material lo seleccionamos después de probarlo durante años en condiciones reales (calor, humedad, uso intensivo) — si no aguanta, no lo usamos.<br><strong>(3)</strong> Te atiende una persona real que conoce los productos, no un call center con respuestas armadas. Después de 25 años en el rubro, tenemos uno de los catálogos más amplios del país, todo bajo un mismo techo.' },
@@ -965,7 +965,7 @@ function renderHome() {
           </div>
           <!-- Foto fábrica solo visible en mobile -->
           <div class="hero-mobile-factory">
-            <img src="images/fabrica.png" alt="Fábrica MDRACING — Villa Ballester" />
+            <img src="images/fabrica.webp" alt="Fábrica MDRACING — Villa Ballester" width="1512" height="1512" loading="lazy" />
           </div>
         </div>
         <div class="hero-visual animate-in animate-delay-2">
@@ -978,7 +978,7 @@ function renderHome() {
             <button onclick="openSearch()" class="hero-search-submit">Buscar</button>
           </div>
           <div class="hero-car-wrap">
-            <img src="images/fabrica.png" alt="Fábrica MDRACING — Villa Ballester" class="hero-factory-img" />
+            <img src="images/fabrica.webp" alt="Fábrica MDRACING — Villa Ballester" width="1512" height="1512" loading="lazy" class="hero-factory-img" />
           </div>
           <div class="hero-floating-badge">
             <div class="hfb-icon">${icons.factory}</div>
@@ -1053,7 +1053,7 @@ function renderHome() {
         <div class="trust-item">
           <div class="trust-icon">${icons.pin}</div>
           <div class="trust-text">
-            <strong>Local en Munro</strong>
+            <strong>Fábrica en Villa Ballester</strong>
             <span>Para instalación de fundas y accesorios</span>
           </div>
         </div>
@@ -1176,7 +1176,7 @@ function renderHome() {
             <div class="step-num">03</div>
             <div class="step-icon">${icons.truck}</div>
             <div class="step-title">Lo recibís en casa</div>
-            <div class="step-desc">Despacho en 24-72 hs a todo el país. O lo retirás en local Munro o fábrica Ballester.</div>
+            <div class="step-desc">Despacho en 24-72 hs a todo el país. O lo retirás en nuestra fábrica de Villa Ballester.</div>
           </div>
         </div>
         <div class="steps-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -1375,9 +1375,9 @@ function renderHome() {
       <div class="local-inner">
         <div class="local-content">
           <span class="section-label">Nuestro local de confianza</span>
-          <h2 class="section-title">Visitanos en <span>Munro</span></h2>
+          <h2 class="section-title">Visitanos en <span>Villa Ballester</span></h2>
           <div class="divider-line"></div>
-          <p class="local-desc">Tenemos un local de confianza en Munro donde podés ver los productos, coordinar la instalación de fundas o asesorarte sobre accesorios. Atención personal, sin intermediarios.</p>
+          <p class="local-desc">Te esperamos en nuestra fábrica de Villa Ballester, donde podés ver los productos, coordinar la instalación de fundas o asesorarte sobre accesorios. Atención personal, directo de fábrica.</p>
           <div class="local-details">
             <div class="local-detail-item">
               <div class="local-detail-icon">${icons.pin}</div>
@@ -1402,7 +1402,7 @@ function renderHome() {
             </div>
           </div>
           <div class="local-ctas">
-            <a href="${WA_MSG('Hola! Quiero coordinar una visita al local en Munro, Av. Bartolomé Mitre 3495')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Coordinar visita</a>
+            <a href="${WA_MSG('Hola! Quiero coordinar una visita a la fábrica en Villa Ballester, Paraná 2185')}" target="_blank" class="btn-primary btn-primary-wa">${icons.waIcon} Coordinar visita</a>
             <a href="${COMPANY.localMapsUrl}" target="_blank" rel="noopener" class="btn-outline">${icons.pin} Ver en Google Maps</a>
           </div>
         </div>
@@ -1886,7 +1886,7 @@ function renderProductPage(productId) {
       'Posicioná la funda comenzando por el respaldo y luego el asiento',
       'Pasá los ganchos o elásticos por debajo del asiento y butacas',
       'Ajustá uniformemente por todos los lados, sin tensiones excesivas',
-      'Tiempo de colocación: aproximadamente 1 hora. Si preferís, te la instalamos en nuestro local de Munro',
+      'Tiempo de colocación: aproximadamente 1 hora. Si preferís, te la instalamos en nuestra fábrica de Villa Ballester',
     ],
     'cat-cubre-autos': [
       'Asegurate de que el auto esté frío antes de cubrir',
@@ -2140,7 +2140,7 @@ function renderProductPage(productId) {
         <div id="tab-install" class="tab-content">
           <div class="info-block" style="margin-bottom:20px">
             <div class="info-block-title">${icons.tool} Guía de Instalación</div>
-            <p style="font-size:15px;color:var(--metal2);line-height:1.8;margin-bottom:20px">La instalación es simple y no requiere herramientas. Si preferís, ofrecemos servicio de instalación en nuestro local de Munro.</p>
+            <p style="font-size:15px;color:var(--metal2);line-height:1.8;margin-bottom:20px">La instalación es simple y no requiere herramientas. Si preferís, ofrecemos servicio de instalación en nuestra fábrica de Villa Ballester.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
               ${instSteps.map((step, i) => `
                 <div style="display:flex;gap:12px;align-items:flex-start">
@@ -2471,7 +2471,7 @@ function renderHowToBuyPage() {
             <div class="payment-card" style="border-color:var(--red2)">
               <div class="payment-icon">💵</div>
               <div class="payment-name">Efectivo <span style="display:inline-block;background:var(--red2);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;margin-left:6px;letter-spacing:.5px">10% OFF</span></div>
-              <div class="payment-desc">Al retirar tu pedido en local de Munro o en fábrica de Villa Ballester.</div>
+              <div class="payment-desc">Al retirar tu pedido en nuestra fábrica de Villa Ballester.</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">📱</div>
@@ -2504,7 +2504,7 @@ function renderHowToBuyPage() {
             <div class="payment-card">
               <div class="payment-icon">🏪</div>
               <div class="payment-name">Retiro en local</div>
-              <div class="payment-desc">Av. Bartolomé Mitre 3495, Munro · Lun-Vie 8-18hs, Sáb 9-13hs. Sin costo.</div>
+              <div class="payment-desc">Paraná 2185, Villa Ballester · Lun-Vie 8-18hs, Sáb 9-13hs. Sin costo.</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">🏭</div>
@@ -2548,7 +2548,7 @@ function renderReturnsPage() {
           <div class="policy-card">
             <div class="policy-card-icon">${icons.refresh}</div>
             <h3>Insatisfacción con el producto</h3>
-            <p>Tenés <strong>7 días</strong> desde que recibís el pedido para solicitar la devolución si no estás conforme. El producto debe estar en buenas condiciones y con su embalaje original sin daños.</p>
+            <p>Tenés <strong>10 días</strong> desde que recibís el pedido para solicitar la devolución si no estás conforme. El producto debe estar en buenas condiciones y con su embalaje original sin daños.</p>
           </div>
           <div class="policy-card">
             <div class="policy-card-icon">${icons.shield}</div>
@@ -2568,7 +2568,7 @@ function renderReturnsPage() {
             <span class="returns-section-num">1</span>
             Devolución por insatisfacción o arrepentimiento
           </h2>
-          <p class="returns-section-text">Si no quedaste conforme con el producto o simplemente te arrepentiste de la compra, podés solicitar la devolución de tu dinero dentro de los <strong>7 días</strong> siguientes a la fecha de recepción del pedido.</p>
+          <p class="returns-section-text">Si no quedaste conforme con el producto o simplemente te arrepentiste de la compra, podés solicitar la devolución de tu dinero dentro de los <strong>10 días</strong> siguientes a la fecha de recepción del pedido.</p>
           <div class="info-block" style="margin-bottom:20px">
             <div class="info-block-title">${icons.check} Condiciones para que sea válida</div>
             <ul>
@@ -2678,7 +2678,7 @@ function renderTermsPage() {
         <ul>
           <li><strong>Tarjeta de crédito o débito</strong> a través de Mercado Pago. Aplican cuotas según el plan vigente del banco emisor.</li>
           <li><strong>Transferencia bancaria</strong> a la cuenta de Mercado Pago de Miguel Angel Di Vito (CUIT 20-22862560-5). El cliente envía el comprobante por WhatsApp.</li>
-          <li><strong>Efectivo</strong> al momento de retirar en fábrica (Villa Ballester) o en el local (Av. Bartolomé Mitre 3495, Munro).</li>
+          <li><strong>Efectivo</strong> al momento de retirar en nuestra fábrica (Paraná 2185, Villa Ballester).</li>
         </ul>
         <p>Pagos por transferencia y efectivo tienen un <strong>descuento del 10%</strong> sobre el subtotal, ya aplicado en el checkout.</p>
 
@@ -2686,7 +2686,7 @@ function renderTermsPage() {
         <p>MDRACING realiza envíos a todo el territorio argentino a través de <strong>Andreani, Correo Argentino y OCA</strong>. Los costos y plazos varían según destino y se informan al confirmar el pedido. También se puede retirar sin costo en:</p>
         <ul>
           <li><strong>Fábrica:</strong> Villa Ballester, San Martín, Buenos Aires.</li>
-          <li><strong>Local:</strong> Av. Bartolomé Mitre 3495, Munro, Vicente López, Buenos Aires.</li>
+          <li><strong>Fábrica:</strong> Paraná 2185, Villa Ballester, San Martín, Buenos Aires.</li>
         </ul>
         <p>Los plazos de entrega son estimativos y dependen del operador logístico. MDRACING no se responsabiliza por demoras del correo no imputables a la empresa.</p>
         <p>Una vez despachado, MDRACING informará el código de seguimiento al cliente por email o WhatsApp.</p>
@@ -3081,7 +3081,7 @@ function applySEO(page) {
     if (cat) {
       const cleanTitle = cat.title.replace('\n', ' ');
       title = `${cleanTitle} para tu Vehículo | MDRACING`;
-      description = `${cat.desc} Fabricantes directos con más de 25 años. Envíos a todo el país y retiro en Munro.`;
+      description = `${cat.desc} Fabricantes directos con más de 25 años. Envíos a todo el país y retiro en Villa Ballester.`;
     } else {
       title = 'Productos | MDRACING';
       description = 'Catálogo completo de fundas, cubre autos, cubre capots, cubre trompas y accesorios automotrices MDRACING.';
@@ -3099,13 +3099,13 @@ function applySEO(page) {
       'quienes-somos':          { t: 'Quiénes Somos | MDRACING — 25 años fabricando en Argentina',
                                   d: 'MDRACING fabrica accesorios automotrices premium desde el año 2000. Conocé nuestra historia, nuestro proceso y por qué nos eligen.' },
       'como-comprar':           { t: 'Cómo Comprar | MDRACING — Compras simples por WhatsApp',
-                                  d: 'Comprá fácil en 3 pasos. Envíos a todo el país, retiro en Munro y atención personalizada por WhatsApp.' },
+                                  d: 'Comprá fácil en 3 pasos. Envíos a todo el país, retiro en Villa Ballester y atención personalizada por WhatsApp.' },
       'preguntas-frecuentes':   { t: 'Preguntas Frecuentes | MDRACING',
                                   d: 'Resolvemos tus dudas sobre productos, materiales, envíos, talles y garantías de MDRACING.' },
       'cambios-devoluciones':   { t: 'Cambios y Devoluciones | MDRACING',
                                   d: 'Garantía de 30 días por fallas de fábrica. Política de cambios y devoluciones MDRACING.' },
-      'contacto':               { t: 'Contacto | MDRACING — WhatsApp, Local Munro y Fábrica',
-                                  d: 'Escribinos por WhatsApp +54 9 11 5490-7774 o visitá nuestro local en Av. Bartolomé Mitre 3495, Munro.' },
+      'contacto':               { t: 'Contacto | MDRACING — WhatsApp y Fábrica en Villa Ballester',
+                                  d: 'Escribinos por WhatsApp +54 9 11 5490-7774 o visitá nuestra fábrica en Paraná 2185, Villa Ballester.' },
       'terminos-y-condiciones': { t: 'Términos y Condiciones | MDRACING',
                                   d: 'Condiciones de compra, envíos, garantía y derecho de revocación de MDRACING. Ajustado a la Ley 24.240 de Defensa del Consumidor.' },
       'politica-privacidad':    { t: 'Política de Privacidad | MDRACING',

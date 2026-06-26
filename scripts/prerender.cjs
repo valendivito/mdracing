@@ -211,8 +211,8 @@ function loadAppInSandbox() {
 
 const STATIC_SEO = {
   'home': {
-    title: 'MDRACING · Fundas y Cubre Autos a medida · Fábrica directa hace 25 años',
-    description: 'Fundas para asientos a medida desde $50.000, cubre autos antigranizo, cubre capots y accesorios premium. Fábrica directa hace 25 años. 10% OFF con transferencia. Envíos a todo el país.',
+    title: 'MDRACING · Fundas y Cubre Autos a Medida · Fábrica Directa',
+    description: 'Fundas a medida, cubre autos antigranizo, cubre capots y accesorios. Fábrica directa hace 25 años. 10% OFF por transferencia. Envíos a todo el país.',
     path: '/',
   },
   'categorias': {
@@ -227,7 +227,7 @@ const STATIC_SEO = {
   },
   'como-comprar': {
     title: 'Cómo Comprar | MDRACING — Compras online y por WhatsApp',
-    description: 'Comprá online con tarjeta en cuotas o transferencia con 10% OFF. Envíos a todo el país, retiro en Munro o fábrica de Ballester. Atención personalizada por WhatsApp.',
+    description: 'Comprá online con tarjeta en cuotas o transferencia con 10% OFF. Envíos a todo el país, retiro en nuestra fábrica de Villa Ballester. Atención personalizada por WhatsApp.',
     path: '/como-comprar',
   },
   'preguntas-frecuentes': {
@@ -241,8 +241,8 @@ const STATIC_SEO = {
     path: '/cambios-devoluciones',
   },
   'contacto': {
-    title: 'Contacto | MDRACING — WhatsApp, Local Munro y Fábrica',
-    description: 'Escribinos por WhatsApp +54 9 11 5490-7774, visitá nuestro local en Av. Bartolomé Mitre 3495, Munro, o la fábrica en Villa Ballester.',
+    title: 'Contacto | MDRACING — WhatsApp y Fábrica en Villa Ballester',
+    description: 'Escribinos por WhatsApp +54 9 11 5490-7774, visitá nuestra fábrica en Paraná 2185, Villa Ballester.',
     path: '/contacto',
   },
   'terminos-y-condiciones': {
@@ -451,7 +451,7 @@ function productJsonLd(p) {
       'priceValidUntil': validUntil,
       'availability': 'https://schema.org/InStock',
       'itemCondition': 'https://schema.org/NewCondition',
-      'seller': { '@type': 'Organization', 'name': 'MDRACING' },
+      'seller': { '@id': SITE_BASE + '/#organization' },
     },
   };
   return `<script type="application/ld+json" id="product-jsonld">${JSON.stringify(data)}</script>`;
@@ -495,6 +495,31 @@ function itemListJsonLd(category, sandbox) {
     })),
   };
   return `<script type="application/ld+json" id="itemlist-jsonld">${JSON.stringify(data)}</script>`;
+}
+
+/**
+ * FAQPage JSON-LD: genera el schema de preguntas frecuentes a partir del
+ * array `faqs` de app.js. Mejora la extractabilidad por motores de IA
+ * (ChatGPT, Perplexity, Google AI Overviews) — leen mejor el Q&A estructurado.
+ */
+function faqPageJsonLd(sandbox) {
+  const faqs = (sandbox && sandbox.faqs) || [];
+  if (!faqs.length) return '';
+  const stripHtml = (s) => String(s || '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+      '@type': 'Question',
+      'name': stripHtml(f.q),
+      'acceptedAnswer': { '@type': 'Answer', 'text': stripHtml(f.a) },
+    })),
+  };
+  return `<script type="application/ld+json" id="faqpage-jsonld">${JSON.stringify(data)}</script>`;
 }
 
 /**
@@ -646,6 +671,9 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
     extras.push(itemListJsonLd(seo.category, opts.sandbox));
   } else if (seo.brand && seo.brandProducts) {
     extras.push(brandPageJsonLd(seo.brand, seo.brandProducts));
+  }
+  if (opts.pageId === 'preguntas-frecuentes' && opts.sandbox) {
+    extras.push(faqPageJsonLd(opts.sandbox));
   }
 
   // Marca pre-render: el JS lo lee y skipea el render inicial
