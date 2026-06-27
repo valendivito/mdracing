@@ -35,7 +35,7 @@ const COMPANY = {
   localCity: 'Villa Ballester',
   localAddress: 'Paraná 2185',
   localDistrict: 'San Martín',
-  localMapsUrl: 'https://maps.app.goo.gl/oXSoMeZW8n5ajPVk8',
+  localMapsUrl: 'https://maps.app.goo.gl/JkK5AJyak9n5ANvaA',
 };
 
 // ── SVGs & Icons ──
@@ -1407,14 +1407,16 @@ function renderHome() {
           </div>
         </div>
         <div class="local-visual">
-          <div class="local-map-frame">
+          <a href="${COMPANY.localMapsUrl}" target="_blank" rel="noopener" class="local-map-frame" title="Ver MDRACING FUNDAS en Google Maps">
             <iframe
               src="https://maps.google.com/maps?q=-34.549683992602816,-58.5446744177423&z=16&output=embed"
               class="local-map-embed"
               loading="lazy"
+              tabindex="-1"
               referrerpolicy="no-referrer-when-downgrade"
               title="Ubicación de la fábrica MDRACING, Paraná 2185, Villa Ballester"></iframe>
-          </div>
+            <span class="local-map-overlay">${icons.pin} Ver en Google Maps</span>
+          </a>
         </div>
       </div>
     </section>
