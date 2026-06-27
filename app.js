@@ -28,8 +28,8 @@ const COMPANY = {
   district: 'San Martín',
   province: 'Provincia de Buenos Aires',
   region: 'GBA',
-  hoursWeek: 'Lun a Vie · 8 a 18hs',
-  hoursSat: 'Sábados · 9 a 13hs',
+  hoursWeek: 'Lun a Vie · 8 a 16hs',
+  hoursSat: 'Sábados y domingos · Cerrado',
   warranty: '30 días por fallas de fábrica',
   couriers: ['Correo Argentino', 'Andreani', 'OCA'],
   localCity: 'Villa Ballester',
@@ -773,7 +773,7 @@ const faqs = [
   { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> — techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
   { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares — más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
   { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo — si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
-  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, ofrecemos <strong>instalación en nuestra fábrica de Villa Ballester</strong> (Paraná 2185). Coordinás el turno por WhatsApp.' },
+  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, escribinos por WhatsApp y coordinamos la instalación con un taller asociado.' },
   { q: '¿Qué materiales manejan para fundas, cubre autos y los demás productos?', a: '<strong>Fundas:</strong> ecocuero, ecocuero acolchado 3mm, cuero automotor y tela Jakard premium.<br><strong>Cubre autos y motos:</strong> Tela Silver impermeable y Tela Premium afelpada.<br><strong>Antigranizo:</strong> 3 capas (Silver exterior + Polyfoam 6mm + interior Silver suave).<br><strong>Cubre capots y trompas:</strong> cuerina afelpada por dentro, impermeable por fuera.<br><strong>Alfombras termoformadas:</strong> material 3D con bordes elevados.' },
   { q: '¿Puedo pasar a retirar?', a: 'Sí, podés retirar en nuestra <strong>fábrica de Villa Ballester</strong> (Paraná 2185). Ahí podés ver y probar los productos. Coordiná previamente por WhatsApp para asegurarnos que esté listo.' },
   { q: '¿Hacen factura A?', a: 'Sí, hacemos factura A. Al momento de la compra pasanos tus datos fiscales (CUIT y razón social) y te la emitimos.' },
@@ -1374,10 +1374,10 @@ function renderHome() {
     <section class="local-section">
       <div class="local-inner">
         <div class="local-content">
-          <span class="section-label">Nuestro local de confianza</span>
-          <h2 class="section-title">Visitanos en <span>Villa Ballester</span></h2>
+          <span class="section-label">Directo de fábrica</span>
+          <h2 class="section-title">Fabricamos en <span>Villa Ballester</span></h2>
           <div class="divider-line"></div>
-          <p class="local-desc">Te esperamos en nuestra fábrica de Villa Ballester, donde podés ver los productos, coordinar la instalación de fundas o asesorarte sobre accesorios. Atención personal, directo de fábrica.</p>
+          <p class="local-desc">Fabricamos cada producto en Villa Ballester. Si querés ver los materiales y la calidad en persona antes de comprar, escribinos por WhatsApp y coordinamos una visita sin compromiso. Por ahí también resolvés tus dudas y, si necesitás instalación, te la coordinamos.</p>
           <div class="local-details">
             <div class="local-detail-item">
               <div class="local-detail-icon">${icons.pin}</div>
@@ -1396,8 +1396,8 @@ function renderHome() {
             <div class="local-detail-item">
               <div class="local-detail-icon">${icons.tool}</div>
               <div>
-                <div class="local-detail-title">Servicios en local</div>
-                <div class="local-detail-value">Instalación de fundas<br>Colocación de accesorios</div>
+                <div class="local-detail-title">Instalación</div>
+                <div class="local-detail-value">La coordinás por WhatsApp</div>
               </div>
             </div>
           </div>
@@ -1407,19 +1407,13 @@ function renderHome() {
           </div>
         </div>
         <div class="local-visual">
-          <a href="${COMPANY.localMapsUrl}" target="_blank" rel="noopener" class="local-map-card local-map-card-link" title="Ver en Google Maps" style="background-image:url('images/local-munro.jpg')">
-            <div class="local-map-pin">${icons.pin}</div>
-            <div class="local-map-text">
-              <div class="local-map-label">LOCAL DE CONFIANZA</div>
-              <div class="local-map-city">${COMPANY.localCity}</div>
-              <div class="local-map-prov">${COMPANY.localAddress} · ${COMPANY.province}</div>
-            </div>
-            <div class="local-map-grid">
-              <div class="local-kpi"><span>${COMPANY.yearsActive}+</span><small>años de experiencia</small></div>
-              <div class="local-kpi"><span>${icons.pin}</span><small>Ver en Maps</small></div>
-            </div>
-            <div class="local-map-hover-hint">Clic para abrir en Google Maps ${icons.arrowRight}</div>
-          </a>
+          <iframe
+            src="https://maps.google.com/maps?q=-34.549636221358064,-58.544680437873865&z=16&output=embed"
+            class="local-map-embed"
+            style="width:100%;height:100%;min-height:360px;border:0;border-radius:18px;display:block"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de la fábrica MDRACING — Paraná 2185, Villa Ballester"></iframe>
         </div>
       </div>
     </section>
@@ -1492,7 +1486,7 @@ function renderHome() {
           </div>
           <p class="final-cta-note" style="text-align:left;margin-top:16px">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-            WhatsApp Lun–Vie 8 a 18hs · Sáb 9 a 13hs · Compra online 24/7
+            WhatsApp Lun–Vie 8 a 16hs · Compra online 24/7
           </p>
         </div>
         <div class="final-cta-gallery">
@@ -2486,7 +2480,7 @@ function renderHowToBuyPage() {
               <li>El <strong>10% OFF se aplica solo</strong> al elegir "Transferencia o efectivo" en el checkout. No tenés que pedirlo.</li>
               <li><strong>Cuotas sin interés</strong> disponibles según tu tarjeta y banco emisor (se ve en el checkout de Mercado Pago).</li>
               <li>Pago 100% seguro vía Mercado Pago. Nosotros nunca vemos los datos de tu tarjeta.</li>
-              <li>Una vez confirmado el pago, preparamos el pedido en <strong>24-48 hs hábiles</strong> (productos en stock) o en el plazo informado para fabricación a pedido.</li>
+              <li>Una vez confirmado el pago, preparamos el pedido en <strong>24-72 hs hábiles</strong>.</li>
             </ul>
           </div>
         </div>
@@ -2500,11 +2494,6 @@ function renderHowToBuyPage() {
               <div class="payment-icon">📦</div>
               <div class="payment-name">Envío a domicilio</div>
               <div class="payment-desc">Andreani · Correo Argentino · OCA. Costo automático en el checkout según zona. <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000+.</div>
-            </div>
-            <div class="payment-card">
-              <div class="payment-icon">🏪</div>
-              <div class="payment-name">Retiro en local</div>
-              <div class="payment-desc">Paraná 2185, Villa Ballester · Lun-Vie 8-18hs, Sáb 9-13hs. Sin costo.</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">🏭</div>
@@ -2548,7 +2537,7 @@ function renderReturnsPage() {
           <div class="policy-card">
             <div class="policy-card-icon">${icons.refresh}</div>
             <h3>Insatisfacción con el producto</h3>
-            <p>Tenés <strong>10 días</strong> desde que recibís el pedido para solicitar la devolución si no estás conforme. El producto debe estar en buenas condiciones y con su embalaje original sin daños.</p>
+            <p>Tenés <strong>10 días</strong> desde que recibís el pedido para solicitar la devolución si no estás conforme. El producto debe estar en perfecta condición y con su embalaje original sin daños.</p>
           </div>
           <div class="policy-card">
             <div class="policy-card-icon">${icons.shield}</div>
@@ -2572,7 +2561,7 @@ function renderReturnsPage() {
           <div class="info-block" style="margin-bottom:20px">
             <div class="info-block-title">${icons.check} Condiciones para que sea válida</div>
             <ul>
-              <li>El producto debe estar en buenas condiciones, sin daños evidentes por mal uso.</li>
+              <li>El producto debe estar en perfecta condición, sin daños evidentes por mal uso.</li>
               <li>Debe conservar el embalaje original sin signos de maltrato.</li>
               <li>Los gastos de envío de devolución corren a cargo del cliente.</li>
             </ul>
@@ -2895,8 +2884,8 @@ function renderContactPage() {
               </div>
               <div>
                 <div class="contact-card-title">Horario de Atención</div>
-                <div class="contact-card-value">Lun a Vie: 8 a 18hs</div>
-                <div class="contact-card-value">Sábados: 9 a 13hs</div>
+                <div class="contact-card-value">Lun a Vie: 8 a 16hs</div>
+                <div class="contact-card-value">Sábados y domingos: Cerrado</div>
               </div>
             </div>
             <div class="contact-card">
