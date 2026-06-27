@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * MDRACING — SSG Prerender
+ * MDRACING · SSG Prerender
  * ═══════════════════════════════════════════════════════════════
  *
  * Genera HTML estático pre-renderizado por cada ruta del sitio para SEO.
@@ -10,7 +10,7 @@
  * proyecto.
  *
  * Vercel sirve esos archivos directamente cuando un crawler (o un usuario)
- * hace fetch a una URL — el JS hace takeover encima para hidratar interactividad.
+ * hace fetch a una URL · el JS hace takeover encima para hidratar interactividad.
  *
  * Output:
  *   index.html                     (home prerendered)
@@ -216,17 +216,17 @@ const STATIC_SEO = {
     path: '/',
   },
   'categorias': {
-    title: 'Productos | MDRACING — Catálogo completo de accesorios automotrices',
+    title: 'Productos | MDRACING · Catálogo completo de accesorios automotrices',
     description: 'Catálogo completo: fundas para asientos, cubre autos, cubre capots, cubre trompas, cubre motos, alfombras termoformadas y accesorios. Fábrica directa hace 25 años.',
     path: '/categorias',
   },
   'quienes-somos': {
-    title: 'Quiénes Somos | MDRACING — 25 años fabricando en Argentina',
+    title: 'Quiénes Somos | MDRACING · 25 años fabricando en Argentina',
     description: 'MDRACING fabrica accesorios automotrices premium desde el año 2000. Conocé nuestra historia, nuestro proceso y por qué nos eligen.',
     path: '/quienes-somos',
   },
   'como-comprar': {
-    title: 'Cómo Comprar | MDRACING — Compras online y por WhatsApp',
+    title: 'Cómo Comprar | MDRACING · Compras online y por WhatsApp',
     description: 'Comprá online con tarjeta en cuotas o transferencia con 10% OFF. Envíos a todo el país, retiro en nuestra fábrica de Villa Ballester. Atención personalizada por WhatsApp.',
     path: '/como-comprar',
   },
@@ -241,7 +241,7 @@ const STATIC_SEO = {
     path: '/cambios-devoluciones',
   },
   'contacto': {
-    title: 'Contacto | MDRACING — WhatsApp y Fábrica en Villa Ballester',
+    title: 'Contacto | MDRACING · WhatsApp y Fábrica en Villa Ballester',
     description: 'Escribinos por WhatsApp +54 9 11 5490-7774, visitá nuestra fábrica en Paraná 2185, Villa Ballester.',
     path: '/contacto',
   },
@@ -389,7 +389,7 @@ function seoForPage(page, sandbox) {
 
   // Fallback
   return {
-    title: 'MDRACING — Fundas, Cubre Autos y Accesorios',
+    title: 'MDRACING · Fundas, Cubre Autos y Accesorios',
     description: 'Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria.',
     image: SITE_BASE + '/og-image.jpg',
     imageAlt: 'MDRACING',
@@ -398,7 +398,7 @@ function seoForPage(page, sandbox) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 4) GENERAR HTML POR PÁGINA — usando index.html como template
+// 4) GENERAR HTML POR PÁGINA · usando index.html como template
 // ═══════════════════════════════════════════════════════════════
 
 function escAttr(s) {
@@ -500,7 +500,7 @@ function itemListJsonLd(category, sandbox) {
 /**
  * FAQPage JSON-LD: genera el schema de preguntas frecuentes a partir del
  * array `faqs` de app.js. Mejora la extractabilidad por motores de IA
- * (ChatGPT, Perplexity, Google AI Overviews) — leen mejor el Q&A estructurado.
+ * (ChatGPT, Perplexity, Google AI Overviews) · leen mejor el Q&A estructurado.
  */
 function faqPageJsonLd(sandbox) {
   const faqs = (sandbox && sandbox.faqs) || [];
@@ -697,7 +697,7 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
 // ═══════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════
-// META FEED XML — para Commerce Manager
+// META FEED XML · para Commerce Manager
 // ═══════════════════════════════════════════════════════════════
 //
 // RSS 2.0 con namespace Google Merchant. Spec:
@@ -706,7 +706,7 @@ function buildPageHtml(templateHtml, seo, renderedAppHtml, opts) {
 const META_FEED_BRAND = 'MDRACING';
 const META_FEED_CURRENCY = 'ARS';
 
-// Google Product Taxonomy — usamos el path conservador "Vehicles & Parts >
+// Google Product Taxonomy · usamos el path conservador "Vehicles & Parts >
 // Vehicle Parts & Accessories" para TODAS las categorías. Es una rama válida
 // y aceptada por Meta. Los paths más finos (como "Vehicle Seats" o "Vehicle
 // Covers") generaban warnings de "invalid_google_product_category" porque
@@ -792,7 +792,7 @@ function buildMetaItem(p, base) {
   lines.push(`      <g:google_product_category>${escXml(googleCat)}</g:google_product_category>`);
   lines.push(`      <g:product_type>${escXml(productType)}</g:product_type>`);
   lines.push(`      <g:identifier_exists>no</g:identifier_exists>`);
-  // NO incluir <g:item_group_id> con catId — agrupaba a todos los productos
+  // NO incluir <g:item_group_id> con catId · agrupaba a todos los productos
   // de la misma categoría como variantes del mismo "producto" en Commerce
   // Manager. Cada producto es independiente. Si en el futuro queremos
   // exponer colorVariants como variantes reales, hay que emitir un <item>
@@ -810,7 +810,7 @@ function generateMetaFeedXml(products) {
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">\n` +
     `  <channel>\n` +
-    `    <title>${escXml(META_FEED_BRAND)} — Catálogo</title>\n` +
+    `    <title>${escXml(META_FEED_BRAND)} · Catálogo</title>\n` +
     `    <link>${base}</link>\n` +
     `    <description>Fundas para asientos, cubre autos antigranizo, cubre capots y accesorios automotrices premium. Fábrica directa hace 25 años.</description>\n` +
     `${items}\n` +
@@ -841,7 +841,7 @@ function normalizeTemplate(html) {
 async function main() {
   console.log('[prerender] Cargando app.js en sandbox...');
   const sandbox = loadAppInSandbox();
-  console.log(`[prerender] OK — ${sandbox.products.length} productos, ${sandbox.categories.length} categorías.`);
+  console.log(`[prerender] OK · ${sandbox.products.length} productos, ${sandbox.categories.length} categorías.`);
 
   const rawTemplate = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
   const templateHtml = normalizeTemplate(rawTemplate);
@@ -895,7 +895,7 @@ async function main() {
   console.log(`[prerender] data/ exportado: ${productsForJson.length} productos, ${categoriesForJson.length} categorías`);
 
   // ═══════════════════════════════════════════════════════════════
-  // META FEED XML — generado como archivo estático (no serverless function)
+  // META FEED XML · generado como archivo estático (no serverless function)
   // ═══════════════════════════════════════════════════════════════
   // Servido en https://www.mdracingfundas.com/meta-feed.xml directo desde CDN.
   // Meta lo refetchea según el schedule configurado en Commerce Manager.

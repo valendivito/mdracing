@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  const FREE_SHIPPING_THRESHOLD = 130000;
+  const FREE_SHIPPING_THRESHOLD = 200000;
   const CASH_TRANSFER_DISCOUNT = 0.10; // 10% OFF
 
   const SHIPPING_ZONES = [

@@ -61,7 +61,7 @@
   <meta name="twitter:description" content="Protección afelpada contra granizo y rayones. Fabricantes directos con más de 25 años. Envíos a todo el país y 10% OFF pagando con transferencia." id="tw-description" />
   <meta name="twitter:image" content="https://www.mdracingfundas.com/og-image.jpg" id="tw-image" />
 
-  <!-- Structured Data: Organization (entidad de marca — desambigua de "Racing Club") -->
+  <!-- Structured Data: Organization (entidad de marca · desambigua de "Racing Club") -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -153,8 +153,8 @@
 <div id="promo-bar" role="region" aria-label="Promoción">
   <!-- Barra normal (default visible). Si hay Hot Sale activo, JS la oculta y muestra el ticker. -->
   <div id="normal-promo-bar">
-    <span class="promo-desktop"><strong>10% OFF</strong> pagando con efectivo o transferencia <span class="promo-sep">·</span> Envíos a todo el país</span>
-    <span class="promo-mobile"><strong>10% OFF</strong> en efectivo o transferencia</span>
+    <span class="promo-desktop"><strong>Envío GRATIS</strong> desde $200.000 <span class="promo-sep">·</span> <strong>10% OFF</strong> en efectivo o transferencia <span class="promo-sep">·</span> ¿Comprás por mayor? <a href="/contacto" data-page="contacto" style="color:#fff;text-decoration:underline;font-weight:700">Entrá a Contacto</a></span>
+    <span class="promo-mobile"><strong>Envío GRATIS</strong> desde $200.000 <span class="promo-sep">·</span> <a href="/contacto" data-page="contacto" style="color:#fff;text-decoration:underline;font-weight:700">Mayoristas</a></span>
   </div>
   <!-- Hot Sale ticker: contenedor vacío. Texto y visibilidad controlados por JS para que no aparezca en crawlers cuando la promo está vencida. -->
   <div id="hs-ticker-bar" class="hs-ticker-bar" style="display:none" aria-label="Hot Sale" aria-hidden="true"></div>
@@ -164,7 +164,7 @@
     // ── Configuración Hot Sale ──
     // Para activar: cambiar HS_END a una fecha futura. Para desactivar: dejar una fecha pasada.
     var HS_END = '2026-05-21T00:00:00-03:00';
-    var HS_TEXT = '🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO  ·  🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS — ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆  ·  ⏰ ESTOS PRECIOS NO VUELVEN MÁS — EL QUE DUDA, PAGA MÁS CARO  ·  🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD  ·     ';
+    var HS_TEXT = '🔥 HOT SALE MDRACING · SOLO HASTA EL 20 DE MAYO  ·  🇦🇷 COMPRÁS CUALQUIER CUBRE AUTO ANTIGRANIZO Y TE REGALAMOS UN LLAVERO DE ARGENTINA GRATIS · ¡EL MISMO PAÍS QUE FUE CAMPEÓN DEL MUNDO! 🏆  ·  ⏰ ESTOS PRECIOS NO VUELVEN MÁS · EL QUE DUDA, PAGA MÁS CARO  ·  🔥 FÁBRICA DIRECTA · SIN INTERMEDIARIOS · STOCK LIMITADO, NO HAY SEGUNDA OPORTUNIDAD  ·     ';
 
     if (new Date() < new Date(HS_END)) {
       var ticker = document.getElementById('hs-ticker-bar');
@@ -1689,7 +1689,7 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-      <p>© 2026 MDRACING — Fábrica desde el año 2000. Todos los derechos reservados. | <a href="https://www.mdracingfundas.com" target="_blank" rel="noopener">mdracingfundas.com.ar</a></p>
+      <p>© 2026 MDRACING · Fábrica desde el año 2000. Todos los derechos reservados. | <a href="https://www.mdracingfundas.com" target="_blank" rel="noopener">mdracingfundas.com.ar</a></p>
     </div>
   </div>
 </footer>
@@ -1711,7 +1711,7 @@
 <script src="/chat-widget.js"></script>
 <script src="/checkout.js"></script>
 
-<!-- Floating cart button — aparece cuando hay items -->
+<!-- Floating cart button · aparece cuando hay items -->
 <button id="float-cart-btn" aria-label="Ver carrito" onclick="openCart()" style="display:none">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M3 3h2.5l2.7 13a2 2 0 002 1.6h8.6a2 2 0 002-1.5l1.6-8.1H6"/></svg>
   <span id="float-cart-count">0</span>

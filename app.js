@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   MDRACING — App Router & Page Renderer
+   MDRACING · App Router & Page Renderer
    ═══════════════════════════════════════════════════════════ */
 
 'use strict';
@@ -71,7 +71,7 @@ const icons = {
 };
 
 // ═══════════════════════════════════════════════════════════
-// META TRACKING — Pixel (browser) + CAPI (server) deduplicado
+// META TRACKING · Pixel (browser) + CAPI (server) deduplicado
 // ═══════════════════════════════════════════════════════════
 //
 // trackEvent() dispara un evento al Pixel client-side Y al endpoint
@@ -148,7 +148,7 @@ if (typeof window !== 'undefined') {
 }
 
 // ═══════════════════════════════════════════════════════════
-// ROUTING — URLs reales (no hash) para SEO
+// ROUTING · URLs reales (no hash) para SEO
 // ═══════════════════════════════════════════════════════════
 //
 // Mapping bidireccional entre la "page id" interna (string usado por
@@ -377,7 +377,7 @@ const categories = [
 ];
 
 // ═══════════════════════════════════════════════════════════
-// MARCAS DE AUTO — páginas hub /marcas/<slug>
+// MARCAS DE AUTO · páginas hub /marcas/<slug>
 // ═══════════════════════════════════════════════════════════
 //
 // Cada marca tiene:
@@ -765,20 +765,20 @@ const testimonials = [
 
 // ── FAQ data ──
 const faqs = [
-  { q: '¿Cómo compro en MDRACING?', a: 'Tenés <strong>2 formas</strong>: <br><strong>(1) Compra online directa</strong> — tocás "Comprar ahora" en el producto, completás tus datos y pagás con tarjeta (con cuotas) o transferencia/efectivo (10% OFF). Te llega un email con tu pedido confirmado.<br><strong>(2) Asesoramiento por WhatsApp</strong> — si tenés dudas sobre talle, modelo o material (típico en fundas y cubre autos), consultá primero con Madi (chat del sitio) o por WhatsApp al +54 9 11 5490-7774. Después podés cerrar la compra online o por WA, como prefieras.' },
+  { q: '¿Cómo compro en MDRACING?', a: 'Tenés <strong>2 formas</strong>: <br><strong>(1) Compra online directa</strong> · tocás "Comprar ahora" en el producto, completás tus datos y pagás con tarjeta (con cuotas) o transferencia/efectivo (10% OFF). Te llega un email con tu pedido confirmado.<br><strong>(2) Asesoramiento por WhatsApp</strong> · si tenés dudas sobre talle, modelo o material (típico en fundas y cubre autos), consultá primero con Madi (chat del sitio) o por WhatsApp al +54 9 11 5490-7774. Después podés cerrar la compra online o por WA, como prefieras.' },
   { q: '¿Le va a mi auto?', a: 'Para confirmar compatibilidad podés escribirnos por WhatsApp con tu marca, modelo y año, o consultar con <strong>Madi</strong>, nuestra asistente virtual del sitio (botón flotante en la parte inferior). Madi te responde al momento en base a nuestro catálogo. Si tu modelo no figura, lo armamos a pedido.' },
-  { q: '¿Tienen stock disponible o es a pedido?', a: 'Los <strong>accesorios</strong> suelen estar en stock para envío inmediato. La mayoría de <strong>fundas, cubre autos, cubre capots y cubre trompas</strong> son <strong>a pedido</strong> — los fabricamos especialmente para tu vehículo. Consultanos por WhatsApp el plazo exacto del modelo que te interesa.' },
-  { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El <strong>costo se calcula automáticamente en el checkout</strong> según tu zona (CABA, GBA, Interior). <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000 o más. Te pasamos el tracking apenas despachamos.' },
-  { q: '¿Qué formas de pago aceptan?', a: 'Todas estas disponibles en el checkout online:<br>· <strong>Tarjeta de crédito o débito</strong> vía Mercado Pago, con cuotas sin interés según banco.<br>· <strong>Mercado Pago wallet</strong>, QR, dinero en cuenta, Pago Fácil, Rapipago.<br>· <strong>Transferencia bancaria</strong> directa con <strong style="color:var(--red2)">10% OFF</strong> — te mostramos los datos en el checkout y mandás el comprobante por WhatsApp.<br>· <strong>Efectivo</strong> al retirar en nuestra fábrica de Villa Ballester, también con <strong style="color:var(--red2)">10% OFF</strong>.<br><strong>Sí hacemos factura A</strong> — pedila al momento de la compra con tu CUIT.' },
-  { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> — techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
-  { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares — más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
-  { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo — si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
-  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas — lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, escribinos por WhatsApp y coordinamos la instalación con un taller asociado.' },
+  { q: '¿Tienen stock disponible o es a pedido?', a: 'Los <strong>accesorios</strong> suelen estar en stock para envío inmediato. La mayoría de <strong>fundas, cubre autos, cubre capots y cubre trompas</strong> son <strong>a pedido</strong> · los fabricamos especialmente para tu vehículo. Consultanos por WhatsApp el plazo exacto del modelo que te interesa.' },
+  { q: '¿Hacen envíos a todo el país?', a: 'Sí. Enviamos a toda Argentina por Andreani, OCA y Correo Argentino. GBA: 2-3 días hábiles · Interior: 4-7 días según zona. El <strong>costo se calcula automáticamente en el checkout</strong> según tu zona (CABA, GBA, Interior). <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $200.000 o más. Te pasamos el tracking apenas despachamos.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Todas estas disponibles en el checkout online:<br>· <strong>Tarjeta de crédito o débito</strong> vía Mercado Pago, con cuotas sin interés según banco.<br>· <strong>Mercado Pago wallet</strong>, QR, dinero en cuenta, Pago Fácil, Rapipago.<br>· <strong>Transferencia bancaria</strong> directa con <strong style="color:var(--red2)">10% OFF</strong> · te mostramos los datos en el checkout y mandás el comprobante por WhatsApp.<br>· <strong>Efectivo</strong> al retirar en nuestra fábrica de Villa Ballester, también con <strong style="color:var(--red2)">10% OFF</strong>.<br><strong>Sí hacemos factura A</strong> · pedila al momento de la compra con tu CUIT.' },
+  { q: '¿El antigranizo cubre los laterales también?', a: 'No. El antigranizo tiene la espuma protectora (Polyfoam 6mm) en <strong>toda la parte superior</strong> · techo, capot y baúl, que es donde caen los granizos. No cubre laterales porque sería muy voluminoso y poco práctico para guardar (se haría una bola). Igual la funda completa protege todo el auto contra lluvia, sol y polvo.' },
+  { q: '¿Qué diferencia hay entre una funda universal y una a medida?', a: 'La <strong>universal</strong> tiene un patrón estándar y se adapta a varios modelos similares · más económica y rápida de conseguir. La <strong>a medida</strong> está cortada y cosida específicamente para tu modelo, con ajuste exacto en respaldos, apoyacabezas y butacas. Si tu auto tiene butacas especiales, asiento partido o detalles únicos, conviene a medida.' },
+  { q: '¿Cómo se ajustan los cubre autos para que no se vuelen?', a: 'Vienen con <strong>cordón o tiras que pasan por debajo del auto</strong> y se atan por los costados. Eso los mantiene firmes incluso con viento fuerte. Es importante elegir el talle correcto para tu vehículo · si tenés dudas, consultá con Madi o por WhatsApp con el modelo y año.' },
+  { q: '¿Puedo colocar las fundas yo mismo o necesito ayuda profesional?', a: 'Las podés colocar vos sin herramientas · lleva alrededor de <strong>1 hora</strong>. Solo hay que pasar la funda por respaldo, asiento y apoyacabezas, y ajustar los elásticos por debajo. Si preferís ayuda, escribinos por WhatsApp y coordinamos la instalación con un taller asociado.' },
   { q: '¿Qué materiales manejan para fundas, cubre autos y los demás productos?', a: '<strong>Fundas:</strong> ecocuero, ecocuero acolchado 3mm, cuero automotor y tela Jakard premium.<br><strong>Cubre autos y motos:</strong> Tela Silver impermeable y Tela Premium afelpada.<br><strong>Antigranizo:</strong> 3 capas (Silver exterior + Polyfoam 6mm + interior Silver suave).<br><strong>Cubre capots y trompas:</strong> cuerina afelpada por dentro, impermeable por fuera.<br><strong>Alfombras termoformadas:</strong> material 3D con bordes elevados.' },
   { q: '¿Puedo pasar a retirar?', a: 'Sí, podés retirar en nuestra <strong>fábrica de Villa Ballester</strong> (Paraná 2185). Ahí podés ver y probar los productos. Coordiná previamente por WhatsApp para asegurarnos que esté listo.' },
   { q: '¿Hacen factura A?', a: 'Sí, hacemos factura A. Al momento de la compra pasanos tus datos fiscales (CUIT y razón social) y te la emitimos.' },
   { q: '¿Qué otros productos puedo combinar con mis fundas o cubre autos?', a: '<strong>Combos populares para el interior:</strong> funda + cubre volante + cubre cinturones + alfombras termoformadas.<br><strong>Para protección externa:</strong> cubre auto + cubre capot + antigranizo + cubre trompa.<br>Si pensás un combo, escribinos por WhatsApp y te armamos un precio especial.' },
-  { q: '¿Qué diferencia a MDRACING de otras marcas?', a: 'Tres cosas concretas: <strong>(1)</strong> somos fabricantes directos desde el año 2000 — no revendemos, controlamos cada etapa de producción.<br><strong>(2)</strong> Cada material lo seleccionamos después de probarlo durante años en condiciones reales (calor, humedad, uso intensivo) — si no aguanta, no lo usamos.<br><strong>(3)</strong> Te atiende una persona real que conoce los productos, no un call center con respuestas armadas. Después de 25 años en el rubro, tenemos uno de los catálogos más amplios del país, todo bajo un mismo techo.' },
+  { q: '¿Qué diferencia a MDRACING de otras marcas?', a: 'Tres cosas concretas: <strong>(1)</strong> somos fabricantes directos desde el año 2000 · no revendemos, controlamos cada etapa de producción.<br><strong>(2)</strong> Cada material lo seleccionamos después de probarlo durante años en condiciones reales (calor, humedad, uso intensivo) · si no aguanta, no lo usamos.<br><strong>(3)</strong> Te atiende una persona real que conoce los productos, no un call center con respuestas armadas. Después de 25 años en el rubro, tenemos uno de los catálogos más amplios del país, todo bajo un mismo techo.' },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -934,7 +934,7 @@ function renderHome() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
               <div>
                 <strong>Envío a todo el país</strong>
-                <small>Gratis desde $130.000</small>
+                <small>Gratis desde $200.000</small>
               </div>
             </div>
             <div class="hero-trust-item">
@@ -965,7 +965,7 @@ function renderHome() {
           </div>
           <!-- Foto fábrica solo visible en mobile -->
           <div class="hero-mobile-factory">
-            <img src="images/fabrica.webp" alt="Fábrica MDRACING — Villa Ballester" width="1512" height="1512" loading="lazy" />
+            <img src="images/fabrica.webp" alt="Fábrica MDRACING · Villa Ballester" width="1512" height="1512" loading="lazy" />
           </div>
         </div>
         <div class="hero-visual animate-in animate-delay-2">
@@ -978,7 +978,7 @@ function renderHome() {
             <button onclick="openSearch()" class="hero-search-submit">Buscar</button>
           </div>
           <div class="hero-car-wrap">
-            <img src="images/fabrica.webp" alt="Fábrica MDRACING — Villa Ballester" width="1512" height="1512" loading="lazy" class="hero-factory-img" />
+            <img src="images/fabrica.webp" alt="Fábrica MDRACING · Villa Ballester" width="1512" height="1512" loading="lazy" class="hero-factory-img" />
           </div>
           <div class="hero-floating-badge">
             <div class="hfb-icon">${icons.factory}</div>
@@ -1107,13 +1107,13 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- NO ENCONTRAS TU MODELO — WA + MADI CTA -->
+    <!-- NO ENCONTRAS TU MODELO · WA + MADI CTA -->
     <section class="nomodel-section">
       <div class="nomodel-inner">
         <div class="nomodel-icon">${icons.bot}</div>
         <div class="nomodel-text">
           <h3>¿No encontrás el producto para tu vehículo?</h3>
-          <p>Podemos tener exactamente lo que buscás aunque no esté publicado en el catálogo. Escribinos por WhatsApp con la marca, modelo y año de tu vehículo, o consultá compatibilidad e información sobre MDRACING con nuestro bot <strong>Madi</strong> — te asesoramos sin compromiso.</p>
+          <p>Podemos tener exactamente lo que buscás aunque no esté publicado en el catálogo. Escribinos por WhatsApp con la marca, modelo y año de tu vehículo, o consultá compatibilidad e información sobre MDRACING con nuestro bot <strong>Madi</strong> · te asesoramos sin compromiso.</p>
           <p class="nomodel-stock">✔ Stock disponible para envío inmediato</p>
         </div>
         <div class="nomodel-actions">
@@ -1348,7 +1348,7 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- TESTIMONIALS — CAROUSEL -->
+    <!-- TESTIMONIALS · CAROUSEL -->
     <section class="testimonials-section">
       <div class="testimonials-inner">
         <div class="section-header centered">
@@ -1413,7 +1413,7 @@ function renderHome() {
             style="width:100%;height:100%;min-height:360px;border:0;border-radius:18px;display:block"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicación de la fábrica MDRACING — Paraná 2185, Villa Ballester"></iframe>
+            title="Ubicación de la fábrica MDRACING · Paraná 2185, Villa Ballester"></iframe>
         </div>
       </div>
     </section>
@@ -1824,50 +1824,50 @@ function renderProductPage(productId) {
   // ── Materiales por categoría ──
   const materialsItems = {
     'cat-fundas-asientos': [
-      'Cuero ecológico de alta densidad — resistente al desgaste, fácil de limpiar',
+      'Cuero ecológico de alta densidad · resistente al desgaste, fácil de limpiar',
       'Relleno de espuma de alta resiliencia en zonas de apoyo',
-      'Costura con hilo de nylon reforzado — no se deshilacha con el tiempo',
-      'Elástico perimetral de alta tensión — asegura ajuste firme',
-      'Materiales 100% libres de formaldehído — seguros para uso diario',
+      'Costura con hilo de nylon reforzado · no se deshilacha con el tiempo',
+      'Elástico perimetral de alta tensión · asegura ajuste firme',
+      'Materiales 100% libres de formaldehído · seguros para uso diario',
     ],
     'cat-cubre-autos': [
-      'Tela Silver exterior impermeable — refleja el sol y protege contra polvo y lluvia',
+      'Tela Silver exterior impermeable · refleja el sol y protege contra polvo y lluvia',
       'Interior plateado suave que no raya la pintura del vehículo',
-      'En modelos antigranizo: capa de espuma Polyfoam 6mm en toda la parte superior (techo, capot y baúl) — amortigua impactos y granizo',
-      'Costuras reforzadas con hilo de nylon — duraderas bajo lluvia y sol',
-      'Sistema de sujeción con cordón o tiras que pasan por debajo del auto — ajuste firme sin que se vuele',
+      'En modelos antigranizo: capa de espuma Polyfoam 6mm en toda la parte superior (techo, capot y baúl) · amortigua impactos y granizo',
+      'Costuras reforzadas con hilo de nylon · duraderas bajo lluvia y sol',
+      'Sistema de sujeción con cordón o tiras que pasan por debajo del auto · ajuste firme sin que se vuele',
     ],
     'cat-cubre-capots': [
-      'Cuerina impermeable exterior — protege contra granizo, impactos y rayones',
-      'Interior afelpado suave — no raya la pintura del capot',
+      'Cuerina impermeable exterior · protege contra granizo, impactos y rayones',
+      'Interior afelpado suave · no raya la pintura del capot',
       'Elásticos perimetrales y ganchos de sujeción incluidos',
-      'Costuras selladas — resistentes a la lluvia y humedad',
+      'Costuras selladas · resistentes a la lluvia y humedad',
       'Material moldeado específicamente para cada modelo',
     ],
     'cat-cubre-trompas': [
-      'Cuerina impermeable exterior — protege paragolpe y frente del vehículo',
-      'Interior afelpado suave — sin rayones en pintura ni plásticos',
-      'Sistema de sujeción con ganchos y elásticos — ajuste firme sin ataduras',
-      'Material moldeado para cada modelo — ajuste preciso y estético',
+      'Cuerina impermeable exterior · protege paragolpe y frente del vehículo',
+      'Interior afelpado suave · sin rayones en pintura ni plásticos',
+      'Sistema de sujeción con ganchos y elásticos · ajuste firme sin ataduras',
+      'Material moldeado para cada modelo · ajuste preciso y estético',
       'Resistente a lluvia, granizo, polvo e insectos',
     ],
     'cat-cubre-motos': [
-      'Tela Silver exterior impermeable — refleja rayos UV y protege contra lluvia y polvo',
+      'Tela Silver exterior impermeable · refleja rayos UV y protege contra lluvia y polvo',
       'Interior plateado suave que no raya pintura ni plásticos de la moto',
-      'Costuras selladas con hilo de nylon — alta resistencia a la intemperie',
-      'Incluye bolso de guardado — fácil de llevar y guardar',
+      'Costuras selladas con hilo de nylon · alta resistencia a la intemperie',
+      'Incluye bolso de guardado · fácil de llevar y guardar',
       'Disponible en 5 talles según el largo de la moto: S 1,95m · M 2,05m · L 2,15m · XL 2,25m · XXL 2,35m',
     ],
     'cat-alfombras-termoformadas': [
-      'Material termoformado de alta densidad — resistente al agua, barro y derrames',
-      'Bordes elevados (3D) que contienen líquidos y suciedad — evitan que pase al piso original',
-      'Antideslizante en su base — no se mueve durante el uso',
-      'Ajuste preciso al modelo del vehículo — cubre toda la zona de pisada',
+      'Material termoformado de alta densidad · resistente al agua, barro y derrames',
+      'Bordes elevados (3D) que contienen líquidos y suciedad · evitan que pase al piso original',
+      'Antideslizante en su base · no se mueve durante el uso',
+      'Ajuste preciso al modelo del vehículo · cubre toda la zona de pisada',
       'Fácil de retirar y limpiar con agua o paño húmedo',
     ],
     'cat-accesorios': [
       'Materiales seleccionados según el tipo de accesorio',
-      'Acabados de alta calidad — diseñados para durar en uso diario',
+      'Acabados de alta calidad · diseñados para durar en uso diario',
       'Compatibles con los vehículos indicados en cada producto',
       'Fabricados en Argentina bajo control de calidad MDRACING',
     ],
@@ -1887,7 +1887,7 @@ function renderProductPage(productId) {
       'Extendé el cubre auto empezando desde el techo hacia los costados',
       'Bajá bien la tela sobre el capot y el baúl',
       'Pasá el cordón o las tiras por debajo del auto y atalas por los costados',
-      'Verificá que esté firme — el cordón/tiras evitan que se vuele con viento',
+      'Verificá que esté firme · el cordón/tiras evitan que se vuele con viento',
     ],
     'cat-cubre-capots': [
       'Limpiá bien el capot antes de instalar',
@@ -2022,7 +2022,7 @@ function renderProductPage(productId) {
 
           <div class="product-compat">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-            Compatible con múltiples modelos — consultá el tuyo
+            Compatible con múltiples modelos · consultá el tuyo
           </div>
 
           <div class="product-benefits-top">
@@ -2105,7 +2105,7 @@ function renderProductPage(productId) {
             <div class="info-block">
               <div class="info-block-title">${icons.check} Características</div>
               <ul>
-                <li>Fabricación propia — calidad controlada</li>
+                <li>Fabricación propia · calidad controlada</li>
                 <li>Materiales resistentes al uso diario</li>
                 <li>Ajuste preciso para el modelo indicado</li>
                 <li>Costuras reforzadas en puntos de tensión</li>
@@ -2373,7 +2373,7 @@ function renderHowToBuyPage() {
   ];
 
   const stepsAdvised = [
-    { n: '01', title: 'Tenés dudas, lo entendemos', text: 'Cubre autos, fundas a medida, cubre capots, cubre trompas — son productos donde elegir mal el modelo o talle es caro. Mejor preguntar.' },
+    { n: '01', title: 'Tenés dudas, lo entendemos', text: 'Cubre autos, fundas a medida, cubre capots, cubre trompas · son productos donde elegir mal el modelo o talle es caro. Mejor preguntar.' },
     { n: '02', title: 'Consultá con Madi o por WhatsApp', text: 'Madi (el chat del sitio) responde 24/7 sobre precios, materiales y compatibilidad. Para casos especiales, escribinos directo al WhatsApp: <strong>+54 9 11 5490-7774</strong>.' },
     { n: '03', title: 'Te asesoramos sin compromiso', text: 'Vemos foto de tu auto si hace falta, confirmamos modelo y talle exacto, te recomendamos el material correcto según uso. Sin presión de venta.' },
     { n: '04', title: 'Cerramos por donde prefieras', text: 'Una vez claro el producto, podés finalizar online (volvés al sitio y tocás "Comprar ahora") o lo cerramos por WhatsApp coordinando pago y envío.' },
@@ -2401,7 +2401,7 @@ function renderHowToBuyPage() {
           <div style="background:var(--dark2);border:2px solid #25d366;border-radius:14px;padding:24px;position:relative">
             <span style="position:absolute;top:-12px;left:24px;background:#25d366;color:#fff;padding:4px 12px;border-radius:6px;font-family:var(--font-small);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase">Recomendado para productos custom</span>
             <h3 style="font-family:var(--font-head);font-weight:800;font-size:22px;color:var(--white);margin:8px 0 10px;letter-spacing:-.3px">💬 Asesoramiento por WhatsApp</h3>
-            <p style="color:var(--metal2);font-size:14.5px;line-height:1.6;margin:0">Fundas, cubre autos, cubre capots y trompas — donde el modelo/talle/material importa. Te asesoramos para evitar errores y luego elegís cómo cerrar la compra.</p>
+            <p style="color:var(--metal2);font-size:14.5px;line-height:1.6;margin:0">Fundas, cubre autos, cubre capots y trompas · donde el modelo/talle/material importa. Te asesoramos para evitar errores y luego elegís cómo cerrar la compra.</p>
           </div>
         </div>
 
@@ -2493,7 +2493,7 @@ function renderHowToBuyPage() {
             <div class="payment-card">
               <div class="payment-icon">📦</div>
               <div class="payment-name">Envío a domicilio</div>
-              <div class="payment-desc">Andreani · Correo Argentino · OCA. Costo automático en el checkout según zona. <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $130.000+.</div>
+              <div class="payment-desc">Andreani · Correo Argentino · OCA. Costo automático en el checkout según zona. <strong style="color:var(--red2)">Envío GRATIS</strong> en pedidos de $200.000+.</div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">🏭</div>
@@ -2607,7 +2607,7 @@ function renderReturnsPage() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div>
               <div class="returns-address-label">Dirección para devoluciones</div>
-              <div class="returns-address-value">Paraná 2185, Villa Ballester — San Martín, Buenos Aires (CP 1653)</div>
+              <div class="returns-address-value">Paraná 2185, Villa Ballester · San Martín, Buenos Aires (CP 1653)</div>
             </div>
           </div>
         </div>
@@ -2849,6 +2849,26 @@ function renderPrivacyPage() {
 
 // ── Contact Page ──
 function renderContactPage() {
+  const mayoristaBody = [
+    'Hola MDRACING, quiero hacer un pedido por mayor. Estos son mis datos:',
+    '',
+    'Nombre y apellido: ',
+    'DNI: ',
+    'CUIT / CUIL: ',
+    'Condición frente al IVA (Responsable Inscripto / Monotributo / Consumidor Final): ',
+    '¿Tenés un negocio? (nombre y rubro): ',
+    'Localidad y provincia: ',
+    'Teléfono / WhatsApp: ',
+    '',
+    'Pedido (detallá cada producto con la cantidad de unidades):',
+    '- ',
+    '- ',
+    '- ',
+    '',
+    'Forma de pago preferida: ',
+    '¿Cómo nos conociste?: ',
+  ].join('\n');
+  const mayoristaMail = 'https://mail.google.com/mail/?view=cm&fs=1&to=mdracingdv@gmail.com&su=' + encodeURIComponent('Pedido mayorista MDRACING') + '&body=' + encodeURIComponent(mayoristaBody);
   return `
     <div class="page-wrapper">
       <div class="page-hero">
@@ -2901,33 +2921,11 @@ function renderContactPage() {
         </div>
 
         <div class="contact-form-wrap">
-          <div class="form-title">Envianos un mensaje</div>
-          <div class="form-sub">Te respondemos en menos de 24hs hábiles</div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label>Nombre</label>
-              <input type="text" placeholder="Tu nombre">
-            </div>
-            <div class="form-group">
-              <label>Teléfono / WhatsApp</label>
-              <input type="tel" placeholder="+54 9 11...">
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="tu@email.com">
-            </div>
-            <div class="form-group">
-              <label>Vehículo (marca y modelo)</label>
-              <input type="text" placeholder="Ej: Toyota Hilux 2022">
-            </div>
-            <div class="form-group full">
-              <label>Consulta</label>
-              <textarea rows="5" placeholder="Contanos qué necesitás..."></textarea>
-            </div>
-            <div class="form-group full">
-              <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitContact()">Enviar Consulta ${icons.arrowRight}</button>
-            </div>
-          </div>
+          <div class="form-title">¿Comprás por mayor?</div>
+          <div class="form-sub">Somos fábrica directa: revendé nuestros productos con precios mayoristas.</div>
+          <p style="color:var(--metal2);line-height:1.7;margin:0 0 22px">Tocá el botón y se abre un mail ya armado para que completes los datos de tu pedido. Te respondemos a la brevedad con precios y disponibilidad. Si preferís, escribinos por WhatsApp.</p>
+          <a href="${mayoristaMail}" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;margin-bottom:12px">Pedir presupuesto mayorista por mail ${icons.arrowRight}</a>
+          <a href="${WA_MSG('Hola MDRACING! Quiero info para comprar por mayor.')}" target="_blank" rel="noopener" class="btn-outline" style="width:100%;justify-content:center">${icons.waIcon} Consultar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -3037,7 +3035,7 @@ function navigate(page) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// SEO — actualización dinámica de title / meta / OG por página
+// SEO · actualización dinámica de title / meta / OG por página
 // ═══════════════════════════════════════════════════════════
 const SITE_BASE = 'https://www.mdracingfundas.com';
 const SITE_DEFAULT_IMAGE = SITE_BASE + '/og-image.jpg';
@@ -3057,8 +3055,8 @@ function applySEO(page) {
     const id = page.replace('product-', '');
     const p = products.find(pp => pp.id === id);
     if (p) {
-      const offer = p.salePrice ? ` — Oferta $${p.salePrice}` : '';
-      title = `${p.name} — $${p.price}${offer} | MDRACING`;
+      const offer = p.salePrice ? ` · Oferta $${p.salePrice}` : '';
+      title = `${p.name} · $${p.price}${offer} | MDRACING`;
       description = (p.desc || `${p.name} fabricado por MDRACING. Calidad premium, envíos a todo el país.`).slice(0, 158);
       if (p.images && p.images[0]) image = p.images[0].startsWith('http') ? p.images[0] : SITE_BASE + '/' + p.images[0];
       injectProductJsonLd(p);
@@ -3081,19 +3079,19 @@ function applySEO(page) {
   else {
     removeProductJsonLd();
     const seoMap = {
-      'home':                   { t: 'MDRACING — Fundas, Cubre Autos y Accesorios para tu Vehículo',
+      'home':                   { t: 'MDRACING · Fundas, Cubre Autos y Accesorios para tu Vehículo',
                                   d: 'Fabricantes de fundas para asientos, cubre autos antigranizo, cubre capots y accesorios. +25 años de trayectoria. Envíos a todo el país.' },
       'categorias':             { t: 'Productos | MDRACING',
                                   d: 'Catálogo completo de fundas para asientos, cubre autos, cubre capots, cubre trompas, alfombras termoformadas y accesorios.' },
-      'quienes-somos':          { t: 'Quiénes Somos | MDRACING — 25 años fabricando en Argentina',
+      'quienes-somos':          { t: 'Quiénes Somos | MDRACING · 25 años fabricando en Argentina',
                                   d: 'MDRACING fabrica accesorios automotrices premium desde el año 2000. Conocé nuestra historia, nuestro proceso y por qué nos eligen.' },
-      'como-comprar':           { t: 'Cómo Comprar | MDRACING — Compras simples por WhatsApp',
+      'como-comprar':           { t: 'Cómo Comprar | MDRACING · Compras simples por WhatsApp',
                                   d: 'Comprá fácil en 3 pasos. Envíos a todo el país, retiro en Villa Ballester y atención personalizada por WhatsApp.' },
       'preguntas-frecuentes':   { t: 'Preguntas Frecuentes | MDRACING',
                                   d: 'Resolvemos tus dudas sobre productos, materiales, envíos, talles y garantías de MDRACING.' },
       'cambios-devoluciones':   { t: 'Cambios y Devoluciones | MDRACING',
                                   d: 'Garantía de 30 días por fallas de fábrica. Política de cambios y devoluciones MDRACING.' },
-      'contacto':               { t: 'Contacto | MDRACING — WhatsApp y Fábrica en Villa Ballester',
+      'contacto':               { t: 'Contacto | MDRACING · WhatsApp y Fábrica en Villa Ballester',
                                   d: 'Escribinos por WhatsApp +54 9 11 5490-7774 o visitá nuestra fábrica en Paraná 2185, Villa Ballester.' },
       'terminos-y-condiciones': { t: 'Términos y Condiciones | MDRACING',
                                   d: 'Condiciones de compra, envíos, garantía y derecho de revocación de MDRACING. Ajustado a la Ley 24.240 de Defensa del Consumidor.' },
@@ -3105,7 +3103,7 @@ function applySEO(page) {
     description = seo.d;
   }
 
-  if (!title) title = 'MDRACING — Fundas, Cubre Autos y Accesorios';
+  if (!title) title = 'MDRACING · Fundas, Cubre Autos y Accesorios';
   if (!description) description = 'Fabricantes de accesorios automotrices premium con más de 25 años de trayectoria.';
 
   const fullUrl = SITE_BASE + urlPath;
@@ -3184,10 +3182,10 @@ function renderPage(page) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// RENDER — Páginas de marca de auto
+// RENDER · Páginas de marca de auto
 // ═══════════════════════════════════════════════════════════
 
-/** /marcas — índice con tarjetas a cada marca y cantidad de productos. */
+/** /marcas · índice con tarjetas a cada marca y cantidad de productos. */
 function renderBrandsPage() {
   const items = carBrands.map(b => {
     const count = getProductsForBrand(b).length;
@@ -3219,7 +3217,7 @@ function renderBrandsPage() {
   `;
 }
 
-/** /marcas/<slug> — página de productos compatibles con una marca. */
+/** /marcas/<slug> · página de productos compatibles con una marca. */
 function renderBrandPage(slug) {
   const brand = getCarBrand(slug);
   if (!brand) return renderBrandsPage();
@@ -3295,7 +3293,7 @@ function renderBrandPage(slug) {
 
 // bindLinks() ya NO ata listeners por elemento.
 // La delegación global en document se encarga de [data-page], color-swatches, variant-btns y product-thumbs.
-function bindLinks() { /* noop — delegación global */ }
+function bindLinks() { /* noop · delegación global */ }
 
 // Delegación global única: se ata UNA sola vez a document
 function setupGlobalDelegation() {
@@ -3364,7 +3362,7 @@ function initInteractives() {
   // Color swatches, variant buttons y product thumbs ahora se manejan por delegación global
   // (ver setupGlobalDelegation). Acá solo lo que necesita binding específico:
 
-  // Carruseles y countdown — se inicializan al renderizar la home/categorías
+  // Carruseles y countdown · se inicializan al renderizar la home/categorías
   initTestimonialsCarousel();
   initMaterialsCarousel();
   initTopReviewsCarousel();
@@ -3411,7 +3409,7 @@ function ensureLightbox() {
   const onDown = (e) => {
     if (!lb.classList.contains('open')) return;
     if (e.target === closeBtn) return;
-    // Sólo gesto swipe-to-close en touch/pen — en mouse se cierra con X / click fuera / Escape
+    // Sólo gesto swipe-to-close en touch/pen · en mouse se cierra con X / click fuera / Escape
     if (e.pointerType === 'mouse') return;
     pointerId = e.pointerId;
     startY = e.clientY;
@@ -4120,7 +4118,7 @@ function sortProducts(order) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// CARRITO DE CONSULTA — persistido en localStorage,
+// CARRITO DE CONSULTA · persistido en localStorage,
 // checkout via WhatsApp (no compra directa).
 // ═══════════════════════════════════════════════════════════
 const CART_KEY = 'mdracing_cart_v1';
@@ -4291,7 +4289,7 @@ function openCheckoutForProduct(productId) {
   // Primera imagen disponible (real o cdn)
   const firstImage = (p.images && p.images[0]) || '/logo.png';
   // Envío gratis si: badge "Envío Gratis" o precio >= $130k
-  const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 130000;
+  const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 200000;
 
   if (typeof window.openCheckout !== 'function') {
     console.error('openCheckout no disponible. ¿Cargó checkout.js?');
@@ -4526,7 +4524,7 @@ function openCheckoutFromCart() {
     const effectivePriceStr = hsPrice || ci.salePrice || ci.price || p.salePrice || p.price;
     const priceNum = parseInt(String(effectivePriceStr).replace(/[^\d]/g, ''), 10) || 0;
     const firstImage = (p.images && p.images[0]) || ci.img || '/logo.png';
-    const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 130000;
+    const freeShip = (p.badge === 'Envío Gratis') || priceNum >= 200000;
     return {
       id: p.id || ci.id,
       name: p.name || ci.name,
@@ -4551,7 +4549,7 @@ window.openCheckoutFromCart = openCheckoutFromCart;
 // ═══════════════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Delegación global única — reemplaza cientos de listeners individuales
+  // Delegación global única · reemplaza cientos de listeners individuales
   setupGlobalDelegation();
 
   initHeader();
@@ -4621,7 +4619,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Floating WA button — show after 4.5s
+  // Floating WA button · show after 4.5s
   const waFloat = document.getElementById('wa-float');
   if (waFloat) {
     waFloat.style.opacity = '0';
