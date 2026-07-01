@@ -1542,8 +1542,8 @@ function renderProductCard(p) {
       ? `<div class="pg-dots">${p.images.map((_, i) => `<span class="pg-dot${i === 0 ? ' pg-dot-active' : ''}"></span>`).join('')}</div>`
       : '';
     const arrows = p.images.length > 1
-      ? `<button class="pg-arr pg-prev" onclick="event.stopPropagation();pgMove('${uid}',-1)" aria-label="Anterior">&#8249;</button>
-         <button class="pg-arr pg-next" onclick="event.stopPropagation();pgMove('${uid}',1)" aria-label="Siguiente">&#8250;</button>`
+      ? `<button class="pg-arr pg-prev" onclick="event.preventDefault();event.stopPropagation();pgMove('${uid}',-1)" aria-label="Anterior">&#8249;</button>
+         <button class="pg-arr pg-next" onclick="event.preventDefault();event.stopPropagation();pgMove('${uid}',1)" aria-label="Siguiente">&#8250;</button>`
       : '';
     mediaContent = `<div class="pg-wrap" id="pg-${uid}" data-cur="0">${arrows}${slides}${dots}</div>`;
   } else if (p.img) {
@@ -1592,14 +1592,14 @@ function renderProductCard(p) {
   }
   return `
     <article class="product-card">
-      <div class="product-card-media" onclick="navigate('product-${p.id}')">
+      <a href="/producto/${p.id}" data-page="product-${p.id}" class="product-card-media" aria-label="Ver ${p.name}">
         ${mediaContent}
         ${badgeHtml}
         <div class="product-card-hover"><span>Ver detalle ${icons.arrowRight}</span></div>
-      </div>
+      </a>
       <div class="product-info">
         <div class="product-cat-tag">${p.cat}</div>
-        <h3 class="product-name" onclick="navigate('product-${p.id}')">${p.name}</h3>
+        <h3 class="product-name"><a href="/producto/${p.id}" data-page="product-${p.id}" style="color:inherit;text-decoration:none">${p.name}</a></h3>
         <p class="product-desc">${p.desc}</p>
         ${colorsHtml}
         ${ultimasHtml}
