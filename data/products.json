@@ -24,8 +24,8 @@
         "name": "Negro",
         "images": [
           "https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-4fd92aa337037f508817637371680250-1024-1024.webp",
-          "/images/asientos-delanteros-tera.png",
-          "/images/asientos-traseros-tera.png",
+          "/images/asientos-delanteros-tera.webp",
+          "/images/asientos-traseros-tera.webp",
           "https://dcdn-us.mitiendanube.com/stores/004/478/482/products/c1d3400f-b126-4eb1-bf57-4f6e2dbf6b5f-a8a6c9f53655a82d3b17637372261628-1024-1024.webp"
         ]
       },
@@ -34,8 +34,8 @@
         "name": "Gris",
         "images": [
           "https://dcdn-us.mitiendanube.com/stores/004/478/482/products/vw-tera-con-funda-cuer-aut-gris-eb2fec05ca4bfbc4dd17637386495801-1024-1024.webp",
-          "/images/asientos-delanteros-tera.png",
-          "/images/asientos-traseros-tera.png"
+          "/images/asientos-delanteros-tera.webp",
+          "/images/asientos-traseros-tera.webp"
         ]
       }
     ],
@@ -143,9 +143,9 @@
     "salePrice": "189.999",
     "desc": "Funda de cuero automotor para VW T-Cross 2025. Diseño específico para el modelo, costura reforzada y acabado premium.",
     "images": [
-      "images/fundas/tcross-cuero-portada.jpg",
-      "images/fundas/tcross-cuero-foto2.jpg",
-      "images/fundas/tcross-cuero-foto3.jpg"
+      "images/fundas/tcross-cuero-portada.webp",
+      "images/fundas/tcross-cuero-foto2.webp",
+      "images/fundas/tcross-cuero-foto3.webp"
     ],
     "colors": [
       "#1a1a1a"
